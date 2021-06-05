@@ -1,0 +1,7 @@
+[Unit]
+Description=Portal service (GNOME implementation)
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.impl.portal.desktop.gnome
+ExecStart=@libexecdir@/xdg-desktop-portal-gnome

@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.freedesktop.impl.portal.desktop.gnome
+Exec=@libexecdir@/xdg-desktop-portal-gnome
+SystemdService=xdg-desktop-portal-gnome.service
