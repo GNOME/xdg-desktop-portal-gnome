@@ -186,13 +186,13 @@ main (int argc, char *argv[])
   g_option_context_set_summary (context,
       "A backend implementation for xdg-desktop-portal.");
   g_option_context_set_description (context,
-      "xdg-desktop-portal-gtk provides D-Bus interfaces that\n"
+      "xdg-desktop-portal-gnome provides D-Bus interfaces that\n"
       "are used by xdg-desktop-portal to implement portals\n"
       "\n"
       "Documentation for the available D-Bus interfaces can be found at\n"
       "https://flatpak.github.io/xdg-desktop-portal/portal-docs.html\n"
       "\n"
-      "Please report issues at https://github.com/flatpak/xdg-desktop-portal-gtk/issues");
+      "Please report issues at https://gitlab.gnome.org/feaneron/xdg-desktop-portal-gnome/issues");
   g_option_context_add_main_entries (context, entries, NULL);
   if (!g_option_context_parse (context, &argc, &argv, &error))
     {

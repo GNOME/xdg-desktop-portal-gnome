@@ -1,11 +1,11 @@
-# British English translation for xdg-desktop-portal-gtk.
-# Copyright (C) 2019 xdg-desktop-portal-gtk's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# British English translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2019 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Zander Brown <zbrown@gnome.org>, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
 "issues\n"
 "POT-Creation-Date: 2021-06-05 10:00-0300\n"

@@ -1,11 +1,11 @@
-# Italian translation for xdg-desktop-portal-gtk.
-# Copyright (C) 2017, 2018, 2019, 2020 xdg-desktop-portal-gtk's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# Italian translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2017, 2018, 2019, 2020 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Milo Casagrande <milo@milo.name>, 2017, 2018, 2019, 2020.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
 "issues\n"
 "POT-Creation-Date: 2021-06-05 10:00-0300\n"

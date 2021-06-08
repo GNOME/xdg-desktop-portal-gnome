@@ -1,12 +1,12 @@
-# German translation for xdg-desktop-portal-gtk.
-# Copyright (C) 2016 xdg-desktop-portal-gtk's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# German translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2016, 2018.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
 "issues\n"
 "POT-Creation-Date: 2021-06-05 10:00-0300\n"

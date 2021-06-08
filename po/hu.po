@@ -1,11 +1,11 @@
-# Hungarian translation for xdg-desktop-portal-gtk.
+# Hungarian translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2016, 2017, 2018, 2019 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xdg-sesktop-portal-gtk package.
 #
 # Balázs Úr <ur.balazs at fsf dot hu>, 2016, 2017, 2018, 2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
 "issues\n"
 "POT-Creation-Date: 2021-06-05 10:00-0300\n"
