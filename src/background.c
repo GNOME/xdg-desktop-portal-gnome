@@ -45,7 +45,6 @@ get_app_state (void)
 {
   g_autoptr(GVariant) apps = NULL;
   g_autoptr(GHashTable) app_states = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-  g_autoptr(GError) error = NULL;
   GVariantBuilder builder;
   GHashTableIter iter;
   const char *key;
