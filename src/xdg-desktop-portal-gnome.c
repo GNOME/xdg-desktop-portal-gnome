@@ -57,10 +57,13 @@ static GMainLoop *loop = NULL;
 static GHashTable *outstanding_handles = NULL;
 
 static gboolean opt_verbose;
+static gboolean opt_replace;
 static gboolean show_version;
 
 static GOptionEntry entries[] = {
   { "verbose", 'v', 0, G_OPTION_ARG_NONE, &opt_verbose, "Print debug information during command processing", NULL },
+  { "replace", 'r', 0, G_OPTION_ARG_NONE, &opt_replace, "Replace a running instance", NULL },
+
   { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, "Show program version.", NULL},
   { NULL }
 };
@@ -161,6 +164,7 @@ on_name_lost (GDBusConnection *connection,
               const gchar     *name,
               gpointer         user_data)
 {
+  g_debug ("name lost");
   g_main_loop_quit (loop);
 }
 
@@ -230,7 +234,7 @@ main (int argc, char *argv[])
 
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
                              "org.freedesktop.impl.portal.desktop.gnome",
-                             G_BUS_NAME_OWNER_FLAGS_REPLACE,
+                             G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT | (opt_replace ? G_BUS_NAME_OWNER_FLAGS_REPLACE : 0),
                              on_bus_acquired,
                              on_name_acquired,
                              on_name_lost,
