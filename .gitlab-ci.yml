@@ -1,0 +1,27 @@
+stages:
+  - build
+
+.build-common:
+  stage: build
+  script:
+  - meson . _build
+  - ninja -C _build
+  - ninja -C _build install
+
+build-fedora:
+  image: fedora:latest
+  extends: .build-common
+  before_script:
+  - dnf install -y 'dnf-command(builddep)' meson
+  - dnf builddep -y xdg-desktop-portal-gtk
+
+build-ubuntu:
+  image: ubuntu:rolling
+  extends: .build-common
+  variables:
+    DEBIAN_FRONTEND: noninteractive
+  before_script:
+  - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
+  - apt-get update
+  - apt-get install -y meson
+  - apt-get build-dep -y xdg-desktop-portal-gtk
