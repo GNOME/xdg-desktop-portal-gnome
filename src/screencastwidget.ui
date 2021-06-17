@@ -19,6 +19,7 @@
         <child>
           <object class="GtkStack" id="source_type">
             <property name="transition-type">crossfade</property>
+            <!-- Window selection page -->
             <child>
               <object class="GtkStackPage">
                 <property name="name">windows_page</property>
@@ -80,6 +81,8 @@
                 </property>
               </object>
             </child>
+
+            <!-- Physical monitor selection page -->
             <child>
               <object class="GtkStackPage">
                 <property name="name">monitors_page</property>
@@ -135,6 +138,64 @@
                             </child>
                           </object>
                         </property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <!-- Virtual monitor selection page -->
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">virtual_page</property>
+                <property name="title" translatable="yes">Virtual monitor</property>
+                <property name="child">
+                  <object class="GtkBox" id="virtual_selection">
+                    <property name="orientation">vertical</property>
+                    <property name="visible">0</property>
+                    <property name="margin_top">12</property>
+
+                    <!-- Virtual monitor selection label -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="hexpand">True</property>
+                        <property name="halign">start</property>
+                        <child>
+                          <object class="GtkLabel" id="virtual_heading">
+                            <property name="label"/>
+                            <property name="xalign">0.0</property>
+                            <property name="margin_bottom">12</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <!-- Virtual monitor switch view -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="can_focus">False</property>
+                        <property name="orientation">horizontal</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">
+                              Create virtual monitor?
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="virtual_switch">
+                            <property name="can_focus">True</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

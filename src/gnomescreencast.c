@@ -435,6 +435,84 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession *gnome_screen_c
   return TRUE;
 }
 
+static gboolean
+gnome_screen_cast_session_record_virtual (GnomeScreenCastSession *gnome_screen_cast_session,
+                                          ScreenCastSelection *select,
+                                          GError **error)
+{
+  OrgGnomeMutterScreenCastSession *session_proxy =
+    gnome_screen_cast_session->proxy;
+  GVariantBuilder properties_builder;
+  GVariant *properties;
+  g_autofree char *stream_path = NULL;
+  GDBusConnection *connection;
+  OrgGnomeMutterScreenCastStream *stream_proxy;
+  GnomeScreenCastStream *stream;
+  GVariant *parameters;
+
+  g_variant_builder_init (&properties_builder, G_VARIANT_TYPE_VARDICT);
+  if (select->cursor_mode)
+    {
+      uint32_t gnome_cursor_mode;
+
+      gnome_cursor_mode = cursor_mode_to_gnome_cursor_mode (select->cursor_mode);
+      g_variant_builder_add (&properties_builder, "{sv}",
+                             "cursor-mode",
+                             g_variant_new_uint32 (gnome_cursor_mode));
+    }
+  properties = g_variant_builder_end (&properties_builder);
+
+  if (!org_gnome_mutter_screen_cast_session_call_record_virtual_sync (session_proxy,
+                                                                      properties,
+                                                                      &stream_path,
+                                                                      NULL,
+                                                                      error))
+    return FALSE;
+
+  connection = g_dbus_proxy_get_connection (G_DBUS_PROXY (session_proxy));
+  stream_proxy =
+    org_gnome_mutter_screen_cast_stream_proxy_new_sync (connection,
+                                                        G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+                                                        "org.gnome.Mutter.ScreenCast",
+                                                        stream_path,
+                                                        NULL,
+                                                        error);
+  if (!stream_proxy)
+    return FALSE;
+
+  stream = g_object_new (gnome_screen_cast_stream_get_type (), NULL);
+  stream->source_type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
+  stream->session = gnome_screen_cast_session;
+  stream->path = g_strdup (stream_path);
+  stream->proxy = stream_proxy;
+
+  parameters = org_gnome_mutter_screen_cast_stream_get_parameters (stream->proxy);
+  if (parameters)
+    {
+      if (g_variant_lookup (parameters, "position", "(ii)",
+                            &stream->x, &stream->y))
+        stream->has_position = TRUE;
+      if (g_variant_lookup (parameters, "size", "(ii)",
+                            &stream->width, &stream->height))
+        stream->has_size = TRUE;
+    }
+  else
+    {
+      g_warning ("Screen cast stream %s missing parameters",
+                 stream->path);
+    }
+
+  g_signal_connect (stream_proxy, "pipewire-stream-added",
+                    G_CALLBACK (on_pipewire_stream_added),
+                    stream);
+
+  gnome_screen_cast_session->streams =
+    g_list_prepend (gnome_screen_cast_session->streams, stream);
+  gnome_screen_cast_session->n_needed_stream_node_ids++;
+
+  return TRUE;
+}
+
 gboolean
 gnome_screen_cast_session_record_selections (GnomeScreenCastSession *gnome_screen_cast_session,
                                              GVariant *selections,
@@ -473,6 +551,13 @@ gnome_screen_cast_session_record_selections (GnomeScreenCastSession *gnome_scree
                                                         select,
                                                         error))
             return FALSE;
+          break;
+        case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
+          if (!gnome_screen_cast_session_record_virtual (gnome_screen_cast_session,
+                                                         select,
+                                                         error))
+            return FALSE;
+          break;
         }
     }
 

@@ -25,6 +25,7 @@ typedef enum _ScreenCastSourceType
 {
   SCREEN_CAST_SOURCE_TYPE_MONITOR = 1,
   SCREEN_CAST_SOURCE_TYPE_WINDOW = 2,
+  SCREEN_CAST_SOURCE_TYPE_VIRTUAL = 4,
 } ScreenCastSourceType;
 
 typedef enum _ScreenCastCursorMode
