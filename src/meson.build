@@ -96,15 +96,21 @@ sources = built_sources + files(
   'xdg-desktop-portal-gnome.c',
 )
 
+common_flags = []
+
 gtk_x11_dep = dependency('gtk+-x11-3.0', required: false)
 if gtk_x11_dep.found()
   sources += files('externalwindow-x11.c')
+  common_flags += ['-DHAVE_GTK_X11']
 endif
 
 gtk_wayland_dep = dependency('gtk+-wayland-3.0', version: '>= 3.21.5', required: false)
 if gtk_wayland_dep.found()
   sources += files('externalwindow-wayland.c')
+  common_flags += ['-DHAVE_GTK_WAYLAND']
 endif
+
+add_project_arguments(common_flags, language: 'c')
 
 executable(
   'xdg-desktop-portal-gnome',
