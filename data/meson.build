@@ -1,7 +1,7 @@
 i18n = import('i18n')
 
 libexecdir_conf = configuration_data()
-libexecdir_conf.set('libexecdir', get_option('libexecdir'))
+libexecdir_conf.set('libexecdir', prefix / libexecdir)
 
 # Portal
 portal_dir = datadir / 'xdg-desktop-portal' / 'portals'
