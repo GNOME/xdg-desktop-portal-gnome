@@ -129,7 +129,7 @@ remote_desktop_session_sources_selected (RemoteDesktopSession *session,
 static void
 remote_desktop_dialog_handle_free (RemoteDesktopDialogHandle *dialog_handle)
 {
-  g_clear_pointer (&dialog_handle->dialog, gtk_widget_destroy);
+  g_clear_pointer ((GtkWindow**)&dialog_handle->dialog, gtk_window_destroy);
   g_clear_object (&dialog_handle->external_parent);
   g_object_unref (dialog_handle->request);
 
@@ -203,7 +203,7 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
 {
   RemoteDesktopDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
-  GdkScreen *screen;
+  GdkSurface *surface;
   GdkDisplay *display;
   GtkWidget *fake_parent;
   GtkWidget *dialog;
@@ -224,10 +224,8 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
     display = external_window_get_display (external_parent);
   else
     display = gdk_display_get_default ();
-  screen = gdk_display_get_default_screen (display);
   fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "type", GTK_WINDOW_TOPLEVEL,
-                              "screen", screen,
+                              "display", display,
                               NULL);
   g_object_ref_sink (fake_parent);
 
@@ -253,8 +251,9 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
 
   gtk_widget_realize (dialog);
 
+  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, gtk_widget_get_window (dialog));
+    external_window_set_parent_of (external_parent, surface);
 
   gtk_widget_show (dialog);
 
@@ -551,7 +550,6 @@ handle_start (XdpImplRemoteDesktop *object,
   const char *sender;
   g_autoptr(Request) request = NULL;
   RemoteDesktopSession *remote_desktop_session;
-  g_autoptr(GError) error = NULL;
   RemoteDesktopDialogHandle *dialog_handle;
   GVariantBuilder results_builder;
 

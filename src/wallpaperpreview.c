@@ -28,8 +28,7 @@
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#define GNOME_DESKTOP_USE_UNSTABLE_API
-#include <libgnome-desktop/gnome-bg.h>
+#include "gnome-bg.h"
 
 #include "wallpaperpreview.h"
 
@@ -42,7 +41,6 @@ struct _WallpaperPreview {
   GtkLabel *desktop_clock_label;
   GtkWidget *drawing_area;
 
-  GnomeDesktopThumbnailFactory *thumbs;
   GnomeBG *bg;
 
   GSettings *desktop_settings;
@@ -57,24 +55,24 @@ struct _WallpaperPreviewClass {
 
 G_DEFINE_TYPE (WallpaperPreview, wallpaper_preview, GTK_TYPE_BOX)
 
-static gboolean
-on_preview_draw_cb (GtkWidget *widget,
-                    cairo_t   *cr,
-                    WallpaperPreview *self)
+static void
+draw_preview_func (GtkDrawingArea *drawing_area,
+                   cairo_t        *cr,
+                   int             width,
+                   int             height,
+                   gpointer        data)
 {
+  WallpaperPreview *self = WALLPAPER_PREVIEW (data);
   g_autoptr(GdkPixbuf) pixbuf = NULL;
-  GtkAllocation allocation;
+  GtkNative *native;
 
-  gtk_widget_get_allocation (GTK_WIDGET (self), &allocation);
+  native = gtk_widget_get_native (GTK_WIDGET (drawing_area));
   pixbuf = gnome_bg_create_thumbnail (self->bg,
-                                      self->thumbs,
-                                      gdk_screen_get_default (),
-                                      allocation.width,
-                                      allocation.height);
+                                      gtk_native_get_surface (native),
+                                      width,
+                                      height);
   gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
   cairo_paint (cr);
-
-  return TRUE;
 }
 
 static void
@@ -136,7 +134,6 @@ wallpaper_preview_finalize (GObject *object)
   WallpaperPreview *self = WALLPAPER_PREVIEW (object);
 
   g_clear_object (&self->desktop_settings);
-  g_clear_object (&self->thumbs);
 
   g_clear_pointer (&self->previous_time, g_date_time_unref);
 
@@ -167,7 +164,6 @@ wallpaper_preview_init (WallpaperPreview *self)
 
   self->bg = gnome_bg_new ();
   gnome_bg_set_placement (self->bg, G_DESKTOP_BACKGROUND_STYLE_ZOOM);
-  self->thumbs = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_LARGE);
 }
 
 static void
@@ -181,9 +177,9 @@ wallpaper_preview_map (GtkWidget *widget)
     {
       provider = gtk_css_provider_new ();
       gtk_css_provider_load_from_resource (provider, "/org/freedesktop/portal/desktop/gnome/wallpaperpreview.css");
-      gtk_style_context_add_provider_for_screen (gtk_widget_get_screen (widget),
-                                                 GTK_STYLE_PROVIDER (provider),
-                                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+      gtk_style_context_add_provider_for_display (gtk_widget_get_display (widget),
+                                                  GTK_STYLE_PROVIDER (provider),
+                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 }
 
@@ -203,7 +199,6 @@ wallpaper_preview_class_init (WallpaperPreviewClass *klass)
   gtk_widget_class_bind_template_child (widget_class, WallpaperPreview, animated_background_icon);
   gtk_widget_class_bind_template_child (widget_class, WallpaperPreview, drawing_area);
   gtk_widget_class_bind_template_child (widget_class, WallpaperPreview, desktop_clock_label);
-  gtk_widget_class_bind_template_callback (widget_class, on_preview_draw_cb);
 }
 
 WallpaperPreview *
@@ -227,5 +222,9 @@ wallpaper_preview_set_image (WallpaperPreview *self,
                           gnome_bg_changes_with_time (self->bg));
   gtk_stack_set_visible_child (GTK_STACK (self->stack), self->desktop_preview);
 
+  gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->drawing_area),
+                                  draw_preview_func,
+                                  self,
+                                  NULL);
   gtk_widget_queue_draw (self->drawing_area);
 }

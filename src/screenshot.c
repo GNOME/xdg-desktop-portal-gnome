@@ -30,7 +30,7 @@ typedef struct {
   GDBusMethodInvocation *invocation;
   Request *request;
 
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   int response;
@@ -55,8 +55,7 @@ screenshot_dialog_handle_free (gpointer data)
 static void
 screenshot_dialog_handle_close (ScreenshotDialogHandle *handle)
 {
-  if (handle->dialog)
-    gtk_widget_destroy (handle->dialog);
+  g_clear_pointer (&handle->dialog, gtk_window_destroy);
   screenshot_dialog_handle_free (handle);
 }
 
@@ -155,12 +154,11 @@ handle_screenshot (XdpImplScreenshot *object,
   g_autoptr(Request) request = NULL;
   const char *sender;
   ScreenshotDialogHandle *handle;
-  g_autoptr(GError) error = NULL;
   gboolean modal;
   gboolean interactive;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
+  GdkSurface *surface;
   GdkDisplay *display;
-  GdkScreen *screen;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
@@ -186,15 +184,13 @@ handle_screenshot (XdpImplScreenshot *object,
     display = external_window_get_display (external_parent);
   else
     display = gdk_display_get_default ();
-  screen = gdk_display_get_default_screen (display);
 
   fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "type", GTK_WINDOW_TOPLEVEL,
-                              "screen", screen,
+                              "display", display,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WIDGET (screenshot_dialog_new (arg_app_id, interactive, shell));
+  dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id, interactive, shell));
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
   gtk_window_set_modal (GTK_WINDOW (dialog), modal);
 
@@ -210,10 +206,11 @@ handle_screenshot (XdpImplScreenshot *object,
 
   g_signal_connect (dialog, "done", G_CALLBACK (screenshot_dialog_done), handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
+  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, gtk_widget_get_window (dialog));
+    external_window_set_parent_of (external_parent, surface);
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
@@ -268,7 +265,6 @@ handle_pick_color (XdpImplScreenshot *object,
   g_autoptr(Request) request = NULL;
   const char *sender;
   ScreenshotDialogHandle *handle;
-  g_autoptr(GError) error = NULL;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
   request = request_new (sender, arg_app_id, arg_handle);

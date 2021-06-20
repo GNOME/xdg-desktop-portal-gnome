@@ -48,7 +48,7 @@ wallpaper_dialog_handle_free (gpointer data)
   g_clear_pointer (&handle->picture_uri, g_free);
 
   if (handle->dialog != NULL)
-      gtk_widget_destroy (GTK_WIDGET (handle->dialog));
+      gtk_window_destroy (GTK_WINDOW (handle->dialog));
   g_clear_object (&handle->dialog);
 
 
@@ -90,7 +90,6 @@ on_file_copy_cb (GObject *source_object,
   GFile *picture_file = G_FILE (source_object);
   g_autoptr(GError) error = NULL;
   g_autofree gchar *uri = NULL;
-  g_autofree gchar *dest_path = NULL;
   gchar *contents = NULL;
   gsize length = 0;
 
@@ -179,8 +178,8 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
   const char *sender;
   gboolean show_preview = FALSE;
   GdkDisplay *display;
-  GdkScreen *screen;
   ExternalWindow *external_parent = NULL;
+  GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWidget *dialog;
 
@@ -212,11 +211,9 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
     display = external_window_get_display (external_parent);
   else
     display = gdk_display_get_default ();
-  screen = gdk_display_get_default_screen (display);
 
   fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "type", GTK_WINDOW_TOPLEVEL,
-                              "screen", screen,
+                              "display", display,
                               NULL);
   g_object_ref_sink (fake_parent);
 
@@ -228,8 +225,9 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
                     G_CALLBACK (handle_wallpaper_dialog_response), handle);
   gtk_widget_realize (dialog);
 
+  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, gtk_widget_get_window (dialog));
+    external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (GTK_WINDOW (dialog));
 

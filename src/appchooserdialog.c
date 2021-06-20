@@ -209,7 +209,7 @@ show_error_dialog (const gchar *primary,
   gtk_dialog_set_default_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
   gtk_widget_show (message_dialog);
   g_signal_connect (message_dialog, "response",
-                    G_CALLBACK (gtk_widget_destroy), NULL);
+                    G_CALLBACK (gtk_window_destroy), NULL);
 }
 
 static void
@@ -237,9 +237,18 @@ find_in_software (GtkWidget *button,
 }
 
 static gboolean
-app_chooser_delete_event (GtkWidget *dialog, GdkEventAny *event)
+close_dialog_binding_cb (GtkWidget *dialog,
+                         GVariant *args,
+                         gpointer user_data)
 {
   close_dialog (APP_CHOOSER_DIALOG (dialog), NULL);
+  return GDK_EVENT_STOP;
+}
+
+static gboolean
+app_chooser_close_request (GtkWindow *window)
+{
+  close_dialog (APP_CHOOSER_DIALOG (window), NULL);
 
   return TRUE;
 }
@@ -254,12 +263,12 @@ static void
 app_chooser_dialog_class_init (AppChooserDialogClass *class)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
+  GtkWindowClass *window_class = GTK_WINDOW_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GtkBindingSet *binding_set;
 
   object_class->finalize = app_chooser_dialog_finalize;
 
-  widget_class->delete_event = app_chooser_delete_event;
+  window_class->close_request = app_chooser_close_request;
 
   class->close = app_chooser_dialog_close;
 
@@ -271,8 +280,7 @@ app_chooser_dialog_class_init (AppChooserDialogClass *class)
                                 NULL,
                                 G_TYPE_NONE, 0);
 
-  binding_set = gtk_binding_set_by_class (class);
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Escape, 0, "close", 0);
+  gtk_widget_class_add_binding (widget_class, GDK_KEY_Escape, 0, close_dialog_binding_cb, NULL);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/appchooserdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, scrolled_window);
@@ -350,7 +358,7 @@ ensure_default_in_initial_list (const char **choices,
 }
 
 static void
-more_pressed (GtkGestureMultiPress *gesture,
+more_pressed (GtkGestureClick *gesture,
               int n_press,
               double x,
               double y,
@@ -399,7 +407,7 @@ app_chooser_dialog_new (const char **choices,
     {
       gtk_widget_show (dialog->empty_box);
       gtk_stack_set_visible_child_name (GTK_STACK (dialog->stack), "empty");
-      gtk_widget_grab_default (dialog->find_software_button);
+      gtk_window_set_default_widget (GTK_WINDOW (dialog), dialog->find_software_button);
       if (location)
         {
           g_autofree char *label = NULL;
@@ -415,7 +423,7 @@ app_chooser_dialog_new (const char **choices,
   else
     {
       gtk_stack_set_visible_child_name (GTK_STACK (dialog->stack), "list");
-      gtk_widget_grab_default (dialog->open_button);
+      gtk_window_set_default_widget (GTK_WINDOW (dialog), dialog->open_button);
       for (i = 0; i < MIN (n_choices, INITIAL_LIST_SIZE); i++)
         {
           g_autofree char *desktop_id = g_strconcat (choices[i], ".desktop", NULL);
@@ -441,19 +449,24 @@ app_chooser_dialog_new (const char **choices,
 
           row = GTK_WIDGET (gtk_list_box_row_new ());
 
-          gesture = gtk_gesture_multi_press_new (dialog->list);
+          gesture = gtk_gesture_click_new ();
           gtk_gesture_single_set_touch_only (GTK_GESTURE_SINGLE (gesture), FALSE);
           gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (gesture), GTK_PHASE_BUBBLE);
           gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (gesture), GDK_BUTTON_PRIMARY);
+          gtk_widget_add_controller (dialog->list, GTK_EVENT_CONTROLLER (gesture));
 
           g_signal_connect (gesture, "pressed", G_CALLBACK (more_pressed), dialog);
 
           gtk_list_box_row_set_selectable (GTK_LIST_BOX_ROW (row), FALSE);
-          image = gtk_image_new_from_icon_name ("view-more-symbolic", GTK_ICON_SIZE_BUTTON);
-          g_object_set (image, "margin", 14, NULL);
-          gtk_container_add (GTK_CONTAINER (row), image);
-          gtk_widget_set_visible (row, TRUE);
-          gtk_widget_set_visible (image, TRUE);
+          image = gtk_image_new_from_icon_name ("view-more-symbolic");
+          gtk_image_set_pixel_size (GTK_IMAGE (image), 16);
+          g_object_set (image,
+                        "margin-top", 12,
+                        "margin-bottom", 12,
+                        "margin-start", 12,
+                        "margin-end", 12,
+                        NULL);
+          gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), image);
           gtk_list_box_insert (GTK_LIST_BOX (dialog->list), row, -1);
           dialog->more_row = row;
         }

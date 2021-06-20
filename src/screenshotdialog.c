@@ -86,7 +86,6 @@ change_grab (GSimpleAction *action,
              gpointer data)
 {
   ScreenshotDialog *dialog = data;
-  g_autoptr (GVariant) window = NULL;
   const char *kind;
 
   g_simple_action_set_state (action, value);
@@ -360,9 +359,9 @@ screenshot_dialog_finalize (GObject *object)
 }
 
 static gboolean
-screenshot_dialog_delete_event (GtkWidget *dialog, GdkEventAny *event)
+screenshot_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (dialog);
+  gtk_widget_hide (GTK_WIDGET (dialog));
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
 
@@ -380,7 +379,7 @@ screenshot_dialog_map (GtkWidget *widget)
     {
       provider = gtk_css_provider_new ();
       gtk_css_provider_load_from_resource (provider, "/org/freedesktop/portal/desktop/gnome/screenshotdialog.css");
-      gtk_style_context_add_provider_for_screen (gtk_widget_get_screen (widget),
+      gtk_style_context_add_provider_for_display (gtk_widget_get_display (widget),
                                                  GTK_STYLE_PROVIDER (provider),
                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
@@ -390,11 +389,13 @@ static void
 screenshot_dialog_class_init (ScreenshotDialogClass *class)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
+  GtkWindowClass *window_class = GTK_WINDOW_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
 
   object_class->finalize = screenshot_dialog_finalize;
 
-  widget_class->delete_event = screenshot_dialog_delete_event;
+  window_class->close_request = screenshot_dialog_close_request;
+
   widget_class->map = screenshot_dialog_map;
 
   signals[DONE] = g_signal_new ("done",

@@ -184,7 +184,7 @@ main (int argc, char *argv[])
   /* Avoid pointless and confusing recursion */
   g_unsetenv ("GTK_USE_PORTAL");
 
-  gtk_init (&argc, &argv);
+  gtk_init ();
 
   context = g_option_context_new ("- portal backends");
   g_option_context_set_summary (context,

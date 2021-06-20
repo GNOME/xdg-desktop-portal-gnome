@@ -73,7 +73,7 @@ add_device_type_selections (RemoteDesktopDialog *dialog,
     gtk_list_box_get_selected_rows (GTK_LIST_BOX (dialog->device_list));
   for (l = selected_rows; l; l = l->next)
     {
-      GtkWidget *device_type_widget = gtk_bin_get_child (l->data);
+      GtkWidget *device_type_widget = gtk_list_box_row_get_child (l->data);
 
       selected_device_types |=
         GPOINTER_TO_INT (g_object_get_qdata (G_OBJECT (device_type_widget),
@@ -157,20 +157,16 @@ static void
 update_device_list (RemoteDesktopDialog *dialog)
 {
   GtkListBox *device_list = GTK_LIST_BOX (dialog->device_list);
-  GList *old_device_type_widgets;
-  GList *l;
+  GtkWidget *child;
   int n_device_types;
   int i;
 
-  old_device_type_widgets =
-    gtk_container_get_children (GTK_CONTAINER (device_list));
-  for (l = old_device_type_widgets; l; l = l->next)
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (device_list));
+       child;
+       child = gtk_widget_get_next_sibling (child))
     {
-      GtkWidget *device_type_widget = l->data;
-
-      gtk_container_remove (GTK_CONTAINER (device_list), device_type_widget);
+      gtk_list_box_remove (device_list, child);
     }
-  g_list_free (old_device_type_widgets);
 
   n_device_types = __builtin_popcount (REMOTE_DESKTOP_DEVICE_TYPE_ALL);
   for (i = 0; i < n_device_types; i++)
@@ -200,7 +196,7 @@ update_device_list (RemoteDesktopDialog *dialog)
 
       device_type_widget = create_device_type_widget (device_type,
                                                       device_type_name);
-      gtk_container_add (GTK_CONTAINER (device_list), device_type_widget);
+      gtk_list_box_append (device_list, device_type_widget);
     }
 }
 
@@ -356,9 +352,9 @@ remote_desktop_dialog_init (RemoteDesktopDialog *dialog)
 }
 
 static gboolean
-remote_desktop_dialog_delete_event (GtkWidget *dialog, GdkEventAny *event)
+remote_desktop_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (dialog);
+  gtk_widget_hide (GTK_WIDGET (dialog));
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
 
@@ -369,8 +365,9 @@ static void
 remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkWindowClass *window_class = GTK_WINDOW_CLASS (klass);
 
-  widget_class->delete_event = remote_desktop_dialog_delete_event;
+  window_class->close_request = remote_desktop_dialog_close_request;
 
   signals[DONE] = g_signal_new ("done",
                                 G_TYPE_FROM_CLASS (klass),

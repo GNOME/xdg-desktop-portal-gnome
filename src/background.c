@@ -154,7 +154,7 @@ background_handle_close (BackgroundHandle *handle)
 
   if (handle->dialog)
     {
-      gtk_widget_destroy (handle->dialog);
+      gtk_window_destroy (GTK_WINDOW (handle->dialog));
       handle->dialog = NULL;
     }
 
@@ -221,8 +221,6 @@ show_permission_dialog (BackgroundHandle *handle)
 
   button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), FORBID);
   gtk_style_context_add_class (gtk_widget_get_style_context (button), "destructive-action");
-
-  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ALWAYS);
 
   g_signal_connect (dialog, "response", G_CALLBACK (response_received), handle);
 

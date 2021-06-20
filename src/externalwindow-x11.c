@@ -21,7 +21,8 @@
 #include "config.h"
 
 #include <errno.h>
-#include <gdk/gdkx.h>
+#include <gdk/x11/gdkx.h>
+#include <X11/Xatom.h>
 #include <gdk/gdk.h>
 #include <stdlib.h>
 
@@ -34,7 +35,7 @@ struct _ExternalWindowX11
 {
   ExternalWindow parent;
 
-  GdkWindow *foreign_gdk_window;
+  Window foreign_xid;
 };
 
 struct _ExternalWindowX11Class
@@ -66,7 +67,6 @@ external_window_x11_new (const char *handle_str)
   ExternalWindowX11 *external_window_x11;
   GdkDisplay *display;
   int xid;
-  GdkWindow *foreign_gdk_window;
 
   display = get_x11_display ();
   if (!display)
@@ -83,40 +83,37 @@ external_window_x11_new (const char *handle_str)
       return NULL;
     }
 
-  foreign_gdk_window = gdk_x11_window_foreign_new_for_display (display, xid);
-  if (!foreign_gdk_window)
-    {
-      g_warning ("Failed to create foreign window for XID %d", xid);
-      return NULL;
-    }
-
   external_window_x11 = g_object_new (EXTERNAL_TYPE_WINDOW_X11,
                                       "display", display,
                                       NULL);
-  external_window_x11->foreign_gdk_window = foreign_gdk_window;
+  external_window_x11->foreign_xid = xid;
 
   return external_window_x11;
 }
 
 static void
 external_window_x11_set_parent_of (ExternalWindow *external_window,
-                                   GdkWindow      *child_window)
+                                   GdkSurface     *surface)
 {
   ExternalWindowX11 *external_window_x11 =
     EXTERNAL_WINDOW_X11 (external_window);
+  GdkDisplay *display;
+  Display *xdisplay;
+  Atom atom;
 
-  gdk_window_set_transient_for (child_window,
-                                external_window_x11->foreign_gdk_window);
-}
+  display = get_x11_display ();
+  xdisplay = gdk_x11_display_get_xdisplay (display);
 
-static void
-external_window_x11_dispose (GObject *object)
-{
-  ExternalWindowX11 *external_window_x11 = EXTERNAL_WINDOW_X11 (object);
+  XSetTransientForHint (xdisplay,
+                        GDK_SURFACE_XID (surface),
+                        external_window_x11->foreign_xid);
 
-  g_clear_object (&external_window_x11->foreign_gdk_window);
-
-  G_OBJECT_CLASS (external_window_x11_parent_class)->dispose (object);
+  atom = gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_WINDOW_TYPE_DIALOG");
+  XChangeProperty (xdisplay,
+                   GDK_SURFACE_XID (surface),
+                   gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_WINDOW_TYPE"),
+                   XA_ATOM, 32, PropModeReplace,
+                   (guchar *)&atom, 1);
 }
 
 static void
@@ -127,10 +124,7 @@ external_window_x11_init (ExternalWindowX11 *external_window_x11)
 static void
 external_window_x11_class_init (ExternalWindowX11Class *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   ExternalWindowClass *external_window_class = EXTERNAL_WINDOW_CLASS (klass);
-
-  object_class->dispose = external_window_x11_dispose;
 
   external_window_class->set_parent_of = external_window_x11_set_parent_of;
 }

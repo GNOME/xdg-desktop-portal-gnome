@@ -82,7 +82,7 @@ app_chooser_row_new (GAppInfo *info)
   if (!icon)
     icon = g_themed_icon_new ("application-x-executable");
 
-  gtk_image_set_from_gicon (GTK_IMAGE (row->icon), icon, GTK_ICON_SIZE_DIALOG);
+  gtk_image_set_from_gicon (GTK_IMAGE (row->icon), icon);
   gtk_image_set_pixel_size (GTK_IMAGE (row->icon), 32);
   gtk_label_set_label (GTK_LABEL (row->name), g_app_info_get_name (info));
 

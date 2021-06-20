@@ -72,7 +72,7 @@ app_dialog_handle_free (gpointer data)
 static void
 app_dialog_handle_close (AppDialogHandle *handle)
 {
-  gtk_widget_destroy (handle->dialog);
+  gtk_window_destroy (GTK_WINDOW (handle->dialog));
   app_dialog_handle_free (handle);
 }
 
@@ -157,8 +157,8 @@ handle_choose_application (XdpImplAppChooser *object,
   const char *content_type;
   const char *location;
   gboolean modal;
+  GdkSurface *surface;
   GdkDisplay *display;
-  GdkScreen *screen;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
@@ -188,11 +188,9 @@ handle_choose_application (XdpImplAppChooser *object,
     display = external_window_get_display (external_parent);
   else
     display = gdk_display_get_default ();
-  screen = gdk_display_get_default_screen (display);
 
   fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "type", GTK_WINDOW_TOPLEVEL,
-                              "screen", screen,
+                              "display", display,
                               NULL);
   g_object_ref_sink (fake_parent);
 
@@ -218,8 +216,9 @@ handle_choose_application (XdpImplAppChooser *object,
 
   gtk_widget_realize (dialog);
 
+  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, gtk_widget_get_window (dialog));
+    external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (GTK_WINDOW (dialog));
 

@@ -98,7 +98,7 @@ is_screen_cast_session (Session *session)
 static void
 screen_cast_dialog_handle_free (ScreenCastDialogHandle *dialog_handle)
 {
-  g_clear_pointer (&dialog_handle->dialog, gtk_widget_destroy);
+  g_clear_pointer ((GtkWindow**)&dialog_handle->dialog, gtk_window_destroy);
   g_clear_object (&dialog_handle->external_parent);
   g_object_unref (dialog_handle->request);
 
@@ -175,8 +175,8 @@ create_screen_cast_dialog (ScreenCastSession *session,
 {
   ScreenCastDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
-  GdkScreen *screen;
   GdkDisplay *display;
+  GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWidget *dialog;
 
@@ -196,10 +196,8 @@ create_screen_cast_dialog (ScreenCastSession *session,
     display = external_window_get_display (external_parent);
   else
     display = gdk_display_get_default ();
-  screen = gdk_display_get_default_screen (display);
   fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "type", GTK_WINDOW_TOPLEVEL,
-                              "screen", screen,
+                              "display", display,
                               NULL);
   g_object_ref_sink (fake_parent);
 
@@ -222,8 +220,9 @@ create_screen_cast_dialog (ScreenCastSession *session,
 
   gtk_widget_realize (dialog);
 
+  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, gtk_widget_get_window (dialog));
+    external_window_set_parent_of (external_parent, surface);
 
   gtk_widget_show (dialog);
 

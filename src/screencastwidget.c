@@ -82,24 +82,21 @@ create_window_widget (Window *window)
     icon = g_app_info_get_icon (G_APP_INFO (info));
   if (icon == NULL)
     icon = g_themed_icon_new ("application-x-executable");
-  window_image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_DND);
+  window_image = gtk_image_new_from_gicon (icon);
   gtk_image_set_pixel_size (GTK_IMAGE (window_image), 32);
   gtk_widget_set_margin_start (window_image, 12);
   gtk_widget_set_margin_end (window_image, 12);
-  gtk_widget_show (window_image);
 
-  gtk_container_add (GTK_CONTAINER (window_widget), window_image);
+  gtk_box_append (GTK_BOX (window_widget), window_image);
 
   window_label = gtk_label_new (window_get_title (window));
   gtk_widget_set_margin_top (window_label, 12);
   gtk_widget_set_margin_bottom (window_label, 12);
-  gtk_widget_show (window_label);
-  gtk_container_add (GTK_CONTAINER (window_widget), window_label);
+  gtk_box_append (GTK_BOX (window_widget), window_label);
 
   g_object_set_qdata (G_OBJECT (window_widget),
                       quark_window_widget_data,
                       window);
-  gtk_widget_show (window_widget);
   return window_widget;
 }
 
@@ -126,8 +123,7 @@ create_monitor_widget (LogicalMonitor *logical_monitor)
       monitor_label = gtk_label_new (monitor_get_display_name (monitor));
       gtk_widget_set_margin_top (monitor_label, 12);
       gtk_widget_set_margin_bottom (monitor_label, 12);
-      gtk_widget_show (monitor_label);
-      gtk_container_add (GTK_CONTAINER (monitor_widget), monitor_label);
+      gtk_box_append (GTK_BOX (monitor_widget), monitor_label);
     }
 
   gtk_widget_show (monitor_widget);
@@ -149,8 +145,7 @@ should_skip_window (Window *window,
     processed_app_id[strlen (processed_app_id) -
                      strlen (".desktop")] = '\0';
 
-  if (g_strcmp0 (processed_app_id, g_get_prgname ()) != 0 &&
-      g_strcmp0 (processed_app_id, gdk_get_program_class ()) != 0)
+  if (g_strcmp0 (processed_app_id, g_get_prgname ()) != 0)
     return FALSE;
 
   return TRUE;
@@ -160,19 +155,17 @@ static void
 update_windows_list (ScreenCastWidget *widget)
 {
   GtkListBox *window_list = GTK_LIST_BOX (widget->window_list);
-  GList *old_window_widgets;
   GtkWidget *toplevel;
+  GtkWidget *child;
   GList *windows;
   GList *l;
 
-  old_window_widgets = gtk_container_get_children (GTK_CONTAINER (window_list));
-  for (l = old_window_widgets; l; l = l->next)
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (window_list));
+       child;
+       child = gtk_widget_get_next_sibling (child))
     {
-      GtkWidget *window_widget = l->data;
-
-      gtk_container_remove (GTK_CONTAINER (window_list), window_widget);
+      gtk_list_box_remove (window_list, child);
     }
-  g_list_free (old_window_widgets);
 
   toplevel = gtk_widget_get_ancestor (GTK_WIDGET (widget), GTK_TYPE_WINDOW);
   if (!toplevel)
@@ -188,7 +181,7 @@ update_windows_list (ScreenCastWidget *widget)
         continue;
 
       window_widget = create_window_widget (window);
-      gtk_container_add (GTK_CONTAINER (window_list), window_widget);
+      gtk_list_box_append (window_list, window_widget);
     }
 }
 
@@ -196,18 +189,16 @@ static void
 update_monitors_list (ScreenCastWidget *widget)
 {
   GtkListBox *monitor_list = GTK_LIST_BOX (widget->monitor_list);
-  GList *old_monitor_widgets;
+  GtkWidget *child;
   GList *logical_monitors;
   GList *l;
 
-  old_monitor_widgets = gtk_container_get_children (GTK_CONTAINER (monitor_list));
-  for (l = old_monitor_widgets; l; l = l->next)
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (monitor_list));
+       child;
+       child = gtk_widget_get_next_sibling (child))
     {
-      GtkWidget *monitor_widget = l->data;
-
-      gtk_container_remove (GTK_CONTAINER (monitor_list), monitor_widget);
+      gtk_list_box_remove (monitor_list, child);
     }
-  g_list_free (old_monitor_widgets);
 
   logical_monitors =
     display_state_tracker_get_logical_monitors (widget->display_state_tracker);
@@ -217,7 +208,7 @@ update_monitors_list (ScreenCastWidget *widget)
       GtkWidget *monitor_widget;
 
       monitor_widget = create_monitor_widget (logical_monitor);
-      gtk_container_add (GTK_CONTAINER (monitor_list), monitor_widget);
+      gtk_list_box_append (monitor_list, monitor_widget);
     }
 }
 
@@ -238,14 +229,24 @@ set_row_is_selected (GtkListBoxRow *row,
 }
 
 static void
-unselect_row_cb (GtkWidget *widget,
-                 gpointer user_data)
+unselect_rows (GtkListBox *listbox)
 {
-  GtkListBoxRow *row = GTK_LIST_BOX_ROW (widget);
-  GtkListBox *box = (GtkListBox *)user_data;
+  GtkWidget *child;
 
-  set_row_is_selected (row, FALSE);
-  gtk_list_box_unselect_row (box, row);
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (listbox));
+       child;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      GtkListBoxRow *row;
+
+      if (!GTK_IS_LIST_BOX_ROW (child))
+        continue;
+
+      row = GTK_LIST_BOX_ROW (child);
+
+      set_row_is_selected (row, FALSE);
+      gtk_list_box_unselect_row (listbox, row);
+    }
 }
 
 static void
@@ -285,12 +286,8 @@ on_stack_switch (GtkStack *stack,
   ScreenCastWidget *widget = (ScreenCastWidget *)data;
   GtkWidget *visible_child;
 
-  gtk_container_foreach (GTK_CONTAINER (widget->monitor_list),
-                         unselect_row_cb,
-                         widget->monitor_list);
-  gtk_container_foreach (GTK_CONTAINER (widget->window_list),
-                         unselect_row_cb,
-                         widget->window_list);
+  unselect_rows (GTK_LIST_BOX (widget->monitor_list));
+  unselect_rows (GTK_LIST_BOX (widget->window_list));
 
   visible_child = gtk_stack_get_visible_child (stack);
   if (visible_child == widget->window_selection)
@@ -326,12 +323,22 @@ on_row_activated (GtkListBox *box,
 }
 
 static void
-update_selected_row_cb (GtkWidget *widget,
-                        gpointer user_data)
+update_selected_rows (GtkListBox *listbox)
 {
-  GtkListBoxRow *row = GTK_LIST_BOX_ROW (widget);
+  GtkWidget *child;
 
-  set_row_is_selected (row, gtk_list_box_row_is_selected (row));
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (listbox));
+       child;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      GtkListBoxRow *row;
+
+      if (!GTK_IS_LIST_BOX_ROW (child))
+        continue;
+
+      row = GTK_LIST_BOX_ROW (child);
+      set_row_is_selected (row, gtk_list_box_row_is_selected (row));
+    }
 }
 
 static gboolean
@@ -342,12 +349,8 @@ emit_selection_change_in_idle_cb (gpointer data)
   GList *selected_window_rows;
 
   /* Update the selected rows */
-  gtk_container_foreach (GTK_CONTAINER (widget->monitor_list),
-                         update_selected_row_cb,
-                         NULL);
-  gtk_container_foreach (GTK_CONTAINER (widget->window_list),
-                         update_selected_row_cb,
-                         NULL);
+  update_selected_rows (GTK_LIST_BOX (widget->monitor_list));
+  update_selected_rows (GTK_LIST_BOX (widget->window_list));
 
   selected_monitor_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->monitor_list));
   selected_window_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
@@ -418,7 +421,7 @@ add_selections (ScreenCastWidget *widget,
 
   for (l = selected_monitor_rows; l; l = l->next)
     {
-      GtkWidget *monitor_widget = gtk_bin_get_child (l->data);
+      GtkWidget *monitor_widget = gtk_list_box_row_get_child (l->data);
       Monitor *monitor;
 
       monitor = g_object_get_qdata (G_OBJECT (monitor_widget),
@@ -431,7 +434,7 @@ add_selections (ScreenCastWidget *widget,
   g_list_free (selected_monitor_rows);
   for (l = selected_window_rows; l; l = l->next)
     {
-      GtkWidget *window_widget = gtk_bin_get_child (l->data);
+      GtkWidget *window_widget = gtk_list_box_row_get_child (l->data);
       Window *window;
 
       window = g_object_get_qdata (G_OBJECT (window_widget),

@@ -58,11 +58,11 @@ built_sources += configure_file(output: 'config.h', configuration: config_h)
 # Sources
 deps = [
   declare_dependency(sources: built_sources),
+  meson.get_compiler('c').find_library('m'),
   dependency('fontconfig'),
   dependency('glib-2.0', version: '>= 2.44'),
   dependency('gio-unix-2.0'),
-  dependency('gtk+-3.0', version: '>= 3.14'),
-  dependency('gnome-desktop-3.0'),
+  dependency('gtk4', version: '>= 4.0'),
   dependency('gsettings-desktop-schemas'),
   xdg_desktop_portal_dep,
 ]
@@ -76,6 +76,8 @@ sources = built_sources + files(
   'externalwindow.c',
   'fc-monitor.c',
   'fdonotification.c',
+  'gnome-bg.c',
+  'gnome-bg-slide-show.c',
   'gnomescreencast.c',
   'lockdown.c',
   'remotedesktop.c',
@@ -98,13 +100,14 @@ sources = built_sources + files(
 
 common_flags = []
 
-gtk_x11_dep = dependency('gtk+-x11-3.0', required: false)
+gtk_x11_dep = dependency('gtk4-x11', required: false)
 if gtk_x11_dep.found()
   sources += files('externalwindow-x11.c')
+  deps += [dependency('x11')]
   common_flags += ['-DHAVE_GTK_X11']
 endif
 
-gtk_wayland_dep = dependency('gtk+-wayland-3.0', version: '>= 3.21.5', required: false)
+gtk_wayland_dep = dependency('gtk4-wayland', required: false)
 if gtk_wayland_dep.found()
   sources += files('externalwindow-wayland.c')
   common_flags += ['-DHAVE_GTK_WAYLAND']

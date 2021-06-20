@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="xdg-desktop-portal-gnome">
-  <!-- interface-requires gtk+ 3.22 -->
+  <requires lib="gtk" version="4.0"/>
   <template class="ScreenCastDialog" parent="GtkWindow">
-    <property name="type-hint">dialog</property>
+    <property name="title" translatable="yes">Screen Share</property>
     <property name="resizable">0</property>
     <property name="default-width">500</property>
     <property name="default-height">300</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="titlebar">
-        <property name="visible">1</property>
-        <property name="title" translatable="yes">Screen Share</property>
-        <child>
+        <property name="show-title-buttons">false</property>
+        <child type="start">
           <object class="GtkButton" id="cancel_button">
-            <property name="visible">1</property>
             <property name="label" translatable="yes">_Cancel</property>
             <property name="use_underline">1</property>
             <signal name="clicked" handler="button_clicked"/>
           </object>
-          <packing>
-            <property name="pack-type">start</property>
-          </packing>
         </child>
-        <child>
+        <child type="end">
           <object class="GtkButton" id="accept_button">
-            <property name="visible">1</property>
             <property name="sensitive">0</property>
             <property name="label" translatable="yes">_Share</property>
             <property name="use_underline">1</property>
@@ -32,20 +26,18 @@
               <class name="suggested-action"/>
             </style>
           </object>
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
         </child>
       </object>
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="orientation">vertical</property>
-        <property name="border-width">32</property>
-        <property name="spacing">32</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="margin-top">32</property>
+        <property name="margin-bottom">32</property>
+        <property name="margin-start">32</property>
+        <property name="margin-end">32</property>
+        <property name="hexpand">1</property>
+        <property name="vexpand">1</property>
         <child>
           <object class="ScreenCastWidget" id="screen_cast_widget">
             <property name="visible">True</property>
