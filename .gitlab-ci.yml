@@ -12,7 +12,7 @@ build-fedora:
   image: fedora:latest
   extends: .build-common
   before_script:
-  - dnf install -y 'dnf-command(builddep)' meson
+  - dnf install -y 'dnf-command(builddep)' meson gtk4-devel
   - dnf builddep -y xdg-desktop-portal-gtk
 
 build-ubuntu:
@@ -23,5 +23,5 @@ build-ubuntu:
   before_script:
   - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
   - apt-get update
-  - apt-get install -y meson
+  - apt-get install -y meson libgtk-4-dev
   - apt-get build-dep -y xdg-desktop-portal-gtk
