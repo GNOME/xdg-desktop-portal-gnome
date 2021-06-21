@@ -56,6 +56,11 @@ config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), mes
 built_sources += configure_file(output: 'config.h', configuration: config_h)
 
 # Sources
+libadwaita_dep = dependency(
+  'libadwaita-1',
+  fallback: ['libadwaita', 'libadwaita_dep'],
+  default_options: ['examples=false', 'introspection=disabled', 'tests=false', 'vapi=false'],
+)
 deps = [
   declare_dependency(sources: built_sources),
   meson.get_compiler('c').find_library('m'),
@@ -64,6 +69,7 @@ deps = [
   dependency('gio-unix-2.0'),
   dependency('gtk4', version: '>= 4.0'),
   dependency('gsettings-desktop-schemas'),
+  libadwaita_dep,
   xdg_desktop_portal_dep,
 ]
 
