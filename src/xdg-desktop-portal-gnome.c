@@ -31,7 +31,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -240,6 +240,8 @@ main (int argc, char *argv[])
                              on_name_lost,
                              NULL,
                              NULL);
+
+  adw_init ();
 
   g_main_loop_run (loop);
 
