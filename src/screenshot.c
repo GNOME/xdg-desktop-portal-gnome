@@ -214,6 +214,9 @@ handle_screenshot (XdpImplScreenshot *object,
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
+  if (interactive)
+    gtk_window_present (dialog);
+
   return TRUE;
 }
 
