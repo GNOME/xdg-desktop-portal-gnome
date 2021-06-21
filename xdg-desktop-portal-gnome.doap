@@ -1,0 +1,46 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">xdg-desktop-portal-gnome</name>
+  <description xml:lang="en">GNOME Desktop Portal</description>
+  <shortdesc xml:lang="en">
+    XDG Desktop Portal implementation for GNOME. It uses GNOME-specific APIs and
+    components, such as GNOME Shell, Mutter, GNOME Settings Daemon, and libadwaita,
+    to provide various portal features.
+  </shortdesc>
+  <!--
+  <homepage rdf:resource="http://www.gnome.org/" />
+  -->
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/desktop-devel-list" />
+  <download-page rdf:resource="http://download.gnome.org/sources/xdg-desktop-portal-gnome/" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/" />
+
+  <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
+  <programming-language>C</programming-language>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Georges Basile Stavracas Neto</foaf:name>
+      <foaf:mbox rdf:resource="mailto:gbsneto@gnome.org" />
+      <gnome:userid>gbsneto</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>GNOME Release Team</foaf:name>
+      <foaf:mbox rdf:resource="mailto:release-team@gnome.org" />
+      <gnome:userid>nobody</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <author>
+    <foaf:Person>
+      <foaf:name>Matthias Clasen</foaf:name>
+      <foaf:mbox rdf:resource="mailto:mclasen@redhat.com"/>
+      <gnome:userid>matthiasc</gnome:userid>
+    </foaf:Person>
+  </author>
+</Project>
+
