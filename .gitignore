@@ -7,3 +7,5 @@ src/views/.dirstamp
 .gitlab
 .flatpak-builder
 **/*~
+/subprojects/*
+!/subprojects/libadwaita.wrap

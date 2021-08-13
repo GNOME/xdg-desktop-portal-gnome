@@ -8,8 +8,8 @@
   <description xml:lang="en">GNOME Desktop Portal</description>
   <shortdesc xml:lang="en">
     XDG Desktop Portal implementation for GNOME. It uses GNOME-specific APIs and
-    components, such as GNOME Shell, Mutter, and GNOME Settings Daemon, to
-    provide various portal features.
+    components, such as GNOME Shell, Mutter, GNOME Settings Daemon, and libadwaita,
+    to provide various portal features.
   </shortdesc>
   <!--
   <homepage rdf:resource="http://www.gnome.org/" />
