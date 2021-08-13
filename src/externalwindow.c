@@ -75,7 +75,7 @@ create_external_window_from_handle (const char *handle_str)
     }
 #endif
 
-  g_warning ("Unhandled parent window type %s\n", handle_str);
+  g_warning ("Unhandled parent window type %s", handle_str);
   return NULL;
 }
 
