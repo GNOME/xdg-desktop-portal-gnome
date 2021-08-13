@@ -1,19 +1,21 @@
+---
+
 stages:
   - build
 
 .build-common:
   stage: build
   script:
-  - meson . _build
-  - ninja -C _build
-  - ninja -C _build install
+    - meson . _build
+    - ninja -C _build
+    - ninja -C _build install
 
 build-fedora:
   image: fedora:latest
   extends: .build-common
   before_script:
-  - dnf install -y 'dnf-command(builddep)' meson gtk4-devel
-  - dnf builddep -y xdg-desktop-portal-gtk
+    - dnf install -y 'dnf-command(builddep)' meson gtk4-devel
+    - dnf builddep -y xdg-desktop-portal-gtk
 
 build-ubuntu:
   image: ubuntu:rolling
@@ -21,7 +23,7 @@ build-ubuntu:
   variables:
     DEBIAN_FRONTEND: noninteractive
   before_script:
-  - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
-  - apt-get update
-  - apt-get install -y meson libgtk-4-dev
-  - apt-get build-dep -y xdg-desktop-portal-gtk
+    - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
+    - apt-get update
+    - apt-get install -y meson libgtk-4-dev
+    - apt-get build-dep -y xdg-desktop-portal-gtk
