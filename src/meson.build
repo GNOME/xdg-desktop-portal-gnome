@@ -16,6 +16,7 @@ desktop_portal_dbus_interfaces = [
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Background.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Settings.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Wallpaper.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.FileChooser.xml',
 ]
 
 built_sources = gnome.gdbus_codegen(
@@ -81,6 +82,7 @@ sources = built_sources + files(
   'displaystatetracker.c',
   'externalwindow.c',
   'fc-monitor.c',
+  'filechooser.c',
   'fdonotification.c',
   'gnome-bg.c',
   'gnome-bg-slide-show.c',

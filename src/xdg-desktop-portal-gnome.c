@@ -44,6 +44,7 @@
 
 #include "appchooser.h"
 #include "background.h"
+#include "filechooser.h"
 #include "lockdown.h"
 #include "screenshot.h"
 #include "screencast.h"
@@ -101,6 +102,12 @@ on_bus_acquired (GDBusConnection *connection,
                  gpointer         user_data)
 {
   GError *error = NULL;
+
+  if (!file_chooser_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
 
   if (!app_chooser_init (connection, &error))
     {
