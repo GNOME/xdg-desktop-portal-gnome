@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-21 14:34+0000\n"
-"PO-Revision-Date: 2021-09-21 11:05-0400\n"
+"POT-Creation-Date: 2021-09-21 15:06+0000\n"
+"PO-Revision-Date: 2021-09-21 11:06-0400\n"
 "Last-Translator: 王滋涵 Zephyr Waitzman <i@wi24rd.ml>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -56,12 +56,13 @@ msgstr "未找到适合的应用。您可以在“软件”中寻找更多应用
 msgid "Open With…"
 msgstr "打开方式…"
 
-#: src/appchooserdialog.ui:12 src/remotedesktopdialog.ui:13
-#: src/screencastdialog.ui:14 src/screenshotdialog.ui:12
+#: src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/appchooserdialog.ui:20
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
 msgstr "打开(_O)"
 
@@ -104,6 +105,18 @@ msgstr "后台活动"
 #: src/background.c:311
 msgid "Find out more"
 msgstr "了解更多"
+
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "选择(_S)"
+
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "以只读方式打开文件"
 
 #: src/remotedesktopdialog.c:184
 msgid "Pointer"
@@ -275,12 +288,6 @@ msgstr "活动"
 
 #~ msgid "Make changes before sharing the information"
 #~ msgstr "在共享信息之前进行更改"
-
-#~ msgid "_Select"
-#~ msgstr "选择(_S)"
-
-#~ msgid "_Save"
-#~ msgstr "保存(_S)"
 
 #~ msgid ""
 #~ "Select an application to open “%s”. More applications are available in <a "
