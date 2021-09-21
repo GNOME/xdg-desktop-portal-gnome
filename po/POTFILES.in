@@ -3,6 +3,7 @@ data/xdg-desktop-portal-gnome.desktop.in.in
 src/appchooserdialog.c
 src/appchooserdialog.ui
 src/background.c
+src/filechooser.c
 src/remotedesktopdialog.c
 src/remotedesktopdialog.ui
 src/screencastdialog.ui
