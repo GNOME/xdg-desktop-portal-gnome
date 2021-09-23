@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
 "POT-Creation-Date: 2021-09-21 14:34+0000\n"
-"PO-Revision-Date: 2021-09-21 16:54+0200\n"
+"PO-Revision-Date: 2021-09-23 15:50+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -205,7 +205,7 @@ msgstr "Uslikaj trenutni pro_zor"
 
 #: src/screenshotdialog.ui:140
 msgid "Select _area to grab"
-msgstr "Od_aberi područje slikanja"
+msgstr "Uslikaj odabrano _područje zaslona"
 
 #: src/screenshotdialog.ui:152
 msgid "Grab after a _delay of"
@@ -221,15 +221,15 @@ msgstr "Efekti"
 
 #: src/screenshotdialog.ui:182
 msgid "Include _pointer"
-msgstr "Uslikaj s _pokazivačem"
+msgstr "Vidljiv _pokazivač miša"
 
 #: src/screenshotdialog.ui:190
 msgid "Include the window _border"
-msgstr "Uslikaj s _rubom prozora"
+msgstr "Vidljiv rub _prozora"
 
 #: src/settings.c:186
 msgid "Requested setting not found"
-msgstr "Zatražena postavka nije pronađena"
+msgstr "Zahtijevana postavak nije pronađena"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
