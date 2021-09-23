@@ -1,3 +1,8 @@
+Changes in 41.1
+================
+
+- Force the cairo renderer to avoid a crash
+
 Changes in 41.0
 ================
 
