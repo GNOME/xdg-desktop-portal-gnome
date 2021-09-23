@@ -183,6 +183,7 @@ main (int argc, char *argv[])
 
   /* Avoid pointless and confusing recursion */
   g_unsetenv ("GTK_USE_PORTAL");
+  g_setenv ("GSK_RENDERER", "cairo", TRUE);
 
   gtk_init ();
 
