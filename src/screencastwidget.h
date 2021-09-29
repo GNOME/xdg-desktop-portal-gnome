@@ -38,3 +38,9 @@ void screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widg
                                           ScreenCastSourceType  source_types);
 
 GPtrArray *screen_cast_widget_get_selected_streams (ScreenCastWidget *self);
+
+void screen_cast_widget_set_persist_mode (ScreenCastWidget *screen_cast_widget,
+                                          ScreenCastPersistMode persist_mode);
+
+ScreenCastPersistMode
+screen_cast_widget_get_persist_mode (ScreenCastWidget *screen_cast_widget);

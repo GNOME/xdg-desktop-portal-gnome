@@ -39,6 +39,13 @@ typedef enum _ScreenCastCursorMode
   SCREEN_CAST_CURSOR_MODE_METADATA = 4,
 } ScreenCastCursorMode;
 
+typedef enum _ScreenCastPersistMode
+{
+  SCREEN_CAST_PERSIST_MODE_NONE = 0,
+  SCREEN_CAST_PERSIST_MODE_TRANSIENT = 1,
+  SCREEN_CAST_PERSIST_MODE_PERSISTENT = 2,
+} ScreenCastPersistMode;
+
 typedef struct _ScreenCastSelection
 {
   gboolean multiple;

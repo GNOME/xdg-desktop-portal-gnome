@@ -37,3 +37,6 @@ typedef enum {
 #define XDG_DESKTOP_PORTAL_ERROR xdg_desktop_portal_error_quark ()
 
 GQuark  xdg_desktop_portal_error_quark (void);
+
+glong str_distance (const char *a,
+                    const char *b);

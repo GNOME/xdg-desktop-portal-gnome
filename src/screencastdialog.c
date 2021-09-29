@@ -59,6 +59,7 @@ static void
 on_button_clicked_cb (GtkWidget        *button,
                       ScreenCastDialog *dialog)
 {
+  ScreenCastPersistMode persist_mode;
   g_autoptr(GPtrArray) streams = NULL;
   int response;
 
@@ -71,14 +72,16 @@ on_button_clicked_cb (GtkWidget        *button,
 
       response = GTK_RESPONSE_OK;
       streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
+      persist_mode = screen_cast_widget_get_persist_mode (screen_cast_widget);
     }
   else
     {
       response = GTK_RESPONSE_CANCEL;
+      persist_mode = SCREEN_CAST_PERSIST_MODE_NONE;
       streams = NULL;
     }
 
-  g_signal_emit (dialog, signals[DONE], 0, response, streams);
+  g_signal_emit (dialog, signals[DONE], 0, response, persist_mode, streams);
 }
 
 static void
@@ -120,7 +123,8 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
                                 0,
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 2,
+                                G_TYPE_NONE, 3,
+                                G_TYPE_INT,
                                 G_TYPE_INT,
                                 G_TYPE_PTR_ARRAY);
 
@@ -143,8 +147,9 @@ screen_cast_dialog_init (ScreenCastDialog *dialog)
 }
 
 ScreenCastDialog *
-screen_cast_dialog_new (const char          *app_id,
-                        ScreenCastSelection *select)
+screen_cast_dialog_new (const char            *app_id,
+                        ScreenCastSelection   *select,
+                        ScreenCastPersistMode  persist_mode)
 {
   ScreenCastDialog *dialog;
   ScreenCastWidget *screen_cast_widget;
@@ -155,6 +160,7 @@ screen_cast_dialog_new (const char          *app_id,
   screen_cast_widget_set_allow_multiple (screen_cast_widget, select->multiple);
   screen_cast_widget_set_source_types (screen_cast_widget,
                                        select->source_types);
+  screen_cast_widget_set_persist_mode (screen_cast_widget, persist_mode);
 
   return dialog;
 }

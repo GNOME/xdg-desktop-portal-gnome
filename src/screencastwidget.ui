@@ -210,5 +210,13 @@
         </child>
       </object>
     </child>
+
+    <!-- Persist permission -->
+    <child>
+      <object class="GtkCheckButton" id="persist_check">
+        <property name="active">True</property>
+        <property name="label" translatable="yes">Remember this selection</property>
+      </object>
+    </child>
   </template>
 </interface>

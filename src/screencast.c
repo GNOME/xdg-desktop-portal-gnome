@@ -33,7 +33,14 @@
 #include "externalwindow.h"
 #include "request.h"
 #include "session.h"
+#include "shellintrospect.h"
 #include "utils.h"
+
+#define RESTORE_FORMAT_VERSION 1
+#define RESTORE_VARIANT_TYPE "(xxa(uuv))"
+#define MONITOR_TYPE "s"
+#define WINDOW_TYPE "(ss)"
+#define VIRTUAL_TYPE "b"
 
 typedef struct _ScreenCastDialogHandle ScreenCastDialogHandle;
 
@@ -48,6 +55,13 @@ typedef struct _ScreenCastSession
   char *parent_window;
 
   ScreenCastSelection select;
+
+  ScreenCastPersistMode persist_mode;
+  GPtrArray *streams_to_restore;
+  struct {
+    GVariant *data;
+    int64_t creation_time;
+  } restored;
 
   GDBusMethodInvocation *start_invocation;
   ScreenCastDialogHandle *dialog_handle;
@@ -99,6 +113,76 @@ screen_cast_dialog_handle_close (ScreenCastDialogHandle *dialog_handle)
   screen_cast_dialog_handle_free (dialog_handle);
 }
 
+static GVariant *
+serialize_streams_as_restore_data (ScreenCastSession *screen_cast_session,
+                                   GPtrArray         *streams)
+{
+  GVariantBuilder restore_data_builder;
+  GVariantBuilder impl_builder;
+  int64_t creation_time;
+  int64_t last_used_time;
+  guint i;
+
+  if (!streams || streams->len == 0)
+    return NULL;
+
+  last_used_time = g_get_real_time ();
+  if (screen_cast_session->restored.creation_time != -1)
+    creation_time = screen_cast_session->restored.creation_time;
+  else
+    creation_time = g_get_real_time ();
+
+  g_variant_builder_init (&impl_builder, G_VARIANT_TYPE (RESTORE_VARIANT_TYPE));
+  g_variant_builder_add (&impl_builder, "x", creation_time);
+  g_variant_builder_add (&impl_builder, "x", last_used_time);
+
+  g_variant_builder_open (&impl_builder, G_VARIANT_TYPE ("a(uuv)"));
+  for (i = 0; i < streams->len; i++)
+    {
+      ScreenCastStreamInfo *info = g_ptr_array_index (streams, i);
+      GVariant *stream_variant;
+      Monitor *monitor;
+      Window *window;
+
+      switch (info->type)
+        {
+        case SCREEN_CAST_SOURCE_TYPE_MONITOR:
+          monitor = info->data.monitor;
+          stream_variant = g_variant_new (MONITOR_TYPE,
+                                          monitor_get_match_string (monitor));
+          break;
+
+        case SCREEN_CAST_SOURCE_TYPE_WINDOW:
+          window = info->data.window;
+          stream_variant = g_variant_new (WINDOW_TYPE,
+                                          window_get_app_id (window),
+                                          window_get_title (window));
+          break;
+
+        case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
+          /*
+           * D-Bus doesn't accept maybe types, so just pass bogus boolean. It
+           * doesn't really matter since we'll never actually read this value.
+           */
+          stream_variant = g_variant_new (VIRTUAL_TYPE, TRUE);
+          break;
+        }
+
+      g_variant_builder_add (&impl_builder,
+                             "(uuv)",
+                             i,
+                             info->type,
+                             stream_variant);
+    }
+  g_variant_builder_close (&impl_builder);
+
+  g_variant_builder_init (&restore_data_builder, G_VARIANT_TYPE ("(suv)"));
+  g_variant_builder_add (&restore_data_builder, "s", "GNOME");
+  g_variant_builder_add (&restore_data_builder, "u", RESTORE_FORMAT_VERSION);
+  g_variant_builder_add (&restore_data_builder, "v", g_variant_builder_end (&impl_builder));
+  return g_variant_builder_end (&restore_data_builder);
+}
+
 static void
 cancel_start_session (ScreenCastSession *screen_cast_session,
                       int response)
@@ -142,6 +226,22 @@ on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_se
                          "streams",
                          g_variant_builder_end (&streams_builder));
 
+  if (screen_cast_session->persist_mode != SCREEN_CAST_PERSIST_MODE_NONE)
+    {
+      g_autoptr(GPtrArray) streams = g_steal_pointer (&screen_cast_session->streams_to_restore);
+      GVariant *restore_data;
+
+      restore_data = serialize_streams_as_restore_data (screen_cast_session, streams);
+
+      if (restore_data)
+        {
+          g_variant_builder_add (&results_builder, "{sv}", "persist_mode",
+                                 g_variant_new_uint32 (screen_cast_session->persist_mode));
+          g_variant_builder_add (&results_builder, "{sv}", "restore_data",
+                                 g_variant_new_variant (restore_data));
+        }
+    }
+
   xdp_impl_screen_cast_complete_start (XDP_IMPL_SCREEN_CAST (impl),
                                        screen_cast_session->start_invocation, 0,
                                        g_variant_builder_end (&results_builder));
@@ -178,6 +278,9 @@ start_session (ScreenCastSession  *screen_cast_session,
                       G_CALLBACK (on_gnome_screen_cast_session_closed),
                       screen_cast_session);
 
+  if (screen_cast_session->persist_mode != SCREEN_CAST_PERSIST_MODE_NONE)
+    screen_cast_session->streams_to_restore = g_ptr_array_ref (streams);
+
   if (!gnome_screen_cast_session_record_selections (gnome_screen_cast_session,
                                                     streams,
                                                     &screen_cast_session->select,
@@ -193,6 +296,7 @@ start_session (ScreenCastSession  *screen_cast_session,
 static void
 on_screen_cast_dialog_done_cb (GtkWidget              *widget,
                                int                     dialog_response,
+                               ScreenCastPersistMode   persist_mode,
                                GPtrArray              *streams,
                                ScreenCastDialogHandle *dialog_handle)
 {
@@ -218,7 +322,11 @@ on_screen_cast_dialog_done_cb (GtkWidget              *widget,
 
   if (response == 0)
     {
+      ScreenCastSession *screen_cast_session = dialog_handle->session;
       g_autoptr(GError) error = NULL;
+
+      screen_cast_session->persist_mode = MIN (screen_cast_session->persist_mode,
+                                               persist_mode);
 
       if (!start_session (dialog_handle->session, streams, &error))
         {
@@ -269,7 +377,8 @@ create_screen_cast_dialog (ScreenCastSession     *session,
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WIDGET (screen_cast_dialog_new (request->app_id,
-                                               &session->select));
+                                               &session->select,
+                                               session->persist_mode));
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
@@ -295,6 +404,173 @@ create_screen_cast_dialog (ScreenCastSession     *session,
   return dialog_handle;
 }
 
+static Monitor *
+find_monitor_by_string (const char *monitor_string)
+{
+  DisplayStateTracker *display_state_tracker = display_state_tracker_get ();
+  GList *l;
+
+  for (l = display_state_tracker_get_logical_monitors (display_state_tracker);
+       l;
+       l = l->next)
+    {
+      LogicalMonitor *logical_monitor = l->data;
+      GList *monitors;
+
+      for (monitors = logical_monitor_get_monitors (logical_monitor);
+           monitors;
+           monitors = monitors->next)
+        {
+          Monitor *monitor = monitors->data;
+
+          if (g_strcmp0 (monitor_get_match_string (monitor), monitor_string) == 0)
+            return monitor;
+        }
+    }
+
+  return NULL;
+}
+
+static Window *
+find_best_window_by_app_id_and_title (const char *app_id,
+                                      const char *title)
+{
+  ShellIntrospect *shell_introspect = shell_introspect_get ();
+  Window *best_match;
+  glong best_match_distance;
+  GList *l;
+
+  best_match = NULL;
+  best_match_distance = G_MAXLONG;
+
+  for (l = shell_introspect_get_windows (shell_introspect); l; l = l->next)
+    {
+      Window *window = l->data;
+      glong distance;
+
+      if (g_strcmp0 (window_get_app_id (window), app_id) != 0)
+        continue;
+
+      distance = str_distance (window_get_title (window), title);
+
+      if (distance == 0)
+        return window;
+
+      if (distance < best_match_distance)
+        {
+          best_match = window;
+          best_match_distance = distance;
+        }
+    }
+
+  return best_match;
+}
+
+static gboolean
+restore_stream_from_data (ScreenCastSession *screen_cast_session)
+
+{
+  ScreenCastStreamInfo *info;
+  g_autoptr(GVariantIter) array_iter = NULL;
+  g_autoptr(GPtrArray) streams = NULL;
+  g_autoptr(GError) error = NULL;
+  ScreenCastSourceType source_type;
+  GVariant *data;
+  uint32_t id;
+  int64_t creation_time;
+  int64_t last_used_time;
+
+  if (!screen_cast_session->restored.data)
+    return FALSE;
+
+  streams = g_ptr_array_new_with_free_func (g_free);
+
+  g_variant_get (screen_cast_session->restored.data,
+                 RESTORE_VARIANT_TYPE,
+                 &creation_time,
+                 &last_used_time,
+                 &array_iter);
+
+  while (g_variant_iter_next (array_iter, "(uuv)", &id, &source_type, &data))
+    {
+      switch (source_type)
+        {
+        case SCREEN_CAST_SOURCE_TYPE_MONITOR:
+          {
+            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR) ||
+                !g_variant_check_format_string (data, MONITOR_TYPE, FALSE))
+              goto fail;
+
+            const char *match_string = g_variant_get_string (data, NULL);
+            Monitor *monitor = find_monitor_by_string (match_string);
+
+            if (!monitor)
+              goto fail;
+
+            info = g_new0 (ScreenCastStreamInfo, 1);
+            info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
+            info->data.monitor = monitor;
+            g_ptr_array_add (streams, info);
+          }
+          break;
+
+        case SCREEN_CAST_SOURCE_TYPE_WINDOW:
+          {
+            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW) ||
+                !g_variant_check_format_string (data, WINDOW_TYPE, FALSE))
+              goto fail;
+
+            const char *app_id = NULL;
+            const char *title = NULL;
+            Window *window;
+
+            g_variant_get (data, "(&s&s)", &app_id, &title);
+
+            window = find_best_window_by_app_id_and_title (app_id, title);
+
+            if (!window)
+              goto fail;
+
+            info = g_new0 (ScreenCastStreamInfo, 1);
+            info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
+            info->data.window = window;
+            g_ptr_array_add (streams, info);
+          }
+          break;
+
+        case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
+          {
+            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL) ||
+                !g_variant_check_format_string (data, VIRTUAL_TYPE, FALSE))
+              goto fail;
+
+            info = g_new0 (ScreenCastStreamInfo, 1);
+            info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
+            g_ptr_array_add (streams, info);
+          }
+          break;
+
+        default:
+          goto fail;
+        }
+    }
+
+  screen_cast_session->restored.creation_time = creation_time;
+
+  start_session (screen_cast_session, streams, &error);
+
+  if (error)
+    {
+      g_warning ("Error restoring stream from session: %s", error->message);
+      return FALSE;
+    }
+
+  return TRUE;
+
+fail:
+  return FALSE;
+}
+
 static gboolean
 handle_start (XdpImplScreenCast     *object,
               GDBusMethodInvocation *invocation,
@@ -307,7 +583,6 @@ handle_start (XdpImplScreenCast     *object,
   const char *sender;
   g_autoptr(Request) request = NULL;
   ScreenCastSession *screen_cast_session;
-  ScreenCastDialogHandle *dialog_handle;
   GVariantBuilder results_builder;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
@@ -329,14 +604,19 @@ handle_start (XdpImplScreenCast     *object,
       goto err;
     }
 
-  dialog_handle = create_screen_cast_dialog (screen_cast_session,
-                                             invocation,
-                                             request,
-                                             arg_parent_window);
-
-
   screen_cast_session->start_invocation = invocation;
-  screen_cast_session->dialog_handle = dialog_handle;
+
+  if (!restore_stream_from_data (screen_cast_session))
+    {
+      ScreenCastDialogHandle *dialog_handle;
+
+      dialog_handle = create_screen_cast_dialog (screen_cast_session,
+                                                 invocation,
+                                                 request,
+                                                 arg_parent_window);
+
+      screen_cast_session->dialog_handle = dialog_handle;
+    }
 
   return TRUE;
 
@@ -356,6 +636,9 @@ handle_select_sources (XdpImplScreenCast     *object,
                        const char            *arg_app_id,
                        GVariant              *arg_options)
 {
+  g_autofree gchar *provider = NULL;
+  g_autoptr(GVariant) restore_data = NULL;
+  ScreenCastSession *screen_cast_session;
   Session *session;
   int response;
   uint32_t types;
@@ -364,6 +647,7 @@ handle_select_sources (XdpImplScreenCast     *object,
   ScreenCastSelection select;
   GVariantBuilder results_builder;
   GVariant *results;
+  uint32_t version;
 
   session = lookup_session (arg_session_handle);
   if (!session)
@@ -425,6 +709,21 @@ handle_select_sources (XdpImplScreenCast     *object,
     {
       g_warning ("Tried to select sources on invalid session type");
       response = 2;
+    }
+
+  screen_cast_session = (ScreenCastSession *)session;
+  g_variant_lookup (arg_options, "persist_mode", "u", &screen_cast_session->persist_mode);
+
+  if (g_variant_lookup (arg_options, "restore_data", "(suv)", &provider, &version, &restore_data))
+    {
+      if (!g_variant_check_format_string (restore_data, "(suv)", FALSE))
+        {
+          g_warning ("Cannot parse restore data, ignoring");
+          goto out;
+        }
+
+      if (g_strcmp0 (provider, "GNOME") == 0 && version == RESTORE_FORMAT_VERSION)
+        screen_cast_session->restored.data = g_variant_ref (restore_data);
     }
 
 out:
@@ -567,6 +866,8 @@ screen_cast_session_finalize (GObject *object)
 {
   ScreenCastSession *screen_cast_session = (ScreenCastSession *)object;
 
+  g_clear_pointer (&screen_cast_session->streams_to_restore, g_ptr_array_unref);
+  g_clear_pointer (&screen_cast_session->restored.data, g_variant_unref);
   g_clear_object (&screen_cast_session->gnome_screen_cast_session);
 
   G_OBJECT_CLASS (screen_cast_session_parent_class)->finalize (object);
@@ -575,6 +876,8 @@ screen_cast_session_finalize (GObject *object)
 static void
 screen_cast_session_init (ScreenCastSession *screen_cast_session)
 {
+  screen_cast_session->persist_mode = SCREEN_CAST_PERSIST_MODE_NONE;
+  screen_cast_session->restored.creation_time = -1;
 }
 
 static void
@@ -594,6 +897,14 @@ gboolean
 screen_cast_init (GDBusConnection  *connection,
                   GError          **error)
 {
+  /*
+   * Ensure ShellIntrospect and DisplayStateTracker are initialized before
+   * any screencast session is created to avoid race conditions when restoring
+   * previous streams.
+   */
+  display_state_tracker_get ();
+  shell_introspect_get ();
+
   impl_connection = connection;
   gnome_screen_cast = gnome_screen_cast_new (connection);
 

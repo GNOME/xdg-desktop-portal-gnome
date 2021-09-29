@@ -56,6 +56,9 @@ struct _ScreenCastWidget
   GtkWidget *virtual_switch;
   GtkWidget *virtual_switch_label;
 
+  GtkCheckButton *persist_check;
+  ScreenCastPersistMode persist_mode;
+
   DisplayStateTracker *display_state_tracker;
   gulong monitors_changed_handler_id;
 
@@ -470,6 +473,7 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
                                                  G_TYPE_BOOLEAN);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastwidget.ui");
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, persist_check);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type_switcher);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection);
@@ -668,4 +672,23 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
     }
 
   return g_steal_pointer (&streams);
+}
+
+void
+screen_cast_widget_set_persist_mode (ScreenCastWidget      *screen_cast_widget,
+                                     ScreenCastPersistMode  persist_mode)
+{
+  screen_cast_widget->persist_mode = persist_mode;
+
+  gtk_widget_set_visible (GTK_WIDGET (screen_cast_widget->persist_check),
+                                      persist_mode != SCREEN_CAST_PERSIST_MODE_NONE);
+}
+
+ScreenCastPersistMode
+screen_cast_widget_get_persist_mode (ScreenCastWidget *screen_cast_widget)
+{
+  if (!gtk_check_button_get_active (screen_cast_widget->persist_check))
+    return SCREEN_CAST_PERSIST_MODE_NONE;
+
+  return screen_cast_widget->persist_mode;
 }
