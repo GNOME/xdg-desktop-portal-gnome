@@ -35,6 +35,7 @@ static guint signals[N_SIGNALS];
 typedef struct _Monitor
 {
   char *connector;
+  char *match_string;
   char *display_name;
 } Monitor;
 
@@ -65,6 +66,7 @@ static void
 monitor_free (Monitor *monitor)
 {
   g_free (monitor->connector);
+  g_free (monitor->match_string);
   g_free (monitor->display_name);
   g_free (monitor);
 }
@@ -73,6 +75,12 @@ const char *
 monitor_get_connector (Monitor *monitor)
 {
   return monitor->connector;
+}
+
+const char *
+monitor_get_match_string (Monitor *monitor)
+{
+  return monitor->match_string;
 }
 
 const char *
@@ -109,6 +117,9 @@ generate_monitors (DisplayStateTracker *tracker,
   g_variant_iter_init (&monitors_iter, monitors);
   while ((monitor_variant = g_variant_iter_next_value (&monitors_iter)))
     {
+      g_autofree char *vendor = NULL;
+      g_autofree char *product = NULL;
+      g_autofree char *serial = NULL;
       Monitor *monitor;
       char *connector;
       char *display_name;
@@ -116,9 +127,9 @@ generate_monitors (DisplayStateTracker *tracker,
 
       g_variant_get (monitor_variant, "((ssss)a(siiddada{sv})@a{sv})",
                      &connector,
-                     NULL /* vendor */,
-                     NULL /* product */,
-                     NULL /* serial */,
+                     &vendor,
+                     &product,
+                     &serial,
                      NULL /* modes */,
                      &properties);
 
@@ -128,6 +139,7 @@ generate_monitors (DisplayStateTracker *tracker,
       monitor = g_new0 (Monitor, 1);
       *monitor = (Monitor) {
         .connector = connector,
+        .match_string = g_strdup_printf ("%s:%s:%s", vendor, product, serial),
         .display_name = display_name
       };
 

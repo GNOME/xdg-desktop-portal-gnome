@@ -28,6 +28,8 @@ G_DECLARE_FINAL_TYPE (DisplayStateTracker, display_state_tracker,
 
 const char * monitor_get_connector (Monitor *monitor);
 
+const char * monitor_get_match_string (Monitor *monitor);
+
 const char * monitor_get_display_name (Monitor *monitor);
 
 GList * logical_monitor_get_monitors (LogicalMonitor *logical_monitor);
