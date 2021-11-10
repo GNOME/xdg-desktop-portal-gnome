@@ -20,6 +20,7 @@ build-fedora:
 build-ubuntu:
   image: ubuntu:rolling
   extends: .build-common
+  allow_failure: true
   variables:
     DEBIAN_FRONTEND: noninteractive
   before_script:
