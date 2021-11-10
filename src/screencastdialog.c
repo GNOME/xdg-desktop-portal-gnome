@@ -51,6 +51,10 @@ static guint signals[N_SIGNALS];
 
 G_DEFINE_TYPE (ScreenCastDialog, screen_cast_dialog, GTK_TYPE_WINDOW)
 
+/*
+ * Callbacks
+ */
+
 static void
 button_clicked (GtkWidget *button,
                 ScreenCastDialog *dialog)
@@ -84,7 +88,7 @@ button_clicked (GtkWidget *button,
 
 static void
 on_has_selection_changed (ScreenCastWidget *screen_cast_widget,
-                          gboolean has_selection,
+                          gboolean          has_selection,
                           ScreenCastDialog *dialog)
 {
   if (has_selection)
@@ -93,32 +97,9 @@ on_has_selection_changed (ScreenCastWidget *screen_cast_widget,
     gtk_widget_set_sensitive (dialog->accept_button, FALSE);
 }
 
-ScreenCastDialog *
-screen_cast_dialog_new (const char *app_id,
-                        ScreenCastSelection *select)
-{
-  ScreenCastDialog *dialog;
-  ScreenCastWidget *screen_cast_widget;
-
-  dialog = g_object_new (SCREEN_CAST_TYPE_DIALOG, NULL);
-  screen_cast_widget = SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
-  screen_cast_widget_set_app_id (screen_cast_widget, app_id);
-  screen_cast_widget_set_allow_multiple (screen_cast_widget, select->multiple);
-  screen_cast_widget_set_source_types (screen_cast_widget,
-                                       select->source_types);
-
-  return dialog;
-}
-
-static void
-screen_cast_dialog_init (ScreenCastDialog *dialog)
-{
-  gtk_widget_init_template (GTK_WIDGET (dialog));
-
-  g_signal_connect (dialog->screen_cast_widget, "has-selection-changed",
-                    G_CALLBACK (on_has_selection_changed), dialog);
-  gtk_widget_show (dialog->screen_cast_widget);
-}
+/*
+ * GtkWindow overrides
+ */
 
 static gboolean
 screen_cast_dialog_close_request (GtkWindow *dialog)
@@ -154,4 +135,31 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, screen_cast_widget);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);
+}
+
+static void
+screen_cast_dialog_init (ScreenCastDialog *dialog)
+{
+  gtk_widget_init_template (GTK_WIDGET (dialog));
+
+  g_signal_connect (dialog->screen_cast_widget, "has-selection-changed",
+                    G_CALLBACK (on_has_selection_changed), dialog);
+  gtk_widget_show (dialog->screen_cast_widget);
+}
+
+ScreenCastDialog *
+screen_cast_dialog_new (const char          *app_id,
+                        ScreenCastSelection *select)
+{
+  ScreenCastDialog *dialog;
+  ScreenCastWidget *screen_cast_widget;
+
+  dialog = g_object_new (SCREEN_CAST_TYPE_DIALOG, NULL);
+  screen_cast_widget = SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
+  screen_cast_widget_set_app_id (screen_cast_widget, app_id);
+  screen_cast_widget_set_allow_multiple (screen_cast_widget, select->multiple);
+  screen_cast_widget_set_source_types (screen_cast_widget,
+                                       select->source_types);
+
+  return dialog;
 }

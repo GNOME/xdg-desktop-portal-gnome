@@ -70,6 +70,64 @@ static GQuark quark_window_widget_data;
 
 G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
 
+/*
+ * Auxiliary methods
+ */
+
+static gboolean
+add_selections (ScreenCastWidget *widget,
+                GVariantBuilder  *source_selections_builder)
+{
+  GList *selected_monitor_rows;
+  GList *selected_window_rows;
+  gboolean selected_virtual;
+  GList *l;
+
+  selected_monitor_rows =
+    gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->monitor_list));
+  selected_window_rows =
+    gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
+  selected_virtual = gtk_switch_get_state (GTK_SWITCH (widget->virtual_switch));
+  if (!selected_monitor_rows && !selected_window_rows && !selected_virtual)
+    return FALSE;
+
+  for (l = selected_monitor_rows; l; l = l->next)
+    {
+      GtkWidget *monitor_widget = gtk_list_box_row_get_child (l->data);
+      Monitor *monitor;
+
+      monitor = g_object_get_qdata (G_OBJECT (monitor_widget),
+                                    quark_monitor_widget_data);
+
+      g_variant_builder_add (source_selections_builder, "(us)",
+                             SCREEN_CAST_SOURCE_TYPE_MONITOR,
+                             monitor_get_connector (monitor));
+    }
+  g_list_free (selected_monitor_rows);
+  for (l = selected_window_rows; l; l = l->next)
+    {
+      GtkWidget *window_widget = gtk_list_box_row_get_child (l->data);
+      Window *window;
+
+      window = g_object_get_qdata (G_OBJECT (window_widget),
+                                    quark_window_widget_data);
+
+      g_variant_builder_add (source_selections_builder, "(ut)",
+                             SCREEN_CAST_SOURCE_TYPE_WINDOW,
+                             window_get_id (window));
+    }
+  g_list_free (selected_window_rows);
+
+  if (selected_virtual)
+    {
+      g_variant_builder_add (source_selections_builder, "(ud)",
+                             SCREEN_CAST_SOURCE_TYPE_VIRTUAL,
+                             1);
+    }
+
+  return TRUE;
+}
+
 static GtkWidget *
 create_window_widget (Window *window)
 {
@@ -136,7 +194,7 @@ create_monitor_widget (LogicalMonitor *logical_monitor)
 }
 
 static gboolean
-should_skip_window (Window *window,
+should_skip_window (Window    *window,
                     GtkWindow *toplevel)
 {
   g_autofree char *processed_app_id = NULL;
@@ -259,7 +317,7 @@ unselect_rows (GtkListBox *listbox)
 }
 
 static void
-on_windows_changed (ShellIntrospect *shell_introspect,
+on_windows_changed (ShellIntrospect  *shell_introspect,
                     ScreenCastWidget *widget)
 {
   update_windows_list (widget);
@@ -288,9 +346,9 @@ disconnect_windows_changed_listener (ScreenCastWidget *widget)
 }
 
 static void
-on_stack_switch (GtkStack *stack,
+on_stack_switch (GtkStack   *stack,
                  GParamSpec *pspec,
-                 gpointer *data)
+                 gpointer   *data)
 {
   ScreenCastWidget *widget = (ScreenCastWidget *)data;
   GtkWidget *visible_child;
@@ -312,9 +370,9 @@ on_stack_switch (GtkStack *stack,
 }
 
 static void
-on_row_activated (GtkListBox *box,
+on_row_activated (GtkListBox    *box,
                   GtkListBoxRow *row,
-                  gpointer *data)
+                  gpointer      *data)
 {
   if (!row)
     return;
@@ -385,7 +443,7 @@ schedule_selection_change (ScreenCastWidget *widget)
 }
 
 static void
-on_selected_rows_changed (GtkListBox *box,
+on_selected_rows_changed (GtkListBox       *box,
                           ScreenCastWidget *widget)
 {
   /* GtkListBox activates rows after selecting them, which prevents
@@ -394,8 +452,8 @@ on_selected_rows_changed (GtkListBox *box,
 }
 
 static gboolean
-on_virtual_switch_state_set (GtkSwitch *virtual_switch,
-                             gboolean state,
+on_virtual_switch_state_set (GtkSwitch        *virtual_switch,
+                             gboolean          state,
                              ScreenCastWidget *widget)
 {
   schedule_selection_change (widget);
@@ -419,151 +477,14 @@ update_list_box_header (GtkListBoxRow *row,
 
 static void
 on_monitors_changed (DisplayStateTracker *display_state_tracker,
-                     ScreenCastWidget *widget)
+                     ScreenCastWidget    *widget)
 {
   update_monitors_list (widget);
 }
 
-static gboolean
-add_selections (ScreenCastWidget *widget,
-                GVariantBuilder *source_selections_builder)
-{
-  GList *selected_monitor_rows;
-  GList *selected_window_rows;
-  gboolean selected_virtual;
-  GList *l;
-
-  selected_monitor_rows =
-    gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->monitor_list));
-  selected_window_rows =
-    gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
-  selected_virtual = gtk_switch_get_state (GTK_SWITCH (widget->virtual_switch));
-  if (!selected_monitor_rows && !selected_window_rows && !selected_virtual)
-    return FALSE;
-
-  for (l = selected_monitor_rows; l; l = l->next)
-    {
-      GtkWidget *monitor_widget = gtk_list_box_row_get_child (l->data);
-      Monitor *monitor;
-
-      monitor = g_object_get_qdata (G_OBJECT (monitor_widget),
-                                    quark_monitor_widget_data);
-
-      g_variant_builder_add (source_selections_builder, "(us)",
-                             SCREEN_CAST_SOURCE_TYPE_MONITOR,
-                             monitor_get_connector (monitor));
-    }
-  g_list_free (selected_monitor_rows);
-  for (l = selected_window_rows; l; l = l->next)
-    {
-      GtkWidget *window_widget = gtk_list_box_row_get_child (l->data);
-      Window *window;
-
-      window = g_object_get_qdata (G_OBJECT (window_widget),
-                                    quark_window_widget_data);
-
-      g_variant_builder_add (source_selections_builder, "(ut)",
-                             SCREEN_CAST_SOURCE_TYPE_WINDOW,
-                             window_get_id (window));
-    }
-  g_list_free (selected_window_rows);
-
-  if (selected_virtual)
-    {
-      g_variant_builder_add (source_selections_builder, "(ud)",
-                             SCREEN_CAST_SOURCE_TYPE_VIRTUAL,
-                             1);
-    }
-
-  return TRUE;
-}
-
-void
-screen_cast_widget_add_selections (ScreenCastWidget *widget,
-                                   GVariantBuilder *selections_builder)
-{
-  GVariantBuilder source_selections_builder;
-
-  g_variant_builder_init (&source_selections_builder, G_VARIANT_TYPE ("a(u?)"));
-  if (!add_selections (widget, &source_selections_builder))
-    {
-      g_variant_builder_clear (&source_selections_builder);
-    }
-  else
-    {
-      g_variant_builder_add (selections_builder, "{sv}",
-                             "selected_screen_cast_sources",
-                             g_variant_builder_end (&source_selections_builder));
-    }
-}
-
-void
-screen_cast_widget_set_app_id (ScreenCastWidget *widget,
-                               const char *app_id)
-{
-  g_autofree char *monitor_heading = NULL;
-  g_autofree char *window_heading = NULL;
-  g_autofree char *virtual_heading = NULL;
-
-  if (app_id && strcmp (app_id, "") != 0)
-    {
-      g_autofree char *id = NULL;
-      g_autoptr(GAppInfo) info = NULL;
-      const gchar *display_name = NULL;
-
-      id = g_strconcat (app_id, ".desktop", NULL);
-      info = G_APP_INFO (g_desktop_app_info_new (id));
-      if (info)
-        display_name = g_app_info_get_display_name (info);
-      else
-        display_name = g_strdup (app_id);
-      monitor_heading = g_strdup_printf (_("Select monitor to share with %s"),
-                                         display_name);
-      window_heading = g_strdup_printf (_("Select window to share with %s"),
-                                        display_name);
-      virtual_heading = g_strdup_printf (_("Select whether to create a virtual monitor for %s"),
-                                        display_name);
-    }
-  else
-    {
-      monitor_heading = g_strdup (_("Select monitor to share with the requesting application"));
-      window_heading = g_strdup (_("Select window to share with the requesting application"));
-      virtual_heading = g_strdup (_("Select whether to create a virtual monitor for the requesting application"));
-    }
-
-  gtk_label_set_label (GTK_LABEL (widget->monitor_heading), monitor_heading);
-  gtk_label_set_label (GTK_LABEL (widget->window_heading), window_heading);
-  gtk_label_set_label (GTK_LABEL (widget->virtual_heading), virtual_heading);
-}
-
-void
-screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
-                                       gboolean multiple)
-{
-  gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->monitor_list),
-                                   multiple ? GTK_SELECTION_MULTIPLE
-                                            : GTK_SELECTION_SINGLE);
-  gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->window_list),
-                                   multiple ? GTK_SELECTION_MULTIPLE
-                                            : GTK_SELECTION_SINGLE);
-}
-
-void
-screen_cast_widget_set_source_types (ScreenCastWidget *screen_cast_widget,
-                                     ScreenCastSourceType source_types)
-{
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
-    gtk_widget_show (screen_cast_widget->monitor_selection);
-
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW)
-    gtk_widget_show (screen_cast_widget->window_selection);
-
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
-    gtk_widget_show (screen_cast_widget->virtual_selection);
-
-  if (__builtin_popcount (source_types) > 1)
-    gtk_widget_show (screen_cast_widget->source_type_switcher);
-}
+/*
+ * GObject overrides
+ */
 
 static void
 screen_cast_widget_finalize (GObject *object)
@@ -583,6 +504,41 @@ screen_cast_widget_finalize (GObject *object)
     }
 
   G_OBJECT_CLASS (screen_cast_widget_parent_class)->finalize (object);
+}
+
+static void
+screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  object_class->finalize = screen_cast_widget_finalize;
+
+  signals[HAS_SELECTION_CHANGED] = g_signal_new ("has-selection-changed",
+                                                 G_TYPE_FROM_CLASS (klass),
+                                                 G_SIGNAL_RUN_LAST,
+                                                 0,
+                                                 NULL, NULL,
+                                                 NULL,
+                                                 G_TYPE_NONE, 1,
+                                                 G_TYPE_BOOLEAN);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastwidget.ui");
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type_switcher);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_selection);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_heading);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_list);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list_scrolled);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_heading);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_switch);
+
+  quark_monitor_widget_data = g_quark_from_static_string ("-monitor-widget-connector-quark");
+  quark_window_widget_data = g_quark_from_static_string ("-window-widget-connector-quark");
 }
 
 static void
@@ -641,43 +597,95 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   gtk_widget_show (widget->virtual_switch);
 }
 
-static void
-screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
-{
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-  object_class->finalize = screen_cast_widget_finalize;
-
-  signals[HAS_SELECTION_CHANGED] = g_signal_new ("has-selection-changed",
-                                                 G_TYPE_FROM_CLASS (klass),
-                                                 G_SIGNAL_RUN_LAST,
-                                                 0,
-                                                 NULL, NULL,
-                                                 NULL,
-                                                 G_TYPE_NONE, 1,
-                                                 G_TYPE_BOOLEAN);
-
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastwidget.ui");
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type_switcher);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_selection);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_list);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list_scrolled);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_switch);
-
-  quark_monitor_widget_data = g_quark_from_static_string ("-monitor-widget-connector-quark");
-  quark_window_widget_data = g_quark_from_static_string ("-window-widget-connector-quark");
-}
-
 void
 init_screen_cast_widget (void)
 {
   g_type_ensure (screen_cast_widget_get_type ());
+}
+
+void
+screen_cast_widget_add_selections (ScreenCastWidget *widget,
+                                   GVariantBuilder  *selections_builder)
+{
+  GVariantBuilder source_selections_builder;
+
+  g_variant_builder_init (&source_selections_builder, G_VARIANT_TYPE ("a(u?)"));
+  if (!add_selections (widget, &source_selections_builder))
+    {
+      g_variant_builder_clear (&source_selections_builder);
+    }
+  else
+    {
+      g_variant_builder_add (selections_builder, "{sv}",
+                             "selected_screen_cast_sources",
+                             g_variant_builder_end (&source_selections_builder));
+    }
+}
+
+void
+screen_cast_widget_set_app_id (ScreenCastWidget *widget,
+                               const char       *app_id)
+{
+  g_autofree char *monitor_heading = NULL;
+  g_autofree char *window_heading = NULL;
+  g_autofree char *virtual_heading = NULL;
+
+  if (app_id && strcmp (app_id, "") != 0)
+    {
+      g_autofree char *id = NULL;
+      g_autoptr(GAppInfo) info = NULL;
+      const gchar *display_name = NULL;
+
+      id = g_strconcat (app_id, ".desktop", NULL);
+      info = G_APP_INFO (g_desktop_app_info_new (id));
+      if (info)
+        display_name = g_app_info_get_display_name (info);
+      else
+        display_name = g_strdup (app_id);
+      monitor_heading = g_strdup_printf (_("Select monitor to share with %s"),
+                                         display_name);
+      window_heading = g_strdup_printf (_("Select window to share with %s"),
+                                        display_name);
+      virtual_heading = g_strdup_printf (_("Select whether to create a virtual monitor for %s"),
+                                        display_name);
+    }
+  else
+    {
+      monitor_heading = g_strdup (_("Select monitor to share with the requesting application"));
+      window_heading = g_strdup (_("Select window to share with the requesting application"));
+      virtual_heading = g_strdup (_("Select whether to create a virtual monitor for the requesting application"));
+    }
+
+  gtk_label_set_label (GTK_LABEL (widget->monitor_heading), monitor_heading);
+  gtk_label_set_label (GTK_LABEL (widget->window_heading), window_heading);
+  gtk_label_set_label (GTK_LABEL (widget->virtual_heading), virtual_heading);
+}
+
+void
+screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
+                                       gboolean          multiple)
+{
+  gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->monitor_list),
+                                   multiple ? GTK_SELECTION_MULTIPLE
+                                            : GTK_SELECTION_SINGLE);
+  gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->window_list),
+                                   multiple ? GTK_SELECTION_MULTIPLE
+                                            : GTK_SELECTION_SINGLE);
+}
+
+void
+screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
+                                     ScreenCastSourceType  source_types)
+{
+  if (source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
+    gtk_widget_show (screen_cast_widget->monitor_selection);
+
+  if (source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW)
+    gtk_widget_show (screen_cast_widget->window_selection);
+
+  if (source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
+    gtk_widget_show (screen_cast_widget->virtual_selection);
+
+  if (__builtin_popcount (source_types) > 1)
+    gtk_widget_show (screen_cast_widget->source_type_switcher);
 }

@@ -31,13 +31,13 @@ G_DECLARE_FINAL_TYPE (ScreenCastWidget, screen_cast_widget,
 void init_screen_cast_widget (void);
 
 void screen_cast_widget_set_app_id (ScreenCastWidget *widget,
-                                    const char *app_id);
+                                    const char       *app_id);
 
 void screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
-                                            gboolean multiple);
+                                            gboolean          multiple);
 
-void screen_cast_widget_set_source_types (ScreenCastWidget *screen_cast_widget,
-                                          ScreenCastSourceType source_types);
+void screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
+                                          ScreenCastSourceType  source_types);
 
 void screen_cast_widget_add_selections (ScreenCastWidget *widget,
-                                        GVariantBuilder *selections_builder);
+                                        GVariantBuilder  *selections_builder);

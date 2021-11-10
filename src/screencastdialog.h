@@ -26,5 +26,5 @@
 G_DECLARE_FINAL_TYPE (ScreenCastDialog, screen_cast_dialog,
                       SCREEN_CAST, DIALOG, GtkWindow)
 
-ScreenCastDialog * screen_cast_dialog_new (const char *app_id,
+ScreenCastDialog * screen_cast_dialog_new (const char          *app_id,
                                            ScreenCastSelection *select);

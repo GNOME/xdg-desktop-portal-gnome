@@ -572,21 +572,6 @@ on_gnome_screen_cast_disabled (GDBusConnection *connection,
     }
 }
 
-gboolean
-screen_cast_init (GDBusConnection *connection,
-                  GError **error)
-{
-  impl_connection = connection;
-  gnome_screen_cast = gnome_screen_cast_new (connection);
-
-  g_signal_connect (gnome_screen_cast, "enabled",
-                    G_CALLBACK (on_gnome_screen_cast_enabled), NULL);
-  g_signal_connect (gnome_screen_cast, "disabled",
-                    G_CALLBACK (on_gnome_screen_cast_disabled), NULL);
-
-  return TRUE;
-}
-
 static void
 screen_cast_session_close (Session *session)
 {
@@ -635,4 +620,19 @@ screen_cast_session_class_init (ScreenCastSessionClass *klass)
 
   session_class = (SessionClass *)klass;
   session_class->close = screen_cast_session_close;
+}
+
+gboolean
+screen_cast_init (GDBusConnection *connection,
+                  GError **error)
+{
+  impl_connection = connection;
+  gnome_screen_cast = gnome_screen_cast_new (connection);
+
+  g_signal_connect (gnome_screen_cast, "enabled",
+                    G_CALLBACK (on_gnome_screen_cast_enabled), NULL);
+  g_signal_connect (gnome_screen_cast, "disabled",
+                    G_CALLBACK (on_gnome_screen_cast_disabled), NULL);
+
+  return TRUE;
 }
