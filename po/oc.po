@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-28 19:14+0000\n"
-"PO-Revision-Date: 2021-11-09 10:12+0100\n"
+"POT-Creation-Date: 2021-11-10 18:18+0000\n"
+"PO-Revision-Date: 2021-11-10 19:25+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
@@ -46,8 +46,8 @@ msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
 msgstr ""
-"Cap d’aplicacion pas installada per dobrir « %s ». Ne podètz trobar una "
-"dins Logicials"
+"Cap d’aplicacion pas installada per dobrir « %s ». Ne podètz trobar una dins "
+"Logicials"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
@@ -155,31 +155,55 @@ msgstr "_Partejar"
 msgid "Screen Share"
 msgstr "Partiment d’ecran"
 
-#: src/screencastwidget.c:494
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Seleccionatz lo monitor de partejar amb %s"
 
-#: src/screencastwidget.c:496
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Seleccionatz la fenèstra de partejar amb %s"
 
-#: src/screencastwidget.c:501
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a vitrual monitor for %s"
+msgstr "Seleccionar se cal crear un monitor virtual per %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr "Seleccionar lo monitor de partejar amb l’aplicacion demandada"
 
-#: src/screencastwidget.c:502
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr "Seleccionar la fenèstra de partejar amb l’aplicacion demandada"
 
-#: src/screencastwidget.ui:25
+#: src/screencastwidget.c:531
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr "Seleccionar se cal crear un monitor virtual per l’aplicacion demandada"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "Fenèstra sola"
 
-#: src/screencastwidget.ui:86
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "Ecran entièr"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr "Monitor virtual"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"                              Crear un monitor virtual ?\n"
+"                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
