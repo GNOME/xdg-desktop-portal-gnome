@@ -6,16 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2021-11-10 18:18+0000\n"
-"PO-Revision-Date: 2021-11-10 20:42+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
+"issues\n"
+"POT-Creation-Date: 2021-11-10 19:08+0000\n"
+"PO-Revision-Date: 2021-11-10 21:10+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.12.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
@@ -169,9 +171,9 @@ msgstr "Виберіть вікно, дані з якого слід оприл�
 
 #: src/screencastwidget.c:524
 #, c-format
-msgid "Select whether to create a vitrual monitor for %s"
-msgstr ""
-"Виберіть, чи слід створювати віртуальний монітор для %s"
+#| msgid "Select whether to create a vitrual monitor for %s"
+msgid "Select whether to create a virtual monitor for %s"
+msgstr "Виберіть, чи слід створювати віртуальний монітор для %s"
 
 #: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
@@ -186,11 +188,11 @@ msgstr ""
 "програми"
 
 #: src/screencastwidget.c:531
-#| msgid "Select monitor to share with the requesting application"
 msgid ""
 "Select whether to create a virtual monitor for the requesting application"
 msgstr ""
-"Виберіть, чи слід створювати віртуальний монітор для програми, яка надсилає запит на такий монітор"
+"Виберіть, чи слід створювати віртуальний монітор для програми, яка надсилає "
+"запит на такий монітор"
 
 #: src/screencastwidget.ui:26
 msgid "Single Window"
@@ -202,8 +204,7 @@ msgstr "Увесь екран"
 
 #: src/screencastwidget.ui:152
 msgid "Virtual monitor"
-msgstr ""
-"Віртуальний монітор"
+msgstr "Віртуальний монітор"
 
 #: src/screencastwidget.ui:184
 msgid ""
