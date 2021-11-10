@@ -2,42 +2,45 @@
 # Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020.
+# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
-"issues\n"
-"POT-Creation-Date: 2021-06-05 10:00-0300\n"
-"PO-Revision-Date: 2020-03-28 22:00+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
+"POT-Creation-Date: 2021-11-10 18:18+0000\n"
+"PO-Revision-Date: 2021-11-10 20:42+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.03.70\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Портал"
 
+#. TRANSLATORS: Don't translate this text (this is icon name)
+#: data/xdg-desktop-portal-gnome.desktop.in.in:6
+msgid "applications-system-symbolic"
+msgstr "applications-system-symbolic"
+
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
 msgstr "Не вдалося запустити «Програмні засоби»"
 
-#: src/appchooserdialog.c:385
+#: src/appchooserdialog.c:393
 #, c-format
 msgid "Choose an application to open the file “%s”."
 msgstr "Виберіть програму для відкриття файла «%s»."
 
-#: src/appchooserdialog.c:390
+#: src/appchooserdialog.c:398
 msgid "Choose an application."
 msgstr "Виберіть програму."
 
-#: src/appchooserdialog.c:407
+#: src/appchooserdialog.c:415
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
@@ -46,39 +49,40 @@ msgstr ""
 "Не встановлено жодної програми, яка придатна для відкриття «%s». Потрібні "
 "вам програми ви можете знайти за допомогою програми «Програмні засоби»."
 
-#: src/appchooserdialog.c:412
+#: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
 "Не встановлено відповідної програми. Потрібні вам програми ви можете знайти "
 "за допомогою програми «Програмні засоби»."
 
-#: src/appchooserdialog.ui:10
+#: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Відкрити за допомогою…"
 
-#: src/appchooserdialog.ui:14 src/remotedesktopdialog.ui:16
-#: src/screencastdialog.ui:16 src/screenshotdialog.ui:14
+#: src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/appchooserdialog.ui:23
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/appchooserdialog.ui:115
+#: src/appchooserdialog.ui:104
 msgid "No Apps available"
 msgstr "Немає доступних програм"
 
-#: src/appchooserdialog.ui:159
+#: src/appchooserdialog.ui:144
 msgid "_Find More in Software"
 msgstr "З_найти інші у програмі «Програмні засоби»"
 
-#: src/background.c:215 src/background.c:308
+#: src/background.c:214 src/background.c:305
 #, c-format
 msgid "“%s” is running in the background"
 msgstr "«%s» працює у фоновому режимі"
 
-#: src/background.c:217
+#: src/background.c:216
 msgid ""
 "This might be for a legitimate reason, but the application has not provided "
 "one.\n"
@@ -90,86 +94,126 @@ msgstr ""
 "Зауважте, що примусове завершення роботи, ймовірно, може призвести до втрати "
 "даних."
 
-#: src/background.c:220
+#: src/background.c:219
 msgid "Force quit"
 msgstr "Примусове завершення роботи"
 
-#: src/background.c:221
+#: src/background.c:220
 msgid "Allow"
 msgstr "Дозволити"
 
-#: src/background.c:306
+#: src/background.c:303
 msgid "Background activity"
 msgstr "Фонова робота"
 
-#: src/background.c:314
+#: src/background.c:311
 msgid "Find out more"
 msgstr "Дізнатися більше"
 
-#: src/remotedesktopdialog.c:188
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "_Вибрати"
+
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "_Зберегти"
+
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "Відкрити файли лише для читання"
+
+#: src/remotedesktopdialog.c:184
 msgid "Pointer"
 msgstr "Координатний пристрій"
 
-#: src/remotedesktopdialog.c:191
+#: src/remotedesktopdialog.c:187
 msgid "Keyboard"
 msgstr "Клавіатура"
 
-#: src/remotedesktopdialog.c:194
+#: src/remotedesktopdialog.c:190
 msgid "Touch screen"
 msgstr "Сенсорна панель"
 
-#: src/remotedesktopdialog.c:307
+#: src/remotedesktopdialog.c:303
 #, c-format
 msgid "Select devices to share with %s"
 msgstr "Виберіть пристрої, які слід оприлюднити для %s"
 
-#: src/remotedesktopdialog.c:312
+#: src/remotedesktopdialog.c:308
 msgid "Select devices to share with the requesting application"
 msgstr ""
 "Виберіть пристрої, які слід оприлюднити за допомогою відповідної програми"
 
-#: src/remotedesktopdialog.ui:12
+#: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Віддалена стільниця"
 
-#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:28
-#: src/screenshotdialog.ui:38
+#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
+#: src/screenshotdialog.ui:35
 msgid "_Share"
 msgstr "_Оприлюднити"
 
-#: src/screencastdialog.ui:12
+#: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Оприлюднення екрана"
 
-#: src/screencastwidget.c:483
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Виберіть монітор, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:485
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Виберіть вікно, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:490
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a vitrual monitor for %s"
+msgstr ""
+"Виберіть, чи слід створювати віртуальний монітор для %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr ""
 "Виберіть монітор, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
-#: src/screencastwidget.c:491
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr ""
 "Виберіть вікно, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
-#: src/screencastwidget.ui:100
+#: src/screencastwidget.c:531
+#| msgid "Select monitor to share with the requesting application"
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr ""
+"Виберіть, чи слід створювати віртуальний монітор для програми, яка надсилає запит на такий монітор"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "Окреме вікно"
 
-#: src/screencastwidget.ui:176
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "Увесь екран"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr ""
+"Віртуальний монітор"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"                              Створити віртуальний монітор?\n"
+"                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
@@ -180,75 +224,75 @@ msgstr "Оприлюднити цей знімок екрана за допом�
 msgid "Share this screenshot with the requesting application?"
 msgstr "Оприлюднити цей знімок екрана за допомогою відповідної програми?"
 
-#: src/screenshotdialog.ui:10
+#: src/screenshotdialog.ui:6
 msgid "Screenshot"
 msgstr "Знімок екрана"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:28
 msgid "_Options…"
 msgstr "П_араметри…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:53
 msgid "Take _Screenshot"
 msgstr "З_робити знімок екрана"
 
-#: src/screenshotdialog.ui:111
+#: src/screenshotdialog.ui:110
 msgid "Take Screenshot"
 msgstr "Зробити знімок екрана"
 
-#: src/screenshotdialog.ui:122
+#: src/screenshotdialog.ui:120
 msgid "Grab the whole sc_reen"
 msgstr "Захопити увесь е_кран"
 
-#: src/screenshotdialog.ui:133
+#: src/screenshotdialog.ui:130
 msgid "Grab the current _window"
 msgstr "Захопити поточне _вікно"
 
-#: src/screenshotdialog.ui:144
+#: src/screenshotdialog.ui:140
 msgid "Select _area to grab"
 msgstr "Вибрати _область для захоплення"
 
-#: src/screenshotdialog.ui:158
+#: src/screenshotdialog.ui:152
 msgid "Grab after a _delay of"
 msgstr "Захопити із з_атримкою у"
 
-#: src/screenshotdialog.ui:171
+#: src/screenshotdialog.ui:163
 msgid "seconds"
 msgstr "секунд"
 
-#: src/screenshotdialog.ui:181
+#: src/screenshotdialog.ui:172
 msgid "Effects"
 msgstr "Ефекти"
 
-#: src/screenshotdialog.ui:192
+#: src/screenshotdialog.ui:182
 msgid "Include _pointer"
 msgstr "Разом із в_казівником"
 
-#: src/screenshotdialog.ui:201
+#: src/screenshotdialog.ui:190
 msgid "Include the window _border"
 msgstr "Включити _рамку вікна"
 
-#: src/settings.c:186
+#: src/settings.c:217
 msgid "Requested setting not found"
 msgstr "Потрібного вам параметра не знайдено"
 
-#: src/wallpaperdialog.ui:13
+#: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Встановити тло"
 
-#: src/wallpaperdialog.ui:18
+#: src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/wallpaperdialog.ui:26
+#: src/wallpaperdialog.ui:20
 msgid "Set"
 msgstr "Встановити"
 
-#: src/wallpaperdialog.ui:57
+#: src/wallpaperdialog.ui:51
 msgid "Failed to load image file"
 msgstr "Не вдалося завантажити файл зображення"
 
-#: src/wallpaperpreview.ui:57
+#: src/wallpaperpreview.ui:53
 msgid "Activities"
 msgstr "Діяльність"
 
@@ -270,7 +314,6 @@ msgstr "Діяльність"
 #~ msgid "Images"
 #~ msgstr "Образи"
 
-#, c-format
 #~ msgid "Share your personal information with %s?"
 #~ msgstr "Поділитися вашими особистими даними з %s?"
 
@@ -284,19 +327,6 @@ msgstr "Діяльність"
 #~ msgid "Make changes before sharing the information"
 #~ msgstr "Внести зміни до оприлюднення даних"
 
-#~ msgid "_Select"
-#~ msgstr "_Вибрати"
-
-#~ msgid "_Save"
-#~ msgstr "_Зберегти"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Відкрити файли лише для читання"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
-
-#, c-format
 #~ msgid "%s is running in the background."
 #~ msgstr "%s працює у фоновому режимі."
 
