@@ -28,8 +28,6 @@ typedef struct _ScreenCastWidget ScreenCastWidget;
 G_DECLARE_FINAL_TYPE (ScreenCastWidget, screen_cast_widget,
                       SCREEN_CAST, WIDGET, GtkBox)
 
-void init_screen_cast_widget (void);
-
 void screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                     const char       *app_id);
 

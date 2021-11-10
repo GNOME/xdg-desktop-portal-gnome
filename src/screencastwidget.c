@@ -598,12 +598,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
 }
 
 void
-init_screen_cast_widget (void)
-{
-  g_type_ensure (screen_cast_widget_get_type ());
-}
-
-void
 screen_cast_widget_add_selections (ScreenCastWidget *widget,
                                    GVariantBuilder  *selections_builder)
 {

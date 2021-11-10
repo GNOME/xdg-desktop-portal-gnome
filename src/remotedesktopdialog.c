@@ -379,7 +379,7 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
                                 G_TYPE_INT,
                                 G_TYPE_VARIANT);
 
-  init_screen_cast_widget ();
+  g_type_ensure (SCREEN_CAST_TYPE_WIDGET);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/remotedesktopdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, accept_button);
