@@ -77,9 +77,6 @@ static GnomeScreenCast *gnome_screen_cast;
 GType screen_cast_session_get_type (void);
 G_DEFINE_TYPE (ScreenCastSession, screen_cast_session, session_get_type ())
 
-static void
-start_done (ScreenCastSession *session);
-
 static gboolean
 start_session (ScreenCastSession *session,
                GVariant *selections,
