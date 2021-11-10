@@ -521,7 +521,7 @@ screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                          display_name);
       window_heading = g_strdup_printf (_("Select window to share with %s"),
                                         display_name);
-      virtual_heading = g_strdup_printf (_("Select whether to create a vitrual monitor for %s"),
+      virtual_heading = g_strdup_printf (_("Select whether to create a virtual monitor for %s"),
                                         display_name);
     }
   else
