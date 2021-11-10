@@ -14,7 +14,7 @@ build-fedora:
   image: fedora:latest
   extends: .build-common
   before_script:
-    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc
+    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel
     - dnf builddep -y xdg-desktop-portal-gtk
 
 build-ubuntu:
