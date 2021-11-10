@@ -13,7 +13,7 @@
           <object class="GtkButton" id="cancel_button">
             <property name="label" translatable="yes">_Cancel</property>
             <property name="use_underline">1</property>
-            <signal name="clicked" handler="button_clicked"/>
+            <signal name="clicked" handler="on_button_clicked_cb"/>
           </object>
         </child>
         <child type="end">
@@ -21,7 +21,7 @@
             <property name="sensitive">0</property>
             <property name="label" translatable="yes">_Share</property>
             <property name="use_underline">1</property>
-            <signal name="clicked" handler="button_clicked"/>
+            <signal name="clicked" handler="on_button_clicked_cb"/>
             <style>
               <class name="suggested-action"/>
             </style>

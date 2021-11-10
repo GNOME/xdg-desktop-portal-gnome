@@ -56,8 +56,8 @@ G_DEFINE_TYPE (ScreenCastDialog, screen_cast_dialog, GTK_TYPE_WINDOW)
  */
 
 static void
-button_clicked (GtkWidget *button,
-                ScreenCastDialog *dialog)
+on_button_clicked_cb (GtkWidget        *button,
+                      ScreenCastDialog *dialog)
 {
   int response;
   GVariant *selections;
@@ -134,7 +134,7 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, screen_cast_widget);
-  gtk_widget_class_bind_template_callback (widget_class, button_clicked);
+  gtk_widget_class_bind_template_callback (widget_class, on_button_clicked_cb);
 }
 
 static void
