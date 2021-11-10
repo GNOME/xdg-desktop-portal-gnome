@@ -274,10 +274,10 @@ cursor_mode_to_gnome_cursor_mode (ScreenCastCursorMode cursor_mode)
 }
 
 static gboolean
-gnome_screen_cast_session_record_window (GnomeScreenCastSession *gnome_screen_cast_session,
-                                         const guint64 id,
-                                         ScreenCastSelection *select,
-                                         GError **error)
+gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                         Window                  *window,
+                                         ScreenCastSelection     *select,
+                                         GError                 **error)
 {
   OrgGnomeMutterScreenCastSession *session_proxy =
     gnome_screen_cast_session->proxy;
@@ -292,7 +292,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession *gnome_screen_ca
   g_variant_builder_init (&properties_builder, G_VARIANT_TYPE_VARDICT);
   g_variant_builder_add (&properties_builder, "{sv}",
                          "window-id",
-                         g_variant_new_uint64 (id));
+                         g_variant_new_uint64 (window_get_id (window)));
   if (select->cursor_mode)
     {
       uint32_t gnome_cursor_mode;
@@ -356,10 +356,10 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession *gnome_screen_ca
 }
 
 static gboolean
-gnome_screen_cast_session_record_monitor (GnomeScreenCastSession *gnome_screen_cast_session,
-                                          const char *connector,
-                                          ScreenCastSelection *select,
-                                          GError **error)
+gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                          Monitor                 *monitor,
+                                          ScreenCastSelection     *select,
+                                          GError                 **error)
 {
   OrgGnomeMutterScreenCastSession *session_proxy =
     gnome_screen_cast_session->proxy;
@@ -370,6 +370,7 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession *gnome_screen_c
   OrgGnomeMutterScreenCastStream *stream_proxy;
   GnomeScreenCastStream *stream;
   GVariant *parameters;
+  const char *connector;
 
   g_variant_builder_init (&properties_builder, G_VARIANT_TYPE_VARDICT);
   if (select->cursor_mode)
@@ -383,6 +384,7 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession *gnome_screen_c
     }
   properties = g_variant_builder_end (&properties_builder);
 
+  connector = monitor_get_connector (monitor);
   if (!org_gnome_mutter_screen_cast_session_call_record_monitor_sync (session_proxy,
                                                                       connector,
                                                                       properties,
@@ -514,40 +516,29 @@ gnome_screen_cast_session_record_virtual (GnomeScreenCastSession *gnome_screen_c
 }
 
 gboolean
-gnome_screen_cast_session_record_selections (GnomeScreenCastSession *gnome_screen_cast_session,
-                                             GVariant *selections,
-                                             ScreenCastSelection *select,
-                                             GError **error)
+gnome_screen_cast_session_record_selections (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                             GPtrArray               *streams,
+                                             ScreenCastSelection     *select,
+                                             GError                 **error)
 {
-  GVariantIter selections_iter;
-  GVariant *selection;
+  guint i;
 
-  g_variant_iter_init (&selections_iter, selections);
-  while ((selection = g_variant_iter_next_value (&selections_iter)))
+  for (i = 0; i < streams->len; i++)
     {
-      ScreenCastSourceType source_type;
-      g_autofree char *key = NULL;
-      g_autoptr(GVariant) variant = NULL;
-      guint64 id;
+      ScreenCastStreamInfo *info = g_ptr_array_index (streams, i);
 
-      g_variant_get (selection, "(u?)",
-                     &source_type,
-                     &variant);
-
-      switch (source_type)
+      switch (info->type)
         {
         case SCREEN_CAST_SOURCE_TYPE_MONITOR:
-          key = g_variant_dup_string (variant, NULL);
           if (!gnome_screen_cast_session_record_monitor (gnome_screen_cast_session,
-                                                         key,
+                                                         info->data.monitor,
                                                          select,
                                                          error))
             return FALSE;
           break;
         case SCREEN_CAST_SOURCE_TYPE_WINDOW:
-          id = g_variant_get_uint64 (variant);
           if (!gnome_screen_cast_session_record_window (gnome_screen_cast_session,
-                                                        id,
+                                                        info->data.window,
                                                         select,
                                                         error))
             return FALSE;

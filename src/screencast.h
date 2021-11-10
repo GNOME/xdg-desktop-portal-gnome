@@ -21,6 +21,9 @@
 #include <glib.h>
 #include <gio/gio.h>
 
+#include "displaystatetracker.h"
+#include "shellintrospect.h"
+
 typedef enum _ScreenCastSourceType
 {
   SCREEN_CAST_SOURCE_TYPE_MONITOR = 1,
@@ -42,6 +45,15 @@ typedef struct _ScreenCastSelection
   ScreenCastSourceType source_types;
   ScreenCastCursorMode cursor_mode;
 } ScreenCastSelection;
+
+typedef struct
+{
+  ScreenCastSourceType type;
+  union {
+    Monitor *monitor;
+    Window *window;
+  } data;
+} ScreenCastStreamInfo;
 
 gboolean screen_cast_init (GDBusConnection *connection,
                            GError **error);

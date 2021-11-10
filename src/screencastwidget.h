@@ -37,5 +37,4 @@ void screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
 void screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
                                           ScreenCastSourceType  source_types);
 
-void screen_cast_widget_add_selections (ScreenCastWidget *widget,
-                                        GVariantBuilder  *selections_builder);
+GPtrArray *screen_cast_widget_get_selected_streams (ScreenCastWidget *self);

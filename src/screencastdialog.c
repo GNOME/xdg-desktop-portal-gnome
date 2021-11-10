@@ -59,8 +59,8 @@ static void
 on_button_clicked_cb (GtkWidget        *button,
                       ScreenCastDialog *dialog)
 {
+  g_autoptr(GPtrArray) streams = NULL;
   int response;
-  GVariant *selections;
 
   gtk_widget_hide (GTK_WIDGET (dialog));
 
@@ -68,22 +68,17 @@ on_button_clicked_cb (GtkWidget        *button,
     {
       ScreenCastWidget *screen_cast_widget =
         SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
-      GVariantBuilder selections_builder;
 
       response = GTK_RESPONSE_OK;
-
-      g_variant_builder_init (&selections_builder, G_VARIANT_TYPE ("a{sv}"));
-      screen_cast_widget_add_selections (screen_cast_widget,
-                                         &selections_builder);
-      selections = g_variant_builder_end (&selections_builder);
+      streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
     }
   else
     {
       response = GTK_RESPONSE_CANCEL;
-      selections = NULL;
+      streams = NULL;
     }
 
-  g_signal_emit (dialog, signals[DONE], 0, response, selections);
+  g_signal_emit (dialog, signals[DONE], 0, response, streams);
 }
 
 static void
@@ -127,7 +122,7 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
                                 NULL,
                                 G_TYPE_NONE, 2,
                                 G_TYPE_INT,
-                                G_TYPE_VARIANT);
+                                G_TYPE_PTR_ARRAY);
 
   g_type_ensure (SCREEN_CAST_TYPE_WIDGET);
 

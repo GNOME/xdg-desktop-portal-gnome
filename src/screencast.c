@@ -78,11 +78,6 @@ GType screen_cast_session_get_type (void);
 G_DEFINE_TYPE (ScreenCastSession, screen_cast_session, session_get_type ())
 
 static gboolean
-start_session (ScreenCastSession *session,
-               GVariant *selections,
-               GError **error);
-
-static gboolean
 is_screen_cast_session (Session *session)
 {
   return G_TYPE_CHECK_INSTANCE_TYPE (session, screen_cast_session_get_type ());
@@ -130,9 +125,75 @@ on_request_handle_close_cb (XdpImplRequest         *object,
 }
 
 static void
+on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_session,
+                                    ScreenCastSession      *screen_cast_session)
+{
+  GVariantBuilder streams_builder;
+  GVariantBuilder results_builder;
+
+  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
+  g_variant_builder_init (&streams_builder, G_VARIANT_TYPE ("a(ua{sv})"));
+
+  gnome_screen_cast_session = screen_cast_session->gnome_screen_cast_session;
+  gnome_screen_cast_session_add_stream_properties (gnome_screen_cast_session,
+                                                   &streams_builder);
+
+  g_variant_builder_add (&results_builder, "{sv}",
+                         "streams",
+                         g_variant_builder_end (&streams_builder));
+
+  xdp_impl_screen_cast_complete_start (XDP_IMPL_SCREEN_CAST (impl),
+                                       screen_cast_session->start_invocation, 0,
+                                       g_variant_builder_end (&results_builder));
+  screen_cast_session->start_invocation = NULL;
+}
+
+static void
+on_gnome_screen_cast_session_closed (GnomeScreenCastSession *gnome_screen_cast_session,
+                                     ScreenCastSession      *screen_cast_session)
+{
+  session_close ((Session *)screen_cast_session);
+}
+
+static gboolean
+start_session (ScreenCastSession  *screen_cast_session,
+               GPtrArray          *streams,
+               GError            **error)
+{
+  GnomeScreenCastSession *gnome_screen_cast_session;
+
+  gnome_screen_cast_session =
+    gnome_screen_cast_create_session (gnome_screen_cast, NULL, error);
+  if (!gnome_screen_cast_session)
+    return FALSE;
+
+  screen_cast_session->gnome_screen_cast_session = gnome_screen_cast_session;
+
+  screen_cast_session->session_ready_handler_id =
+    g_signal_connect (gnome_screen_cast_session, "ready",
+                      G_CALLBACK (on_gnome_screen_cast_session_ready),
+                      screen_cast_session);
+  screen_cast_session->session_closed_handler_id =
+    g_signal_connect (gnome_screen_cast_session, "closed",
+                      G_CALLBACK (on_gnome_screen_cast_session_closed),
+                      screen_cast_session);
+
+  if (!gnome_screen_cast_session_record_selections (gnome_screen_cast_session,
+                                                    streams,
+                                                    &screen_cast_session->select,
+                                                    error))
+    return FALSE;
+
+  if (!gnome_screen_cast_session_start (gnome_screen_cast_session, error))
+    return FALSE;
+
+  return TRUE;
+}
+
+static void
 on_screen_cast_dialog_done_cb (GtkWidget              *widget,
                                int                     dialog_response,
-                               GVariant               *selections,
+                               GPtrArray              *streams,
                                ScreenCastDialogHandle *dialog_handle)
 {
   int response;
@@ -159,7 +220,7 @@ on_screen_cast_dialog_done_cb (GtkWidget              *widget,
     {
       g_autoptr(GError) error = NULL;
 
-      if (!start_session (dialog_handle->session, selections, &error))
+      if (!start_session (dialog_handle->session, streams, &error))
         {
           g_warning ("Failed to start session: %s", error->message);
           response = 2;
@@ -232,82 +293,6 @@ create_screen_cast_dialog (ScreenCastSession     *session,
   gtk_widget_show (dialog);
 
   return dialog_handle;
-}
-
-static void
-start_done (ScreenCastSession *screen_cast_session)
-{
-  GnomeScreenCastSession *gnome_screen_cast_session;
-  GVariantBuilder streams_builder;
-  GVariantBuilder results_builder;
-
-  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_init (&streams_builder, G_VARIANT_TYPE ("a(ua{sv})"));
-
-  gnome_screen_cast_session = screen_cast_session->gnome_screen_cast_session;
-  gnome_screen_cast_session_add_stream_properties (gnome_screen_cast_session,
-                                                   &streams_builder);
-
-  g_variant_builder_add (&results_builder, "{sv}",
-                         "streams",
-                         g_variant_builder_end (&streams_builder));
-
-  xdp_impl_screen_cast_complete_start (XDP_IMPL_SCREEN_CAST (impl),
-                                       screen_cast_session->start_invocation, 0,
-                                       g_variant_builder_end (&results_builder));
-  screen_cast_session->start_invocation = NULL;
-}
-
-static void
-on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_session,
-                                    ScreenCastSession      *screen_cast_session)
-{
-  start_done (screen_cast_session);
-}
-
-static void
-on_gnome_screen_cast_session_closed (GnomeScreenCastSession *gnome_screen_cast_session,
-                                     ScreenCastSession      *screen_cast_session)
-{
-  session_close ((Session *)screen_cast_session);
-}
-
-static gboolean
-start_session (ScreenCastSession *screen_cast_session,
-               GVariant *selections,
-               GError **error)
-{
-  GnomeScreenCastSession *gnome_screen_cast_session;
-  g_autoptr(GVariant) source_selections = NULL;
-
-  gnome_screen_cast_session =
-    gnome_screen_cast_create_session (gnome_screen_cast, NULL, error);
-  if (!gnome_screen_cast_session)
-    return FALSE;
-
-  screen_cast_session->gnome_screen_cast_session = gnome_screen_cast_session;
-
-  screen_cast_session->session_ready_handler_id =
-    g_signal_connect (gnome_screen_cast_session, "ready",
-                      G_CALLBACK (on_gnome_screen_cast_session_ready),
-                      screen_cast_session);
-  screen_cast_session->session_closed_handler_id =
-    g_signal_connect (gnome_screen_cast_session, "closed",
-                      G_CALLBACK (on_gnome_screen_cast_session_closed),
-                      screen_cast_session);
-
-  g_variant_lookup (selections, "selected_screen_cast_sources", "@a(u?)",
-                    &source_selections);
-  if (!gnome_screen_cast_session_record_selections (gnome_screen_cast_session,
-                                                    source_selections,
-                                                    &screen_cast_session->select,
-                                                    error))
-    return FALSE;
-
-  if (!gnome_screen_cast_session_start (gnome_screen_cast_session, error))
-    return FALSE;
-
-  return TRUE;
 }
 
 static gboolean

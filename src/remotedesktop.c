@@ -104,9 +104,10 @@ static void
 start_done (RemoteDesktopSession *session);
 
 static gboolean
-start_session (RemoteDesktopSession *session,
-               GVariant *selections,
-               GError **error);
+start_session (RemoteDesktopSession     *session,
+               RemoteDesktopDeviceType   device_types,
+               GPtrArray                *streams,
+               GError                  **error);
 
 static void
 cancel_start_session (RemoteDesktopSession *session,
@@ -155,9 +156,10 @@ handle_close (XdpImplRequest *object,
 }
 
 static void
-remote_desktop_dialog_done (GtkWidget *widget,
-                            int dialog_response,
-                            GVariant *selections,
+remote_desktop_dialog_done (GtkWidget                 *widget,
+                            int                        dialog_response,
+                            RemoteDesktopDeviceType    device_types,
+                            GPtrArray                 *streams,
                             RemoteDesktopDialogHandle *dialog_handle)
 {
   int response;
@@ -184,7 +186,7 @@ remote_desktop_dialog_done (GtkWidget *widget,
     {
       g_autoptr(GError) error = NULL;
 
-      if (!start_session (dialog_handle->session, selections, &error))
+      if (!start_session (dialog_handle->session, device_types, streams, &error))
         {
           g_warning ("Failed to start session: %s", error->message);
           response = 2;
@@ -453,9 +455,9 @@ on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_se
 }
 
 static gboolean
-open_screen_cast_session (RemoteDesktopSession *remote_desktop_session,
-                          GVariant *source_selections,
-                          GError **error)
+open_screen_cast_session (RemoteDesktopSession  *remote_desktop_session,
+                          GPtrArray             *streams,
+                          GError               **error)
 {
   OrgGnomeMutterRemoteDesktopSession *session_proxy =
     remote_desktop_session->mutter_session_proxy;
@@ -478,7 +480,7 @@ open_screen_cast_session (RemoteDesktopSession *remote_desktop_session,
                       remote_desktop_session);
 
   if (!gnome_screen_cast_session_record_selections (gnome_screen_cast_session,
-                                                    source_selections,
+                                                    streams,
                                                     &remote_desktop_session->select.screen_cast,
                                                     error))
     return FALSE;
@@ -487,23 +489,19 @@ open_screen_cast_session (RemoteDesktopSession *remote_desktop_session,
 }
 
 static gboolean
-start_session (RemoteDesktopSession *remote_desktop_session,
-               GVariant *selections,
-               GError **error)
+start_session (RemoteDesktopSession     *remote_desktop_session,
+               RemoteDesktopDeviceType   device_types,
+               GPtrArray                *streams,
+               GError                  **error)
 {
   OrgGnomeMutterRemoteDesktopSession *session_proxy;
-  RemoteDesktopDeviceType device_types = 0;
-  g_autoptr(GVariant) source_selections = NULL;
   gboolean need_streams;
 
-  g_variant_lookup (selections, "selected_device_types", "u", &device_types);
   remote_desktop_session->shared.device_types = device_types;
 
-  if (g_variant_lookup (selections, "selected_screen_cast_sources", "@a(us)",
-                        &source_selections))
+  if (streams)
     {
-      if (!open_screen_cast_session (remote_desktop_session,
-                                     source_selections, error))
+      if (!open_screen_cast_session (remote_desktop_session, streams, error))
         return FALSE;
 
       need_streams = TRUE;

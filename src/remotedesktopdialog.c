@@ -61,9 +61,8 @@ static GQuark quark_device_widget_data;
 
 G_DEFINE_TYPE (RemoteDesktopDialog, remote_desktop_dialog, GTK_TYPE_WINDOW)
 
-static void
-add_device_type_selections (RemoteDesktopDialog *dialog,
-                            GVariantBuilder *selections_builder)
+static RemoteDesktopDeviceType
+get_selected_device_types (RemoteDesktopDialog *dialog)
 {
   GList *selected_rows;
   GList *l;
@@ -81,43 +80,36 @@ add_device_type_selections (RemoteDesktopDialog *dialog,
     }
   g_list_free (selected_rows);
 
-  g_variant_builder_add (selections_builder, "{sv}",
-                         "selected_device_types",
-                         g_variant_new_uint32 (selected_device_types));
+  return selected_device_types;
 }
 
 static void
 button_clicked (GtkWidget *button,
                 RemoteDesktopDialog *dialog)
 {
+  RemoteDesktopDeviceType device_types = 0;
+  g_autoptr(GPtrArray) streams = NULL;
   int response;
-  GVariant *selections;
 
   gtk_widget_hide (GTK_WIDGET (dialog));
 
   if (button == dialog->accept_button)
     {
-      GVariantBuilder selections_builder;
       ScreenCastWidget *screen_cast_widget =
         SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
 
       response = GTK_RESPONSE_OK;
-
-      g_variant_builder_init (&selections_builder, G_VARIANT_TYPE_VARDICT);
-
-      add_device_type_selections (dialog, &selections_builder);
-      if (dialog->screen_cast_enable)
-        screen_cast_widget_add_selections (screen_cast_widget,
-                                           &selections_builder);
-      selections = g_variant_builder_end (&selections_builder);
+      device_types = get_selected_device_types (dialog);
+      streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
     }
   else
     {
       response = GTK_RESPONSE_CANCEL;
-      selections = NULL;
+      device_types = 0;
+      streams = NULL;
     }
 
-  g_signal_emit (dialog, signals[DONE], 0, response, selections);
+  g_signal_emit (dialog, signals[DONE], 0, response, device_types, streams);
 }
 
 static void
@@ -356,7 +348,7 @@ remote_desktop_dialog_close_request (GtkWindow *dialog)
 {
   gtk_widget_hide (GTK_WIDGET (dialog));
 
-  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
+  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL);
 
   return TRUE;
 }
@@ -375,9 +367,10 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
                                 0,
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 2,
+                                G_TYPE_NONE, 3,
                                 G_TYPE_INT,
-                                G_TYPE_VARIANT);
+                                G_TYPE_INT,
+                                G_TYPE_PTR_ARRAY);
 
   g_type_ensure (SCREEN_CAST_TYPE_WIDGET);
 

@@ -34,10 +34,10 @@ const char * gnome_screen_cast_session_get_stream_path_from_id (GnomeScreenCastS
 void gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_screen_cast_session,
                                                       GVariantBuilder *streams_builder);
 
-gboolean gnome_screen_cast_session_record_selections (GnomeScreenCastSession *gnome_screen_cast_session,
-                                                      GVariant *selections,
-                                                      ScreenCastSelection *select,
-                                                      GError **error);
+gboolean gnome_screen_cast_session_record_selections (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                                      GPtrArray               *streams,
+                                                      ScreenCastSelection     *select,
+                                                      GError                 **error);
 
 gboolean gnome_screen_cast_session_stop (GnomeScreenCastSession *gnome_screen_cast_session,
                                          GError **error);
