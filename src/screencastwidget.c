@@ -623,6 +623,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   g_autoptr(GList) selected_monitor_rows = NULL;
   g_autoptr(GList) selected_window_rows = NULL;
   gboolean selected_virtual;
+  uint32_t id = 0;
   GList *l;
 
   streams = g_ptr_array_new_with_free_func (g_free);
@@ -647,6 +648,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
       info->data.monitor = monitor;
+      info->id = id++;
       g_ptr_array_add (streams, info);
     }
 
@@ -661,6 +663,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
       info->data.window = window;
+      info->id = id++;
       g_ptr_array_add (streams, info);
     }
 
@@ -668,6 +671,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
     {
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
+      info->id = id++;
       g_ptr_array_add (streams, info);
     }
 

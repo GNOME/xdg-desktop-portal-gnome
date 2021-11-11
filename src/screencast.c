@@ -170,7 +170,7 @@ serialize_streams_as_restore_data (ScreenCastSession *screen_cast_session,
 
       g_variant_builder_add (&impl_builder,
                              "(uuv)",
-                             i,
+                             info->id,
                              info->type,
                              stream_variant);
     }
@@ -510,6 +510,7 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
             info->data.monitor = monitor;
+            info->id = id;
             g_ptr_array_add (streams, info);
           }
           break;
@@ -534,6 +535,7 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
             info->data.window = window;
+            info->id = id;
             g_ptr_array_add (streams, info);
           }
           break;
@@ -546,6 +548,7 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
+            info->id = id;
             g_ptr_array_add (streams, info);
           }
           break;

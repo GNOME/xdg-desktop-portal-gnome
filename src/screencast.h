@@ -56,6 +56,7 @@ typedef struct _ScreenCastSelection
 typedef struct
 {
   ScreenCastSourceType type;
+  uint32_t id;
   union {
     Monitor *monitor;
     Window *window;

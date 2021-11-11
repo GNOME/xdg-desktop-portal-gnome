@@ -59,6 +59,7 @@ typedef struct _GnomeScreenCastStream
 
   ScreenCastSourceType source_type;
 
+  uint32_t id;
   char *path;
   OrgGnomeMutterScreenCastStream *proxy;
 
@@ -219,6 +220,7 @@ void
 gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_screen_cast_session,
                                                  GVariantBuilder *streams_builder)
 {
+  char id[64] = { 0, };
   GList *streams;
   GList *l;
 
@@ -234,6 +236,10 @@ gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_s
 
       g_variant_builder_init (&stream_properties_builder, G_VARIANT_TYPE_VARDICT);
 
+      g_snprintf (id, G_N_ELEMENTS (id), "%u", stream->id);
+      g_variant_builder_add (&stream_properties_builder, "{sv}",
+                             "id",
+                             g_variant_new ("s", id));
       g_variant_builder_add (&stream_properties_builder, "{sv}",
                              "source_type",
                              g_variant_new ("u", stream->source_type));
@@ -275,6 +281,7 @@ cursor_mode_to_gnome_cursor_mode (ScreenCastCursorMode cursor_mode)
 
 static gboolean
 gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                         uint32_t                 id,
                                          Window                  *window,
                                          ScreenCastSelection     *select,
                                          GError                 **error)
@@ -327,6 +334,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_c
   stream->session = gnome_screen_cast_session;
   stream->path = g_strdup (stream_path);
   stream->proxy = stream_proxy;
+  stream->id = id;
 
   parameters = org_gnome_mutter_screen_cast_stream_get_parameters (stream->proxy);
   if (parameters)
@@ -357,6 +365,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_c
 
 static gboolean
 gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                          uint32_t                 id,
                                           Monitor                 *monitor,
                                           ScreenCastSelection     *select,
                                           GError                 **error)
@@ -409,6 +418,7 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_
   stream->session = gnome_screen_cast_session;
   stream->path = g_strdup (stream_path);
   stream->proxy = stream_proxy;
+  stream->id = id;
 
   parameters = org_gnome_mutter_screen_cast_stream_get_parameters (stream->proxy);
   if (parameters)
@@ -438,9 +448,10 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_
 }
 
 static gboolean
-gnome_screen_cast_session_record_virtual (GnomeScreenCastSession *gnome_screen_cast_session,
-                                          ScreenCastSelection *select,
-                                          GError **error)
+gnome_screen_cast_session_record_virtual (GnomeScreenCastSession  *gnome_screen_cast_session,
+                                          uint32_t                 id,
+                                          ScreenCastSelection     *select,
+                                          GError                 **error)
 {
   OrgGnomeMutterScreenCastSession *session_proxy =
     gnome_screen_cast_session->proxy;
@@ -487,6 +498,7 @@ gnome_screen_cast_session_record_virtual (GnomeScreenCastSession *gnome_screen_c
   stream->session = gnome_screen_cast_session;
   stream->path = g_strdup (stream_path);
   stream->proxy = stream_proxy;
+  stream->id = id;
 
   parameters = org_gnome_mutter_screen_cast_stream_get_parameters (stream->proxy);
   if (parameters)
@@ -531,6 +543,7 @@ gnome_screen_cast_session_record_selections (GnomeScreenCastSession  *gnome_scre
         {
         case SCREEN_CAST_SOURCE_TYPE_MONITOR:
           if (!gnome_screen_cast_session_record_monitor (gnome_screen_cast_session,
+                                                         info->id,
                                                          info->data.monitor,
                                                          select,
                                                          error))
@@ -538,6 +551,7 @@ gnome_screen_cast_session_record_selections (GnomeScreenCastSession  *gnome_scre
           break;
         case SCREEN_CAST_SOURCE_TYPE_WINDOW:
           if (!gnome_screen_cast_session_record_window (gnome_screen_cast_session,
+                                                        info->id,
                                                         info->data.window,
                                                         select,
                                                         error))
@@ -545,6 +559,7 @@ gnome_screen_cast_session_record_selections (GnomeScreenCastSession  *gnome_scre
           break;
         case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
           if (!gnome_screen_cast_session_record_virtual (gnome_screen_cast_session,
+                                                         info->id,
                                                          select,
                                                          error))
             return FALSE;
