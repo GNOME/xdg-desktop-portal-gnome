@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-22 12:41+0000\n"
-"PO-Revision-Date: 2021-09-23 13:07+0300\n"
+"POT-Creation-Date: 2021-11-10 19:08+0000\n"
+"PO-Revision-Date: 2021-11-12 00:38+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "X-Generator: Poedit 3.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
@@ -153,31 +153,55 @@ msgstr "_שיתוף"
 msgid "Screen Share"
 msgstr "שיתוף מסך"
 
-#: src/screencastwidget.c:494
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "נא לבחור מסך לשיתוף עם %s"
 
-#: src/screencastwidget.c:496
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "נא לבחור חלון לשיתוף עם %s"
 
-#: src/screencastwidget.c:501
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a virtual monitor for %s"
+msgstr "לבחור האם ליצור צג וירטואלי עבור %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr "נא לבחור מסך לשיתוף עם היישום שביקש"
 
-#: src/screencastwidget.c:502
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr "נא לבחור חלון לשיתוף עם היישום שביקש"
 
-#: src/screencastwidget.ui:25
+#: src/screencastwidget.c:531
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr "נא לבחור האם ליצור צג וירטואלית עבור היישום שמבקש"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "חלון בודד"
 
-#: src/screencastwidget.ui:86
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "כל המסך"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr "צג וירטואלי"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"‫                              ליצור צג וירטואלי?‬\n"
+"‫                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
