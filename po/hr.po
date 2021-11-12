@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-21 14:34+0000\n"
-"PO-Revision-Date: 2021-09-23 15:53+0200\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"POT-Creation-Date: 2021-11-10 19:08+0000\n"
+"PO-Revision-Date: 2021-11-12 12:11+0100\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -60,12 +60,13 @@ msgstr ""
 msgid "Open With…"
 msgstr "Otvori s …"
 
-#: src/appchooserdialog.ui:12 src/remotedesktopdialog.ui:13
-#: src/screencastdialog.ui:14 src/screenshotdialog.ui:12
+#: src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
 msgid "_Cancel"
 msgstr "_Odustani"
 
-#: src/appchooserdialog.ui:20
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
 msgstr "_Otvori"
 
@@ -110,6 +111,18 @@ msgstr "Radnje u pozadini"
 msgid "Find out more"
 msgstr "Saznajte više"
 
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "_Odaberi"
+
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "_Spremi"
+
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "Otvori datoteke u zaštićenom stanju"
+
 #: src/remotedesktopdialog.c:184
 msgid "Pointer"
 msgstr "Pokazivač"
@@ -144,31 +157,55 @@ msgstr "_Dijeli"
 msgid "Screen Share"
 msgstr "Dijeljenje zaslona"
 
-#: src/screencastwidget.c:494
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Odaberi monitor za dijeljenje s %s"
 
-#: src/screencastwidget.c:496
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Odaberi prozor za dijeljenje s %s"
 
-#: src/screencastwidget.c:501
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a virtual monitor for %s"
+msgstr "Odaberi treba li stvoriti virtualni monitor za %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr "Odaberi monitor za dijeljenje sa zahtijevanom aplikacijom"
 
-#: src/screencastwidget.c:502
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr "Odaberi prozor za dijeljenje sa zahtijevanom aplikacijom"
 
-#: src/screencastwidget.ui:25
+#: src/screencastwidget.c:531
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr "Odaberi treba li stvoriti virtualni monitor za zahtijevanu aplikaciju"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "Jedan prozor"
 
-#: src/screencastwidget.ui:86
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "Cijeli zaslon"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr "Virtualni monitor"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"                              Stvori virtualni monitor?\n"
+"                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
@@ -227,7 +264,7 @@ msgstr "Vidljiv _pokazivač miša"
 msgid "Include the window _border"
 msgstr "Vidljiv rub _prozora"
 
-#: src/settings.c:186
+#: src/settings.c:217
 msgid "Requested setting not found"
 msgstr "Zahtijevana postavka nije pronađena"
 
@@ -280,15 +317,6 @@ msgstr "Radnje"
 
 #~ msgid "Make changes before sharing the information"
 #~ msgstr "Izradi promjene prije dijeljenja podataka"
-
-#~ msgid "_Select"
-#~ msgstr "_Odaberi"
-
-#~ msgid "_Save"
-#~ msgstr "_Spremi"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Otvori datoteke u zaštićenom stanju"
 
 #~ msgid "%s is running in the background."
 #~ msgstr "„%s” radi u pozadini."
