@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-28 19:14+0000\n"
-"PO-Revision-Date: 2021-11-07 22:29+0000\n"
+"POT-Creation-Date: 2021-11-10 19:08+0000\n"
+"PO-Revision-Date: 2021-11-13 15:47+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -157,31 +157,56 @@ msgstr "_Partilhar"
 msgid "Screen Share"
 msgstr "Partilha de ecrã"
 
-#: src/screencastwidget.c:494
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Selecionar o monitor a partilhar com %s"
 
-#: src/screencastwidget.c:496
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Selecionar a janela a partilhar com %s"
 
-#: src/screencastwidget.c:501
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a virtual monitor for %s"
+msgstr "Selecionar se pretende criar um monitor virtual para %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr "Selecionar o monitor a partilhar com a aplicação requerente"
 
-#: src/screencastwidget.c:502
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr "Selecionar a janela a partilhar com a aplicação requerente"
 
-#: src/screencastwidget.ui:25
+#: src/screencastwidget.c:531
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr ""
+"Selecionar se pretende criar um monitor virtual para a aplicação requerente"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "Janela individual"
 
-#: src/screencastwidget.ui:86
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "Ecrã inteiro"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr "Monitor virtual"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"                              Criar monitor virtual?\n"
+"                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
