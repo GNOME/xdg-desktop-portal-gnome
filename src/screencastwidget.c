@@ -410,21 +410,6 @@ on_virtual_switch_state_set (GtkSwitch        *virtual_switch,
 }
 
 static void
-update_list_box_header (GtkListBoxRow *row,
-                        GtkListBoxRow *before,
-                        gpointer user_data)
-{
-  GtkWidget *header;
-
-  if (before)
-    header = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-  else
-    header = NULL;
-
-  gtk_list_box_row_set_header (row, header);
-}
-
-static void
 on_monitors_changed (DisplayStateTracker *display_state_tracker,
                      ScreenCastWidget    *widget)
 {
@@ -502,12 +487,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   screen_cast_widget_set_app_id (widget, NULL);
   screen_cast_widget_set_allow_multiple (widget, FALSE);
 
-  gtk_list_box_set_header_func (GTK_LIST_BOX (widget->monitor_list),
-                                update_list_box_header,
-                                NULL, NULL);
-  gtk_list_box_set_header_func (GTK_LIST_BOX (widget->window_list),
-                                update_list_box_header,
-                                NULL, NULL);
   scrolled_window = GTK_SCROLLED_WINDOW (widget->window_list_scrolled);
   vadjustment = gtk_scrolled_window_get_vadjustment (scrolled_window);
   gtk_list_box_set_adjustment (GTK_LIST_BOX (widget->window_list), vadjustment);
