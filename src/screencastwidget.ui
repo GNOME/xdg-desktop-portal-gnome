@@ -6,6 +6,7 @@
     <property name="spacing">12</property>
     <child>
       <object class="GtkStack" id="source_type">
+        <property name="vhomogeneous">False</property>
         <property name="transition-type">crossfade</property>
         <!-- Window selection page -->
         <child>
