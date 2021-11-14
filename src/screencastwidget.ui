@@ -26,6 +26,16 @@
                     </attributes>
                   </object>
                 </child>
+
+                <!-- Persist permission -->
+                <child>
+                  <object class="GtkCheckButton" id="persist_check">
+                    <property name="active">True</property>
+                    <property name="halign">center</property>
+                    <property name="label" translatable="yes">Remember this selection</property>
+                  </object>
+                </child>
+
                 <child>
                   <object class="GtkScrolledWindow" id="window_list_scrolled">
                     <property name="propagate-natural-height">1</property>
@@ -66,6 +76,13 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkCheckButton">
+                    <property name="active" bind-source="persist_check" bind-property="active" bind-flags="sync-create|bidirectional" />
+                    <property name="halign">center</property>
+                    <property name="label" translatable="yes">Remember this selection</property>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkListBox" id="monitor_list">
                     <property name="hexpand">1</property>
                     <property name="vexpand">1</property>
@@ -102,6 +119,14 @@
                   </object>
                 </child>
 
+                <child>
+                  <object class="GtkCheckButton">
+                    <property name="active" bind-source="persist_check" bind-property="active" bind-flags="sync-create|bidirectional" />
+                    <property name="halign">center</property>
+                    <property name="label" translatable="yes">Remember this selection</property>
+                  </object>
+                </child>
+
                 <!-- Virtual monitor switch view -->
                 <child>
                   <object class="GtkBox">
@@ -133,13 +158,6 @@
       </object>
     </child>
 
-    <!-- Persist permission -->
-    <child>
-      <object class="GtkCheckButton" id="persist_check">
-        <property name="active">True</property>
-        <property name="label" translatable="yes">Remember this selection</property>
-      </object>
-    </child>
   </template>
 
   <object class="GtkStackSwitcher" id="source_type_switcher">
