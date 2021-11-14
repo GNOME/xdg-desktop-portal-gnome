@@ -18,9 +18,9 @@
 
 #include "config.h"
 
+#include <adwaita.h>
 #include <gio/gdesktopappinfo.h>
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
 
 #include "screencastwidget.h"
 #include "displaystatetracker.h"
@@ -79,15 +79,13 @@ G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
 static GtkWidget *
 create_window_widget (Window *window)
 {
-  GtkWidget *window_widget;
-  GtkWidget *window_label;
   GtkWidget *window_image;
+  GtkWidget *check_image;
+  GtkWidget *row;
   GIcon *icon = NULL;
   g_autoptr(GDesktopAppInfo) info = NULL;
+  g_autofree char *escaped_name = NULL;
 
-  window_widget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-  gtk_widget_set_margin_start (window_widget, 12);
-  gtk_widget_set_margin_end (window_widget, 12);
   info = g_desktop_app_info_new (window_get_app_id (window));
   if (info != NULL)
     icon = g_app_info_get_icon (G_APP_INFO (info));
@@ -95,50 +93,58 @@ create_window_widget (Window *window)
     icon = g_themed_icon_new ("application-x-executable");
   window_image = gtk_image_new_from_gicon (icon);
   gtk_image_set_pixel_size (GTK_IMAGE (window_image), 32);
-  gtk_widget_set_margin_start (window_image, 12);
-  gtk_widget_set_margin_end (window_image, 12);
 
-  gtk_box_append (GTK_BOX (window_widget), window_image);
+  check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
+  gtk_widget_hide (check_image);
 
-  window_label = gtk_label_new (window_get_title (window));
-  gtk_widget_set_margin_top (window_label, 12);
-  gtk_widget_set_margin_bottom (window_label, 12);
-  gtk_box_append (GTK_BOX (window_widget), window_label);
+  row = adw_action_row_new ();
+  adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
+  adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
 
-  g_object_set_qdata (G_OBJECT (window_widget),
+  escaped_name = g_markup_escape_text (window_get_title (window), -1);
+  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), escaped_name);
+
+  g_object_set_qdata (G_OBJECT (row),
                       quark_window_widget_data,
                       window);
-  return window_widget;
+  g_object_set_data (G_OBJECT (row), "check", check_image);
+  return row;
 }
 
 static GtkWidget *
 create_monitor_widget (LogicalMonitor *logical_monitor)
 {
-  GtkWidget *monitor_widget;
+  g_autoptr(GString) string = NULL;
+  GtkWidget *check_image;
+  GtkWidget *row;
   GList *l;
 
-  monitor_widget = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
-  gtk_widget_set_margin_start (monitor_widget, 12);
-  gtk_widget_set_margin_end (monitor_widget, 12);
+  check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
+  gtk_widget_hide (check_image);
 
+  row = adw_action_row_new ();
+
+  string = g_string_new (NULL);
   for (l = logical_monitor_get_monitors (logical_monitor); l; l = l->next)
     {
       Monitor *monitor = l->data;
-      GtkWidget *monitor_label;
 
       if (!l->prev)
-        g_object_set_qdata (G_OBJECT (monitor_widget),
+        g_object_set_qdata (G_OBJECT (row),
                             quark_monitor_widget_data,
                             monitor);
 
-      monitor_label = gtk_label_new (monitor_get_display_name (monitor));
-      gtk_widget_set_margin_top (monitor_label, 12);
-      gtk_widget_set_margin_bottom (monitor_label, 12);
-      gtk_box_append (GTK_BOX (monitor_widget), monitor_label);
+      g_string_append (string, monitor_get_display_name (monitor));
+
+      if (l->next)
+        g_string_append (string, "\n");
     }
 
-  gtk_widget_show (monitor_widget);
-  return monitor_widget;
+  adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
+  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), string->str);
+  g_object_set_data (G_OBJECT (row), "check", check_image);
+
+  return row;
 }
 
 static gboolean
@@ -230,17 +236,16 @@ update_monitors_list (ScreenCastWidget *widget)
 static gboolean
 is_row_selected (GtkListBoxRow *row)
 {
-  return GPOINTER_TO_INT (g_object_get_data (G_OBJECT (row),
-                                             "is-row-selected"));
+  GtkWidget *check_image = g_object_get_data (G_OBJECT (row), "check");
+  return gtk_widget_get_visible (check_image);
 }
 
 static void
 set_row_is_selected (GtkListBoxRow *row,
                      gboolean is_selected)
 {
-  g_object_set_data (G_OBJECT (row),
-                     "is-row-selected",
-                     GINT_TO_POINTER (is_selected));
+  GtkWidget *check_image = g_object_get_data (G_OBJECT (row), "check");
+  gtk_widget_set_visible (check_image, is_selected);
 }
 
 static void
@@ -615,11 +620,9 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
   for (l = selected_monitor_rows; l; l = l->next)
     {
-      GtkWidget *monitor_widget = gtk_list_box_row_get_child (l->data);
       Monitor *monitor;
 
-      monitor = g_object_get_qdata (G_OBJECT (monitor_widget),
-                                    quark_monitor_widget_data);
+      monitor = g_object_get_qdata (G_OBJECT (l->data), quark_monitor_widget_data);
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
@@ -630,11 +633,9 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
   for (l = selected_window_rows; l; l = l->next)
     {
-      GtkWidget *window_widget = gtk_list_box_row_get_child (l->data);
       Window *window;
 
-      window = g_object_get_qdata (G_OBJECT (window_widget),
-                                    quark_window_widget_data);
+      window = g_object_get_qdata (G_OBJECT (l->data), quark_window_widget_data);
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
