@@ -20,7 +20,6 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="window_heading">
-                    <property name="xalign">0.0</property>
                     <attributes>
                       <attribute name="weight" value="bold"></attribute>
                     </attributes>
@@ -44,6 +43,7 @@
                       <object class="GtkListBox" id="window_list">
                         <property name="hexpand">1</property>
                         <property name="vexpand">1</property>
+                        <property name="valign">start</property>
                         <style>
                           <class name="content" />
                         </style>
@@ -69,7 +69,6 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="monitor_heading">
-                    <property name="xalign">0.0</property>
                     <attributes>
                       <attribute name="weight" value="bold"></attribute>
                     </attributes>
@@ -86,6 +85,7 @@
                   <object class="GtkListBox" id="monitor_list">
                     <property name="hexpand">1</property>
                     <property name="vexpand">1</property>
+                    <property name="valign">start</property>
                     <style>
                       <class name="content" />
                     </style>
@@ -111,8 +111,6 @@
                 <!-- Virtual monitor selection label -->
                 <child>
                   <object class="GtkLabel" id="virtual_heading">
-                    <property name="label"/>
-                    <property name="xalign">0.0</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
