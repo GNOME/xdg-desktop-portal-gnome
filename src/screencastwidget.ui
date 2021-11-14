@@ -58,17 +58,11 @@
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="hexpand">1</property>
-                    <property name="halign">start</property>
-                    <child>
-                      <object class="GtkLabel" id="monitor_heading">
-                        <property name="xalign">0.0</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"></attribute>
-                        </attributes>
-                      </object>
-                    </child>
+                  <object class="GtkLabel" id="monitor_heading">
+                    <property name="xalign">0.0</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"></attribute>
+                    </attributes>
                   </object>
                 </child>
                 <child>
@@ -99,18 +93,12 @@
 
                 <!-- Virtual monitor selection label -->
                 <child>
-                  <object class="GtkBox">
-                    <property name="hexpand">True</property>
-                    <property name="halign">start</property>
-                    <child>
-                      <object class="GtkLabel" id="virtual_heading">
-                        <property name="label"/>
-                        <property name="xalign">0.0</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                    </child>
+                  <object class="GtkLabel" id="virtual_heading">
+                    <property name="label"/>
+                    <property name="xalign">0.0</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                 </child>
 
