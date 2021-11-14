@@ -42,7 +42,6 @@
           <object class="ScreenCastWidget" id="screen_cast_widget">
             <property name="visible">False</property>
             <property name="halign">fill</property>
-            <property name="spacing">6</property>
           </object>
         </child>
         <child>

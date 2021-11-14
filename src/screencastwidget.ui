@@ -3,6 +3,7 @@
   <requires lib="gtk" version="4.0"/>
   <template class="ScreenCastWidget" parent="GtkBox">
     <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
     <child>
       <object class="GtkStack" id="source_type">
         <property name="transition-type">crossfade</property>
@@ -16,11 +17,10 @@
               <object class="GtkBox" id="window_selection">
                 <property name="orientation">vertical</property>
                 <property name="visible">0</property>
-                <property name="margin_top">12</property>
+                <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="window_heading">
                     <property name="xalign">0.0</property>
-                    <property name="margin_bottom">12</property>
                     <attributes>
                       <attribute name="weight" value="bold"></attribute>
                     </attributes>
@@ -56,7 +56,7 @@
               <object class="GtkBox" id="monitor_selection">
                 <property name="visible">0</property>
                 <property name="orientation">vertical</property>
-                <property name="margin_top">12</property>
+                <property name="spacing">12</property>
                 <child>
                   <object class="GtkBox">
                     <property name="hexpand">1</property>
@@ -64,7 +64,6 @@
                     <child>
                       <object class="GtkLabel" id="monitor_heading">
                         <property name="xalign">0.0</property>
-                        <property name="margin_bottom">12</property>
                         <attributes>
                           <attribute name="weight" value="bold"></attribute>
                         </attributes>
@@ -96,7 +95,7 @@
               <object class="GtkBox" id="virtual_selection">
                 <property name="orientation">vertical</property>
                 <property name="visible">0</property>
-                <property name="margin_top">12</property>
+                <property name="spacing">12</property>
 
                 <!-- Virtual monitor selection label -->
                 <child>
@@ -107,7 +106,6 @@
                       <object class="GtkLabel" id="virtual_heading">
                         <property name="label"/>
                         <property name="xalign">0.0</property>
-                        <property name="margin_bottom">12</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
