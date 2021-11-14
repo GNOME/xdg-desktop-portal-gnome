@@ -177,14 +177,8 @@ update_windows_list (ScreenCastWidget *widget)
   GList *windows;
   GList *l;
 
-  child = gtk_widget_get_first_child (GTK_WIDGET (window_list));
-  while (child)
-    {
-      GtkWidget *next = gtk_widget_get_next_sibling (child);
-
-      gtk_list_box_remove (window_list, child);
-      child = next;
-    }
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (window_list))) != NULL)
+    gtk_list_box_remove (window_list, child);
 
   toplevel = gtk_widget_get_ancestor (GTK_WIDGET (widget), GTK_TYPE_WINDOW);
   if (!toplevel)
@@ -212,14 +206,8 @@ update_monitors_list (ScreenCastWidget *widget)
   GList *logical_monitors;
   GList *l;
 
-  child = gtk_widget_get_first_child (GTK_WIDGET (monitor_list));
-  while (child)
-    {
-      GtkWidget *next = gtk_widget_get_next_sibling (child);
-
-      gtk_list_box_remove (monitor_list, child);
-      child = next;
-    }
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (monitor_list))) != NULL)
+    gtk_list_box_remove (monitor_list, child);
 
   logical_monitors =
     display_state_tracker_get_logical_monitors (widget->display_state_tracker);
