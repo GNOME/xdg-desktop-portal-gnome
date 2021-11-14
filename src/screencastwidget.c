@@ -50,7 +50,6 @@ struct _ScreenCastWidget
 
   GtkWidget *window_heading;
   GtkWidget *window_list;
-  GtkWidget *window_list_scrolled;
 
   GtkWidget *virtual_heading;
   GtkWidget *virtual_switch;
@@ -468,7 +467,6 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_list);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list_scrolled);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_switch);
 
@@ -479,17 +477,10 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
 static void
 screen_cast_widget_init (ScreenCastWidget *widget)
 {
-  GtkScrolledWindow *scrolled_window;
-  GtkAdjustment *vadjustment;
-
   gtk_widget_init_template (GTK_WIDGET (widget));
 
   screen_cast_widget_set_app_id (widget, NULL);
   screen_cast_widget_set_allow_multiple (widget, FALSE);
-
-  scrolled_window = GTK_SCROLLED_WINDOW (widget->window_list_scrolled);
-  vadjustment = gtk_scrolled_window_get_vadjustment (scrolled_window);
-  gtk_list_box_set_adjustment (GTK_LIST_BOX (widget->window_list), vadjustment);
 
   g_signal_connect (widget->source_type, "notify::visible-child",
                     G_CALLBACK (on_stack_switch),

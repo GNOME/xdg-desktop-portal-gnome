@@ -36,19 +36,13 @@
                 </child>
 
                 <child>
-                  <object class="GtkScrolledWindow" id="window_list_scrolled">
-                    <property name="propagate-natural-height">1</property>
-                    <property name="max-content-height">500</property>
-                    <property name="child">
-                      <object class="GtkListBox" id="window_list">
-                        <property name="hexpand">1</property>
-                        <property name="vexpand">1</property>
-                        <property name="valign">start</property>
-                        <style>
-                          <class name="content" />
-                        </style>
-                      </object>
-                    </property>
+                  <object class="GtkListBox" id="window_list">
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="content" />
+                    </style>
                   </object>
                 </child>
               </object>
