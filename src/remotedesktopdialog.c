@@ -33,6 +33,7 @@ struct _RemoteDesktopDialog
   GtkWidget *screen_cast_widget;
   GtkWidget *device_heading;
   GtkWidget *device_list;
+  GtkHeaderBar *titlebar;
 
   RemoteDesktopDeviceType device_types;
 
@@ -313,6 +314,13 @@ remote_desktop_dialog_new (const char *app_id,
       g_signal_connect (screen_cast_widget, "has-selection-changed",
                         G_CALLBACK (on_has_selection_changed), dialog);
       gtk_widget_show (GTK_WIDGET (screen_cast_widget));
+
+      if (__builtin_popcount (screen_cast_select->source_types) > 1)
+        {
+          gtk_header_bar_set_title_widget (dialog->titlebar,
+                                           screen_cast_widget_get_stack_switcher (screen_cast_widget));
+        }
+
     }
 
   gtk_label_set_label (GTK_LABEL (dialog->device_heading), heading);
@@ -379,6 +387,7 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, screen_cast_widget);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, device_heading);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, device_list);
+  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);
 
   quark_device_widget_data = g_quark_from_static_string ("-device-widget-type-quark");

@@ -526,6 +526,12 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   gtk_widget_show (widget->virtual_switch);
 }
 
+GtkWidget *
+screen_cast_widget_get_stack_switcher (ScreenCastWidget *widget)
+{
+  return widget->source_type_switcher;
+}
+
 void
 screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                const char       *app_id)

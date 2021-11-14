@@ -31,6 +31,7 @@ struct _ScreenCastDialog
 
   GtkWidget *accept_button;
   GtkWidget *screen_cast_widget;
+  GtkHeaderBar *titlebar;
 
   gboolean multiple;
 };
@@ -133,6 +134,7 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, screen_cast_widget);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, on_button_clicked_cb);
 }
 
@@ -144,6 +146,7 @@ screen_cast_dialog_init (ScreenCastDialog *dialog)
   g_signal_connect (dialog->screen_cast_widget, "has-selection-changed",
                     G_CALLBACK (on_has_selection_changed), dialog);
   gtk_widget_show (dialog->screen_cast_widget);
+
 }
 
 ScreenCastDialog *
@@ -161,6 +164,13 @@ screen_cast_dialog_new (const char            *app_id,
   screen_cast_widget_set_source_types (screen_cast_widget,
                                        select->source_types);
   screen_cast_widget_set_persist_mode (screen_cast_widget, persist_mode);
+
+  if (__builtin_popcount (select->source_types) > 1)
+    {
+      ScreenCastWidget *widget = SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
+      gtk_header_bar_set_title_widget (dialog->titlebar,
+                                       screen_cast_widget_get_stack_switcher (widget));
+    }
 
   return dialog;
 }
