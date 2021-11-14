@@ -43,17 +43,12 @@ struct _ScreenCastWidget
   GtkWidget *source_type;
   GtkWidget *window_selection;
   GtkWidget *monitor_selection;
-  GtkWidget *virtual_selection;
 
   GtkWidget *monitor_heading;
   GtkWidget *monitor_list;
 
   GtkWidget *window_heading;
   GtkWidget *window_list;
-
-  GtkWidget *virtual_heading;
-  GtkWidget *virtual_switch;
-  GtkWidget *virtual_switch_label;
 
   GtkCheckButton *persist_check;
   ScreenCastPersistMode persist_mode;
@@ -65,6 +60,8 @@ struct _ScreenCastWidget
   gulong windows_changed_handler_id;
 
   guint selection_changed_timeout_id;
+  gboolean allow_multiple;
+  ScreenCastSourceType source_types;
 };
 
 static GQuark quark_monitor_widget_data;
@@ -147,6 +144,24 @@ create_monitor_widget (LogicalMonitor *logical_monitor)
   return row;
 }
 
+
+static GtkWidget *
+create_virtual_widget (void)
+{
+  GtkWidget *check_image;
+  GtkWidget *row;
+
+  check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
+  gtk_widget_hide (check_image);
+
+  row = adw_action_row_new ();
+  adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
+  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), _("Virtual monitor"));
+  g_object_set_data (G_OBJECT (row), "check", check_image);
+
+  return row;
+}
+
 static gboolean
 should_skip_window (Window    *window,
                     GtkWindow *toplevel)
@@ -203,22 +218,29 @@ update_monitors_list (ScreenCastWidget *widget)
 {
   GtkListBox *monitor_list = GTK_LIST_BOX (widget->monitor_list);
   GtkWidget *child;
-  GList *logical_monitors;
-  GList *l;
 
   while ((child = gtk_widget_get_first_child (GTK_WIDGET (monitor_list))) != NULL)
     gtk_list_box_remove (monitor_list, child);
 
-  logical_monitors =
-    display_state_tracker_get_logical_monitors (widget->display_state_tracker);
-  for (l = logical_monitors; l; l = l->next)
+  if (widget->source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
     {
-      LogicalMonitor *logical_monitor = l->data;
-      GtkWidget *monitor_widget;
+      GList *logical_monitors;
+      GList *l;
 
-      monitor_widget = create_monitor_widget (logical_monitor);
-      gtk_list_box_append (monitor_list, monitor_widget);
+      logical_monitors =
+        display_state_tracker_get_logical_monitors (widget->display_state_tracker);
+      for (l = logical_monitors; l; l = l->next)
+        {
+          LogicalMonitor *logical_monitor = l->data;
+          GtkWidget *monitor_widget;
+
+          monitor_widget = create_monitor_widget (logical_monitor);
+          gtk_list_box_append (monitor_list, monitor_widget);
+        }
     }
+
+  if (widget->source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
+    gtk_list_box_append (monitor_list, create_virtual_widget ());
 }
 
 static gboolean
@@ -355,7 +377,6 @@ emit_selection_change_in_idle_cb (gpointer data)
   ScreenCastWidget *widget = (ScreenCastWidget *)data;
   GList *selected_monitor_rows;
   GList *selected_window_rows;
-  gboolean selected_virtual;
 
   /* Update the selected rows */
   update_selected_rows (GTK_LIST_BOX (widget->monitor_list));
@@ -363,9 +384,8 @@ emit_selection_change_in_idle_cb (gpointer data)
 
   selected_monitor_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->monitor_list));
   selected_window_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
-  selected_virtual = gtk_switch_get_state (GTK_SWITCH (widget->virtual_switch));
   g_signal_emit (widget, signals[HAS_SELECTION_CHANGED], 0,
-                 !!selected_monitor_rows || !!selected_window_rows || selected_virtual);
+                 !!selected_monitor_rows || !!selected_window_rows);
   g_list_free (selected_monitor_rows);
   g_list_free (selected_window_rows);
 
@@ -390,15 +410,6 @@ on_selected_rows_changed (GtkListBox       *box,
   /* GtkListBox activates rows after selecting them, which prevents
    * us from emitting the HAS_SELECTION_CHANGED signal here */
   schedule_selection_change (widget);
-}
-
-static gboolean
-on_virtual_switch_state_set (GtkSwitch        *virtual_switch,
-                             gboolean          state,
-                             ScreenCastWidget *widget)
-{
-  schedule_selection_change (widget);
-  return FALSE;
 }
 
 static void
@@ -455,13 +466,10 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_selection);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_list);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, virtual_switch);
 
   quark_monitor_widget_data = g_quark_from_static_string ("-monitor-widget-connector-quark");
   quark_window_widget_data = g_quark_from_static_string ("-window-widget-connector-quark");
@@ -490,9 +498,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   g_signal_connect (widget->window_list, "selected-rows-changed",
                     G_CALLBACK (on_selected_rows_changed),
                     widget);
-  g_signal_connect (widget->virtual_switch, "state-set",
-                    G_CALLBACK (on_virtual_switch_state_set),
-                    widget);
 
   widget->display_state_tracker = display_state_tracker_get ();
   widget->monitors_changed_handler_id =
@@ -507,7 +512,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
 
   gtk_widget_show (widget->monitor_list);
   gtk_widget_show (widget->window_list);
-  gtk_widget_show (widget->virtual_switch);
 }
 
 GtkWidget *
@@ -522,7 +526,6 @@ screen_cast_widget_set_app_id (ScreenCastWidget *widget,
 {
   g_autofree char *monitor_heading = NULL;
   g_autofree char *window_heading = NULL;
-  g_autofree char *virtual_heading = NULL;
 
   if (app_id && strcmp (app_id, "") != 0)
     {
@@ -540,25 +543,23 @@ screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                          display_name);
       window_heading = g_strdup_printf (_("Select window to share with %s"),
                                         display_name);
-      virtual_heading = g_strdup_printf (_("Select whether to create a virtual monitor for %s"),
-                                        display_name);
     }
   else
     {
       monitor_heading = g_strdup (_("Select monitor to share with the requesting application"));
       window_heading = g_strdup (_("Select window to share with the requesting application"));
-      virtual_heading = g_strdup (_("Select whether to create a virtual monitor for the requesting application"));
     }
 
   gtk_label_set_label (GTK_LABEL (widget->monitor_heading), monitor_heading);
   gtk_label_set_label (GTK_LABEL (widget->window_heading), window_heading);
-  gtk_label_set_label (GTK_LABEL (widget->virtual_heading), virtual_heading);
 }
 
 void
 screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
                                        gboolean          multiple)
 {
+  widget->allow_multiple = multiple;
+
   gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->monitor_list),
                                    multiple ? GTK_SELECTION_MULTIPLE
                                             : GTK_SELECTION_SINGLE);
@@ -571,6 +572,8 @@ void
 screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
                                      ScreenCastSourceType  source_types)
 {
+  screen_cast_widget->source_types = source_types;
+
   if (source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
     gtk_widget_show (screen_cast_widget->monitor_selection);
 
@@ -578,10 +581,12 @@ screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
     gtk_widget_show (screen_cast_widget->window_selection);
 
   if (source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
-    gtk_widget_show (screen_cast_widget->virtual_selection);
+    gtk_widget_show (screen_cast_widget->monitor_selection);
 
   if (__builtin_popcount (source_types) > 1)
     gtk_widget_show (screen_cast_widget->source_type_switcher);
+
+  update_monitors_list (screen_cast_widget);
 }
 
 GPtrArray *
@@ -591,7 +596,6 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   g_autoptr(GPtrArray) streams = NULL;
   g_autoptr(GList) selected_monitor_rows = NULL;
   g_autoptr(GList) selected_window_rows = NULL;
-  gboolean selected_virtual;
   uint32_t id = 0;
   GList *l;
 
@@ -601,22 +605,32 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
     gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->monitor_list));
   selected_window_rows =
     gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->window_list));
-  selected_virtual = gtk_switch_get_state (GTK_SWITCH (self->virtual_switch));
 
-  if (!selected_monitor_rows && !selected_window_rows && !selected_virtual)
+  if (!selected_monitor_rows && !selected_window_rows)
     return g_steal_pointer (&streams);
 
   for (l = selected_monitor_rows; l; l = l->next)
     {
+
       Monitor *monitor;
 
       monitor = g_object_get_qdata (G_OBJECT (l->data), quark_monitor_widget_data);
 
-      info = g_new0 (ScreenCastStreamInfo, 1);
-      info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
-      info->data.monitor = monitor;
-      info->id = id++;
-      g_ptr_array_add (streams, info);
+      if (monitor)
+        {
+          info = g_new0 (ScreenCastStreamInfo, 1);
+          info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
+          info->data.monitor = monitor;
+          info->id = id++;
+          g_ptr_array_add (streams, info);
+        }
+      else
+        {
+          info = g_new0 (ScreenCastStreamInfo, 1);
+          info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
+          info->id = id++;
+          g_ptr_array_add (streams, info);
+        }
     }
 
   for (l = selected_window_rows; l; l = l->next)
@@ -628,14 +642,6 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
       info->data.window = window;
-      info->id = id++;
-      g_ptr_array_add (streams, info);
-    }
-
-  if (selected_virtual)
-    {
-      info = g_new0 (ScreenCastStreamInfo, 1);
-      info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
       info->id = id++;
       g_ptr_array_add (streams, info);
     }
