@@ -243,21 +243,6 @@ on_selected_rows_changed (GtkListBox *box,
 }
 
 static void
-update_device_list_box_header (GtkListBoxRow *row,
-                               GtkListBoxRow *before,
-                               gpointer user_data)
-{
-  GtkWidget *header;
-
-  if (before)
-    header = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-  else
-    header = NULL;
-
-  gtk_list_box_row_set_header (row, header);
-}
-
-static void
 on_has_selection_changed (ScreenCastWidget *screen_cast_widget,
                           gboolean has_selection,
                           RemoteDesktopDialog *dialog)
@@ -327,9 +312,6 @@ remote_desktop_dialog_new (const char *app_id,
 
   gtk_list_box_set_selection_mode (GTK_LIST_BOX (dialog->device_list),
                                    GTK_SELECTION_MULTIPLE);
-  gtk_list_box_set_header_func (GTK_LIST_BOX (dialog->device_list),
-                                update_device_list_box_header,
-                                NULL, NULL);
 
   g_signal_connect (dialog->device_list, "row-activated",
                     G_CALLBACK (on_row_activated),
