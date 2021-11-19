@@ -1,41 +1,52 @@
 # Galician translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2017 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Fran Dieguez <frandieguez@gnome.org>, 2017, 2019.
+# Fran Dieguez <fran.dieguez@gnome.org>, 2017-2021.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gnome/"
-"issues\n"
-"POT-Creation-Date: 2021-06-05 10:00-0300\n"
-"PO-Revision-Date: 2020-01-06 00:15+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues\n"
+"POT-Creation-Date: 2021-11-10 19:08+0000\n"
+"PO-Revision-Date: 2021-11-19 22:50+0100\n"
+"Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 40.0\n"
+"X-DL-Team: gl\n"
+"X-DL-Module: xdg-desktop-portal-gnome\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
+#. TRANSLATORS: Don't translate this text (this is icon name)
+#: data/xdg-desktop-portal-gnome.desktop.in.in:6
+msgid "applications-system-symbolic"
+msgstr "applications-system-symbolic"
+
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
 msgstr "Produciuse un fallo ao iniciar o Software"
 
-#: src/appchooserdialog.c:385
+#: src/appchooserdialog.c:393
 #, c-format
 msgid "Choose an application to open the file “%s”."
 msgstr "Escolla unha aplicación para abrir «%s»."
 
-#: src/appchooserdialog.c:390
+#: src/appchooserdialog.c:398
 msgid "Choose an application."
 msgstr "Escolla unha aplicación."
 
-#: src/appchooserdialog.c:407
+#: src/appchooserdialog.c:415
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
@@ -44,39 +55,40 @@ msgstr ""
 "Non hai ningunha aplicación que poida abrir «%s». Pode atopar máis en "
 "Software"
 
-#: src/appchooserdialog.c:412
+#: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
 "Non hai ningunha aplicación axeitada instalada. Pode atopar máis aplicacións "
 "en Software."
 
-#: src/appchooserdialog.ui:10
+#: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Abrir con…"
 
-#: src/appchooserdialog.ui:14 src/remotedesktopdialog.ui:16
-#: src/screencastdialog.ui:16 src/screenshotdialog.ui:14
+#: src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/appchooserdialog.ui:23
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/appchooserdialog.ui:115
+#: src/appchooserdialog.ui:104
 msgid "No Apps available"
 msgstr "Non hai ningunha aplicación dispoñíbel"
 
-#: src/appchooserdialog.ui:159
+#: src/appchooserdialog.ui:144
 msgid "_Find More in Software"
 msgstr "_Buscar máis en Software"
 
-#: src/background.c:215 src/background.c:308
+#: src/background.c:214 src/background.c:305
 #, c-format
 msgid "“%s” is running in the background"
 msgstr "«%s» está executándose en segundo plano"
 
-#: src/background.c:217
+#: src/background.c:216
 msgid ""
 "This might be for a legitimate reason, but the application has not provided "
 "one.\n"
@@ -89,81 +101,119 @@ msgstr ""
 "Teña en conta que forzar a saída dunha unha aplicación pode causar a perda "
 "de datos."
 
-#: src/background.c:220
+#: src/background.c:219
 msgid "Force quit"
 msgstr "Forzar a saída"
 
-#: src/background.c:221
+#: src/background.c:220
 msgid "Allow"
 msgstr "Permitir"
 
-#: src/background.c:306
+#: src/background.c:303
 msgid "Background activity"
 msgstr "Actividade en segundo plano"
 
-#: src/background.c:314
+#: src/background.c:311
 msgid "Find out more"
 msgstr "Saber máis"
 
-#: src/remotedesktopdialog.c:188
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "_Seleccionar"
+
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "_Gardar"
+
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "Abrir ficheiros en modo só lectura"
+
+#: src/remotedesktopdialog.c:184
 msgid "Pointer"
 msgstr "Punteiro"
 
-#: src/remotedesktopdialog.c:191
+#: src/remotedesktopdialog.c:187
 msgid "Keyboard"
 msgstr "Teclado"
 
-#: src/remotedesktopdialog.c:194
+#: src/remotedesktopdialog.c:190
 msgid "Touch screen"
 msgstr "Pantalla táctil"
 
-#: src/remotedesktopdialog.c:307
+#: src/remotedesktopdialog.c:303
 #, c-format
 msgid "Select devices to share with %s"
 msgstr "Seleccione os dispositivos a compartir con %s"
 
-#: src/remotedesktopdialog.c:312
+#: src/remotedesktopdialog.c:308
 msgid "Select devices to share with the requesting application"
 msgstr "Seleccione os dispositivos a compartir coa aplicación que o solicita"
 
-#: src/remotedesktopdialog.ui:12
+#: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Escritorio remoto"
 
-#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:28
-#: src/screenshotdialog.ui:38
+#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
+#: src/screenshotdialog.ui:35
 msgid "_Share"
 msgstr "_Compartir"
 
-#: src/screencastdialog.ui:12
+#: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Compartición de pantalla"
 
-#: src/screencastwidget.c:483
+#: src/screencastwidget.c:520
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Seleccione o monitor a compartir con %s"
 
-#: src/screencastwidget.c:485
+#: src/screencastwidget.c:522
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Seleccione a xanela a compartir con %s"
 
-#: src/screencastwidget.c:490
+#: src/screencastwidget.c:524
+#, c-format
+msgid "Select whether to create a virtual monitor for %s"
+msgstr "Seleccionar se crear un monitor virtual para %s"
+
+#: src/screencastwidget.c:529
 msgid "Select monitor to share with the requesting application"
 msgstr "Compartir o monitor para compartir coa aplicación que o solicita"
 
-#: src/screencastwidget.c:491
+#: src/screencastwidget.c:530
 msgid "Select window to share with the requesting application"
 msgstr "Escolla a xanela que quere compartir coa aplicación que o solicita"
 
-#: src/screencastwidget.ui:100
+#: src/screencastwidget.c:531
+#| msgid "Select monitor to share with the requesting application"
+msgid ""
+"Select whether to create a virtual monitor for the requesting application"
+msgstr ""
+"Seleccione se quere crear un monitor virtual para a aplicación que o solicita"
+
+#: src/screencastwidget.ui:26
 msgid "Single Window"
 msgstr "Unha sola xanela"
 
-#: src/screencastwidget.ui:176
+#: src/screencastwidget.ui:89
 msgid "Entire Screen"
 msgstr "Toda a pantalla"
+
+#: src/screencastwidget.ui:152
+msgid "Virtual monitor"
+msgstr "Monitor virtual"
+
+#: src/screencastwidget.ui:184
+msgid ""
+"\n"
+"                              Create virtual monitor?\n"
+"                            "
+msgstr ""
+"\n"
+"                              Desexa crear un monitor virtual?\n"
+"                            "
 
 #: src/screenshotdialog.c:442
 #, c-format
@@ -174,75 +224,75 @@ msgstr "Compartir esta captura de pantalla con %s?"
 msgid "Share this screenshot with the requesting application?"
 msgstr "Compartir esta captura de pantalla coa aplicación que o solicita?"
 
-#: src/screenshotdialog.ui:10
+#: src/screenshotdialog.ui:6
 msgid "Screenshot"
 msgstr "Captura de pantalla"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:28
 msgid "_Options…"
 msgstr "_Opcións…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:53
 msgid "Take _Screenshot"
 msgstr "Facer unha _captura de pantalla"
 
-#: src/screenshotdialog.ui:111
+#: src/screenshotdialog.ui:110
 msgid "Take Screenshot"
 msgstr "Facer unha captura de pantalla"
 
-#: src/screenshotdialog.ui:122
+#: src/screenshotdialog.ui:120
 msgid "Grab the whole sc_reen"
 msgstr "Capturar toda a _pantalla"
 
-#: src/screenshotdialog.ui:133
+#: src/screenshotdialog.ui:130
 msgid "Grab the current _window"
 msgstr "Capturar a _xanela actual"
 
-#: src/screenshotdialog.ui:144
+#: src/screenshotdialog.ui:140
 msgid "Select _area to grab"
 msgstr "Seleccione o _área a capturar"
 
-#: src/screenshotdialog.ui:158
+#: src/screenshotdialog.ui:152
 msgid "Grab after a _delay of"
 msgstr "Capturar despois dun _atraso de"
 
-#: src/screenshotdialog.ui:171
+#: src/screenshotdialog.ui:163
 msgid "seconds"
 msgstr "segundos"
 
-#: src/screenshotdialog.ui:181
+#: src/screenshotdialog.ui:172
 msgid "Effects"
 msgstr "Efectos"
 
-#: src/screenshotdialog.ui:192
+#: src/screenshotdialog.ui:182
 msgid "Include _pointer"
 msgstr "Incluír o _punteiro"
 
-#: src/screenshotdialog.ui:201
+#: src/screenshotdialog.ui:190
 msgid "Include the window _border"
 msgstr "Incluír o _bordo da xanela"
 
-#: src/settings.c:186
+#: src/settings.c:217
 msgid "Requested setting not found"
 msgstr "A preferencia solicitada non se atopou"
 
-#: src/wallpaperdialog.ui:13
+#: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Estabelecer fondo de pantalla"
 
-#: src/wallpaperdialog.ui:18
+#: src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/wallpaperdialog.ui:26
+#: src/wallpaperdialog.ui:20
 msgid "Set"
 msgstr "Estabelecer"
 
-#: src/wallpaperdialog.ui:57
+#: src/wallpaperdialog.ui:51
 msgid "Failed to load image file"
 msgstr "Produciuse un fallo ao cargar o ficheiro da imaxe"
 
-#: src/wallpaperpreview.ui:57
+#: src/wallpaperpreview.ui:53
 msgid "Activities"
 msgstr "Actividades"
 
@@ -264,7 +314,6 @@ msgstr "Actividades"
 #~ msgid "Images"
 #~ msgstr "Imaxes"
 
-#, c-format
 #~ msgid "Share your personal information with %s?"
 #~ msgstr "Compartir a súa información persoal con %s?"
 
@@ -277,20 +326,6 @@ msgstr "Actividades"
 #~ msgid "Make changes before sharing the information"
 #~ msgstr "Facer cambios antes de compartir a información"
 
-#, fuzzy
-#~ msgid "_Select"
-#~ msgstr "Seleccionar"
-
-#~ msgid "_Save"
-#~ msgstr "_Gardar"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Abrir ficheiros en modo só lectura"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
-
-#, c-format
 #~ msgid "%s is running in the background."
 #~ msgstr "%s está executándose en segundo plano."
 
