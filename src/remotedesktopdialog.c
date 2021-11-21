@@ -30,9 +30,8 @@ struct _RemoteDesktopDialog
   GtkWindow parent;
 
   GtkWidget *accept_button;
+  GtkSwitch *allow_remote_interaction_switch;
   GtkWidget *screen_cast_widget;
-  GtkWidget *device_heading;
-  GtkWidget *device_list;
   GtkHeaderBar *titlebar;
 
   RemoteDesktopDeviceType device_types;
@@ -40,7 +39,6 @@ struct _RemoteDesktopDialog
   gboolean screen_cast_enable;
   ScreenCastSelection screen_cast;
 
-  gboolean is_device_types_selected;
   gboolean is_screen_cast_sources_selected;
 };
 
@@ -58,30 +56,15 @@ enum
 
 static guint signals[N_SIGNAL];
 
-static GQuark quark_device_widget_data;
-
 G_DEFINE_TYPE (RemoteDesktopDialog, remote_desktop_dialog, GTK_TYPE_WINDOW)
 
 static RemoteDesktopDeviceType
 get_selected_device_types (RemoteDesktopDialog *dialog)
 {
-  GList *selected_rows;
-  GList *l;
-  RemoteDesktopDeviceType selected_device_types = 0;
-
-  selected_rows =
-    gtk_list_box_get_selected_rows (GTK_LIST_BOX (dialog->device_list));
-  for (l = selected_rows; l; l = l->next)
-    {
-      GtkWidget *device_type_widget = gtk_list_box_row_get_child (l->data);
-
-      selected_device_types |=
-        GPOINTER_TO_INT (g_object_get_qdata (G_OBJECT (device_type_widget),
-                                             quark_device_widget_data));
-    }
-  g_list_free (selected_rows);
-
-  return selected_device_types;
+  if (gtk_switch_get_active (dialog->allow_remote_interaction_switch))
+    return dialog->device_types;
+  else
+    return REMOTE_DESKTOP_DEVICE_TYPE_NONE;
 }
 
 static void
@@ -121,7 +104,7 @@ update_button_sensitivity (RemoteDesktopDialog *dialog)
   if (dialog->is_screen_cast_sources_selected)
     can_accept = TRUE;
 
-  if (dialog->is_device_types_selected)
+  if (gtk_switch_get_active (dialog->allow_remote_interaction_switch))
     can_accept = TRUE;
 
   if (can_accept)
@@ -130,115 +113,11 @@ update_button_sensitivity (RemoteDesktopDialog *dialog)
     gtk_widget_set_sensitive (dialog->accept_button, FALSE);
 }
 
-static GtkWidget *
-create_device_type_widget (RemoteDesktopDeviceType device_type,
-                           const char *name)
-{
-  GtkWidget *device_label;
-
-  device_label = gtk_label_new (name);
-  g_object_set_qdata (G_OBJECT (device_label), quark_device_widget_data,
-                      GINT_TO_POINTER (device_type));
-  gtk_widget_set_margin_top (device_label, 12);
-  gtk_widget_set_margin_bottom (device_label, 12);
-  gtk_widget_show (device_label);
-
-  return device_label;
-}
-
 static void
-update_device_list (RemoteDesktopDialog *dialog)
+on_allow_remote_interaction_switch_active_changed_cb (GtkCheckButton      *checkbutton,
+                                                      GParamSpec          *pspec,
+                                                      RemoteDesktopDialog *dialog)
 {
-  GtkListBox *device_list = GTK_LIST_BOX (dialog->device_list);
-  GtkWidget *child;
-  int n_device_types;
-  int i;
-
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (device_list));
-       child;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      gtk_list_box_remove (device_list, child);
-    }
-
-  n_device_types = __builtin_popcount (REMOTE_DESKTOP_DEVICE_TYPE_ALL);
-  for (i = 0; i < n_device_types; i++)
-    {
-      RemoteDesktopDeviceType device_type = 1 << i;
-      const char *device_type_name = NULL;
-      GtkWidget *device_type_widget;
-
-      if (!(dialog->device_types & device_type))
-        continue;
-
-      switch (device_type)
-        {
-        case REMOTE_DESKTOP_DEVICE_TYPE_POINTER:
-          device_type_name = _("Pointer");
-          break;
-        case REMOTE_DESKTOP_DEVICE_TYPE_KEYBOARD:
-          device_type_name = _("Keyboard");
-          break;
-        case REMOTE_DESKTOP_DEVICE_TYPE_TOUCHSCREEN:
-          device_type_name = _("Touch screen");
-          break;
-        case REMOTE_DESKTOP_DEVICE_TYPE_NONE:
-        case REMOTE_DESKTOP_DEVICE_TYPE_ALL:
-          g_assert_not_reached ();
-        }
-
-      device_type_widget = create_device_type_widget (device_type,
-                                                      device_type_name);
-      gtk_list_box_append (device_list, device_type_widget);
-    }
-}
-
-static gboolean
-is_row_selected (GtkListBoxRow *row)
-{
-  return GPOINTER_TO_INT (g_object_get_data (G_OBJECT (row),
-                                             "is-row-selected"));
-}
-
-static void
-set_row_is_selected (GtkListBoxRow *row,
-                     gboolean is_selected)
-{
-  g_object_set_data (G_OBJECT (row),
-                     "is-row-selected",
-                     GINT_TO_POINTER (is_selected));
-}
-
-static void
-on_row_activated (GtkListBox *box,
-                  GtkListBoxRow *row,
-                  RemoteDesktopDialog *dialog)
-{
-  if (!row)
-    return;
-
-  if (is_row_selected (row))
-    {
-      set_row_is_selected (row, FALSE);
-      gtk_list_box_unselect_row (box, row);
-    }
-  else
-    {
-      set_row_is_selected (row, TRUE);
-      gtk_list_box_select_row (box, row);
-    }
-}
-
-static void
-on_selected_rows_changed (GtkListBox *box,
-                          RemoteDesktopDialog *dialog)
-{
-  GList *selected_rows;
-
-  selected_rows = gtk_list_box_get_selected_rows (box);
-  dialog->is_device_types_selected = !!selected_rows;
-  g_list_free (selected_rows);
-
   update_button_sensitivity (dialog);
 }
 
@@ -257,7 +136,6 @@ remote_desktop_dialog_new (const char *app_id,
                            ScreenCastSelection *screen_cast_select)
 {
   RemoteDesktopDialog *dialog;
-  g_autofree char *heading = NULL;
 
   dialog = g_object_new (REMOTE_DESKTOP_TYPE_DIALOG, NULL);
   dialog->device_types = device_types;
@@ -269,21 +147,6 @@ remote_desktop_dialog_new (const char *app_id,
   else
     {
       dialog->screen_cast_enable = FALSE;
-    }
-
-  if (g_strcmp0 (app_id, "") != 0)
-    {
-      g_autofree char *id = NULL;
-      g_autoptr(GAppInfo) info = NULL;
-
-      id = g_strconcat (app_id, ".desktop", NULL);
-      info = G_APP_INFO (g_desktop_app_info_new (id));
-      heading = g_strdup_printf (_("Select devices to share with %s"),
-                                 g_app_info_get_display_name (info));
-    }
-  else
-    {
-      heading = g_strdup (_("Select devices to share with the requesting application"));
     }
 
   if (dialog->screen_cast_enable)
@@ -307,22 +170,6 @@ remote_desktop_dialog_new (const char *app_id,
         }
 
     }
-
-  gtk_label_set_label (GTK_LABEL (dialog->device_heading), heading);
-
-  gtk_list_box_set_selection_mode (GTK_LIST_BOX (dialog->device_list),
-                                   GTK_SELECTION_MULTIPLE);
-
-  g_signal_connect (dialog->device_list, "row-activated",
-                    G_CALLBACK (on_row_activated),
-                    dialog);
-  g_signal_connect (dialog->device_list, "selected-rows-changed",
-                    G_CALLBACK (on_selected_rows_changed),
-                    dialog);
-
-  update_device_list (dialog);
-
-  gtk_widget_show (dialog->device_list);
 
   return dialog;
 }
@@ -366,11 +213,9 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/remotedesktopdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, accept_button);
+  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_interaction_switch);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, screen_cast_widget);
-  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, device_heading);
-  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, device_list);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);
-
-  quark_device_widget_data = g_quark_from_static_string ("-device-widget-type-quark");
+  gtk_widget_class_bind_template_callback (widget_class, on_allow_remote_interaction_switch_active_changed_cb);
 }

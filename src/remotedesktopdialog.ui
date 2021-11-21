@@ -45,36 +45,35 @@
                   <object class="ScreenCastWidget" id="screen_cast_widget">
                     <property name="visible">False</property>
                     <property name="halign">fill</property>
+                    <property name="vexpand">False</property>
                   </object>
                 </child>
+
                 <child>
-                  <object class="GtkBox">
-                    <property name="spacing">6</property>
+                  <object class="GtkListBox">
+                    <property name="valign">start</property>
                     <property name="margin-bottom">32</property>
                     <property name="margin-start">32</property>
                     <property name="margin-end">32</property>
-                    <property name="orientation">vertical</property>
+                    <property name="selection-mode">none</property>
+                    <style>
+                      <class name="content" />
+                    </style>
                     <child>
-                      <object class="GtkLabel" id="device_heading">
-                        <property name="xalign">0.0</property>
-                        <property name="margin_bottom">12</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"></attribute>
-                        </attributes>
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkListBox" id="device_list">
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <style>
-                          <class name="content" />
-                        </style>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Allow remote interaction</property>
+                        <property name="activatable-widget">allow_remote_interaction_switch</property>
+                        <child>
+                          <object class="GtkSwitch" id="allow_remote_interaction_switch">
+                            <property name="valign">center</property>
+                            <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
+
               </object>
             </property>
           </object>
