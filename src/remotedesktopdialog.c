@@ -163,7 +163,8 @@ remote_desktop_dialog_new (const char *app_id,
                         G_CALLBACK (on_has_selection_changed), dialog);
       gtk_widget_show (GTK_WIDGET (screen_cast_widget));
 
-      if (__builtin_popcount (screen_cast_select->source_types) > 1)
+      if (__builtin_popcount (screen_cast_select->source_types) > 1 &&
+          (screen_cast_select->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW))
         {
           gtk_header_bar_set_title_widget (dialog->titlebar,
                                            screen_cast_widget_get_stack_switcher (screen_cast_widget));
