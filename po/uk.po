@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2021-11-21 00:44+0000\n"
-"PO-Revision-Date: 2021-11-21 16:28+0200\n"
+"POT-Creation-Date: 2021-11-22 14:37+0000\n"
+"PO-Revision-Date: 2021-11-23 09:45+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -122,28 +122,6 @@ msgstr "_Зберегти"
 msgid "Open files read-only"
 msgstr "Відкрити файли лише для читання"
 
-#: src/remotedesktopdialog.c:176
-msgid "Pointer"
-msgstr "Координатний пристрій"
-
-#: src/remotedesktopdialog.c:179
-msgid "Keyboard"
-msgstr "Клавіатура"
-
-#: src/remotedesktopdialog.c:182
-msgid "Touch screen"
-msgstr "Сенсорна панель"
-
-#: src/remotedesktopdialog.c:295
-#, c-format
-msgid "Select devices to share with %s"
-msgstr "Виберіть пристрої, які слід оприлюднити для %s"
-
-#: src/remotedesktopdialog.c:300
-msgid "Select devices to share with the requesting application"
-msgstr ""
-"Виберіть пристрої, які слід оприлюднити за допомогою відповідної програми"
-
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Віддалена стільниця"
@@ -153,70 +131,52 @@ msgstr "Віддалена стільниця"
 msgid "_Share"
 msgstr "_Оприлюднити"
 
+#: src/remotedesktopdialog.ui:64
+msgid "Allow remote interaction"
+msgstr ""
+"Дозволити віддалену взаємодію"
+
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Оприлюднення екрана"
 
-#: src/screencastwidget.c:570
+#: src/screencastwidget.c:159
+msgid "Virtual monitor"
+msgstr "Віртуальний монітор"
+
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Виберіть монітор, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:572
+#: src/screencastwidget.c:544
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Виберіть вікно, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:574
-#, c-format
-msgid "Select whether to create a virtual monitor for %s"
-msgstr "Виберіть, чи слід створювати віртуальний монітор для %s"
-
-#: src/screencastwidget.c:579
+#: src/screencastwidget.c:549
 msgid "Select monitor to share with the requesting application"
 msgstr ""
 "Виберіть монітор, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
-#: src/screencastwidget.c:580
+#: src/screencastwidget.c:550
 msgid "Select window to share with the requesting application"
 msgstr ""
 "Виберіть вікно, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
-#: src/screencastwidget.c:581
-msgid ""
-"Select whether to create a virtual monitor for the requesting application"
-msgstr ""
-"Виберіть, чи слід створювати віртуальний монітор для програми, яка надсилає "
-"запит на такий монітор"
-
-#: src/screencastwidget.ui:26
+#: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Окреме вікно"
 
-#: src/screencastwidget.ui:89
+#: src/screencastwidget.ui:39 src/screencastwidget.ui:84
+msgid "Remember this selection"
+msgstr "Запам'ятати цей вибір"
+
+#: src/screencastwidget.ui:63
 msgid "Entire Screen"
 msgstr "Увесь екран"
-
-#: src/screencastwidget.ui:152
-msgid "Virtual monitor"
-msgstr "Віртуальний монітор"
-
-#: src/screencastwidget.ui:184
-msgid ""
-"\n"
-"                              Create virtual monitor?\n"
-"                            "
-msgstr ""
-"\n"
-"                              Створити віртуальний монітор?\n"
-"                            "
-
-#: src/screencastwidget.ui:218
-msgid "Remember this selection"
-msgstr ""
-"Запам'ятати цей вибір"
 
 #: src/screenshotdialog.c:442
 #, c-format
@@ -298,6 +258,40 @@ msgstr "Не вдалося завантажити файл зображення
 #: src/wallpaperpreview.ui:53
 msgid "Activities"
 msgstr "Діяльність"
+
+#~ msgid "Pointer"
+#~ msgstr "Координатний пристрій"
+
+#~ msgid "Keyboard"
+#~ msgstr "Клавіатура"
+
+#~ msgid "Touch screen"
+#~ msgstr "Сенсорна панель"
+
+#~ msgid "Select devices to share with %s"
+#~ msgstr "Виберіть пристрої, які слід оприлюднити для %s"
+
+#~ msgid "Select devices to share with the requesting application"
+#~ msgstr ""
+#~ "Виберіть пристрої, які слід оприлюднити за допомогою відповідної програми"
+
+#~ msgid "Select whether to create a virtual monitor for %s"
+#~ msgstr "Виберіть, чи слід створювати віртуальний монітор для %s"
+
+#~ msgid ""
+#~ "Select whether to create a virtual monitor for the requesting application"
+#~ msgstr ""
+#~ "Виберіть, чи слід створювати віртуальний монітор для програми, яка "
+#~ "надсилає запит на такий монітор"
+
+#~ msgid ""
+#~ "\n"
+#~ "                              Create virtual monitor?\n"
+#~ "                            "
+#~ msgstr ""
+#~ "\n"
+#~ "                              Створити віртуальний монітор?\n"
+#~ "                            "
 
 #~ msgid "Deny Access"
 #~ msgstr "Заборонити доступ"
