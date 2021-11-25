@@ -719,7 +719,7 @@ handle_select_sources (XdpImplScreenCast     *object,
 
   if (g_variant_lookup (arg_options, "restore_data", "(suv)", &provider, &version, &restore_data))
     {
-      if (!g_variant_check_format_string (restore_data, "(suv)", FALSE))
+      if (!g_variant_check_format_string (restore_data, RESTORE_VARIANT_TYPE, FALSE))
         {
           g_warning ("Cannot parse restore data, ignoring");
           goto out;
