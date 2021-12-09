@@ -46,6 +46,7 @@
 #include "background.h"
 #include "filechooser.h"
 #include "lockdown.h"
+#include "print.h"
 #include "screenshot.h"
 #include "screencast.h"
 #include "remotedesktop.h"
@@ -122,6 +123,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!lockdown_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!print_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);

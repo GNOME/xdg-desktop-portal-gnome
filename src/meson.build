@@ -6,6 +6,7 @@ xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.5')
 # Desktop Portal D-Bus interfaces
 desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_pkgconfig_variable('interfaces_dir')
 desktop_portal_dbus_interfaces = [
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Request.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Session.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.AppChooser.xml',
@@ -53,6 +54,7 @@ built_sources += gnome.compile_resources(
 config_h = configuration_data()
 config_h.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_h.set_quoted('LOCALEDIR', prefix / get_option('localedir'))
+config_h.set_quoted('PACKAGE_NAME', meson.project_name())
 config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), meson.project_version()))
 built_sources += configure_file(output: 'config.h', configuration: config_h)
 
@@ -69,6 +71,7 @@ deps = [
   dependency('glib-2.0', version: '>= 2.44'),
   dependency('gio-unix-2.0'),
   dependency('gtk4', version: '>= 4.0'),
+  dependency('gtk4-unix-print', version: '>= 4.0'),
   dependency('gsettings-desktop-schemas'),
   libadwaita_dep,
   xdg_desktop_portal_dep,
@@ -88,6 +91,7 @@ sources = built_sources + files(
   'gnome-bg-slide-show.c',
   'gnomescreencast.c',
   'lockdown.c',
+  'print.c',
   'remotedesktop.c',
   'remotedesktopdialog.c',
   'request.c',
