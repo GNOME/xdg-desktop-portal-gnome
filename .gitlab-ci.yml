@@ -5,6 +5,7 @@ stages:
 
 .build-common:
   stage: build
+  interruptible: true
   script:
     - meson . _build
     - ninja -C _build
