@@ -6,6 +6,7 @@ xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.5')
 # Desktop Portal D-Bus interfaces
 desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_pkgconfig_variable('interfaces_dir')
 desktop_portal_dbus_interfaces = [
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Account.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Request.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Session.xml',
@@ -30,6 +31,8 @@ built_sources = gnome.gdbus_codegen(
 # Mutter / GNOME Shell D-Bus interfaces
 top_srcdir = meson.source_root()
 shell_dbus_interfaces = files(
+  top_srcdir / 'data' / 'org.freedesktop.Accounts.User.xml',
+  top_srcdir / 'data' / 'org.freedesktop.Accounts.xml',
 	top_srcdir / 'data' / 'org.gnome.Mutter.DisplayConfig.xml',
 	top_srcdir / 'data' / 'org.gnome.Mutter.RemoteDesktop.xml',
 	top_srcdir / 'data' / 'org.gnome.Mutter.ScreenCast.xml',
@@ -78,6 +81,8 @@ deps = [
 ]
 
 sources = built_sources + files(
+  'account.c',
+  'accountdialog.c',
   'appchooser.c',
   'appchooserrow.c',
   'appchooserdialog.c',

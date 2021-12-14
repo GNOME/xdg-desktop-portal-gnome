@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gresources>
   <gresource prefix='/org/freedesktop/portal/desktop/gnome'>
+    <file>accountdialog.ui</file>
     <file>appchooserdialog.ui</file>
     <file>appchooserrow.ui</file>
     <file>screenshotdialog.ui</file>

@@ -42,6 +42,7 @@
 
 #include "xdg-desktop-portal-dbus.h"
 
+#include "account.h"
 #include "appchooser.h"
 #include "background.h"
 #include "filechooser.h"
@@ -105,6 +106,12 @@ on_bus_acquired (GDBusConnection *connection,
   GError *error = NULL;
 
   if (!file_chooser_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!account_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
