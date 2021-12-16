@@ -28,7 +28,9 @@
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include "gnome-bg.h"
+
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <gnome-bg/gnome-bg.h>
 
 #include "wallpaperpreview.h"
 
@@ -41,6 +43,7 @@ struct _WallpaperPreview {
   GtkLabel *desktop_clock_label;
   GtkWidget *drawing_area;
 
+  GnomeDesktopThumbnailFactory *thumbnail_factory;
   GnomeBG *bg;
 
   GSettings *desktop_settings;
@@ -63,12 +66,20 @@ draw_preview_func (GtkDrawingArea *drawing_area,
                    gpointer        data)
 {
   WallpaperPreview *self = WALLPAPER_PREVIEW (data);
+  g_autoptr(GdkMonitor) monitor = NULL;
   g_autoptr(GdkPixbuf) pixbuf = NULL;
-  GtkNative *native;
+  GdkRectangle monitor_layout;
+  GdkDisplay *display;
+  GListModel *monitors;
 
-  native = gtk_widget_get_native (GTK_WIDGET (drawing_area));
+  display = gtk_widget_get_display (GTK_WIDGET (drawing_area));
+  monitors = gdk_display_get_monitors (display);
+  monitor = g_list_model_get_item (monitors, 0);
+  gdk_monitor_get_geometry (monitor, &monitor_layout);
+
   pixbuf = gnome_bg_create_thumbnail (self->bg,
-                                      gtk_native_get_surface (native),
+                                      self->thumbnail_factory,
+                                      &monitor_layout,
                                       width,
                                       height);
   gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
@@ -134,6 +145,7 @@ wallpaper_preview_finalize (GObject *object)
   WallpaperPreview *self = WALLPAPER_PREVIEW (object);
 
   g_clear_object (&self->desktop_settings);
+  g_clear_object (&self->thumbnail_factory);
 
   g_clear_pointer (&self->previous_time, g_date_time_unref);
 
@@ -164,6 +176,8 @@ wallpaper_preview_init (WallpaperPreview *self)
 
   self->bg = gnome_bg_new ();
   gnome_bg_set_placement (self->bg, G_DESKTOP_BACKGROUND_STYLE_ZOOM);
+
+  self->thumbnail_factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
 }
 
 static void

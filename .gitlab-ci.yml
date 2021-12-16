@@ -16,7 +16,11 @@ build-fedora:
   extends: .build-common
   before_script:
     - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel
-    - dnf builddep -y xdg-desktop-portal-gtk
+    - dnf builddep -y xdg-desktop-portal-gtk gnome-desktop3
+    - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
+      cd gnome-desktop &&
+      meson . _build --prefix /usr -Ddesktop_docs=false &&
+      ninja -C _build install
 
 build-ubuntu:
   image: ubuntu:rolling
@@ -29,3 +33,7 @@ build-ubuntu:
     - apt-get update
     - apt-get install -y meson git libgtk-4-dev sassc
     - apt-get build-dep -y xdg-desktop-portal-gtk
+    - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
+      cd gnome-desktop &&
+      meson . _build --prefix /usr -Ddesktop_docs=false &&
+      ninja -C _build install

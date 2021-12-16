@@ -76,6 +76,8 @@ deps = [
   dependency('gtk4', version: '>= 4.0'),
   dependency('gtk4-unix-print', version: '>= 4.0'),
   dependency('gsettings-desktop-schemas'),
+  dependency('gnome-desktop-4'),
+  dependency('gnome-bg-4'),
   libadwaita_dep,
   xdg_desktop_portal_dep,
 ]
@@ -92,8 +94,6 @@ sources = built_sources + files(
   'fc-monitor.c',
   'filechooser.c',
   'fdonotification.c',
-  'gnome-bg.c',
-  'gnome-bg-slide-show.c',
   'gnomescreencast.c',
   'lockdown.c',
   'print.c',
