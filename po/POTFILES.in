@@ -1,5 +1,7 @@
 # List of source files containing translatable strings.
 data/xdg-desktop-portal-gnome.desktop.in.in
+src/accountdialog.c
+src/accountdialog.ui
 src/appchooserdialog.c
 src/appchooserdialog.ui
 src/background.c
