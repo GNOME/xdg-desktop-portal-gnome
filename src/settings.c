@@ -103,6 +103,25 @@ get_color_scheme (void)
   return g_variant_new_uint32 (color_scheme);
 }
 
+static GVariant *
+get_theme_value (const char *key)
+{
+  SettingsBundle *bundle = g_hash_table_lookup (settings, "org.gnome.desktop.a11y.interface");
+  const char *theme;
+  gboolean hc = FALSE;
+
+  if (bundle && g_settings_schema_has_key (bundle->schema, "high-contrast"))
+    hc = g_settings_get_boolean (bundle->settings, "high-contrast");
+
+  if (hc)
+    return g_variant_new_string ("HighContrast");
+
+  bundle = g_hash_table_lookup (settings, "org.gnome.desktop.interface");
+  theme = g_settings_get_string (bundle->settings, key);
+
+  return g_variant_new_string (theme);
+}
+
 static gboolean
 settings_handle_read_all (XdpImplSettings       *object,
                           GDBusMethodInvocation *invocation,
@@ -133,6 +152,9 @@ settings_handle_read_all (XdpImplSettings       *object,
           if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
               strcmp (keys[i], "enable-animations") == 0)
             g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
+          else if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
+                   (strcmp (keys[i], "gtk-theme") == 0 || strcmp (keys[i], "icon-theme") == 0))
+            g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
           else
             g_variant_dict_insert_value (&dict, keys[i], g_settings_get_value (value->settings, keys[i]));
         }
@@ -199,12 +221,20 @@ settings_handle_read (XdpImplSettings       *object,
                                              g_variant_new ("(v)", g_variant_new_boolean (enable_animations)));
       return TRUE;
     }
+  else if (strcmp (arg_namespace, "org.gnome.desktop.interface") == 0 &&
+           (strcmp (arg_key, "gtk-theme") == 0 || strcmp (arg_key, "icon-theme") == 0))
+    {
+      g_dbus_method_invocation_return_value (invocation,
+                                             g_variant_new ("(v)", get_theme_value (arg_key)));
+      return TRUE;
+    }
   else if (g_hash_table_contains (settings, arg_namespace))
     {
       SettingsBundle *bundle = g_hash_table_lookup (settings, arg_namespace);
       if (g_settings_schema_has_key (bundle->schema, arg_key))
         {
           g_autoptr (GVariant) variant = NULL;
+
           variant = g_settings_get_value (bundle->settings, arg_key);
           g_dbus_method_invocation_return_value (invocation, g_variant_new ("(v)", variant));
           return TRUE;
@@ -262,6 +292,17 @@ on_settings_changed (GSettings             *settings,
     xdp_impl_settings_emit_setting_changed (user_data->self,
                                             "org.freedesktop.appearance", key,
                                             g_variant_new ("v", get_color_scheme ()));
+
+  if (strcmp (user_data->namespace, "org.gnome.desktop.a11y.interface") == 0 &&
+      strcmp (key, "high-contrast") == 0)
+    {
+      xdp_impl_settings_emit_setting_changed (user_data->self,
+                                              "org.gnome.desktop.interface", "gtk-theme",
+                                              g_variant_new ("v", get_theme_value ("gtk-theme")));
+      xdp_impl_settings_emit_setting_changed (user_data->self,
+                                              "org.gnome.desktop.interface", "icon-theme",
+                                              g_variant_new ("v", get_theme_value ("icon-theme")));
+    }
 }
 
 static void
