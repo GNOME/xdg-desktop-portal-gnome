@@ -20,7 +20,8 @@ build-fedora:
     - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
       cd gnome-desktop &&
       meson . _build --prefix /usr -Ddesktop_docs=false &&
-      ninja -C _build install
+      ninja -C _build install &&
+      cd ..
 
 build-ubuntu:
   image: ubuntu:rolling
@@ -36,4 +37,5 @@ build-ubuntu:
     - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
       cd gnome-desktop &&
       meson . _build --prefix /usr -Ddesktop_docs=false &&
-      ninja -C _build install
+      ninja -C _build install &&
+      cd ..
