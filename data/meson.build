@@ -40,12 +40,14 @@ configure_file(
 )
 
 # systemd unit
-configure_file(
-  input: 'xdg-desktop-portal-gnome.service.in',
-  output: 'xdg-desktop-portal-gnome.service',
-  configuration: libexecdir_conf,
-  install_dir: systemduserunitdir,
-)
+if systemduserunitdir != ''
+  configure_file(
+    input: 'xdg-desktop-portal-gnome.service.in',
+    output: 'xdg-desktop-portal-gnome.service',
+    configuration: libexecdir_conf,
+    install_dir: systemduserunitdir,
+  )
+endif
 
 # Desktop file
 desktop_in = configure_file(

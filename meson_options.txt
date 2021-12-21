@@ -3,6 +3,12 @@ option('dbus_service_dir',
   description: 'Directory for D-Bus service files'
 )
 
+option('systemd-service',
+  type: 'feature',
+  value: 'enabled',
+  description: 'Whether or not the systemd user service should be built'
+)
+
 option('systemduserunitdir',
   type: 'string',
   description: 'Directory for systemd user service files'
