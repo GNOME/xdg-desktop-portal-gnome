@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2021-11-22 14:37+0000\n"
-"PO-Revision-Date: 2021-12-06 19:22+0000\n"
+"POT-Creation-Date: 2021-12-18 12:27+0000\n"
+"PO-Revision-Date: 2021-12-24 19:22+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -23,6 +23,59 @@ msgstr "Ataria"
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
+
+#: src/accountdialog.c:151
+msgid "Select an Image"
+msgstr "Hautatu irudi bat"
+
+#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+msgid "Cancel"
+msgstr "Utzi"
+
+#: src/accountdialog.c:155
+msgid "Select"
+msgstr "Hautatu"
+
+#: src/accountdialog.c:156
+msgid "Clear"
+msgstr "Garbitu"
+
+#: src/accountdialog.c:163
+msgid "Images"
+msgstr "Irudiak"
+
+#: src/accountdialog.c:224
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Partekatu zure informazio pertsonala honekin: %1$s? %2$s"
+
+#: src/accountdialog.c:230
+#, c-format
+msgid "Share your personal information with the requesting application? %s"
+msgstr "Partekatu zure informazio pertsonala hura eskatu duen aplikazioarekin? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Partekatu xehetasunak"
+
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
+msgid "_Cancel"
+msgstr "_Utzi"
+
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+msgid "_Share"
+msgstr "_Partekatu"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "Izena"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "Erabiltzaile-izena"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
@@ -51,12 +104,6 @@ msgstr "Ez dago aplikazio egokirik instalatuta. Aplikazio gehiago aurkitu ditzak
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Ireki honekin…"
-
-#: src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
-msgid "_Cancel"
-msgstr "_Utzi"
 
 #: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
@@ -117,11 +164,6 @@ msgstr "Ireki fitxategiak irakurtzeko soilik"
 msgid "Remote desktop"
 msgstr "Urruneko mahaigaina"
 
-#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
-#: src/screenshotdialog.ui:35
-msgid "_Share"
-msgstr "_Partekatu"
-
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
 msgstr "Onartu urruneko interakzioa"
@@ -156,11 +198,11 @@ msgstr "Hautatu eskatzen ari den aplikazioarekin partekatuko den leihoa"
 msgid "Single Window"
 msgstr "Leiho bakarra"
 
-#: src/screencastwidget.ui:39 src/screencastwidget.ui:84
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
 msgid "Remember this selection"
 msgstr "Gogoratu hautapen hori"
 
-#: src/screencastwidget.ui:63
+#: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Pantaila osoa"
 
@@ -228,10 +270,6 @@ msgstr "Eskatutako ezarpena ez da aurkitu"
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Ezarri atzeko planoa"
-
-#: src/wallpaperdialog.ui:14
-msgid "Cancel"
-msgstr "Utzi"
 
 #: src/wallpaperdialog.ui:20
 msgid "Set"
