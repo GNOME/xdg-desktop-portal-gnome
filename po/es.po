@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Mario Sanchez Prada <mario@endlessm.com>, 2016.
-# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-11-22 14:37+0000\n"
-"PO-Revision-Date: 2021-11-26 17:30+0100\n"
+"POT-Creation-Date: 2021-12-18 12:27+0000\n"
+"PO-Revision-Date: 2022-01-04 12:05+0100\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish; Castilian <>\n"
 "Language: es\n"
@@ -29,6 +29,62 @@ msgstr "Portal"
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
+
+#: src/accountdialog.c:151
+msgid "Select an Image"
+msgstr "Seleccione una imagen"
+
+#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/accountdialog.c:155
+msgid "Select"
+msgstr "Seleccionar"
+
+#: src/accountdialog.c:156
+msgid "Clear"
+msgstr "Vaciar"
+
+#: src/accountdialog.c:163
+msgid "Images"
+msgstr "Imágenes"
+
+#: src/accountdialog.c:224
+#, c-format
+#| msgid "Share your personal information with %s?"
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "¿Quiere compartir su información personal con %1$s? %2$s"
+
+#: src/accountdialog.c:230
+#, c-format
+#| msgid "Share your personal information with the requesting application?"
+msgid "Share your personal information with the requesting application? %s"
+msgstr ""
+"¿Quiere compartir su información personal con la aplicación solicitante? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Compartir los datos"
+
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+msgid "_Share"
+msgstr "Co_mpartir"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "Nombre"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "Nombre de usuario"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
@@ -61,12 +117,6 @@ msgstr ""
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Abrir con…"
-
-#: src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
-msgid "_Cancel"
-msgstr "_Cancelar"
 
 #: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
@@ -130,11 +180,6 @@ msgstr "Abrir archivos de sólo lectura"
 msgid "Remote desktop"
 msgstr "Escritorio remoto"
 
-#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
-#: src/screenshotdialog.ui:35
-msgid "_Share"
-msgstr "Co_mpartir"
-
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
 msgstr "Permitir la interacción remota"
@@ -170,11 +215,11 @@ msgstr "Seleccione la ventana que compartir con la aplicación solicitante"
 msgid "Single Window"
 msgstr "Modo de ventana única"
 
-#: src/screencastwidget.ui:39 src/screencastwidget.ui:84
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
 msgid "Remember this selection"
 msgstr "Recordar esta decisión"
 
-#: src/screencastwidget.ui:63
+#: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Toda la pantalla"
 
@@ -244,10 +289,6 @@ msgstr "No se ha encontrado la opción solicitada"
 msgid "Set Background"
 msgstr "Establecer fondo"
 
-#: src/wallpaperdialog.ui:14
-msgid "Cancel"
-msgstr "Cancelar"
-
 #: src/wallpaperdialog.ui:20
 msgid "Set"
 msgstr "Establecer"
@@ -282,28 +323,6 @@ msgstr "Actividades"
 
 #~ msgid "Grant Access"
 #~ msgstr "Conceder el acceso"
-
-#~ msgid "Select an Image"
-#~ msgstr "Seleccione una imagen"
-
-#~ msgid "Select"
-#~ msgstr "Seleccionar"
-
-#~ msgid "Clear"
-#~ msgstr "Vaciar"
-
-#~ msgid "Images"
-#~ msgstr "Imágenes"
-
-#~ msgid "Share your personal information with %s?"
-#~ msgstr "¿Quiere compartir su información personal con %s?"
-
-#~ msgid "Share your personal information with the requesting application?"
-#~ msgstr ""
-#~ "¿Quiere compartir su información personal con la aplicación solicitante?"
-
-#~ msgid "Share Details"
-#~ msgstr "Compartir los datos"
 
 #~ msgid "Make changes before sharing the information"
 #~ msgstr "Realizar cambios antes de compartir la información"
