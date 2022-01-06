@@ -219,7 +219,7 @@ main (int argc, char *argv[])
       "Documentation for the available D-Bus interfaces can be found at\n"
       "https://flatpak.github.io/xdg-desktop-portal/portal-docs.html\n"
       "\n"
-      "Please report issues at https://gitlab.gnome.org/feaneron/xdg-desktop-portal-gnome/issues");
+      "Please report issues at https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues");
   g_option_context_add_main_entries (context, entries, NULL);
   if (!g_option_context_parse (context, &argc, &argv, &error))
     {
