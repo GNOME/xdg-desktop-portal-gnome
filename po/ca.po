@@ -2,15 +2,16 @@
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021
+# Joan Mas Lloret <joan.mas.lloret@gmail.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-11-22 14:37+0000\n"
-"PO-Revision-Date: 2021-11-24 13:31+0100\n"
-"Last-Translator: maite guix <maite.guix@me.com>\n"
+"POT-Creation-Date: 2021-12-18 12:27+0000\n"
+"PO-Revision-Date: 2022-01-20 15:11+0100\n"
+"Last-Translator: Joan Mas Lloret <joan.mas.lloret@gmail.com>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +27,58 @@ msgstr "Portal"
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
+
+#: src/accountdialog.c:151
+msgid "Select an Image"
+msgstr "Seleccioneu una imatge"
+
+#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/accountdialog.c:155
+msgid "Select"
+msgstr "Selecciona"
+
+#: src/accountdialog.c:156
+msgid "Clear"
+msgstr "Neteja"
+
+#: src/accountdialog.c:163
+msgid "Images"
+msgstr "Imatges"
+
+#: src/accountdialog.c:224
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Voleu compartir la vostra informació personal amb %1$s? %2$s"
+
+#: src/accountdialog.c:230
+msgid "Share your personal information with the requesting application? %s"
+msgstr "Voleu compartir la vostra informació personal amb l'aplicació sol·licitant? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Comparteix detalls"
+
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:12
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+msgid "_Share"
+msgstr "_Comparteix"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "Nom"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "Nom d'usuari"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
@@ -58,12 +111,6 @@ msgstr ""
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Obre amb…"
-
-#: src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
-msgid "_Cancel"
-msgstr "_Cancel·la"
 
 #: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
@@ -126,11 +173,6 @@ msgstr "Obre fitxers de només lectura"
 msgid "Remote desktop"
 msgstr "Escriptori remot"
 
-#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
-#: src/screenshotdialog.ui:35
-msgid "_Share"
-msgstr "_Comparteix"
-
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
 msgstr "Permet la interacció remota"
@@ -167,11 +209,11 @@ msgstr ""
 msgid "Single Window"
 msgstr "Una sola finestra"
 
-#: src/screencastwidget.ui:39 src/screencastwidget.ui:84
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
 msgid "Remember this selection"
 msgstr "Recorda aquesta selecció"
 
-#: src/screencastwidget.ui:63
+#: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Tota la pantalla"
 
@@ -240,10 +282,6 @@ msgstr "No s'ha trobat la configuració sol·licitada"
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Estableix el fons"
-
-#: src/wallpaperdialog.ui:14
-msgid "Cancel"
-msgstr "Cancel·la"
 
 #: src/wallpaperdialog.ui:20
 msgid "Set"
