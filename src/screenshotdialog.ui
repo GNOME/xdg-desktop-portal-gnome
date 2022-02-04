@@ -3,6 +3,8 @@
   <requires lib="gtk" version="4.0"/>
   <template class="ScreenshotDialog" parent="GtkWindow">
     <property name="resizable">0</property>
+    <property name="default-width">500</property>
+    <property name="default-height">400</property>
     <property name="title" translatable="yes">Screenshot</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="titlebar">
@@ -81,12 +83,8 @@
                   <object class="GtkLabel" id="heading"/>
                 </child>
                 <child>
-                  <object class="GtkImage" id="image">
-                    <property name="hexpand">1</property>
+                  <object class="GtkPicture" id="picture">
                     <property name="vexpand">1</property>
-                    <style>
-                      <class name="screenshot"/>
-                    </style>
                   </object>
                 </child>
               </object>

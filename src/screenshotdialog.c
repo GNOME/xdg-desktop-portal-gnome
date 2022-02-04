@@ -13,7 +13,7 @@
 struct _ScreenshotDialog {
   GtkWindow parent;
 
-  GtkWidget *image;
+  GtkWidget *picture;
   GtkWidget *heading;
   GtkWidget *accept_button;
   GtkWidget *options_button;
@@ -127,13 +127,10 @@ static void
 show_screenshot (ScreenshotDialog *dialog,
                  const char *filename)
 {
-  g_autoptr(GdkPixbuf) pixbuf = NULL;
-
   g_free (dialog->filename);
   dialog->filename = g_strdup (filename);
 
-  pixbuf = gdk_pixbuf_new_from_file_at_scale (filename, 500, 400, TRUE, NULL);
-  gtk_image_set_from_pixbuf (GTK_IMAGE (dialog->image), pixbuf);
+  gtk_picture_set_filename (GTK_PICTURE (dialog->picture), filename);
 
   gtk_stack_set_visible_child_name (GTK_STACK (dialog->stack), "screenshot");
   gtk_stack_set_visible_child_name (GTK_STACK (dialog->header_stack), "screenshot");
@@ -368,23 +365,6 @@ screenshot_dialog_close_request (GtkWindow *dialog)
 }
 
 static void
-screenshot_dialog_map (GtkWidget *widget)
-{
-  static GtkCssProvider *provider;
-
-  GTK_WIDGET_CLASS (screenshot_dialog_parent_class)->map (widget);
-
-  if (provider == NULL)
-    {
-      provider = gtk_css_provider_new ();
-      gtk_css_provider_load_from_resource (provider, "/org/freedesktop/portal/desktop/gnome/screenshotdialog.css");
-      gtk_style_context_add_provider_for_display (gtk_widget_get_display (widget),
-                                                 GTK_STYLE_PROVIDER (provider),
-                                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
-}
-
-static void
 screenshot_dialog_class_init (ScreenshotDialogClass *class)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
@@ -394,8 +374,6 @@ screenshot_dialog_class_init (ScreenshotDialogClass *class)
   object_class->finalize = screenshot_dialog_finalize;
 
   window_class->close_request = screenshot_dialog_close_request;
-
-  widget_class->map = screenshot_dialog_map;
 
   signals[DONE] = g_signal_new ("done",
                                 G_TYPE_FROM_CLASS (class),
@@ -412,7 +390,7 @@ screenshot_dialog_class_init (ScreenshotDialogClass *class)
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, options_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, screenshot_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, image);
+  gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, picture);
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, stack);
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, header_stack);
   gtk_widget_class_bind_template_child (widget_class, ScreenshotDialog, delay_adjustment);
