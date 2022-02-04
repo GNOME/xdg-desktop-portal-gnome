@@ -7,9 +7,6 @@
     <property name="vexpand">0</property>
     <property name="width-request">384</property>
     <property name="height-request">208</property>
-    <style>
-      <class name="frame"/>
-    </style>
     <child>
       <object class="GtkOverlay">
         <property name="can-focus">0</property>
