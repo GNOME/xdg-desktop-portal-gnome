@@ -1,7 +1,7 @@
 gnome = import('gnome')
 pkg = import('pkgconfig')
 
-xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.5')
+xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.14.0')
 
 # Desktop Portal D-Bus interfaces
 desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_pkgconfig_variable('interfaces_dir')
@@ -19,6 +19,7 @@ desktop_portal_dbus_interfaces = [
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Settings.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Wallpaper.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.FileChooser.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.DynamicLauncher.xml',
 ]
 
 built_sources = gnome.gdbus_codegen(
@@ -90,6 +91,7 @@ sources = built_sources + files(
   'appchooserdialog.c',
   'background.c',
   'displaystatetracker.c',
+  'dynamic-launcher.c',
   'externalwindow.c',
   'fc-monitor.c',
   'filechooser.c',

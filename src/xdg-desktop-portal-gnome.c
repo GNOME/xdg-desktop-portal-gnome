@@ -54,6 +54,7 @@
 #include "request.h"
 #include "settings.h"
 #include "wallpaper.h"
+#include "dynamic-launcher.h"
 
 
 static GMainLoop *loop = NULL;
@@ -166,6 +167,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!wallpaper_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!dynamic_launcher_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
