@@ -77,6 +77,7 @@ set_gsettings (gchar *schema,
   settings = g_settings_new (schema);
 
   return (g_settings_set_string (settings, "picture-uri", uri) &&
+          g_settings_set_string (settings, "picture-uri-dark", uri) &&
           g_settings_set_enum (settings, "picture-options", G_DESKTOP_BACKGROUND_STYLE_ZOOM));
 }
 
