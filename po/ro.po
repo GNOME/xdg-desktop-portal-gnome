@@ -2,23 +2,25 @@
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Daniel Șerbănescu <daniel@serbanescu.dk>, 2021.
+# Daniel Batalu <dbatalu@protonmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-09-23 10:10+0000\n"
-"PO-Revision-Date: 2021-09-23 14:49+0200\n"
-"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2022-02-13 19:05+0000\n"
+"PO-Revision-Date: 2022-02-19 21:21+0200\n"
+"Last-Translator: Daniel Batalu <dbatalu@protonmail.com>\n"
+"Language-Team: Romanian; Moldavian; Moldovan <gnomero-list@lists.sourceforge."
+"net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"Last-Translator: \n"
-"X-Generator: Poedit 3.0\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 41.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -28,6 +30,64 @@ msgstr "Portal"
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
+
+#: src/accountdialog.c:151
+msgid "Select an Image"
+msgstr "Selectează o imagine"
+
+#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+msgid "Cancel"
+msgstr "Anulează"
+
+#: src/accountdialog.c:155
+msgid "Select"
+msgstr "Selectează"
+
+# Firefox îl folosește la descărcări, pare mai potrivit decât „șterge”
+#: src/accountdialog.c:156
+msgid "Clear"
+msgstr "Curăță"
+
+#: src/accountdialog.c:163
+msgid "Images"
+msgstr "Imagini"
+
+# Am văzut că uneori e folosit și „partaja”, deși din câte am citit în dicționar se referă mai degrabă la operațiunea juridică/împărțirea în bucăți decât la distribuire/împărtășire
+#: src/accountdialog.c:224
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Partajați-vă informațiile personale cu %1$s? %2$s"
+
+#: src/accountdialog.c:230
+#, c-format
+#| msgid "Share this screenshot with the requesting application?"
+msgid "Share your personal information with the requesting application? %s"
+msgstr ""
+"Partajați informațiile personale cu aplicația care cere acest lucru? %s"
+
+# Nu e clar dacă calculatorul îi cere utilizatorului sau invers
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Partajează detaliile"
+
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:14
+msgid "_Cancel"
+msgstr "_Anulează"
+
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+msgid "_Share"
+msgstr "_Partajează"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "Nume"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "Nume de utilizator"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
@@ -61,12 +121,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Deschide cu…"
 
-#: src/appchooserdialog.ui:12 src/remotedesktopdialog.ui:13
-#: src/screencastdialog.ui:14 src/screenshotdialog.ui:12
-msgid "_Cancel"
-msgstr "_Anulează"
-
-#: src/appchooserdialog.ui:20
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
 msgstr "_Deschide"
 
@@ -110,135 +165,129 @@ msgstr "Activitate de fundal"
 msgid "Find out more"
 msgstr "Aflați mai multe"
 
-#: src/remotedesktopdialog.c:184
-msgid "Pointer"
-msgstr "Indicator"
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "_Selectează"
 
-#: src/remotedesktopdialog.c:187
-msgid "Keyboard"
-msgstr "Tastatură"
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "_Salvează"
 
-#: src/remotedesktopdialog.c:190
-msgid "Touch screen"
-msgstr "Ecran tactil"
-
-#: src/remotedesktopdialog.c:303
-#, c-format
-msgid "Select devices to share with %s"
-msgstr "Selectați dispozitive de partajat cu %s"
-
-#: src/remotedesktopdialog.c:308
-msgid "Select devices to share with the requesting application"
-msgstr "Selectați dispozitive de partajat cu aplicația care cere acest lucru"
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "Deschide fișierele în modul „citire”"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Desktop la distanță"
 
-#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
-#: src/screenshotdialog.ui:35
-msgid "_Share"
-msgstr "_Partajează"
+# Ar putea fi și controlul
+#: src/remotedesktopdialog.ui:64
+msgid "Allow remote interaction"
+msgstr "Permite interacțiunea de la distanță"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Partajează ecranul"
 
-#: src/screencastwidget.c:494
+#: src/screencastwidget.c:159
+msgid "Virtual monitor"
+msgstr "Monitor virtual"
+
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Selectați monitorul de partajat cu %s"
 
-#: src/screencastwidget.c:496
+#: src/screencastwidget.c:544
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Selectați fereastra de partajat cu %s"
 
-#: src/screencastwidget.c:501
+#: src/screencastwidget.c:549
 msgid "Select monitor to share with the requesting application"
 msgstr "Selectați monitorul de partajat cu aplicația care cere acest lucru"
 
-#: src/screencastwidget.c:502
+#: src/screencastwidget.c:550
 msgid "Select window to share with the requesting application"
 msgstr "Selectați fereastra de partajat cu aplicația care cere acest lucru"
 
-#: src/screencastwidget.ui:25
+#: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "O singură fereastră"
 
-#: src/screencastwidget.ui:86
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Reține această selecție"
+
+#: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Întregul ecran"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Partajați această captură de ecran cu %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
-msgstr ""
-"Partajați această captură de ecran cu aplicația care cere acest lucru?"
+msgstr "Partajați această captură de ecran cu aplicația care cere acest lucru?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Captură de ecran"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Opțiuni…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "_Fă captură de ecran"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Fă captură de ecran"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Capturează întregul ec_ran"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Capturează _fereastra curentă"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Selectează o _zonă de capturat"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Capturează cu o întârziere _de"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "secunde"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efecte"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Include _cursorul"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Include _bordura ferestrei"
 
-#: src/settings.c:186
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "Configurarea cerută nu a fost găsită"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Stabilește fundalul"
-
-#: src/wallpaperdialog.ui:14
-msgid "Cancel"
-msgstr "Anulează"
 
 #: src/wallpaperdialog.ui:20
 msgid "Set"
@@ -248,6 +297,22 @@ msgstr "Stabilește"
 msgid "Failed to load image file"
 msgstr "Eșec la încărcarea fișierului imagine"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "Activități"
+
+#~ msgid "Pointer"
+#~ msgstr "Indicator"
+
+#~ msgid "Keyboard"
+#~ msgstr "Tastatură"
+
+#~ msgid "Touch screen"
+#~ msgstr "Ecran tactil"
+
+#~ msgid "Select devices to share with %s"
+#~ msgstr "Selectați dispozitive de partajat cu %s"
+
+#~ msgid "Select devices to share with the requesting application"
+#~ msgstr ""
+#~ "Selectați dispozitive de partajat cu aplicația care cere acest lucru"
