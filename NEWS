@@ -1,3 +1,14 @@
+Changes in 42.rc
+================
+
+- Support dark style preference
+- Support virtual screen cast sources
+- Redesign screencast portal window
+- Implement screencast restoration
+- Use libgnome-desktop-4 for wallpapers
+- Implement Account portal
+- Implement Print portal
+
 Changes in 41.0
 ================
 
