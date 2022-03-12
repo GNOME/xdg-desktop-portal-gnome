@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
 "POT-Creation-Date: 2021-11-28 13:56+0000\n"
-"PO-Revision-Date: 2022-02-21 21:00+0000\n"
+"PO-Revision-Date: 2022-03-11 22:30+0000\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -18,6 +18,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/accountdialog.c:151
+msgid "Select an Image"
+msgstr "画像を選択"
+
+#: src/accountdialog.c:155
+msgid "Select"
+msgstr "選択"
+
+#: src/accountdialog.c:156
+msgid "Clear"
+msgstr "クリア"
+
+#: src/accountdialog.c:163
+msgid "Images"
+msgstr "画像"
+
+# 最初の %s にはアプリケーション名が代入されると思われる
+#: src/accountdialog.c:224
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "あなたの個人情報を %1$s で共有しますか? %2$s"
+
+#: src/accountdialog.c:230
+#, c-format
+msgid "Share your personal information with the requesting application? %s"
+msgstr "あなたの個人情報を、要求しているアプリケーションで共有しますか? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "共有の詳細"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "名前"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "ユーザー名"
+
+#: src/filechooser.c:446
+msgid "_Select"
+msgstr "選択(_S)"
+
+#: src/filechooser.c:448
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: src/filechooser.c:614
+msgid "Open files read-only"
+msgstr "読み取り専用でファイルを開く"
+
+#: src/screencastwidget.c:159
+msgid "Virtual monitor"
+msgstr "仮想モニター"
+
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "この選択を記憶する"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
