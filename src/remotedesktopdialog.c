@@ -84,7 +84,8 @@ button_clicked (GtkWidget *button,
 
       response = GTK_RESPONSE_OK;
       device_types = get_selected_device_types (dialog);
-      streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
+      if (dialog->screen_cast_enable)
+        streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
     }
   else
     {
