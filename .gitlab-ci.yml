@@ -16,11 +16,18 @@ build-fedora:
   extends: .build-common
   before_script:
     - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel
-    - dnf builddep -y xdg-desktop-portal-gtk gnome-desktop3
+    - dnf install -y fuse3-devel gettext-devel
+    - dnf builddep -y xdg-desktop-portal-gtk gnome-desktop3 xdg-desktop-portal
     - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
       cd gnome-desktop &&
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
+      cd ..
+    - git clone -b 1.14.0 https://github.com/flatpak/xdg-desktop-portal.git &&
+      cd xdg-desktop-portal &&
+      ./autogen.sh --sysconfdir=/etc --prefix=/usr --disable-dependency-tracking --disable-libportal &&
+      make -j $(getconf _NPROCESSORS_ONLN) &&
+      make install &&
       cd ..
 
 build-ubuntu:
@@ -32,10 +39,16 @@ build-ubuntu:
   before_script:
     - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
     - apt-get update
-    - apt-get install -y meson git libgtk-4-dev sassc
-    - apt-get build-dep -y xdg-desktop-portal-gtk
+    - apt-get install -y meson git libgtk-4-dev sassc libfuse3-dev
+    - apt-get build-dep -y xdg-desktop-portal-gtk xdg-desktop-portal
     - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
       cd gnome-desktop &&
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
+      cd ..
+    - git clone -b 1.14.0 https://github.com/flatpak/xdg-desktop-portal.git &&
+      cd xdg-desktop-portal &&
+      ./autogen.sh --sysconfdir=/etc --prefix=/usr --disable-dependency-tracking --disable-libportal &&
+      make -j $(getconf _NPROCESSORS_ONLN) &&
+      make install &&
       cd ..
