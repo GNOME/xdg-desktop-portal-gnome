@@ -3,22 +3,29 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Andrew Sazonow <sazonow1980.@gmail.com>, 2019.
 # Артемий Судаков <finziyr@yandex.ru>, 2020.
+# Ivan Molodetskikh <yalterz@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2021-12-18 16:10+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
-"Language-Team: Русский <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2022-02-26 14:15+0000\n"
+"PO-Revision-Date: 2022-03-12 21:26+0300\n"
+"Last-Translator: Ivan Molodetskikh <yalterz@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 41.0\n"
+"X-DL-Team: ru\n"
+"X-DL-Module: xdg-desktop-portal-gnome\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: None\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -53,27 +60,27 @@ msgstr "Изображения"
 #: src/accountdialog.c:224
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
-msgstr "Поделиться своей личной информацией с %1$s? %2$s"
+msgstr "Дать «%1$s» доступ к своей личной информации? %2$s"
 
 #: src/accountdialog.c:230
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
-msgstr "Поделиться своей личной информацией с запрашивающим приложением? %s"
+msgstr "Дать запрашивающему приложению доступ к своей личной информации? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
-msgstr "Подробнее"
+msgstr "Подробности"
 
 #: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Отменить"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
-msgstr "_Поделиться"
+msgstr "_Дать доступ"
 
 #: src/accountdialog.ui:72
 msgid "Name"
@@ -85,12 +92,12 @@ msgstr "Имя пользователя"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
-msgstr "Не удалось запустить программное обеспечение"
+msgstr "Не удалось запустить Центр приложений"
 
 #: src/appchooserdialog.c:393
 #, c-format
 msgid "Choose an application to open the file “%s”."
-msgstr "Выберите приложение для открытия “%s”."
+msgstr "Выберите приложение для открытия «%s»."
 
 #: src/appchooserdialog.c:398
 msgid "Choose an application."
@@ -102,14 +109,14 @@ msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
 msgstr ""
-"Не установлено приложение, которое может открыть\"%s\". Вы можете найти "
-"больше программ в центре приложений"
+"Нет установленных приложений, способных открыть «%s». Вы можете найти больше "
+"приложений в Центре приложений"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
-"Подходящее приложение не установлено. Вы можете найти больше программ в "
-"центре приложений."
+"Не найдено подходящее установленное приложение. Вы можете найти больше "
+"приложений в Центре приложений."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
@@ -121,16 +128,16 @@ msgstr "_Открыть"
 
 #: src/appchooserdialog.ui:104
 msgid "No Apps available"
-msgstr "Доступные приложения отсутствуют"
+msgstr "Нет доступных приложений"
 
 #: src/appchooserdialog.ui:144
 msgid "_Find More in Software"
-msgstr "_Найти в центре приложений"
+msgstr "_Найти в Центре приложений"
 
 #: src/background.c:214 src/background.c:305
 #, c-format
 msgid "“%s” is running in the background"
-msgstr "\"%s\" работает в фоне"
+msgstr "«%s» работает в фоне"
 
 #: src/background.c:216
 msgid ""
@@ -139,14 +146,14 @@ msgid ""
 "\n"
 "Note that forcing an application to quit might cause data loss."
 msgstr ""
-"Это могло случиться по уважительной причине, но приложение не предоставило.\n"
+"Возможно, так и должно быть, но приложение не предоставило явной причины.\n"
 "\n"
 "Обратите внимание, что принудительное завершение приложения может привести к "
 "потере данных."
 
 #: src/background.c:219
 msgid "Force quit"
-msgstr "Принудительный выход"
+msgstr "Завершить принудительно"
 
 #: src/background.c:220
 msgid "Allow"
@@ -174,11 +181,11 @@ msgstr "Открыть файлы в режиме только для чтени
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
-msgstr "Удаленный рабочий стол"
+msgstr "Удалённый рабочий стол"
 
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
-msgstr "Разрешить удаленное взаимодействие"
+msgstr "Разрешить удалённое взаимодействие"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
@@ -191,24 +198,24 @@ msgstr "Виртуальный монитор"
 #: src/screencastwidget.c:542
 #, c-format
 msgid "Select monitor to share with %s"
-msgstr "Выберите монитор, чтобы поделиться с %s"
+msgstr "Выберите монитор, который сможет записывать «%s»"
 
 #: src/screencastwidget.c:544
 #, c-format
 msgid "Select window to share with %s"
-msgstr "Выберите окно, чтобы поделиться им с %s"
+msgstr "Выберите окно, которое сможет записывать «%s»"
 
 #: src/screencastwidget.c:549
 msgid "Select monitor to share with the requesting application"
-msgstr "Выберите монитор, чтобы поделиться им с запрашивающим приложением"
+msgstr "Выберите монитор, который сможет записывать запрашивающее приложение"
 
 #: src/screencastwidget.c:550
 msgid "Select window to share with the requesting application"
-msgstr "Выберите окно, чтобы поделиться им с запрашивающим приложением"
+msgstr "Выберите окно, которое сможет записывать запрашивающее приложение"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
-msgstr "Одиночное окно"
+msgstr "Одно окно"
 
 #: src/screencastwidget.ui:40 src/screencastwidget.ui:86
 msgid "Remember this selection"
@@ -218,70 +225,71 @@ msgstr "Запомнить этот выбор"
 msgid "Entire Screen"
 msgstr "Весь экран"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
-msgstr "Поделиться этим снимком экрана с %s?"
+msgstr "Дать «%s» доступ к этому снимку экрана?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
-msgstr "Поделиться этим снимком экрана с запрашивающим приложением?"
+msgstr "Дать запрашивающему приложению доступ к этому снимку экрана?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
-msgstr "Скриншот"
+msgstr "Снимок экрана"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
-msgstr "_Опции…"
+msgstr "_Варианты…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
-msgstr "Сделать _скриншот"
+msgstr "Сделать _снимок"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
-msgstr "Сделать скриншот"
+msgstr "Сделать снимок"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
-msgstr "Хватай весь ск_рин"
+msgstr "Снимок всего эк_рана"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
-msgstr "Захватить текущее _окно"
+msgstr "Снимок текущего о_кна"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
-msgstr "Выберите _область для захвата"
+msgstr "Выбрать _область для снимка"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
-msgstr "Захватить после _задержки"
+msgstr "_Задержка перед снимком:"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "секунды"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Эффекты"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
-msgstr "Включить _указатель"
+msgstr "Показать курсор _мыши"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
-msgstr "Включить _границу окна"
+msgstr "Показать _границу окна"
 
-#: src/settings.c:217
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "Запрашиваемая настройка не найдена"
 
+# В текущей версии диалога ширина по умолчанию достаточно маленькая, поэтому длинная фраза не влезает без многоточия.
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
-msgstr "Установить фоном рабочего стола"
+msgstr "Установить как фон"
 
 #: src/wallpaperdialog.ui:20
 msgid "Set"
@@ -291,6 +299,6 @@ msgstr "Установить"
 msgid "Failed to load image file"
 msgstr "Не удалось загрузить изображение"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "Обзор"
