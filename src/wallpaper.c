@@ -146,20 +146,22 @@ handle_wallpaper_dialog_response (WallpaperDialog *dialog,
 
   switch (response)
     {
-      default:
-        g_warning ("Unexpected response: %d", response);
-        /* Fall through */
-      case GTK_RESPONSE_DELETE_EVENT:
-        handle->response = 2;
-        break;
-      case GTK_RESPONSE_CANCEL:
-        handle->response = 1;
-        break;
-      case GTK_RESPONSE_APPLY:
-        handle->response = 0;
-        set_wallpaper (handle, wallpaper_dialog_get_uri (dialog));
+    default:
+      g_warning ("Unexpected response: %d", response);
+      G_GNUC_FALLTHROUGH;
 
-        return;
+    case GTK_RESPONSE_DELETE_EVENT:
+      handle->response = 2;
+      break;
+
+    case GTK_RESPONSE_CANCEL:
+      handle->response = 1;
+      break;
+
+    case GTK_RESPONSE_APPLY:
+      handle->response = 0;
+      set_wallpaper (handle, wallpaper_dialog_get_uri (dialog));
+      return;
     }
 
   send_response (handle);

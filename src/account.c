@@ -101,7 +101,8 @@ account_dialog_done (GtkWidget  *widget,
     {
     default:
       g_warning ("Unexpected response: %d", response);
-      /* Fall through */
+      G_GNUC_FALLTHROUGH;
+
     case GTK_RESPONSE_DELETE_EVENT:
       handle->response = 2;
       break;

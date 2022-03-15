@@ -340,7 +340,8 @@ handle_print_response (GtkDialog *dialog,
     {
     default:
       g_warning ("Unexpected response: %d", response);
-      /* Fall through */
+      G_GNUC_FALLTHROUGH;
+
     case GTK_RESPONSE_DELETE_EVENT:
       handle->response = 2;
       break;
@@ -351,7 +352,7 @@ handle_print_response (GtkDialog *dialog,
 
     case GTK_RESPONSE_APPLY:
       preview = TRUE;
-      /* fall thru */
+      G_GNUC_FALLTHROUGH;
 
     case GTK_RESPONSE_OK:
       {
@@ -575,7 +576,8 @@ handle_prepare_print_response (GtkDialog *dialog,
     {
     default:
       g_warning ("Unexpected response: %d", response);
-      /* Fall through */
+      G_GNUC_FALLTHROUGH;
+
     case GTK_RESPONSE_DELETE_EVENT:
       handle->response = 2;
       break;
@@ -586,7 +588,7 @@ handle_prepare_print_response (GtkDialog *dialog,
 
     case GTK_RESPONSE_APPLY:
       preview = TRUE;
-      /* fall thru */
+      G_GNUC_FALLTHROUGH;
 
     case GTK_RESPONSE_OK:
       {
