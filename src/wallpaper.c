@@ -47,12 +47,14 @@ wallpaper_dialog_handle_free (gpointer data)
   g_clear_object (&handle->request);
   g_clear_pointer (&handle->picture_uri, g_free);
 
-  if (handle->dialog != NULL)
-      gtk_window_destroy (GTK_WINDOW (handle->dialog));
-  g_clear_object (&handle->dialog);
-
-
   g_free (handle);
+}
+
+static void
+wallpaper_dialog_handle_close (WallpaperDialogHandle *handle)
+{
+  g_clear_pointer (&handle->dialog, gtk_window_destroy);
+  wallpaper_dialog_handle_free (handle);
 }
 
 static void
@@ -65,7 +67,7 @@ send_response (WallpaperDialogHandle *handle)
                                                  handle->invocation,
                                                  handle->response);
 
-  wallpaper_dialog_handle_free (handle);
+  wallpaper_dialog_handle_close (handle);
 }
 
 static gboolean
@@ -222,7 +224,7 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
 
   dialog = (GtkWidget *)wallpaper_dialog_new (arg_uri, arg_app_id);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
-  handle->dialog = g_object_ref (dialog);
+  handle->dialog = g_object_ref_sink (dialog);
 
   g_signal_connect (dialog, "response",
                     G_CALLBACK (handle_wallpaper_dialog_response), handle);

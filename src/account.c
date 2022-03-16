@@ -46,11 +46,10 @@ account_dialog_handle_free (gpointer data)
   AccountDialogHandle *handle = data;
 
   g_clear_object (&handle->external_parent);
-  g_object_unref (handle->request);
-  g_object_unref (handle->dialog);
-  g_free (handle->user_name);
-  g_free (handle->real_name);
-  g_free (handle->icon_uri);
+  g_clear_object (&handle->request);
+  g_clear_pointer (&handle->user_name, g_free);
+  g_clear_pointer (&handle->real_name, g_free);
+  g_clear_pointer (&handle->icon_uri, g_free);
 
   g_free (handle);
 }
@@ -58,7 +57,7 @@ account_dialog_handle_free (gpointer data)
 static void
 account_dialog_handle_close (AccountDialogHandle *handle)
 {
-  gtk_window_destroy (GTK_WINDOW (handle->dialog));
+  g_clear_pointer (&handle->dialog, gtk_window_destroy);
   account_dialog_handle_free (handle);
 }
 
@@ -198,7 +197,7 @@ handle_get_user_information (XdpImplAccount        *object,
   handle->impl = object;
   handle->invocation = invocation;
   handle->request = g_object_ref (request);
-  handle->dialog = g_object_ref (dialog);
+  handle->dialog = g_object_ref_sink (dialog);
   handle->external_parent = external_parent;
   handle->user_name = g_strdup (user_name);
   handle->real_name = g_strdup (real_name);

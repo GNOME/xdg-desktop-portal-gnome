@@ -62,9 +62,8 @@ app_dialog_handle_free (gpointer data)
 
   g_hash_table_remove (handles, handle->request->id);
   g_clear_object (&handle->external_parent);
-  g_object_unref (handle->request);
-  g_object_unref (handle->dialog);
-  g_free (handle->chosen);
+  g_clear_object (&handle->request);
+  g_clear_pointer (&handle->chosen, g_free);
 
   g_free (handle);
 }
@@ -72,7 +71,7 @@ app_dialog_handle_free (gpointer data)
 static void
 app_dialog_handle_close (AppDialogHandle *handle)
 {
-  gtk_window_destroy (GTK_WINDOW (handle->dialog));
+  g_clear_pointer (&handle->dialog, gtk_window_destroy);
   app_dialog_handle_free (handle);
 }
 
@@ -203,7 +202,7 @@ handle_choose_application (XdpImplAppChooser *object,
   handle->impl = object;
   handle->invocation = invocation;
   handle->request = g_object_ref (request);
-  handle->dialog = g_object_ref (dialog);
+  handle->dialog = g_object_ref_sink (dialog);
   handle->external_parent = external_parent;
 
   g_hash_table_insert (handles, handle->request->id, handle);

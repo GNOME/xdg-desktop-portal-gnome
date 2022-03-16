@@ -46,8 +46,7 @@ screenshot_dialog_handle_free (gpointer data)
 
   g_clear_object (&handle->external_parent);
   g_clear_object (&handle->request);
-  g_clear_object (&handle->dialog);
-  g_free (handle->uri);
+  g_clear_pointer (&handle->uri, g_free);
 
   g_free (handle);
 }
@@ -199,7 +198,7 @@ handle_screenshot (XdpImplScreenshot *object,
   handle->impl = object;
   handle->invocation = invocation;
   handle->request = g_object_ref (request);
-  handle->dialog = g_object_ref (dialog);
+  handle->dialog = g_object_ref_sink (dialog);
   handle->external_parent = external_parent;
   handle->retval = "url";
 

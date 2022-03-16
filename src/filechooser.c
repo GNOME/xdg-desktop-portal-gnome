@@ -72,8 +72,7 @@ file_dialog_handle_free (gpointer data)
   FileDialogHandle *handle = data;
 
   g_clear_object (&handle->external_parent);
-  g_object_unref (handle->dialog);
-  g_object_unref (handle->request);
+  g_clear_object (&handle->request);
   g_slist_free_full (handle->files, g_free);
   g_slist_free_full (handle->uris, g_free);
   g_hash_table_unref (handle->choices);
@@ -84,7 +83,7 @@ file_dialog_handle_free (gpointer data)
 static void
 file_dialog_handle_close (FileDialogHandle *handle)
 {
-  gtk_window_destroy (GTK_WINDOW (handle->dialog));
+  g_clear_pointer (&handle->dialog, gtk_window_destroy);
   file_dialog_handle_free (handle);
 }
 
@@ -482,7 +481,7 @@ handle_open (XdpImplFileChooser    *object,
   handle->impl = object;
   handle->invocation = invocation;
   handle->request = g_object_ref (request);
-  handle->dialog = g_object_ref (dialog);
+  handle->dialog = g_object_ref_sink (dialog);
   handle->action = action;
   handle->multiple = multiple;
   handle->choices = g_hash_table_new (g_str_hash, g_str_equal);
