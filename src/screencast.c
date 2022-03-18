@@ -237,8 +237,7 @@ on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_se
         {
           g_variant_builder_add (&results_builder, "{sv}", "persist_mode",
                                  g_variant_new_uint32 (screen_cast_session->persist_mode));
-          g_variant_builder_add (&results_builder, "{sv}", "restore_data",
-                                 g_variant_new_variant (restore_data));
+          g_variant_builder_add (&results_builder, "{sv}", "restore_data", restore_data);
         }
     }
 
