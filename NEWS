@@ -1,3 +1,10 @@
+Changes in 42.0.1
+=================
+
+- Adapt to xdg-desktop-portal screencast restore changes
+- Don't send selection on remote desktop when nothing was selected
+- Minor cleanups
+
 Changes in 42.0
 ================
 
