@@ -464,6 +464,12 @@ find_best_window_by_app_id_and_title (const char *app_id,
         }
     }
 
+  /* If even the best match's window title is too different, don't
+   * restore it.
+   */
+  if (best_match_distance > strlen (title) / 2)
+    return NULL;
+
   return best_match;
 }
 
