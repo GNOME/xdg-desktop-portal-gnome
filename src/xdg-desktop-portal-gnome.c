@@ -52,6 +52,7 @@
 #include "screenshot.h"
 #include "screencast.h"
 #include "remotedesktop.h"
+#include "inputcapture.h"
 #include "request.h"
 #include "settings.h"
 #include "wallpaper.h"
@@ -173,6 +174,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!clipboard_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!input_capture_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
