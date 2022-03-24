@@ -31,7 +31,7 @@ typedef struct {
   GDBusMethodInvocation *invocation;
   Request *request;
 
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   int response;
@@ -153,7 +153,7 @@ handle_get_user_information (XdpImplAccount        *object,
   const char *user_name;
   const char *real_name;
   const char *icon_file;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   GdkSurface *surface;
   GdkDisplay *display;
   ExternalWindow *external_parent = NULL;
@@ -189,9 +189,9 @@ handle_get_user_information (XdpImplAccount        *object,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WIDGET (account_dialog_new (arg_app_id, user_name, real_name, icon_file, reason));
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+  dialog = GTK_WINDOW (account_dialog_new (arg_app_id, user_name, real_name, icon_file, reason));
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
+  gtk_window_set_modal (dialog, TRUE);
 
   handle = g_new0 (AccountDialogHandle, 1);
   handle->impl = object;
@@ -207,13 +207,13 @@ handle_get_user_information (XdpImplAccount        *object,
 
   g_signal_connect (dialog, "done", G_CALLBACK (account_dialog_done), handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (dialog);
+  gtk_widget_show (GTK_WIDGET (dialog));
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 

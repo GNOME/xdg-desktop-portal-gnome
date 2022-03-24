@@ -85,7 +85,7 @@ typedef struct _RemoteDesktopDialogHandle
   Request *request;
   RemoteDesktopSession *session;
 
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   int response;
@@ -209,7 +209,7 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
   GdkSurface *surface;
   GdkDisplay *display;
   GtkWidget *fake_parent;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
 
   if (parent_window)
     {
@@ -233,12 +233,12 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
   g_object_ref_sink (fake_parent);
 
   dialog =
-    GTK_WIDGET (remote_desktop_dialog_new (request->app_id,
+    GTK_WINDOW (remote_desktop_dialog_new (request->app_id,
                                            session->select.device_types,
                                            session->select.screen_cast_enable ?
                                              &session->select.screen_cast : NULL));
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
+  gtk_window_set_modal (dialog, TRUE);
 
   dialog_handle = g_new0 (RemoteDesktopDialogHandle, 1);
   dialog_handle->session = session;
@@ -252,13 +252,13 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
   g_signal_connect (dialog, "done",
                     G_CALLBACK (remote_desktop_dialog_done), dialog_handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (dialog);
+  gtk_widget_show (GTK_WIDGET (dialog));
 
   return dialog_handle;
 }

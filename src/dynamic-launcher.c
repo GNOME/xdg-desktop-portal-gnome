@@ -52,7 +52,7 @@ typedef struct
   XdpImplDynamicLauncher *impl;
   GDBusMethodInvocation *invocation;
   Request *request;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   GtkWidget *entry;
   ExternalWindow *external_parent;
   GVariant *icon_v;
@@ -183,7 +183,8 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
   InstallDialogHandle *handle;
-  GtkWidget *dialog, *content_area, *box, *image, *label, *entry;
+  GtkWindow *dialog;
+  GtkWidget *content_area, *box, *image, *label, *entry;
   GtkDialogFlags dialog_flags;
   const char *url = NULL;
   const char *title;
@@ -258,14 +259,14 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
     title = _("Create Application");
 
   /* Show dialog with icon, title. */
-  dialog = gtk_dialog_new_with_buttons (title,
-                                        GTK_WINDOW (fake_parent),
-                                        dialog_flags,
-                                        _("_Cancel"),
-                                        GTK_RESPONSE_CANCEL,
-                                        _("C_reate"),
-                                        GTK_RESPONSE_OK,
-                                        NULL);
+  dialog = GTK_WINDOW (gtk_dialog_new_with_buttons (title,
+                                                    GTK_WINDOW (fake_parent),
+                                                    dialog_flags,
+                                                    _("_Cancel"),
+                                                    GTK_RESPONSE_CANCEL,
+                                                    _("C_reate"),
+                                                    GTK_RESPONSE_OK,
+                                                    NULL));
 
   content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
@@ -326,7 +327,7 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
   g_signal_connect (dialog, "response", G_CALLBACK (handle_prepare_install_response), handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)

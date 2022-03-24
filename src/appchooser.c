@@ -47,7 +47,7 @@ typedef struct {
   XdpImplAppChooser *impl;
   GDBusMethodInvocation *invocation;
   Request *request;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   char *chosen;
@@ -149,7 +149,7 @@ handle_choose_application (XdpImplAppChooser *object,
                            GVariant *arg_options)
 {
   g_autoptr(Request) request = NULL;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   AppDialogHandle *handle;
   const char *sender;
   const char *latest_chosen_id;
@@ -193,10 +193,10 @@ handle_choose_application (XdpImplAppChooser *object,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WIDGET (app_chooser_dialog_new (choices, latest_chosen_id, content_type, location));
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
+  dialog = GTK_WINDOW (app_chooser_dialog_new (choices, latest_chosen_id, content_type, location));
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
 
-  gtk_window_set_modal (GTK_WINDOW (dialog), modal);
+  gtk_window_set_modal (dialog, modal);
 
   handle = g_new0 (AppDialogHandle, 1);
   handle->impl = object;
@@ -213,7 +213,7 @@ handle_choose_application (XdpImplAppChooser *object,
   g_signal_connect (dialog, "close",
                     G_CALLBACK (handle_app_chooser_close), handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)

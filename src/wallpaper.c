@@ -31,7 +31,7 @@ typedef struct {
   XdpImplWallpaper *impl;
   GDBusMethodInvocation *invocation;
   Request *request;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   guint response;
@@ -186,7 +186,7 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
   ExternalWindow *external_parent = NULL;
   GdkSurface *surface;
   GtkWidget *fake_parent;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
   request = request_new (sender, arg_app_id, arg_handle);
@@ -222,19 +222,19 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = (GtkWidget *)wallpaper_dialog_new (arg_uri, arg_app_id);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
+  dialog = (GtkWindow *)wallpaper_dialog_new (arg_uri, arg_app_id);
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   handle->dialog = g_object_ref_sink (dialog);
 
   g_signal_connect (dialog, "response",
                     G_CALLBACK (handle_wallpaper_dialog_response), handle);
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_window_present (GTK_WINDOW (dialog));
+  gtk_window_present (dialog);
 
 out:
   request_export (request, g_dbus_method_invocation_get_connection (invocation));

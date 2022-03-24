@@ -49,7 +49,7 @@ typedef struct {
   XdpImplFileChooser *impl;
   GDBusMethodInvocation *invocation;
   Request *request;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   GtkFileChooserAction action;
   gboolean multiple;
   ExternalWindow *external_parent;
@@ -398,7 +398,7 @@ handle_open (XdpImplFileChooser    *object,
   GdkDisplay *display;
   GdkSurface *surface;
   GtkWidget *fake_parent;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   const gchar *method_name;
   const gchar *sender;
   GtkFileChooserAction action;
@@ -468,11 +468,11 @@ handle_open (XdpImplFileChooser    *object,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = gtk_file_chooser_dialog_new (arg_title, GTK_WINDOW (fake_parent), action,
-                                        cancel_label, GTK_RESPONSE_CANCEL,
-                                        accept_label, GTK_RESPONSE_OK,
-                                        NULL);
-  gtk_window_set_modal (GTK_WINDOW (dialog), modal);
+  dialog = GTK_WINDOW (gtk_file_chooser_dialog_new (arg_title, GTK_WINDOW (fake_parent), action,
+                                                    cancel_label, GTK_RESPONSE_CANCEL,
+                                                    accept_label, GTK_RESPONSE_OK,
+                                                    NULL));
+  gtk_window_set_modal (dialog, modal);
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
   gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (dialog), multiple);
@@ -615,13 +615,13 @@ handle_open (XdpImplFileChooser    *object,
                                    NULL, NULL);
     }
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (dialog);
+  gtk_widget_show (GTK_WIDGET (dialog));
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 

@@ -191,8 +191,8 @@ handle_screenshot (XdpImplScreenshot *object,
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id, interactive, shell));
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
-  gtk_window_set_modal (GTK_WINDOW (dialog), modal);
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
+  gtk_window_set_modal (dialog, modal);
 
   handle = g_new0 (ScreenshotDialogHandle, 1);
   handle->impl = object;
