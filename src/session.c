@@ -105,6 +105,12 @@ session_get_id (Session *session)
   return session->id;
 }
 
+void
+session_emit_closed (Session *session)
+{
+  xdp_impl_session_emit_closed (XDP_IMPL_SESSION (session));
+}
+
 static gboolean
 handle_close (XdpImplSession *object,
               GDBusMethodInvocation *invocation)
