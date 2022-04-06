@@ -795,6 +795,7 @@ handle_create_session (XdpImplScreenCast     *object,
                        const char            *arg_app_id,
                        GVariant              *arg_options)
 {
+  const char *sender = g_dbus_method_invocation_get_sender (invocation);
   g_autoptr(GError) error = NULL;
   int response;
   Session *session;
@@ -802,6 +803,7 @@ handle_create_session (XdpImplScreenCast     *object,
 
   session = g_object_new (screen_cast_session_get_type (),
                           "id", arg_session_handle,
+                          "peer-name", sender,
                           NULL);
 
   if (!session_export (session,

@@ -344,6 +344,7 @@ on_mutter_session_closed (OrgGnomeMutterRemoteDesktopSession *mutter_session_pro
 static RemoteDesktopSession *
 remote_desktop_session_new (const char *app_id,
                             const char *session_handle,
+                            const char *peer_name,
                             const char *mutter_session_path,
                             OrgGnomeMutterRemoteDesktopSession *mutter_session_proxy)
 {
@@ -351,6 +352,7 @@ remote_desktop_session_new (const char *app_id,
 
   remote_desktop_session = g_object_new (remote_desktop_session_get_type (),
                                          "id", session_handle,
+                                         "peer-name", peer_name,
                                          NULL);
   remote_desktop_session->mutter_session_path =
     g_strdup (mutter_session_path);
@@ -412,6 +414,7 @@ handle_create_session (XdpImplRemoteDesktop *object,
 
   session = (Session *)remote_desktop_session_new (arg_app_id,
                                                    arg_session_handle,
+                                                   sender,
                                                    mutter_session_path,
                                                    mutter_session_proxy);
 

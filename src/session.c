@@ -24,6 +24,7 @@ enum
   PROP_0,
 
   PROP_ID,
+  PROP_PEER_NAME,
 
   PROP_LAST
 };
@@ -92,6 +93,12 @@ session_close (Session *session, gboolean notify)
   g_object_unref (session);
 }
 
+const char *
+session_get_peer_name (Session *session)
+{
+  return session->peer_name;
+}
+
 static gboolean
 handle_close (XdpImplSession *object,
               GDBusMethodInvocation *invocation)
@@ -125,6 +132,9 @@ session_set_property (GObject *object,
     case PROP_ID:
       session->id = g_strdup (g_value_get_string (value));
       break;
+    case PROP_PEER_NAME:
+      session->peer_name = g_strdup (g_value_get_string (value));
+      break;
 
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -144,6 +154,9 @@ session_get_property (GObject *object,
     case PROP_ID:
       g_value_set_string (value, session->id);
       break;
+    case PROP_PEER_NAME:
+      g_value_set_string (value, session->peer_name);
+      break;
 
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -157,6 +170,7 @@ session_finalize (GObject *object)
 
   g_hash_table_remove (sessions, session->id);
 
+  g_free (session->peer_name);
   g_free (session->id);
 
   G_OBJECT_CLASS (session_parent_class)->finalize (object);
@@ -190,6 +204,12 @@ session_class_init (SessionClass *klass)
 
   obj_props[PROP_ID] =
     g_param_spec_string ("id", "id", "ID",
+                         NULL,
+                         G_PARAM_READWRITE |
+                         G_PARAM_CONSTRUCT_ONLY |
+                         G_PARAM_STATIC_STRINGS);
+  obj_props[PROP_PEER_NAME] =
+    g_param_spec_string ("peer-name", "peer-name", "D-Bus peer name",
                          NULL,
                          G_PARAM_READWRITE |
                          G_PARAM_CONSTRUCT_ONLY |
