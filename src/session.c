@@ -99,6 +99,12 @@ session_get_peer_name (Session *session)
   return session->peer_name;
 }
 
+const char *
+session_get_id (Session *session)
+{
+  return session->id;
+}
+
 static gboolean
 handle_close (XdpImplSession *object,
               GDBusMethodInvocation *invocation)

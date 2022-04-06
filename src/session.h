@@ -57,3 +57,5 @@ gboolean session_export (Session *session,
 void session_unexport (Session *session);
 
 const char * session_get_peer_name (Session *session);
+
+const char * session_get_id (Session *session);
