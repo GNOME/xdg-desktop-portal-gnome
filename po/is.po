@@ -1,16 +1,16 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2021.
+# Sveinn í Felli <sv1@fellsnet.is>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2021-11-22 14:37+0000\n"
-"PO-Revision-Date: 2021-12-13 08:54+0000\n"
+"POT-Creation-Date: 2022-03-18 20:33+0000\n"
+"PO-Revision-Date: 2022-04-06 11:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.org>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +26,62 @@ msgstr "Gátt"
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
+
+#: src/accountdialog.c:152
+msgid "Select an Image"
+msgstr "Veldu mynd"
+
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+msgid "Cancel"
+msgstr "Hætta við"
+
+#: src/accountdialog.c:156
+#| msgid "_Select"
+msgid "Select"
+msgstr "Velja"
+
+#: src/accountdialog.c:157
+msgid "Clear"
+msgstr "Hreinsa"
+
+#: src/accountdialog.c:164
+msgid "Images"
+msgstr "Myndir"
+
+#: src/accountdialog.c:225
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Deila persónulegum upplýsingum þínum með %1$s? %2$s"
+
+#: src/accountdialog.c:231
+#, c-format
+#| msgid "Share this screenshot with the requesting application?"
+msgid "Share your personal information with the requesting application? %s"
+msgstr ""
+"Deila persónulegum upplýsingum þínum með forritinu sem biður um það? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Deila nánari upplýsingum"
+
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:452
+#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:14
+msgid "_Cancel"
+msgstr "_Hætta við"
+
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+msgid "_Share"
+msgstr "_Deila"
+
+#: src/accountdialog.ui:72
+msgid "Name"
+msgstr "Nafn"
+
+#: src/accountdialog.ui:84
+msgid "Username"
+msgstr "Notandanafn"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
@@ -59,13 +115,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Opna með…"
 
-#: src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
-msgid "_Cancel"
-msgstr "_Hætta við"
-
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:447
 msgid "_Open"
 msgstr "_Opna"
 
@@ -110,26 +160,21 @@ msgstr "Bakgrunnsvirkni"
 msgid "Find out more"
 msgstr "Finna frekari upplýsingar"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:447
 msgid "_Select"
 msgstr "_Velja"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:449
 msgid "_Save"
 msgstr "Vi_sta"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:615
 msgid "Open files read-only"
 msgstr "Opna skrár skrifvarðar"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Fjartengt skjáborð"
-
-#: src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
-#: src/screenshotdialog.ui:35
-msgid "_Share"
-msgstr "_Deila"
 
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
@@ -165,82 +210,78 @@ msgstr "Veldu glugga til að deila með forritinu sem biður um það"
 msgid "Single Window"
 msgstr "Stakur gluggi"
 
-#: src/screencastwidget.ui:39 src/screencastwidget.ui:84
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
 msgid "Remember this selection"
 msgstr "Muna þetta val"
 
-#: src/screencastwidget.ui:63
+#: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Allur skjárinn"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Deila þessari skjámynd með %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Deila þessari skjámynd með forritinu sem biður um það?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Skjámynd"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Valkostir..."
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Taka _skjámynd"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Taka skjámynd"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Taka mynd af ö_llum skjánum"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Taka mynd af þessum _glugga"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Velja _svæði til að mynda"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Taka skjámynd _eftir"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "sekúndur"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Sjónbrellur"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Hafa með músar_bendil"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Láta _rammann sjást á myndinni"
 
-#: src/settings.c:217
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "Umbeðinn stilling fannst ekki"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Setja bakgrunn"
-
-#: src/wallpaperdialog.ui:14
-msgid "Cancel"
-msgstr "Hætta við"
 
 #: src/wallpaperdialog.ui:20
 msgid "Set"
@@ -250,7 +291,7 @@ msgstr "Setja"
 msgid "Failed to load image file"
 msgstr "Gat ekki hlaðið inn myndskrá"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "Aðgerðir"
 
