@@ -12,53 +12,52 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-03-14 00:02+0000\n"
-"PO-Revision-Date: 2022-03-14 21:33+0100\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"POT-Creation-Date: 2022-04-06 11:29+0000\n"
+"PO-Revision-Date: 2022-04-18 09:33+0200\n"
+"Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-# soll nicht übersetzt werden
 #. TRANSLATORS: Don't translate this text (this is icon name)
 #: data/xdg-desktop-portal-gnome.desktop.in.in:6
 msgid "applications-system-symbolic"
 msgstr "applications-system-symbolic"
 
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Bild auswählen"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Auswählen"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Löschen"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Bilder"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Sollen Ihre privaten Informationen für %1$s freigegeben werden? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr ""
@@ -69,7 +68,7 @@ msgstr ""
 msgid "Share Details"
 msgstr "Details freigeben"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:452
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
 #: src/screenshotdialog.ui:14
 msgid "_Cancel"
@@ -108,7 +107,7 @@ msgid ""
 "Software"
 msgstr ""
 "Es sind keine Apps zum öffnen von »%s« installiert. Suchen Sie weitere "
-"Anwendungen in Software."
+"Anwendungen in Software"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
@@ -120,7 +119,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Öffnen mit …"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:447
 msgid "_Open"
 msgstr "_Öffnen"
 
@@ -165,15 +164,15 @@ msgstr "Hintergrundaktivität"
 msgid "Find out more"
 msgstr "Mehr herausfinden"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:447
 msgid "_Select"
 msgstr "A_uswählen"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:449
 msgid "_Save"
 msgstr "_Speichern"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:615
 msgid "Open files read-only"
 msgstr "Dateien schreibgeschützt öffnen"
 
@@ -183,7 +182,7 @@ msgstr "Entfernter Bildschirm"
 
 #: src/remotedesktopdialog.ui:64
 msgid "Allow remote interaction"
-msgstr ""
+msgstr "Entfernte Bedienung erlauben"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
@@ -223,7 +222,7 @@ msgstr "Diese Auswahl merken"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
-msgstr "Ganzee Bildschirm"
+msgstr "Ganzer Bildschirm"
 
 #: src/screenshotdialog.c:420
 #, c-format
