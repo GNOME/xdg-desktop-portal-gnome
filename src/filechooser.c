@@ -567,21 +567,24 @@ handle_open (XdpImplFileChooser    *object,
 
   if (strcmp (method_name, "SaveFile") == 0)
     {
-      if (g_variant_lookup (arg_options, "current_name", "&s", &current_name))
-        gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), current_name);
       /* TODO: is this useful ?
        * In a sandboxed situation, the current folder and current file
        * are likely in the fuse filesystem
        */
-      if (g_variant_lookup (arg_options, "current_folder", "^&ay", &path))
-        {
-          g_autoptr(GFile) file = g_file_new_for_path (path);
-          gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), file, NULL);
-        }
       if (g_variant_lookup (arg_options, "current_file", "^&ay", &path))
         {
           g_autoptr(GFile) file = g_file_new_for_path (path);
           gtk_file_chooser_set_file (GTK_FILE_CHOOSER (dialog), file, NULL);
+        }
+      else
+        {
+          if (g_variant_lookup (arg_options, "current_name", "&s", &current_name))
+            gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), current_name);
+          if (g_variant_lookup (arg_options, "current_folder", "^&ay", &path))
+            {
+              g_autoptr(GFile) file = g_file_new_for_path (path);
+              gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), file, NULL);
+            }
         }
     }
   else if (strcmp (method_name, "SaveFiles") == 0)
