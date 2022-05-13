@@ -18,6 +18,7 @@
           <object class="GtkStack" id="stack">
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
+
             <child>
               <object class="GtkSpinner">
                 <property name="halign">center</property>
@@ -29,53 +30,102 @@
               </object>
             </child>
 
-            <!-- Top panel -->
+            <!-- Desktop preview -->
             <child>
-              <object class="GtkBox" id="desktop_preview">
-                <property name="valign">start</property>
-                <style>
-                  <class name="desktop-preview"/>
-                </style>
+              <object class="GtkOverlay" id="desktop_preview">
+
+                <!-- Top panel -->
                 <child>
                   <object class="GtkBox">
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">Activities</property>
-                      </object>
-                    </child>
-                    <child type="center">
-                      <object class="GtkLabel" id="desktop_clock_label">
-                        <property name="hexpand">1</property>
-                        <property name="label">01 Jan 00:00</property>
-                      </object>
-                    </child>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="desktop-preview"/>
+                    </style>
                     <child>
                       <object class="GtkBox">
-                        <property name="spacing">4</property>
                         <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">network-wireless-symbolic</property>
-                            <property name="pixel-size">6</property>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Activities</property>
+                          </object>
+                        </child>
+                        <child type="center">
+                          <object class="GtkLabel" id="desktop_clock_label">
+                            <property name="hexpand">1</property>
+                            <property name="label">01 Jan 00:00</property>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">audio-volume-high-symbolic</property>
-                            <property name="pixel-size">6</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">battery-low-symbolic</property>
-                            <property name="pixel-size">6</property>
+                          <object class="GtkBox">
+                            <property name="spacing">4</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">network-wireless-symbolic</property>
+                                <property name="pixel-size">6</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">audio-volume-high-symbolic</property>
+                                <property name="pixel-size">6</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">battery-low-symbolic</property>
+                                <property name="pixel-size">6</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                   </object>
                 </child>
+
+                <!-- Front window -->
+                <child type="overlay">
+                  <object class="AdwBin">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="overflow">hidden</property>
+                    <style>
+                      <class name="window"/>
+                    </style>
+                    <child>
+                      <object class="AdwBin">
+                        <style>
+                          <class name="header-bar"/>
+                        </style>
+                        <property name="valign">start</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <!-- Front window -->
+                <child type="overlay">
+                  <object class="AdwBin">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="overflow">hidden</property>
+                    <style>
+                      <class name="window"/>
+                      <class name="front"/>
+                    </style>
+                    <child>
+                      <object class="AdwBin">
+                        <style>
+                          <class name="header-bar"/>
+                        </style>
+                        <property name="valign">start</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
               </object>
             </child>
+
           </object>
         </child>
 
