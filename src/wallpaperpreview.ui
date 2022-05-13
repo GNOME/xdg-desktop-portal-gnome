@@ -2,24 +2,20 @@
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
   <template class="WallpaperPreview" parent="GtkBox">
-    <property name="can-focus">0</property>
     <property name="hexpand">0</property>
     <property name="vexpand">0</property>
     <property name="width-request">384</property>
     <property name="height-request">208</property>
     <child>
       <object class="GtkOverlay">
-        <property name="can-focus">0</property>
         <property name="child">
           <object class="GtkDrawingArea" id="drawing_area">
-            <property name="can-focus">0</property>
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
           </object>
         </property>
         <child type="overlay">
           <object class="GtkStack" id="stack">
-            <property name="can-focus">0</property>
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
             <child>
@@ -36,48 +32,40 @@
             <!-- Top panel -->
             <child>
               <object class="GtkBox" id="desktop_preview">
-                <property name="can-focus">0</property>
                 <property name="valign">start</property>
                 <style>
                   <class name="desktop-preview"/>
                 </style>
                 <child>
                   <object class="GtkBox">
-                    <property name="can-focus">0</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="can-focus">0</property>
                         <property name="label" translatable="yes">Activities</property>
                       </object>
                     </child>
                     <child type="center">
                       <object class="GtkLabel" id="desktop_clock_label">
-                        <property name="can-focus">0</property>
                         <property name="hexpand">1</property>
                         <property name="label">01 Jan 00:00</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkBox">
-                        <property name="can-focus">0</property>
                         <property name="spacing">4</property>
                         <child>
                           <object class="GtkImage">
-                            <property name="can-focus">0</property>
                             <property name="icon-name">network-wireless-symbolic</property>
                             <property name="pixel-size">6</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImage">
-                            <property name="can-focus">0</property>
                             <property name="icon-name">audio-volume-high-symbolic</property>
                             <property name="pixel-size">6</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImage">
-                            <property name="can-focus">0</property>
                             <property name="icon-name">battery-low-symbolic</property>
                             <property name="pixel-size">6</property>
                           </object>
@@ -93,7 +81,6 @@
 
         <child type="overlay">
           <object class="GtkImage" id="animated_background_icon">
-            <property name="can-focus">0</property>
             <property name="halign">end</property>
             <property name="valign">end</property>
             <property name="margin-end">8</property>
