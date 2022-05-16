@@ -8,51 +8,46 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2022-01-10 15:02+0330\n"
+"POT-Creation-Date: 2022-05-09 05:56+0000\n"
+"PO-Revision-Date: 2022-05-16 12:07+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "درگاه"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "گزینش یک تصویر"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "گزینش"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "پاک‌سازی"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "تصویرها"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "هم‌رسانی اطّلاعات شخصیتان با %1$s؟ %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr "هم‌رسانی اطّلاعات شخصیتان با برنامهٔ درخواستگر؟ %s"
@@ -61,14 +56,14 @@ msgstr "هم‌رسانی اطّلاعات شخصیتان با برنامهٔ د
 msgid "Share Details"
 msgstr "هم‌رسانی جزییات"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/dynamic-launcher.c:265
+#: src/filechooser.c:451 src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21 src/screencastdialog.ui:22
+#: src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_هم‌رسانی"
 
@@ -98,8 +93,8 @@ msgstr "گزینش یک برنامه."
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in Software"
 msgstr ""
-"هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. ممکن است بتوانید برنامه‌های "
-"بیش‌تری را در نرم‌افزارها بیابید"
+"هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. ممکن است بتوانید برنامه‌های بیش‌تری "
+"را در نرم‌افزارها بیابید"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
@@ -155,6 +150,18 @@ msgstr "فعّالیت پس‌زمینه"
 msgid "Find out more"
 msgstr "بیش‌تر بدانید"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "ایجاد برنامهٔ وب"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "ایجاد برنامه"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "_ایجاد"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_گزینش"
@@ -163,7 +170,7 @@ msgstr "_گزینش"
 msgid "_Save"
 msgstr "_ذخیره"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "گشودن فقط‌خواندنی پرونده‌ها"
 
@@ -213,64 +220,64 @@ msgstr "به یاد سپاری این گزینش"
 msgid "Entire Screen"
 msgstr "کل صفحه"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "هم‌رسانی این نماگرفت با %s؟"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "هم‌رسانی این نماگرفت با برنامهٔ درخواستگر؟"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "نماگرفت"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_گزینه‌ها…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "_نماگرفت"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "نماگرفت"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "گرفتن کل _صفحه"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "گرفتن _پنجرهٔ جاری"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "گزینش _ناحیه برای گرفتن"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "گرفتن پس از _وقفه‌ای به اندازهٔ"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "ثانیه"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "جلوه‌ها"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "شامل _اشاره‌گر"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "شامل _حاشیهٔ پنجره"
 
-#: src/settings.c:217
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "تنظیمات درخواستی پیدا نشد"
 
@@ -286,9 +293,12 @@ msgstr "تنظیم"
 msgid "Failed to load image file"
 msgstr "شکست در بار کردن پروندهٔ تصویر"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "فعّالیت‌ها"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "اشاره‌گر"
