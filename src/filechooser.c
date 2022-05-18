@@ -713,6 +713,13 @@ handle_open (XdpImplFileChooser    *object,
                                    _("Open files read-only"),
                                    NULL, NULL);
     }
+  else if (action == GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER)
+    {
+      gtk_file_chooser_add_choice (GTK_FILE_CHOOSER (dialog),
+                                   "read-only",
+                                   _("Open directories read-only"),
+                                   NULL, NULL);
+    }
 
   gtk_widget_realize (GTK_WIDGET (dialog));
 
