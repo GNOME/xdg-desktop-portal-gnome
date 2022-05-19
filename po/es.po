@@ -4,61 +4,55 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Mario Sanchez Prada <mario@endlessm.com>, 2016.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021-2022.
+# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2022-01-04 12:05+0100\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Spanish; Castilian <>\n"
-"Language: es\n"
+"POT-Creation-Date: 2022-05-09 05:56+0000\n"
+"PO-Revision-Date: 2022-05-19 10:19+0200\n"
+"Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 41.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Seleccione una imagen"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Seleccionar"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Vaciar"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Imágenes"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
-#| msgid "Share your personal information with %s?"
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "¿Quiere compartir su información personal con %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
-#| msgid "Share your personal information with the requesting application?"
 msgid "Share your personal information with the requesting application? %s"
 msgstr ""
 "¿Quiere compartir su información personal con la aplicación solicitante? %s"
@@ -67,14 +61,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Compartir los datos"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "Co_mpartir"
 
@@ -164,6 +159,18 @@ msgstr "Actividad en segundo plano"
 msgid "Find out more"
 msgstr "Buscar más"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Crear aplicación web"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Crear aplicación"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "C_rear"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Seleccionar"
@@ -172,7 +179,7 @@ msgstr "_Seleccionar"
 msgid "_Save"
 msgstr "_Guardar"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Abrir archivos de sólo lectura"
 
@@ -223,65 +230,65 @@ msgstr "Recordar esta decisión"
 msgid "Entire Screen"
 msgstr "Toda la pantalla"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "¿Quiere compartir esta captura de pantalla con %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr ""
 "¿Quiere compartir esta captura de pantalla con la aplicación solicitante?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Captura de pantalla"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Opciones…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "_Capturar la pantalla"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Capturar la pantalla"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Capturar _toda la pantalla"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Capturar la _ventana actual"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Seleccionar la _zona que capturar"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Capturar tras un _retardo de"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "segundos"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efectos"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Incluir el _puntero"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Incluir el _borde de la ventana"
 
-#: src/settings.c:217
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "No se ha encontrado la opción solicitada"
 
@@ -297,9 +304,12 @@ msgstr "Establecer"
 msgid "Failed to load image file"
 msgstr "Fallo al cargar el archivo de imagen"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "Actividades"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Puntero"
