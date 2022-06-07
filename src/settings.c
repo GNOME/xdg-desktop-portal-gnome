@@ -152,8 +152,7 @@ settings_handle_read_all (XdpImplSettings       *object,
           if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
               strcmp (keys[i], "enable-animations") == 0)
             g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
-          else if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
-                   (strcmp (keys[i], "gtk-theme") == 0 || strcmp (keys[i], "icon-theme") == 0))
+          else if (strcmp (key, "org.gnome.desktop.interface") == 0 && strcmp (keys[i], "gtk-theme") == 0)
             g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
           else
             g_variant_dict_insert_value (&dict, keys[i], g_settings_get_value (value->settings, keys[i]));
