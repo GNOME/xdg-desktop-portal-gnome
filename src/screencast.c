@@ -868,6 +868,8 @@ screen_cast_session_close (Session *session)
                    error->message);
       g_clear_object (&screen_cast_session->gnome_screen_cast_session);
     }
+
+  screen_cast_dialog_handle_close (screen_cast_session->dialog_handle);
 }
 
 static void
