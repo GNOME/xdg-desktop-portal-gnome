@@ -869,7 +869,8 @@ screen_cast_session_close (Session *session)
       g_clear_object (&screen_cast_session->gnome_screen_cast_session);
     }
 
-  screen_cast_dialog_handle_close (screen_cast_session->dialog_handle);
+  g_clear_pointer (&screen_cast_session->dialog_handle,
+                   screen_cast_dialog_handle_close);
 }
 
 static void
