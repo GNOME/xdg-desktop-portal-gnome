@@ -9,56 +9,49 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2022-01-16 21:40+0200\n"
+"POT-Creation-Date: 2022-05-09 05:56+0000\n"
+"PO-Revision-Date: 2022-06-20 22:18+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2)\n"
 "X-Generator: Gtranslator 40.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portalas"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Pasirinkti paveikslą"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Pasirinkti"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Išvalyti"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Paveikslai"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
-#| msgid "Share your personal information with %s?"
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Dalintis jūsų asmenine informacija su %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
-#| msgid "Share your personal information with the requesting application?"
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Dalintis jūsų asmenine informacija su prašančia programa? %s"
 
@@ -66,14 +59,15 @@ msgstr "Dalintis jūsų asmenine informacija su prašančia programa? %s"
 msgid "Share Details"
 msgstr "Bendrinti išsamesnę informaciją"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_Bendrinti"
 
@@ -163,6 +157,20 @@ msgstr "Foninė veikla"
 msgid "Find out more"
 msgstr "Sužinoti daugiau"
 
+#: src/dynamic-launcher.c:257
+#| msgid "Choose an application."
+msgid "Create Web Application"
+msgstr "Sukurti internetinę programą"
+
+#: src/dynamic-launcher.c:259
+#| msgid "Choose an application."
+msgid "Create Application"
+msgstr "Sukurti programą"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "Suku_rti"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "Pa_sirinkti"
@@ -171,7 +179,7 @@ msgstr "Pa_sirinkti"
 msgid "_Save"
 msgstr "Į_rašyti"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Atverti failus tik skaitymui"
 
@@ -221,64 +229,64 @@ msgstr "Įsiminti šį žymėjimą"
 msgid "Entire Screen"
 msgstr "Visas ekranas"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Bendrinti šią ekrano kopiją su %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Bendrinti šią ekrano kopiją su prašančia programa?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Ekrano kopija"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Parametrai…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Padaryti _ekrano kopiją"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Padaryti ekrano kopiją"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Fotografuoti visą ek_raną"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Fotografuoti esamą _langą"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Pasirinkti sr_itį, kurią fotografuoti"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "_Delsti fotografuoti"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "sekundes"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efektai"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Įtraukti _rodyklę"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Įtraukti lango rė_melį"
 
-#: src/settings.c:217
+#: src/settings.c:247
 msgid "Requested setting not found"
 msgstr "Užklaustas nustatymas nerastas"
 
@@ -294,9 +302,12 @@ msgstr "Nustatyti"
 msgid "Failed to load image file"
 msgstr "Nepavyko įkelti paveikslo failo"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:50
 msgid "Activities"
 msgstr "Apžvalga"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Rodyklė"
