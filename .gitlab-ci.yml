@@ -32,7 +32,7 @@ build-ubuntu:
   before_script:
     - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
     - apt-get update
-    - apt-get install -y meson git libgtk-4-dev sassc
+    - apt-get install -y meson git libgtk-4-dev sassc libseccomp-dev
     - apt-get build-dep -y xdg-desktop-portal-gtk
     - git clone https://gitlab.gnome.org/GNOME/gnome-desktop.git &&
       cd gnome-desktop &&
