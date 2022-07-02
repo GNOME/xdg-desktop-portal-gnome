@@ -100,7 +100,7 @@ is_screen_cast_session (Session *session)
 static void
 screen_cast_dialog_handle_free (ScreenCastDialogHandle *dialog_handle)
 {
-  g_clear_pointer ((GtkWindow**)&dialog_handle->dialog, gtk_window_destroy);
+  g_clear_pointer (&dialog_handle->dialog, gtk_window_destroy);
   g_clear_object (&dialog_handle->external_parent);
   g_object_unref (dialog_handle->request);
 
