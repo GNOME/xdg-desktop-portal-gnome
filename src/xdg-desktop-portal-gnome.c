@@ -204,8 +204,18 @@ main (int argc, char *argv[])
 
   /* Avoid pointless and confusing recursion */
   g_unsetenv ("GTK_USE_PORTAL");
-  g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE);
-  g_setenv ("GSK_RENDERER", "cairo", TRUE);
+
+  if (G_UNLIKELY (!g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE)))
+    {
+      g_printerr ("Failed to set ADW_DISABLE_PORTAL: %s\n", g_strerror (errno));
+      return 1;
+    }
+
+  if (G_UNLIKELY (!g_setenv ("GSK_RENDERER", "cairo", TRUE)))
+    {
+      g_printerr ("Failed to set GSK_RENDERER: %s\n", g_strerror (errno));
+      return 1;
+    }
 
   gtk_init ();
 
