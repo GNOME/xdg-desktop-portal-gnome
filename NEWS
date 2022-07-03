@@ -1,3 +1,11 @@
+Changes in 42.2
+================
+
+- Fix invalid usage of app chooder dialog after its destruction
+- Properly handle errors from file operations
+- Fix various memory leaks
+- Translation updates
+
 Changes in 42.1
 ================
 
