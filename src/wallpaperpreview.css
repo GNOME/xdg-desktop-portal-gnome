@@ -29,7 +29,7 @@ widget.window {
 
 widget.window .header-bar {
   min-height: 15px;
-  box-shadow: inset 0 -1px @borders;
+  box-shadow: inset 0 -1px @headerbar_shade_color;
 }
 
 widget.window.front {
