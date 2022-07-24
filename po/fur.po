@@ -6,53 +6,48 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2021-12-23 07:50+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-07-24 17:50+0000\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
-"Language-Team: Friulian <fur@li.org>\n"
+"Language-Team: Friulian <f.t.public@gmail.com>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Editor: HaiPO 1.2 RC4\n"
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portâl"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Selezione une imagjin"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Anule"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Selezione"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Nete"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Imagjins"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Condividi lis tôs informazions personâls cun %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr ""
@@ -63,14 +58,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Condivît detais"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Anule"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_Condivît"
 
@@ -133,16 +129,13 @@ msgstr "“%s“ al è in esecuzion in sotfont"
 
 #: src/background.c:216
 msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
+"This might be for a legitimate reason, but the application has not provided one.\n"
 "\n"
 "Note that forcing an application to quit might cause data loss."
 msgstr ""
-"Chest al podarès jessi par une reson legjitime, ma la aplicazion no 'nd à "
-"dade une.\n"
+"Chest al podarès jessi par une reson legjitime, ma la aplicazion no 'nd à dade une.\n"
 "\n"
-"Note che sfuarçâ la jessude di une aplicazion al podarès causâ pierditis di "
-"dâts."
+"Note che sfuarçâ la jessude di une aplicazion al podarès causâ pierditis di dâts."
 
 #: src/background.c:219
 msgid "Force quit"
@@ -160,6 +153,18 @@ msgstr "Ativitât di sotfont"
 msgid "Find out more"
 msgstr "Scuvierç di plui"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Cree aplicazion web"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Cree aplicazion"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "C_ree"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Selezione"
@@ -168,7 +173,7 @@ msgstr "_Selezione"
 msgid "_Save"
 msgstr "_Salve"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Vierç i files in dome-leture"
 
@@ -218,64 +223,64 @@ msgstr "Visâsi cheste selezion"
 msgid "Entire Screen"
 msgstr "Schermi intîr"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Condivît cheste schermade cun %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Condividi cheste schermade cu la aplicazion che le domande?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Schermade"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Opzions…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Cature _schermade"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Cature la schermade"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Cjape dut il sche_rmi"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Cjape il _barcon corint"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Selezione la _aree di cjapâ"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Cjape _dopo un ritart di"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "seconts"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efiets"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Inclût il _pontadôr"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Inclût i ôrs dal barc_on"
 
-#: src/settings.c:217
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "No je stade cjatade la impostazion domandade"
 
@@ -291,9 +296,12 @@ msgstr "Stabilìs"
 msgid "Failed to load image file"
 msgstr "Nol è stât pussibil cjariâ il file de imagjin"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Ativitâts"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Pontadôr"
@@ -308,5 +316,4 @@ msgstr "Ativitâts"
 #~ msgstr "Selezione i dispositîfs di condividi cun %s"
 
 #~ msgid "Select devices to share with the requesting application"
-#~ msgstr ""
-#~ "Selezione i dispositîfs di condividi cu la aplicazion che ju domande"
+#~ msgstr "Selezione i dispositîfs di condividi cu la aplicazion che ju domande"
