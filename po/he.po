@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-05-09 05:56+0000\n"
-"PO-Revision-Date: 2022-05-30 21:08+0300\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-07-25 21:27+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -131,9 +131,9 @@ msgid ""
 "\n"
 "Note that forcing an application to quit might cause data loss."
 msgstr ""
-"יכול להיות שהסיבה לכך מקובלת, אך היישום לא סיפק סיבה.\n"
+"יכול להיות שישנה סיבה מוצדקת לכך, אך זו לא סופקה על ידי היישום.\n"
 "‬\n"
-"‫‫נא לשים לב שכפיית יציאה על יישום עשוי להוביל לאובדן נתונים."
+"‫‫יש לשים לב שאילוץ יציאה מהיישום עשויה להוביל לאבדן נתונים."
 
 #: src/background.c:219
 msgid "Force quit"
@@ -152,12 +152,10 @@ msgid "Find out more"
 msgstr "מידע נוסף"
 
 #: src/dynamic-launcher.c:257
-#| msgid "Choose an application."
 msgid "Create Web Application"
 msgstr "יצירת יישום רשת"
 
 #: src/dynamic-launcher.c:259
-#| msgid "Choose an application."
 msgid "Create Application"
 msgstr "יצירת יישום"
 
@@ -280,7 +278,7 @@ msgstr "_כולל הסמן"
 msgid "Include the window _border"
 msgstr "כולל _גבולות החלון"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "ההגדרה המבוקשת לא נמצאה"
 
@@ -296,7 +294,7 @@ msgstr "הגדרה"
 msgid "Failed to load image file"
 msgstr "טעינת קובץ התמונה נכשלה"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "פעילויות"
 
