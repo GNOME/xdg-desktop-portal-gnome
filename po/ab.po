@@ -1,57 +1,46 @@
-# Abkhazian translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Нанба Наала <naala-nanba@rambler.ru>, 2022.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-02-05 00:03+0000\n"
-"PO-Revision-Date: 2022-02-05 00:03+0000\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <ab@li.org>\n"
 "Language: ab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Апортал"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Асахьа алхра"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Аԥыхры"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Алхра"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Арыцқьара"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Асахьа"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Шәхатәы информациа %1$s? %2$s рызнагара"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Иҟалома шәхатәы информациа адҵаалара ҟазҵо аԥшьы азнагара?%s"
@@ -60,7 +49,8 @@ msgstr "Иҟалома шәхатәы информациа адҵаалара ҟ
 msgid "Share Details"
 msgstr "Инарҭбааны азнагара"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
 #: src/screenshotdialog.ui:14
 msgid "_Cancel"
@@ -97,11 +87,15 @@ msgstr "Иалышәх аԥшьы"
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
-msgstr "Иԥшааӡам аԥшьы “%s” аартразы.Шәара ишәылшоит ишәыԥшаар иҵегь аԥшьқәа аԥшьқәа реизак аҟны."
+msgstr ""
+"Иԥшааӡам аԥшьы “%s” аартразы.Шәара ишәылшоит ишәыԥшаар иҵегь аԥшьқәа аԥшьқәа "
+"реизак аҟны."
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
-msgstr "Иманшәалоу аԥшьы шьақәыргылаӡам.Шәара ишәылшоит иҵегь апрограммақәа шәыԥшаарц аԥшьқәа реизак аҟны."
+msgstr ""
+"Иманшәалоу аԥшьы шьақәыргылаӡам.Шәара ишәылшоит иҵегь апрограммақәа "
+"шәыԥшаарц аԥшьқәа реизак аҟны."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
@@ -130,8 +124,8 @@ msgid ""
 "one.\n"
 "\n"
 "Note that forcing an application to quit might cause data loss."
-msgstr "Уи ҟалар алшон анажьратә мзызқәа рыбзоурала ,аха аԥшьы иаҳнамҭеит"
-"one.\n"
+msgstr ""
+"Уи ҟалар алшон анажьратә мзызқәа рыбзоурала ,аха аԥшьы иаҳнамҭеитone.\n"
 "\n"
 "Шәазхьаԥш, аԥшьы мчыла ахырқәшара иахҟьаны адыррақәа ыӡыр шрылшо."
 
@@ -151,6 +145,18 @@ msgstr "Ақәыԥшыларатә активра"
 msgid "Find out more"
 msgstr "Еиҳаны аилкаара"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr ""
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr ""
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr ""
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Алхра"
@@ -159,7 +165,7 @@ msgstr "_Алхра"
 msgid "_Save"
 msgstr "_Аиқәырхара"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Аԥхьара мацаразы афаил аартра"
 
@@ -266,7 +272,7 @@ msgstr "_Арбага аҿакра"
 msgid "Include the window _border"
 msgstr "Аԥенџьыр _аҳәаа аҿакра"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Адҵаалара ззыҟаҵоу архиара ԥшааӡам"
 
@@ -282,6 +288,9 @@ msgstr "Ашьақәыргылара"
 msgid "Failed to load image file"
 msgstr "Асахьа аҭагалара залымшахеит"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Ахҳәаа"
+
+msgid "applications-system-symbolic"
+msgstr "applications-system-symbolic"
