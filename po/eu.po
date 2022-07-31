@@ -1,13 +1,13 @@
 # Basque translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2021.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2021, 2022.
 #
 msgid ""
 msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2021-12-24 19:22+0000\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-07-31 19:22+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -19,37 +19,32 @@ msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 msgid "Portal"
 msgstr "Ataria"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Hautatu irudi bat"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Hautatu"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Garbitu"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Irudiak"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Partekatu zure informazio pertsonala honekin: %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Partekatu zure informazio pertsonala hura eskatu duen aplikazioarekin? %s"
@@ -58,14 +53,15 @@ msgstr "Partekatu zure informazio pertsonala hura eskatu duen aplikazioarekin? %
 msgid "Share Details"
 msgstr "Partekatu xehetasunak"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Utzi"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_Partekatu"
 
@@ -148,6 +144,18 @@ msgstr "Atzeko planoko jarduera"
 msgid "Find out more"
 msgstr "Bilatu gehiago"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Sortu web aplikazioa"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Sortu aplikazioa"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "_Sortu"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Hautatu"
@@ -156,7 +164,7 @@ msgstr "_Hautatu"
 msgid "_Save"
 msgstr "_Gorde"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Ireki fitxategiak irakurtzeko soilik"
 
@@ -206,64 +214,64 @@ msgstr "Gogoratu hautapen hori"
 msgid "Entire Screen"
 msgstr "Pantaila osoa"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Partekatu pantaila-argazki hau %s aplikazioarekin?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Partekatu pantaila-argazki hau hori eskatzen ari den aplikazioarekin?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Pantaila-argazkia"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Aukerak..."
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Egin _pantaila-argazkia"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Egin pantaila-argazkia"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Kapturatu pantaila _osoa"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Kapturatu _uneko leihoa"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Hautatu kapturatuko den _area"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Kapturatu honako a_tzerapenarekin:"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "segundo"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efektuak"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Sarktu _erakuslea"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Sartu leihoaren ert_za"
 
-#: src/settings.c:217
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Eskatutako ezarpena ez da aurkitu"
 
@@ -279,9 +287,12 @@ msgstr "Ezarri"
 msgid "Failed to load image file"
 msgstr "Huts egin du irudi-fitxategia kargatzeak"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Jarduerak"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Erakuslea"
