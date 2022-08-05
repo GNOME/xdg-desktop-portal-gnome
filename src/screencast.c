@@ -443,6 +443,8 @@ find_best_window_by_app_id_and_title (const char *app_id,
   best_match = NULL;
   best_match_distance = G_MAXLONG;
 
+  shell_introspect_ref_listeners (shell_introspect);
+
   windows = shell_introspect_get_windows (shell_introspect);
   for (size_t i = 0; windows && i < windows->len; i++)
     {
@@ -463,6 +465,8 @@ find_best_window_by_app_id_and_title (const char *app_id,
           best_match_distance = distance;
         }
     }
+
+  shell_introspect_unref_listeners (shell_introspect);
 
   /* If even the best match's window title is too different, don't
    * restore it.
