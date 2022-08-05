@@ -137,6 +137,14 @@ show_screenshot (ScreenshotDialog *dialog,
 }
 
 static void
+maybe_show_screenshot (ScreenshotDialog *dialog,
+                       const char       *filename)
+{
+  show_screenshot (dialog, filename);
+  gtk_widget_show (GTK_WIDGET (dialog));
+}
+
+static void
 screenshot_done (GObject *source,
                  GAsyncResult *result,
                  gpointer data)
@@ -156,8 +164,7 @@ screenshot_done (GObject *source,
       return;
     }
 
-  show_screenshot (dialog, filename);
-  gtk_widget_show (GTK_WIDGET (dialog));
+  maybe_show_screenshot (dialog, filename);
 }
 
 static void
@@ -180,8 +187,7 @@ screenshot_window_done (GObject *source,
       return;
     }
 
-  show_screenshot (dialog, filename);
-  gtk_widget_show (GTK_WIDGET (dialog));
+  maybe_show_screenshot (dialog, filename);
 }
 
 static void
@@ -204,8 +210,7 @@ screenshot_area_done (GObject *source,
       return;
     }
 
-  show_screenshot (dialog, filename);
-  gtk_widget_show (GTK_WIDGET (dialog));
+  maybe_show_screenshot (dialog, filename);
 }
 
 
