@@ -22,16 +22,6 @@
 #include "shell-dbus.h"
 #include "shellintrospect.h"
 
-enum
-{
-  WINDOWS_CHANGED,
-  ANIMATIONS_ENABLED_CHANGED,
-
-  N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
-
 struct _Window
 {
   uint64_t id;
@@ -60,6 +50,16 @@ struct _ShellIntrospect
 
 G_DEFINE_TYPE (ShellIntrospect, shell_introspect, G_TYPE_OBJECT)
 
+enum
+{
+  WINDOWS_CHANGED,
+  ANIMATIONS_ENABLED_CHANGED,
+
+  N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
+
 static ShellIntrospect *_shell_introspect;
 
 static void
@@ -68,24 +68,6 @@ window_free (Window *window)
   g_free (window->title);
   g_free (window->app_id);
   g_free (window);
-}
-
-const char *
-window_get_title (Window *window)
-{
-  return window->title;
-}
-
-const char *
-window_get_app_id (Window *window)
-{
-  return window->app_id;
-}
-
-const uint64_t
-window_get_id (Window *window)
-{
-  return window->id;
 }
 
 static void
@@ -147,46 +129,6 @@ sync_state (ShellIntrospect *shell_introspect)
                                                shell_introspect->cancellable,
                                                get_windows_cb,
                                                shell_introspect);
-}
-
-GList *
-shell_introspect_get_windows (ShellIntrospect *shell_introspect)
-{
-  return shell_introspect->windows;
-}
-
-void
-shell_introspect_ref_listeners (ShellIntrospect *shell_introspect)
-{
-  shell_introspect->num_listeners++;
-
-  if (shell_introspect->proxy)
-    sync_state (shell_introspect);
-}
-
-void
-shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
-{
-  g_return_if_fail (shell_introspect->num_listeners > 0);
-
-  shell_introspect->num_listeners--;
-  if (shell_introspect->num_listeners == 0)
-    {
-      g_list_free_full (shell_introspect->windows,
-                        (GDestroyNotify) window_free);
-      shell_introspect->windows = NULL;
-    }
-}
-
-gboolean
-shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
-                                         gboolean        *out_animations_enabled)
-{
-  if (!shell_introspect->animations_enabled_valid)
-    return FALSE;
-
-  *out_animations_enabled = shell_introspect->animations_enabled;
-  return TRUE;
 }
 
 static void
@@ -279,6 +221,29 @@ on_shell_introspect_name_vanished (GDBusConnection *connection,
     }
 }
 
+static void
+shell_introspect_class_init (ShellIntrospectClass *klass)
+{
+  signals[WINDOWS_CHANGED] = g_signal_new ("windows-changed",
+                                           G_TYPE_FROM_CLASS (klass),
+                                           G_SIGNAL_RUN_LAST,
+                                           0,
+                                           NULL, NULL, NULL,
+                                           G_TYPE_NONE, 0);
+  signals[ANIMATIONS_ENABLED_CHANGED] =
+    g_signal_new ("animations-enabled-changed",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL, NULL,
+                  G_TYPE_NONE, 0);
+}
+
+static void
+shell_introspect_init (ShellIntrospect *shell_introspect)
+{
+}
+
 ShellIntrospect *
 shell_introspect_get (void)
 {
@@ -299,25 +264,60 @@ shell_introspect_get (void)
   return shell_introspect;
 }
 
-static void
-shell_introspect_init (ShellIntrospect *shell_introspect)
+GList *
+shell_introspect_get_windows (ShellIntrospect *shell_introspect)
 {
+  return shell_introspect->windows;
 }
 
-static void
-shell_introspect_class_init (ShellIntrospectClass *klass)
+void
+shell_introspect_ref_listeners (ShellIntrospect *shell_introspect)
 {
-  signals[WINDOWS_CHANGED] = g_signal_new ("windows-changed",
-                                           G_TYPE_FROM_CLASS (klass),
-                                           G_SIGNAL_RUN_LAST,
-                                           0,
-                                           NULL, NULL, NULL,
-                                           G_TYPE_NONE, 0);
-  signals[ANIMATIONS_ENABLED_CHANGED] =
-    g_signal_new ("animations-enabled-changed",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL, NULL, NULL,
-                  G_TYPE_NONE, 0);
+  shell_introspect->num_listeners++;
+
+  if (shell_introspect->proxy)
+    sync_state (shell_introspect);
+}
+
+void
+shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
+{
+  g_return_if_fail (shell_introspect->num_listeners > 0);
+
+  shell_introspect->num_listeners--;
+  if (shell_introspect->num_listeners == 0)
+    {
+      g_list_free_full (shell_introspect->windows,
+                        (GDestroyNotify) window_free);
+      shell_introspect->windows = NULL;
+    }
+}
+
+const char *
+window_get_title (Window *window)
+{
+  return window->title;
+}
+
+const char *
+window_get_app_id (Window *window)
+{
+  return window->app_id;
+}
+
+const uint64_t
+window_get_id (Window *window)
+{
+  return window->id;
+}
+
+gboolean
+shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
+                                         gboolean        *out_animations_enabled)
+{
+  if (!shell_introspect->animations_enabled_valid)
+    return FALSE;
+
+  *out_animations_enabled = shell_introspect->animations_enabled;
+  return TRUE;
 }
