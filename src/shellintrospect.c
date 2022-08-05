@@ -83,12 +83,15 @@ get_windows_cb (GObject *source_object,
   uint64_t id;
   GVariant *params = NULL;
 
+  g_clear_object (&shell_introspect->cancellable);
+
   if (!org_gnome_shell_introspect_call_get_windows_finish (shell_introspect->proxy,
                                                            &windows_variant,
                                                            res,
                                                            &error))
     {
-      g_warning ("Failed to get window list: %s", error->message);
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        g_warning ("Failed to get window list: %s", error->message);
       return;
     }
 
@@ -127,6 +130,10 @@ static void
 sync_state (ShellIntrospect *shell_introspect)
 {
   g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
+
+  g_cancellable_cancel (shell_introspect->cancellable);
+  g_clear_object (&shell_introspect->cancellable);
+  shell_introspect->cancellable = g_cancellable_new ();
 
   org_gnome_shell_introspect_call_get_windows (shell_introspect->proxy,
                                                shell_introspect->cancellable,
