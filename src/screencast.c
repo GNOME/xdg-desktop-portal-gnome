@@ -436,16 +436,17 @@ find_best_window_by_app_id_and_title (const char *app_id,
                                       const char *title)
 {
   ShellIntrospect *shell_introspect = shell_introspect_get ();
+  GPtrArray *windows;
   Window *best_match;
   glong best_match_distance;
-  GList *l;
 
   best_match = NULL;
   best_match_distance = G_MAXLONG;
 
-  for (l = shell_introspect_get_windows (shell_introspect); l; l = l->next)
+  windows = shell_introspect_get_windows (shell_introspect);
+  for (size_t i = 0; windows && i < windows->len; i++)
     {
-      Window *window = l->data;
+      Window *window = g_ptr_array_index (windows, i);
       glong distance;
 
       if (g_strcmp0 (window_get_app_id (window), app_id) != 0)

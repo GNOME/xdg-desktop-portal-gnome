@@ -189,8 +189,7 @@ update_windows_list (ScreenCastWidget *widget)
   GtkListBox *window_list = GTK_LIST_BOX (widget->window_list);
   GtkWidget *toplevel;
   GtkWidget *child;
-  GList *windows;
-  GList *l;
+  GPtrArray *windows;
 
   while ((child = gtk_widget_get_first_child (GTK_WIDGET (window_list))) != NULL)
     gtk_list_box_remove (window_list, child);
@@ -200,9 +199,9 @@ update_windows_list (ScreenCastWidget *widget)
     return;
 
   windows = shell_introspect_get_windows (widget->shell_introspect);
-  for (l = windows; l; l = l->next)
+  for (size_t i = 0; windows && i < windows->len; i++)
     {
-      Window *window = l->data;
+      Window *window = g_ptr_array_index (windows, i);
       GtkWidget *window_widget;
 
       if (should_skip_window (window, GTK_WINDOW (toplevel)))

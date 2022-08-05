@@ -40,7 +40,7 @@ const char * window_get_title (Window *window);
 
 const uint64_t window_get_id (Window *window);
 
-GList * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
+GPtrArray * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 
 gboolean shell_introspect_are_animations_enabled (ShellIntrospect *introspect,
                                                   gboolean        *enable_animations);
