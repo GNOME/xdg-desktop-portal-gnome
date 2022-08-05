@@ -40,7 +40,7 @@ struct _ShellIntrospect
 
   unsigned int version;
 
-  GList *windows;
+  GPtrArray *windows;
 
   int num_listeners;
 
@@ -76,15 +76,14 @@ get_windows_cb (GObject *source_object,
                 gpointer user_data)
 {
   ShellIntrospect *shell_introspect = user_data;
+  g_autoptr(GPtrArray) windows = NULL;
   g_autoptr(GVariant) windows_variant = NULL;
   g_autoptr(GError) error = NULL;
   GVariantIter iter;
   uint64_t id;
   GVariant *params = NULL;
-  GList *windows = NULL;
 
-  g_list_free_full (shell_introspect->windows, (GDestroyNotify) window_free);
-  shell_introspect->windows = NULL;
+  g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
 
   if (!org_gnome_shell_introspect_call_get_windows_finish (shell_introspect->proxy,
                                                            &windows_variant,
@@ -96,6 +95,10 @@ get_windows_cb (GObject *source_object,
     }
 
   g_variant_iter_init (&iter, windows_variant);
+
+  windows = g_ptr_array_new_full (g_variant_iter_n_children (&iter),
+                                  (GDestroyNotify) window_free);
+
   while (g_variant_iter_loop (&iter, "{t@a{sv}}", &id, &params))
     {
       char *app_id = NULL;
@@ -113,12 +116,12 @@ get_windows_cb (GObject *source_object,
         .title = title,
         .app_id = app_id
       };
-      windows = g_list_prepend (windows, window);
+      g_ptr_array_add (windows, window);
 
       g_clear_pointer (&params, g_variant_unref);
     }
 
-  shell_introspect->windows = windows;
+  shell_introspect->windows = g_steal_pointer (&windows);
   g_signal_emit (shell_introspect, signals[WINDOWS_CHANGED], 0);
 }
 
@@ -264,7 +267,7 @@ shell_introspect_get (void)
   return shell_introspect;
 }
 
-GList *
+GPtrArray *
 shell_introspect_get_windows (ShellIntrospect *shell_introspect)
 {
   return shell_introspect->windows;
@@ -286,11 +289,7 @@ shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
 
   shell_introspect->num_listeners--;
   if (shell_introspect->num_listeners == 0)
-    {
-      g_list_free_full (shell_introspect->windows,
-                        (GDestroyNotify) window_free);
-      shell_introspect->windows = NULL;
-    }
+    g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
 }
 
 const char *
