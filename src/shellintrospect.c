@@ -83,8 +83,6 @@ get_windows_cb (GObject *source_object,
   uint64_t id;
   GVariant *params = NULL;
 
-  g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
-
   if (!org_gnome_shell_introspect_call_get_windows_finish (shell_introspect->proxy,
                                                            &windows_variant,
                                                            res,
@@ -128,6 +126,8 @@ get_windows_cb (GObject *source_object,
 static void
 sync_state (ShellIntrospect *shell_introspect)
 {
+  g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
+
   org_gnome_shell_introspect_call_get_windows (shell_introspect->proxy,
                                                shell_introspect->cancellable,
                                                get_windows_cb,
@@ -319,4 +319,15 @@ shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
 
   *out_animations_enabled = shell_introspect->animations_enabled;
   return TRUE;
+}
+
+void
+shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect)
+{
+  g_assert (shell_introspect->num_listeners > 0);
+
+  sync_state (shell_introspect);
+
+  while (!shell_introspect->windows)
+    g_main_context_iteration (NULL, TRUE);
 }

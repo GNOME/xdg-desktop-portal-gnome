@@ -444,6 +444,7 @@ find_best_window_by_app_id_and_title (const char *app_id,
   best_match_distance = G_MAXLONG;
 
   shell_introspect_ref_listeners (shell_introspect);
+  shell_introspect_wait_for_windows (shell_introspect);
 
   windows = shell_introspect_get_windows (shell_introspect);
   for (size_t i = 0; windows && i < windows->len; i++)
