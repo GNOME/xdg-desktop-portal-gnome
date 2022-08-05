@@ -42,7 +42,7 @@ const uint64_t window_get_id (Window *window);
 
 GPtrArray * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 
-gboolean shell_introspect_are_animations_enabled (ShellIntrospect *introspect,
+gboolean shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
                                                   gboolean        *enable_animations);
 
 void shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect);
