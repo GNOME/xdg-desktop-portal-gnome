@@ -44,3 +44,5 @@ GPtrArray * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 
 gboolean shell_introspect_are_animations_enabled (ShellIntrospect *introspect,
                                                   gboolean        *enable_animations);
+
+void shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect);
