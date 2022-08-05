@@ -32,6 +32,7 @@ struct _ScreenshotDialog {
 
   OrgGnomeShellScreenshot *shell;
   GCancellable *cancellable;
+  gboolean skip_dialog;
 };
 
 struct _ScreenshotDialogClass {
@@ -140,8 +141,16 @@ static void
 maybe_show_screenshot (ScreenshotDialog *dialog,
                        const char       *filename)
 {
-  show_screenshot (dialog, filename);
-  gtk_widget_show (GTK_WIDGET (dialog));
+  if (dialog->skip_dialog)
+    {
+      gtk_widget_hide (GTK_WIDGET (dialog));
+      g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_OK, filename);
+    }
+  else
+    {
+      show_screenshot (dialog, filename);
+      gtk_widget_show (GTK_WIDGET (dialog));
+    }
 }
 
 static void
@@ -407,6 +416,7 @@ screenshot_dialog_class_init (ScreenshotDialogClass *class)
 
 ScreenshotDialog *
 screenshot_dialog_new (const char *app_id,
+                       gboolean permission_store_checked,
                        gboolean interactive,
                        OrgGnomeShellScreenshot *shell)
 {
@@ -431,6 +441,7 @@ screenshot_dialog_new (const char *app_id,
   gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
 
   dialog->shell = g_object_ref (shell);
+  dialog->skip_dialog = permission_store_checked && !interactive;
 
   if (interactive)
     show_options (dialog);

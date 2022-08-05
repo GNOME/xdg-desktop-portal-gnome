@@ -8,5 +8,6 @@ typedef struct _ScreenshotDialog ScreenshotDialog;
 typedef struct _ScreenshotDialogClass ScreenshotDialogClass;
 
 ScreenshotDialog * screenshot_dialog_new (const char *app_id,
+                                          gboolean permission_store_checked,
                                           gboolean interactive,
                                           OrgGnomeShellScreenshot *shell);
