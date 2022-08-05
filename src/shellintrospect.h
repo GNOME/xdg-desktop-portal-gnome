@@ -28,6 +28,12 @@ typedef struct _Window Window;
 G_DECLARE_FINAL_TYPE (ShellIntrospect, shell_introspect,
                       SHELL, INTROSPECT, GObject)
 
+ShellIntrospect * shell_introspect_get (void);
+
+void shell_introspect_ref_listeners (ShellIntrospect *shell_introspect);
+
+void shell_introspect_unref_listeners (ShellIntrospect *shell_introspect);
+
 const char * window_get_app_id (Window *window);
 
 const char * window_get_title (Window *window);
@@ -38,9 +44,3 @@ GList * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 
 gboolean shell_introspect_are_animations_enabled (ShellIntrospect *introspect,
                                                   gboolean        *enable_animations);
-
-void shell_introspect_ref_listeners (ShellIntrospect *shell_introspect);
-
-void shell_introspect_unref_listeners (ShellIntrospect *shell_introspect);
-
-ShellIntrospect * shell_introspect_get (void);
