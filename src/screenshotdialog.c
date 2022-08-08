@@ -32,7 +32,6 @@ struct _ScreenshotDialog {
 
   OrgGnomeShellScreenshot *shell;
   GCancellable *cancellable;
-  gboolean skip_dialog;
 };
 
 struct _ScreenshotDialogClass {
@@ -138,22 +137,6 @@ show_screenshot (ScreenshotDialog *dialog,
 }
 
 static void
-maybe_show_screenshot (ScreenshotDialog *dialog,
-                       const char       *filename)
-{
-  if (dialog->skip_dialog)
-    {
-      gtk_widget_hide (GTK_WIDGET (dialog));
-      g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_OK, filename);
-    }
-  else
-    {
-      show_screenshot (dialog, filename);
-      gtk_widget_show (GTK_WIDGET (dialog));
-    }
-}
-
-static void
 screenshot_done (GObject *source,
                  GAsyncResult *result,
                  gpointer data)
@@ -173,7 +156,8 @@ screenshot_done (GObject *source,
       return;
     }
 
-  maybe_show_screenshot (dialog, filename);
+  show_screenshot (dialog, filename);
+  gtk_widget_show (GTK_WIDGET (dialog));
 }
 
 static void
@@ -196,7 +180,8 @@ screenshot_window_done (GObject *source,
       return;
     }
 
-  maybe_show_screenshot (dialog, filename);
+  show_screenshot (dialog, filename);
+  gtk_widget_show (GTK_WIDGET (dialog));
 }
 
 static void
@@ -219,7 +204,8 @@ screenshot_area_done (GObject *source,
       return;
     }
 
-  maybe_show_screenshot (dialog, filename);
+  show_screenshot (dialog, filename);
+  gtk_widget_show (GTK_WIDGET (dialog));
 }
 
 
@@ -416,7 +402,6 @@ screenshot_dialog_class_init (ScreenshotDialogClass *class)
 
 ScreenshotDialog *
 screenshot_dialog_new (const char *app_id,
-                       uint32_t screenshot_portal_version,
                        gboolean interactive,
                        OrgGnomeShellScreenshot *shell)
 {
@@ -441,7 +426,6 @@ screenshot_dialog_new (const char *app_id,
   gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
 
   dialog->shell = g_object_ref (shell);
-  dialog->skip_dialog = screenshot_portal_version >= 3 && !interactive;
 
   if (interactive)
     show_options (dialog);

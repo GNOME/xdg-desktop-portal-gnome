@@ -39,8 +39,6 @@ typedef struct {
   const char *retval;
 } ScreenshotDialogHandle;
 
-static uint32_t screenshot_portal_version = 0;
-
 static void
 screenshot_dialog_handle_free (gpointer data)
 {
@@ -192,10 +190,7 @@ handle_screenshot (XdpImplScreenshot *object,
                               NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id,
-                                              screenshot_portal_version,
-                                              interactive,
-                                              shell));
+  dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id, interactive, shell));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, modal);
 
@@ -299,8 +294,6 @@ gboolean
 screenshot_init (GDBusConnection *bus,
                  GError **error)
 {
-  g_autoptr(GVariant) version_variant = NULL;
-  g_autoptr(GVariant) result = NULL;
   GDBusInterfaceSkeleton *helper;
 
   helper = G_DBUS_INTERFACE_SKELETON (xdp_impl_screenshot_skeleton_new ());
@@ -321,28 +314,6 @@ screenshot_init (GDBusConnection *bus,
                                                      NULL,
                                                      error);
   if (shell == NULL)
-    return FALSE;
-
-  result = g_dbus_connection_call_sync (bus,
-                                        "org.freedesktop.portal.Desktop",
-                                        "/org/freedesktop/portal/desktop",
-                                        "org.freedesktop.DBus.Properties",
-                                        "Get",
-                                        g_variant_new ("(ss)", "org.freedesktop.portal.Screenshot", "version"),
-                                        G_VARIANT_TYPE ("(v)"),
-                                        G_DBUS_CALL_FLAGS_NO_AUTO_START,
-                                        -1,
-                                        NULL,
-                                        error);
-
-  version_variant = g_variant_get_child_value (result, 0);
-
-  if (!version_variant)
-    return FALSE;
-
-  g_variant_get_child (version_variant, 0, "u", &screenshot_portal_version);
-
-  if (screenshot_portal_version == 0)
     return FALSE;
 
   g_debug ("providing %s", g_dbus_interface_skeleton_get_info (helper)->name);
