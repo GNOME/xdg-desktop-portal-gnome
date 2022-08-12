@@ -1,3 +1,10 @@
+Changes in 43.beta
+=================
+
+- Don't show screenshot sharing dialog for non-interactive screenshots
+- Fix restoring window screencast streams
+- Translation updates
+
 Changes in 43.alpha
 =================
 
