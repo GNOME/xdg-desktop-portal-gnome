@@ -47,7 +47,7 @@ Session *lookup_session (const char *id);
 
 Session *session_new (const char *id);
 
-void session_close (Session *session);
+void session_close (Session *session, gboolean notify);
 
 gboolean session_export (Session *session,
                          GDBusConnection *connection,

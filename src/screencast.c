@@ -251,7 +251,7 @@ static void
 on_gnome_screen_cast_session_closed (GnomeScreenCastSession *gnome_screen_cast_session,
                                      ScreenCastSession      *screen_cast_session)
 {
-  session_close ((Session *)screen_cast_session);
+  session_close ((Session *)screen_cast_session, TRUE);
 }
 
 static gboolean

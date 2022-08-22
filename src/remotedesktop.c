@@ -267,7 +267,7 @@ static void
 on_mutter_session_closed (OrgGnomeMutterRemoteDesktopSession *mutter_session_proxy,
                           RemoteDesktopSession *remote_desktop_session)
 {
-  session_close ((Session *)remote_desktop_session);
+  session_close ((Session *)remote_desktop_session, TRUE);
 }
 
 static RemoteDesktopSession *

@@ -73,8 +73,15 @@ session_unexport (Session *session)
 }
 
 void
-session_close (Session *session)
+session_close (Session *session, gboolean notify)
 {
+  if (notify)
+    {
+      GVariantBuilder details_builder;
+      g_variant_builder_init (&details_builder, G_VARIANT_TYPE_VARDICT);
+      g_signal_emit_by_name (session, "closed", g_variant_builder_end (&details_builder));
+    }
+
   if (session->exported)
     session_unexport (session);
 
@@ -92,7 +99,7 @@ handle_close (XdpImplSession *object,
   Session *session = (Session *)object;
 
   if (!session->closed)
-    session_close (session);
+    session_close (session, FALSE);
 
   xdp_impl_session_complete_close (object, invocation);
 
