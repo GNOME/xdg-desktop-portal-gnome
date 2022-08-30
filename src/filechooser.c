@@ -53,6 +53,7 @@ typedef struct {
   GtkFileChooserAction action;
   gboolean multiple;
   ExternalWindow *external_parent;
+  char *app_id;
 
   GSList *files;
 
@@ -71,6 +72,7 @@ file_dialog_handle_free (gpointer data)
 {
   FileDialogHandle *handle = data;
 
+  g_clear_pointer (&handle->app_id, g_free);
   g_clear_object (&handle->external_parent);
   g_clear_object (&handle->request);
   g_slist_free_full (handle->files, g_free);
@@ -488,6 +490,7 @@ handle_open (XdpImplFileChooser    *object,
   handle->choices = g_hash_table_new (g_str_hash, g_str_equal);
   handle->external_parent = external_parent;
   handle->allow_write = TRUE;
+  handle->app_id = g_strdup (arg_app_id);
 
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
 
