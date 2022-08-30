@@ -44,6 +44,8 @@
 #include "utils.h"
 #include "externalwindow.h"
 
+#define FILECHOOSER_SETTINGS_SCHEMA "org.gnome.portal.filechooser"
+#define FILECHOOSER_SETTINGS_PATH "/org/gnome/portal/filechooser/"
 
 typedef struct {
   XdpImplFileChooser *impl;
@@ -87,6 +89,83 @@ file_dialog_handle_close (FileDialogHandle *handle)
 {
   g_clear_pointer (&handle->dialog, gtk_window_destroy);
   file_dialog_handle_free (handle);
+}
+
+static GSettings*
+get_filechooser_settings_for_app_id (const char *app_id)
+{
+  g_autoptr(GSettings) settings = NULL;
+  g_autoptr(GString) path = NULL;
+
+  g_assert (app_id && g_utf8_validate (app_id, -1, NULL));
+
+  path = g_string_new (FILECHOOSER_SETTINGS_PATH);
+  g_string_append (path, app_id);
+  g_string_append (path, "/");
+
+  settings = g_settings_new_with_path (FILECHOOSER_SETTINGS_SCHEMA, path->str);
+
+  return g_steal_pointer (&settings);
+}
+
+static void
+restore_last_folder (FileDialogHandle *handle,
+                     GtkFileChooser   *filechooser)
+{
+  g_autoptr(GSettings) settings = NULL;
+  g_autofree char *last_folder_path = NULL;
+
+  if (!handle->app_id || *handle->app_id == '\0')
+    return;
+
+  settings = get_filechooser_settings_for_app_id (handle->app_id);
+  last_folder_path = g_settings_get_string (settings, "last-folder-path");
+
+  if (last_folder_path && *last_folder_path)
+    {
+      g_autoptr(GFile) last_folder = g_file_new_for_path (last_folder_path);
+      gtk_file_chooser_set_current_folder (filechooser, last_folder, NULL);
+    }
+}
+
+static void
+save_last_folder (FileDialogHandle *handle,
+                  GtkFileChooser   *filechooser)
+{
+  g_autoptr(GListModel) files = NULL;
+  g_autofree char *path = NULL;
+
+  if (!handle->app_id || *handle->app_id == '\0')
+    return;
+
+  files = gtk_file_chooser_get_files (filechooser);
+
+  for (guint i = g_list_model_get_n_items (files); i > 0; i--)
+    {
+      g_autoptr(GFile) file = g_list_model_get_item (files, i - 1);
+
+      if (g_file_is_native (file))
+        {
+          path = g_file_get_path (file);
+
+          if (!g_file_test (path, G_FILE_TEST_IS_DIR))
+            {
+              g_autoptr(GFile) parent = g_file_get_parent (file);
+
+              g_clear_pointer (&path, g_free);
+              path = g_file_get_path (parent);
+            }
+
+          if (path)
+            break;
+        }
+    }
+
+  if (path)
+    {
+      g_autoptr(GSettings) settings = get_filechooser_settings_for_app_id (handle->app_id);
+      g_settings_set_string (settings, "last-folder-path", path);
+    }
 }
 
 static void
@@ -285,6 +364,7 @@ file_chooser_response (GtkWidget *widget,
       handle->response = 0;
       handle->filter = gtk_file_chooser_get_filter (GTK_FILE_CHOOSER(widget));
       handle->uris = get_uris (GTK_FILE_CHOOSER (widget));
+      save_last_folder (handle, GTK_FILE_CHOOSER (widget));
       break;
     }
 
@@ -588,6 +668,10 @@ handle_open (XdpImplFileChooser    *object,
               g_autoptr(GFile) file = g_file_new_for_path (path);
               gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), file, NULL);
             }
+          else
+            {
+              restore_last_folder (handle, GTK_FILE_CHOOSER (dialog));
+            }
         }
     }
   else if (strcmp (method_name, "SaveFiles") == 0)
@@ -601,6 +685,10 @@ handle_open (XdpImplFileChooser    *object,
           g_autoptr(GFile) file = g_file_new_for_path (path);
           gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), file, NULL);
         }
+      else
+        {
+          restore_last_folder (handle, GTK_FILE_CHOOSER (dialog));
+        }
 
       if (g_variant_lookup (arg_options, "files", "aay", &iter))
         {
@@ -610,6 +698,10 @@ handle_open (XdpImplFileChooser    *object,
 
           g_variant_iter_free (iter);
         }
+    }
+  else
+    {
+      restore_last_folder (handle, GTK_FILE_CHOOSER (dialog));
     }
 
   g_object_unref (fake_parent);
