@@ -179,10 +179,11 @@ send_response (FileDialogHandle *handle)
       g_variant_builder_add (&uri_builder, "s", l->data);
     }
 
-  if (handle->filter) {
-    GVariant *current_filter_variant = gtk_file_filter_to_gvariant (handle->filter);
-    g_variant_builder_add (&opt_builder, "{sv}", "current_filter", current_filter_variant);
-  }
+  if (handle->filter)
+    {
+      GVariant *current_filter_variant = gtk_file_filter_to_gvariant (handle->filter);
+      g_variant_builder_add (&opt_builder, "{sv}", "current_filter", current_filter_variant);
+    }
 
   g_variant_builder_add (&opt_builder, "{sv}", "uris", g_variant_builder_end (&uri_builder));
   g_variant_builder_add (&opt_builder, "{sv}", "writable", g_variant_new_boolean (handle->allow_write));
