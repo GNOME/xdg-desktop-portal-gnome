@@ -2,58 +2,59 @@
 # Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2016-2022.
+# Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2022-01-07 19:48-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2022-08-30 20:44+0000\n"
+"PO-Revision-Date: 2022-08-03 07:41-0300\n"
+"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 40.0\n"
+"X-DL-Team: pt_BR\n"
+"X-DL-Module: xdg-desktop-portal-gnome\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Selecionar uma imagem"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Selecionar"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Limpar"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Imagens"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Compartilhar suas informações pessoais com %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr ""
@@ -63,14 +64,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Compartilhar detalhes"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_Compartilhar"
 
@@ -114,7 +116,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Abrir com…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -159,15 +161,27 @@ msgstr "Atividade em segundo plano"
 msgid "Find out more"
 msgstr "Encontrar mais"
 
-#: src/filechooser.c:446
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Criar aplicativo web"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Criar aplicativo"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "C_riar"
+
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Selecionar"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:713
 msgid "Open files read-only"
 msgstr "Abrir arquivos em somente leitura"
 
@@ -187,21 +201,21 @@ msgstr "Compartilhamento de tela"
 msgid "Virtual monitor"
 msgstr "Monitor virtual"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Selecione o monitor para compartilhar com %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Selecione a janela para compartilhar com %s"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select monitor to share with the requesting application"
 msgstr "Selecione o monitor para compartilhar com aplicativo requisitante"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:549
 msgid "Select window to share with the requesting application"
 msgstr "Selecione a janela para compartilhar com aplicativo requisitante"
 
@@ -217,64 +231,64 @@ msgstr "Lembrar desta seleção"
 msgid "Entire Screen"
 msgstr "Toda a tela"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Compartilhar essa captura de tela com %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Compartilhar essa captura de tela com o aplicativo requisitante?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Captura de tela"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Opções…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Capturar de t_ela"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Capturar de tela"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Pegar a tela _inteira"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Pegar a janela at_ual"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "_Selecionar área para capturar"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Capturar após intervalo _de"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "segundos"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efeitos"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Incluir cu_rsor"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Incluir a _borda da janela"
 
-#: src/settings.c:217
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Configuração solicitada não foi encontrada"
 
@@ -290,9 +304,12 @@ msgstr "Definir"
 msgid "Failed to load image file"
 msgstr "Falha ao carregar o arquivo de imagem"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Atividades"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Cursor do mouse"
