@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2022-03-14 01:01+0100\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-09-01 02:22+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -24,40 +24,33 @@ msgstr ""
 msgid "Portal"
 msgstr "Portál"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Válasszon lemezképet"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Mégse"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Kiválasztás"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Törlés"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Lemezképek"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
-#| msgid "Share your personal information with %s?"
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Megosztja a személyes információit ezzel: %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
-#| msgid "Share your personal information with the requesting application?"
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Megosztja a személyes információit a kérelmező alkalmazással? %s"
 
@@ -65,14 +58,15 @@ msgstr "Megosztja a személyes információit a kérelmező alkalmazással? %s"
 msgid "Share Details"
 msgstr "Részletek megosztása"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Mégse"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "Meg_osztás"
 
@@ -103,14 +97,14 @@ msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
 msgstr ""
-"Nincsenek olyan alkalmazások telepítve, amelyek meg tudják nyitni a(z) „%s”"
-" fájlt. További alkalmazásokat találhat a Szoftverben"
+"Nincsenek olyan alkalmazások telepítve, amelyek meg tudják nyitni a(z) „%s” "
+"fájlt. További alkalmazásokat találhat a Szoftverben"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
-"Nincs megfelelő alkalmazás telepítve. További alkalmazásokat találhat a"
-" Szoftverben."
+"Nincs megfelelő alkalmazás telepítve. További alkalmazásokat találhat a "
+"Szoftverben."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
@@ -161,6 +155,20 @@ msgstr "Háttérbeli tevékenység"
 msgid "Find out more"
 msgstr "Tudjon meg többet"
 
+#: src/dynamic-launcher.c:257
+#| msgid "Choose an application."
+msgid "Create Web Application"
+msgstr "Webalkalmazás létrehozása"
+
+#: src/dynamic-launcher.c:259
+#| msgid "Choose an application."
+msgid "Create Application"
+msgstr "Alkalmazás létrehozása"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "_Létrehozás"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Kiválasztás"
@@ -169,7 +177,7 @@ msgstr "_Kiválasztás"
 msgid "_Save"
 msgstr "_Mentés"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Fájlok megnyitása csak olvasásra"
 
@@ -219,64 +227,64 @@ msgstr "Emlékezzen erre a kijelölésre"
 msgid "Entire Screen"
 msgstr "Teljes képernyő"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Megosztja ezt a képernyőképet ezzel: %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Megosztja ezt a képernyőképet a kérő alkalmazással?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Képernyőkép"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Beállítások…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "_Képernyőkép készítése"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Képernyőkép készítése"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "A teljes képernyő _rögzítése"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "A jelenlegi _ablak rögzítése"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Rögzítendő _terület kijelölése"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Rögzítés ennyi késleltetés _után"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "másodperc"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Hatások"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "_Mutató felvétele"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Az ablak _szegélyét is tartalmazza"
 
-#: src/settings.c:217
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "A kért beállítás nem található"
 
@@ -292,6 +300,6 @@ msgstr "Beállítás"
 msgid "Failed to load image file"
 msgstr "A képfájl betöltése sikertelen"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Tevékenységek"
