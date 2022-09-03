@@ -1,3 +1,10 @@
+Changes in 43.rc
+=================
+
+- Remember last app folder in the Filechooser portal
+- Improve Closed signal emission in the RemoteDesktop/Screencast portal [#508]
+- Translation updates
+
 Changes in 43.beta
 =================
 
