@@ -9,56 +9,51 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-02-07 11:10+0000\n"
-"PO-Revision-Date: 2022-02-13 19:58+0100\n"
+"POT-Creation-Date: 2022-09-03 20:40+0000\n"
+"PO-Revision-Date: 2022-09-05 22:04+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
-"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
+"com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Izbor slike"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Izbor"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Počisti"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Slike"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Ali želite objaviti osebne podatke za %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
-#| msgid "Share this screenshot with the requesting application?"
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Ali želite objaviti osebne podatke s programom? %s"
 
@@ -66,7 +61,8 @@ msgstr "Ali želite objaviti osebne podatke s programom? %s"
 msgid "Share Details"
 msgstr "Objavi podrobnosti"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
 #: src/screenshotdialog.ui:14
 msgid "_Cancel"
@@ -117,7 +113,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Odpri s programom …"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_Odpri"
 
@@ -161,15 +157,27 @@ msgstr "Ozadnja dejavnost"
 msgid "Find out more"
 msgstr "Več o tem"
 
-#: src/filechooser.c:446
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Ustvari spletni program"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Ustvari program"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "_Ustvari"
+
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Izbor"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Shrani"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:713
 msgid "Open files read-only"
 msgstr "Odpri datoteke le za branje"
 
@@ -189,21 +197,21 @@ msgstr "Souporaba zaslona"
 msgid "Virtual monitor"
 msgstr "Navidezni monitor"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Izbor zaslona za souporabo z %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Izbor okna za souporabo z %s"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select monitor to share with the requesting application"
 msgstr "Izberite zaslon za souporabo z zahtevanim programom"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:549
 msgid "Select window to share with the requesting application"
 msgstr "Izberite okno za souporabo z zahtevanim programom"
 
@@ -219,12 +227,12 @@ msgstr "Zapomni si izbiro"
 msgid "Entire Screen"
 msgstr "Celoten zaslon"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Ali želite omogočiti pogled zaslonske slike z %s?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Ali želite uporabiti zaslonsko sliko z zahtevanim programom?"
 
@@ -276,7 +284,7 @@ msgstr "Vključi _kazalko"
 msgid "Include the window _border"
 msgstr "Vključi tudi _robove okna"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Zahtevane nastavitve ni mogoče najti"
 
@@ -292,9 +300,12 @@ msgstr "Nastavi"
 msgid "Failed to load image file"
 msgstr "Nalaganje datoteke odtisa je spodletelo"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Dejavnosti"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
 
 #~ msgid "Pointer"
 #~ msgstr "Kazalec"
