@@ -2,7 +2,7 @@
 # Copyright (C) 2016-2017 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Marek Černocký <marek@manet.cz>, 2016, 2021.
+# Marek Černocký <marek@manet.cz>, 2016, 2021, 2022.
 # Daniel Rusek <mail@asciiwolf.com>, 2017.
 #
 msgid ""
@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2021-12-18 12:27+0000\n"
-"PO-Revision-Date: 2021-12-21 23:04+0100\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-08-11 22:52+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -25,37 +25,32 @@ msgstr ""
 msgid "Portal"
 msgstr "Portál"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Vyberte obrázek"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Vybrat"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Vymazat"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Sdílet vaše osobní informace s aplikací %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr "Sdílet vaše osobní informace s aplikací, která o to žádá? %s"
@@ -64,14 +59,15 @@ msgstr "Sdílet vaše osobní informace s aplikací, která o to žádá? %s"
 msgid "Share Details"
 msgstr "Sdílet detaily"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:12
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:35
+#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
 msgid "_Share"
 msgstr "_Sdílet"
 
@@ -160,6 +156,18 @@ msgstr "Aktivita na pozadí"
 msgid "Find out more"
 msgstr "Zjistit více"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Vytvoření webové aplikace"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Vytvoření aplikace"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "_Vytvořit"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Vybrat"
@@ -168,7 +176,7 @@ msgstr "_Vybrat"
 msgid "_Save"
 msgstr "_Uložit"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Otevřít soubory pouze pro čtení"
 
@@ -218,64 +226,64 @@ msgstr "Pamatovat si tento výběr"
 msgid "Entire Screen"
 msgstr "Celá obrazovka"
 
-#: src/screenshotdialog.c:442
+#: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Sdílet tento snímek obrazovky s aplikací %s?"
 
-#: src/screenshotdialog.c:446
+#: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
 msgstr "Sdílet tento snímek obrazovky s aplikací, která o to žádá?"
 
-#: src/screenshotdialog.ui:6
+#: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Snímek obrazovky"
 
-#: src/screenshotdialog.ui:28
+#: src/screenshotdialog.ui:30
 msgid "_Options…"
 msgstr "_Volby…"
 
-#: src/screenshotdialog.ui:53
+#: src/screenshotdialog.ui:55
 msgid "Take _Screenshot"
 msgstr "Zachytit _snímek obrazovky"
 
-#: src/screenshotdialog.ui:110
+#: src/screenshotdialog.ui:108
 msgid "Take Screenshot"
 msgstr "Zachytit snímek obrazovky"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
 msgstr "Zachytit celou ob_razovku"
 
-#: src/screenshotdialog.ui:130
+#: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
 msgstr "Zachytit akt_uální okno"
 
-#: src/screenshotdialog.ui:140
+#: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
 msgstr "Vybr_at zachytávanou oblast"
 
-#: src/screenshotdialog.ui:152
+#: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
 msgstr "Zachytit po pro_dlevě"
 
-#: src/screenshotdialog.ui:163
+#: src/screenshotdialog.ui:161
 msgid "seconds"
 msgstr "sekund"
 
-#: src/screenshotdialog.ui:172
+#: src/screenshotdialog.ui:170
 msgid "Effects"
 msgstr "Efekty"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:180
 msgid "Include _pointer"
 msgstr "Zahrnout _kurzor myši"
 
-#: src/screenshotdialog.ui:190
+#: src/screenshotdialog.ui:188
 msgid "Include the window _border"
 msgstr "Zahrnout _rámeček okna"
 
-#: src/settings.c:217
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Požadované nastavení nebylo nalezeno"
 
@@ -291,21 +299,6 @@ msgstr "Nastavit"
 msgid "Failed to load image file"
 msgstr "Selhalo načtení souboru obrázku"
 
-#: src/wallpaperpreview.ui:53
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Činnosti"
-
-#~ msgid "Pointer"
-#~ msgstr "Kurzor"
-
-#~ msgid "Keyboard"
-#~ msgstr "Klávesnice"
-
-#~ msgid "Touch screen"
-#~ msgstr "Dotyková obrazovka"
-
-#~ msgid "Select devices to share with %s"
-#~ msgstr "Vyberte zařízení pro sdílení s aplikací %s"
-
-#~ msgid "Select devices to share with the requesting application"
-#~ msgstr "Vyberte zařízení pro sdílení s aplikací, která o to žádá"
