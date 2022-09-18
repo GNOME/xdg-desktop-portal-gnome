@@ -1,5 +1,5 @@
 # Turkish translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2017-2019 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2017-2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
 # Muhammet Kara <muhammetk@gnome.org>, 2017, 2018.
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-05-09 05:56+0000\n"
+"POT-Creation-Date: 2022-08-06 14:26+0000\n"
 "PO-Revision-Date: 2022-05-24 10:20+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -195,21 +195,21 @@ msgstr "Ekran Paylaşımı"
 msgid "Virtual monitor"
 msgstr "Sanal monitör"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "%s ile paylaşılacak monitörü seç"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "%s ile paylaşılacak pencereyi seç"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select monitor to share with the requesting application"
 msgstr "İstekte bulunan uygulama ile paylaşılacak monitörü seç"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:549
 msgid "Select window to share with the requesting application"
 msgstr "İstekte bulunan uygulama ile paylaşılacak pencereyi seç"
 
@@ -282,7 +282,7 @@ msgstr "İ_mleçi içer"
 msgid "Include the window _border"
 msgstr "Pencere _kenarlığını içer"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "İstenen ayar bulunamadı"
 
@@ -298,74 +298,6 @@ msgstr "Belirle"
 msgid "Failed to load image file"
 msgstr "Resim dosyası yüklenirken hata oluştu"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Etkinlikler"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
-
-#~ msgid "Pointer"
-#~ msgstr "İşaretçi"
-
-#~ msgid "Keyboard"
-#~ msgstr "Klavye"
-
-#~ msgid "Touch screen"
-#~ msgstr "Dokunmatik ekran"
-
-#~ msgid "Select devices to share with %s"
-#~ msgstr "%s ile paylaşılacak cihazları seçin"
-
-#~ msgid "Select devices to share with the requesting application"
-#~ msgstr "İstekte bulunan uygulama ile paylaşılacak cihazları seçin"
-
-#~ msgid "Deny Access"
-#~ msgstr "Erişimi Reddet"
-
-#~ msgid "Grant Access"
-#~ msgstr "Erişime İzin Ver"
-
-#~ msgid "Make changes before sharing the information"
-#~ msgstr "Bilgileri paylaşmadan önce değişiklik yapın"
-
-#~ msgid "%s is running in the background."
-#~ msgstr "%s arkaplanda çalışıyor."
-
-#~ msgid "Set Lock Screen"
-#~ msgstr "Kilit Ekranı Belirle"
-
-#~ msgid "Set Background & Lock Screen"
-#~ msgstr "Arka Plan ve Kilit Ekranı Belirle"
-
-#~ msgid ""
-#~ "Select an application to open “%s”. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "“%s”i açmak için bir uygulama seçin. <a href='software'>Yazılımlar</a>'da "
-#~ "daha fazla uygulama bulabilirsiniz."
-
-#~ msgid ""
-#~ "Select an application. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Bir uygulama seçin. <a href='software'>Yazılımlar</a>'da daha fazla "
-#~ "uygulama bulabilirsiniz."
-
-#~ msgid "Unable to find a suitable application."
-#~ msgstr "Uygun bir uygulama bulunamadı."
-
-#~ msgid "No Applications Found"
-#~ msgstr "Hiçbir Uygulama Bulunamadı"
-
-#~ msgid "Find Compatible Applications in Software"
-#~ msgstr "Uyumlu Uygulamaları Yazılımlar'da Bul"
-
-#~ msgid "Forbid"
-#~ msgstr "Yasakla"
-
-#~ msgid "Ignore"
-#~ msgstr "Yoksay"
-
-#~ msgid "Screen casting"
-#~ msgstr "Ekran yayını"
