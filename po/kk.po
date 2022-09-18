@@ -8,60 +8,56 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-03-12 06:48+0000\n"
-"PO-Revision-Date: 2022-03-13 11:42+0500\n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2022-09-18 11:37+0600\n"
 "Last-Translator: \n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Портал"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Суретті таңдау"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Таңдау"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Тазарту"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Суреттер"
 
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
-msgstr ""
+msgstr "Жеке ақпаратыңызды %1$s үшін бөлісу керек пе? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
-msgstr ""
+msgstr "Жеке ақпаратыңызбен сұраған қолданбамен бөлісу керек пе? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
-msgstr ""
+msgstr "Бөлісу ақпараты"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:451
 #: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
 #: src/screenshotdialog.ui:14
 msgid "_Cancel"
@@ -82,12 +78,12 @@ msgstr "Пайдаланушы аты"
 
 #: src/appchooserdialog.c:229
 msgid "Failed to start Software"
-msgstr ""
+msgstr "БҚ қолданбасын іске қосу сәтсіз аяқталды"
 
 #: src/appchooserdialog.c:393
 #, c-format
 msgid "Choose an application to open the file “%s”."
-msgstr ""
+msgstr "\"%s\" файлын ашу үшін қолданбаны таңдаңыз."
 
 #: src/appchooserdialog.c:398
 msgid "Choose an application."
@@ -99,10 +95,14 @@ msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
 msgstr ""
+"\"%s\" аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды БҚ "
+"қолданбасынан табуға болады"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
+"Ешбір сай келетін қолданба орнатылмаған. Қосымша қолданбаларды БҚ "
+"қолданбасынан табуға болады"
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
@@ -118,12 +118,12 @@ msgstr "Қолжетімді қолданбалар жоқ"
 
 #: src/appchooserdialog.ui:144
 msgid "_Find More in Software"
-msgstr ""
+msgstr "БҚ қолданбасынан көбірек т_абу"
 
 #: src/background.c:214 src/background.c:305
 #, c-format
 msgid "“%s” is running in the background"
-msgstr ""
+msgstr "\"%s\" фонда орындалуда"
 
 #: src/background.c:216
 msgid ""
@@ -132,6 +132,10 @@ msgid ""
 "\n"
 "Note that forcing an application to quit might cause data loss."
 msgstr ""
+"Бұған маңызды себеп болуы мүмкін, бірақ қолданба ондай себепті көрсетпеді.\n"
+"\n"
+"Ескертеміз, қолданба жұмысын мәжбүрлетіп аяқтау нәтижесінде деректер "
+"жоғалуы мүмкін."
 
 #: src/background.c:219
 msgid "Force quit"
@@ -149,6 +153,18 @@ msgstr "Фондық әрекет"
 msgid "Find out more"
 msgstr "Көбірек табу"
 
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "Веб қолданбасын жасау"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "Қолданбаны жасау"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "Ж_асау"
+
 #: src/filechooser.c:446
 msgid "_Select"
 msgstr "_Таңдау"
@@ -157,7 +173,7 @@ msgstr "_Таңдау"
 msgid "_Save"
 msgstr "_сақтау"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "Файлдарды тек оқу үшін ашу"
 
@@ -180,20 +196,20 @@ msgstr "Виртуалды монитор"
 #: src/screencastwidget.c:542
 #, c-format
 msgid "Select monitor to share with %s"
-msgstr ""
+msgstr "%s үшін бөлісу үшін мониторды таңдау"
 
 #: src/screencastwidget.c:544
 #, c-format
 msgid "Select window to share with %s"
-msgstr ""
+msgstr "%s үшін бөлісу үшін терезені таңдау"
 
 #: src/screencastwidget.c:549
 msgid "Select monitor to share with the requesting application"
-msgstr ""
+msgstr "Сұраған қолданбамен бөлісу үшін мониторды таңдау"
 
 #: src/screencastwidget.c:550
 msgid "Select window to share with the requesting application"
-msgstr ""
+msgstr "Сұраған қолданбамен бөлісу үшін терезені таңдау"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
@@ -210,11 +226,11 @@ msgstr "Бүкіл экран"
 #: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
-msgstr ""
+msgstr "Бұл скриншотпен %s үшін бөлісу керек пе?"
 
 #: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
-msgstr ""
+msgstr "Бұл скриншотпен сұраған қолданбамен бөлісу керек пе?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
@@ -234,19 +250,19 @@ msgstr "Скриншотты түсіру"
 
 #: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
-msgstr ""
+msgstr "Толық эк_ранды түсіру"
 
 #: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
-msgstr ""
+msgstr "Ағымдағы тере_зені түсіру"
 
 #: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
-msgstr ""
+msgstr "Түсіру үшін _аймақты таңдау"
 
 #: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
-msgstr ""
+msgstr "Көрсетілген кі_дірістен кейін түсіру"
 
 #: src/screenshotdialog.ui:161
 msgid "seconds"
@@ -258,15 +274,15 @@ msgstr "Эффектілер"
 
 #: src/screenshotdialog.ui:180
 msgid "Include _pointer"
-msgstr ""
+msgstr "К_урсорды қоса түсіру"
 
 #: src/screenshotdialog.ui:188
 msgid "Include the window _border"
-msgstr ""
+msgstr "Терезе жақ_тауын қоса түсіру"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
-msgstr ""
+msgstr "Сұралған баптау табылмады"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -278,8 +294,11 @@ msgstr "Орнату"
 
 #: src/wallpaperdialog.ui:51
 msgid "Failed to load image file"
-msgstr ""
+msgstr "Сурет файлын жүктеу сәтсіз аяқталды"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Белсенділіктер"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
