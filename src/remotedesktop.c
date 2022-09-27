@@ -933,6 +933,51 @@ handle_notify_touch_up (XdpImplRemoteDesktop *object,
   return TRUE;
 }
 
+static gboolean
+handle_connect_to_eis (XdpImplRemoteDesktop *object,
+                       GDBusMethodInvocation *invocation,
+                       const char *arg_app_id,
+                       const char *arg_session_handle,
+                       GVariant *arg_options)
+{
+  RemoteDesktopSession *remote_desktop_session;
+  OrgGnomeMutterRemoteDesktopSession *proxy;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GUnixFDList) in_fd_list = NULL;
+  g_autoptr(GUnixFDList) out_fd_list = NULL;
+  GVariant *out_fd;
+  GVariantBuilder options_builder;
+  GVariant *options;
+
+  remote_desktop_session =
+    (RemoteDesktopSession *)lookup_session (arg_session_handle);
+  proxy = remote_desktop_session->mutter_session_proxy;
+
+  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+  options = g_variant_builder_end (&options_builder);
+
+  if (!org_gnome_mutter_remote_desktop_session_call_connect_to_eis_sync (proxy,
+                                                                         options,
+                                                                         in_fd_list,
+                                                                         &out_fd,
+                                                                         &out_fd_list,
+                                                                         NULL,
+                                                                         &error))
+    {
+      g_warning ("Failed to connect to EIS: %s", error->message);
+      g_dbus_method_invocation_return_error (invocation,
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Failed to connect to EIS");
+
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
+    }
+
+  xdp_impl_remote_desktop_complete_connect_to_eis (object, invocation, out_fd_list, out_fd);
+
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
+}
+
 static unsigned int
 gnome_device_types_xdp_device_types (unsigned int gnome_device_types)
 {
@@ -1001,6 +1046,8 @@ remote_desktop_name_appeared (GDBusConnection *connection,
                     G_CALLBACK (handle_notify_touch_motion), NULL);
   g_signal_connect (impl, "handle-notify-touch-up",
                     G_CALLBACK (handle_notify_touch_up), NULL);
+  g_signal_connect (impl, "handle-connect-to-eis",
+                    G_CALLBACK (handle_connect_to_eis), NULL);
 
   supported_device_types =
     org_gnome_mutter_remote_desktop_get_supported_device_types (remote_desktop);
