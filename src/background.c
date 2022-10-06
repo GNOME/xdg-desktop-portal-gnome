@@ -122,162 +122,6 @@ typedef enum {
   IGNORE = 2
 } NotifyResult;
 
-typedef struct {
-  XdpImplBackground *impl;
-  GDBusMethodInvocation *invocation;
-  Request *request;
-  char *id;
-  NotifyResult result;
-  char *name;
-  GtkWidget *dialog;
-} BackgroundHandle;
-
-static void
-background_handle_free (gpointer data)
-{
-  BackgroundHandle *handle = data;
-
-  g_object_unref (handle->request);
-  g_free (handle->id);
-  g_free (handle->name);
-
-  g_free (handle);
-}
-
-static void
-background_handle_close (BackgroundHandle *handle)
-{
-  GDBusConnection *connection;
-
-  connection = g_dbus_interface_skeleton_get_connection (G_DBUS_INTERFACE_SKELETON (handle->impl));
-  fdo_remove_notification (connection, handle->request->app_id, handle->id);
-
-  if (handle->dialog)
-    {
-      gtk_window_destroy (GTK_WINDOW (handle->dialog));
-      handle->dialog = NULL;
-    }
-
-  background_handle_free (handle);
-}
-
-static void
-send_response (BackgroundHandle *handle)
-{
-  GVariantBuilder opt_builder;
-  int response = 0;
-
-  g_variant_builder_init (&opt_builder, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_add (&opt_builder, "{sv}", "result", g_variant_new_uint32 (handle->result));
-
-  if (handle->request->exported)
-    request_unexport (handle->request);
-
-  xdp_impl_background_complete_notify_background (handle->impl,
-                                                  handle->invocation,
-                                                  response,
-                                                  g_variant_builder_end (&opt_builder));
-
-  background_handle_close (handle);
-}
-
-static void
-response_received (GtkDialog *dialog,
-                   int response,
-                   gpointer data)
-{
-  BackgroundHandle *handle = data;
-
-  switch (response)
-    {
-    case ALLOW:
-      g_debug ("Allow app %s to run in background", handle->request->app_id);
-      handle->result = ALLOW;
-      break;
-
-    case FORBID:
-      g_debug ("Forbid app %s to run in background", handle->request->app_id);
-      handle->result = FORBID;
-      break;
-    }
-
-  send_response (handle);
-}
-
-static void
-show_permission_dialog (BackgroundHandle *handle)
-{
-  GtkWidget *dialog;
-  GtkWidget *button;
-
-  dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, 
-                                   _("“%s” is running in the background"), handle->name);
-  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                            _("This might be for a legitimate reason, but the application "
-                                              "has not provided one."
-                                              "\n\nNote that forcing an application to quit might cause data loss."));
-  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Force quit"), FORBID);
-  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Allow"), ALLOW);
-
-  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), FORBID);
-  gtk_style_context_add_class (gtk_widget_get_style_context (button), "destructive-action");
-
-  g_signal_connect (dialog, "response", G_CALLBACK (response_received), handle);
-
-  handle->dialog = dialog;
-
-  gtk_window_present (GTK_WINDOW (dialog));
-}
-
-static void
-activate_action (GDBusConnection *connection,
-                 const char *app_id,
-                 const char *id,
-                 const char *name,
-                 GVariant *parameter,
-                 gpointer data)
-{
-  BackgroundHandle *handle = data;
-
-  if (g_str_equal (name, "show"))
-    {
-      g_debug ("Show background permissions for %s", handle->request->app_id);
-      show_permission_dialog (handle);
-    }
-  else
-    {
-      g_debug ("Unexpected action for app %s", handle->request->app_id);
-      handle->result = IGNORE;
-      send_response (handle);
-    }
-}
-
-static gboolean
-handle_close (XdpImplRequest *object,
-              GDBusMethodInvocation *invocation,
-              BackgroundHandle *handle)
-{
-  GVariantBuilder opt_builder;
-
-  g_variant_builder_init (&opt_builder, G_VARIANT_TYPE_VARDICT);
-
-  xdp_impl_background_complete_notify_background (handle->impl,
-                                                  handle->invocation,
-                                                  2,
-                                                  g_variant_builder_end (&opt_builder));
-
-  if (handle->request->exported)
-    request_unexport (handle->request);
-
-  background_handle_close (handle);
-
-  xdp_impl_request_complete_close (object, invocation);
-
-  return TRUE;
-}
-
-static int count;
-
 static gboolean
 handle_notify_background (XdpImplBackground *object,
                           GDBusMethodInvocation *invocation,
@@ -285,50 +129,15 @@ handle_notify_background (XdpImplBackground *object,
                           const char *arg_app_id,
                           const char *arg_name)
 {
-  g_autofree char *body = NULL;
-  GVariantBuilder builder;
-  GVariantBuilder bbuilder;
-  GVariantBuilder button;
-  GDBusConnection *connection;
-  const char *sender;
-  g_autoptr (Request) request = NULL;
-  BackgroundHandle *handle;
+  GVariantBuilder opt_builder;
 
-  g_debug ("background: handle NotifyBackground %s %s", arg_app_id, arg_name);
+  g_variant_builder_init (&opt_builder, G_VARIANT_TYPE_VARDICT);
+  g_variant_builder_add (&opt_builder, "{sv}", "result", g_variant_new_uint32 (ALLOW));
 
-  sender = g_dbus_method_invocation_get_sender (invocation);
-  request = request_new (sender, arg_app_id, arg_handle);
-
-  g_variant_builder_init (&builder, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_add (&builder, "{sv}", "title", g_variant_new_string (_("Background activity")));
-
-  body = g_strdup_printf (_("“%s” is running in the background"), arg_name);
-  g_variant_builder_add (&builder, "{sv}", "body", g_variant_new_string (body));
-  g_variant_builder_add (&builder, "{sv}", "default-action", g_variant_new_string ("show"));
-
-  g_variant_builder_init (&bbuilder, G_VARIANT_TYPE ("aa{sv}"));
-  g_variant_builder_init (&button, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_add (&button, "{sv}", "label", g_variant_new_string (_("Find out more")));
-  g_variant_builder_add (&button, "{sv}", "action", g_variant_new_string ("show"));
-
-  g_variant_builder_add (&bbuilder, "@a{sv}", g_variant_builder_end (&button));
-
-  g_variant_builder_add (&builder, "{sv}", "buttons", g_variant_builder_end (&bbuilder));
-
-  handle = g_new0 (BackgroundHandle, 1);
-  handle->impl = object;
-  handle->invocation = invocation;
-  handle->request = g_object_ref (request);
-  handle->name = g_strdup (arg_name);
-  handle->id = g_strdup_printf ("notify_background_%d", count++);
-
-  g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
-
-  connection = g_dbus_method_invocation_get_connection (invocation);
-
-  fdo_add_notification (connection, "", handle->id, g_variant_builder_end (&builder), activate_action, handle);
-
-  request_export (request, connection);
+  xdp_impl_background_complete_notify_background (object,
+                                                  invocation,
+                                                  2,
+                                                  g_variant_builder_end (&opt_builder));
 
   return TRUE;
 }
