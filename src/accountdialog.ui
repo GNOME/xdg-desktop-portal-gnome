@@ -4,6 +4,17 @@
     <property name="title" translatable="yes">Share Details</property>
     <property name="resizable">0</property>
 
+    <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">Escape</property>
+            <property name="action">action(window.close)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
     <child type="titlebar">
       <object class="GtkHeaderBar" id="titlebar">
         <property name="show-title-buttons">False</property>

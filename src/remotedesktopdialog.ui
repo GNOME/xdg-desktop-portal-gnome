@@ -5,6 +5,18 @@
     <property name="default-width">500</property>
     <property name="default-height">300</property>
     <property name="title" translatable="yes">Remote desktop</property>
+
+    <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">Escape</property>
+            <property name="action">action(window.close)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
     <child type="titlebar">
       <object class="GtkHeaderBar" id="titlebar">
         <property name="show-title-buttons">0</property>
