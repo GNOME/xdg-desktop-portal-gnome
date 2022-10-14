@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
 "POT-Creation-Date: 2022-06-20 19:19+0000\n"
-"PO-Revision-Date: 2022-06-30 15:21+0200\n"
+"PO-Revision-Date: 2022-10-14 16:41+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -96,10 +96,14 @@ msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
 "Software"
 msgstr ""
+"დაყენებული პროგრამებიდან %s-ის გახსნა არც ერთს არ შეუძლია. დააყენეთ მეტი "
+"პროგრამა"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
+"შესაბამისი აპლიკაცია დაყენებული არაა. მეტი აპლიკაციების პოვნა პროგრამებში "
+"შეგიძლიათ."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
@@ -115,12 +119,12 @@ msgstr "აპები მიუწვდოელია"
 
 #: src/appchooserdialog.ui:144
 msgid "_Find More in Software"
-msgstr ""
+msgstr "_მეტის პროგრამის პოვნა"
 
 #: src/background.c:214 src/background.c:305
 #, c-format
 msgid "“%s” is running in the background"
-msgstr ""
+msgstr "\"%s\" ფონურადაა გაშვებული"
 
 #: src/background.c:216
 msgid ""
@@ -224,11 +228,11 @@ msgstr "მთელ ეკრანზე"
 #: src/screenshotdialog.c:420
 #, c-format
 msgid "Share this screenshot with %s?"
-msgstr ""
+msgstr "გავუზიარო ეკრანის ანაბეჭდი %s-ს?"
 
 #: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
-msgstr ""
+msgstr "გავუზიარო ეკრანის ანაბეჭდი მომთხოვნ აპლიკაციას?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
@@ -248,19 +252,19 @@ msgstr "ეკრანის ანაბეჭდის გადაღებ�
 
 #: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
-msgstr ""
+msgstr "მთლიანი _ეკრანის დათრევა"
 
 #: src/screenshotdialog.ui:128
 msgid "Grab the current _window"
-msgstr ""
+msgstr "_მიმდინარე ფანჯრის დათრევა"
 
 #: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
-msgstr ""
+msgstr "მონიშნეთ დასათრევი ადგილი"
 
 #: src/screenshotdialog.ui:150
 msgid "Grab after a _delay of"
-msgstr ""
+msgstr "დათრევის _პაუზა"
 
 #: src/screenshotdialog.ui:161
 msgid "seconds"
@@ -272,15 +276,15 @@ msgstr "ეფექტები"
 
 #: src/screenshotdialog.ui:180
 msgid "Include _pointer"
-msgstr ""
+msgstr "გამოჩნდება კურსორიც"
 
 #: src/screenshotdialog.ui:188
 msgid "Include the window _border"
-msgstr ""
+msgstr "ფანჯრის _ჩარჩოც გამოჩნდება"
 
 #: src/settings.c:246
 msgid "Requested setting not found"
-msgstr ""
+msgstr "მოთხოვნილი პარამეტრი ვერ მოიძებნა"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -292,7 +296,7 @@ msgstr "დაყენება"
 
 #: src/wallpaperdialog.ui:51
 msgid "Failed to load image file"
-msgstr ""
+msgstr "გამოსახულების ფაილის ჩატვირთვის შეცდომა"
 
 #: src/wallpaperpreview.ui:50
 msgid "Activities"
