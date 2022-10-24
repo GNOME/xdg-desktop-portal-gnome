@@ -72,7 +72,7 @@ deps = [
   declare_dependency(sources: built_sources),
   meson.get_compiler('c').find_library('m'),
   dependency('fontconfig'),
-  dependency('glib-2.0', version: '>= 2.44'),
+  dependency('glib-2.0', version: '>= 2.62'),
   dependency('gio-unix-2.0'),
   dependency('gtk4', version: '>= 4.0'),
   dependency('gtk4-unix-print', version: '>= 4.0'),
