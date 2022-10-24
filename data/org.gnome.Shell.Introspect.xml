@@ -19,6 +19,12 @@
     <signal name="RunningApplicationsChanged" />
 
     <!--
+        WindowsChanged:
+        @short_description: Notifies when any window opens or closes
+    -->
+    <signal name="WindowsChanged" />
+
+    <!--
         GetRunningApplications:
         @short_description: Retrieves the description of all running applications
 
@@ -69,6 +75,14 @@
        Since: 2
     -->
     <property name="AnimationsEnabled" type="b" access="read"/>
+
+    <!--
+       ScreenSize:
+       @short_description: The size of the screen
+
+       Since: 3
+    -->
+    <property name="ScreenSize" type="(ii)" access="read"/>
 
     <property name="version" type="u" access="read"/>
   </interface>
