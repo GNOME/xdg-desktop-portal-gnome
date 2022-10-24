@@ -291,9 +291,9 @@ connect_windows_changed_listener (ScreenCastWidget *widget)
   g_assert (!widget->windows_changed_handler_id);
   widget->windows_changed_handler_id =
     g_signal_connect (widget->shell_introspect,
-                          "windows-changed",
-                          G_CALLBACK (on_windows_changed),
-                          widget);
+                      "windows-changed",
+                      G_CALLBACK (on_windows_changed),
+                      widget);
   shell_introspect_ref_listeners (widget->shell_introspect);
 }
 
