@@ -142,6 +142,14 @@ sync_state (ShellIntrospect *shell_introspect)
 }
 
 static void
+on_windows_changed_cb (GDBusProxy      *proxy,
+                       ShellIntrospect *shell_introspect)
+{
+  if (shell_introspect->num_listeners > 0)
+    sync_state (shell_introspect);
+}
+
+static void
 sync_animations_enabled (ShellIntrospect *shell_introspect)
 {
   gboolean animations_enabled;
@@ -184,6 +192,10 @@ on_shell_introspect_proxy_acquired (GObject      *object,
     }
 
   shell_introspect->proxy = proxy;
+
+  g_signal_connect (proxy, "windows-changed",
+                    G_CALLBACK (on_windows_changed_cb),
+                    shell_introspect);
 
   if (shell_introspect->num_listeners > 0)
     sync_state (shell_introspect);
