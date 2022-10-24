@@ -301,9 +301,8 @@ static void
 disconnect_windows_changed_listener (ScreenCastWidget *widget)
 {
   g_assert (widget->windows_changed_handler_id);
-  g_signal_handler_disconnect (widget->shell_introspect,
-                               widget->windows_changed_handler_id);
-  widget->windows_changed_handler_id = 0;
+  g_clear_signal_handler (&widget->windows_changed_handler_id,
+                          widget->shell_introspect);
   shell_introspect_unref_listeners (widget->shell_introspect);
 }
 
