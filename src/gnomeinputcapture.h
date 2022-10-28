@@ -64,3 +64,8 @@ gboolean gnome_input_capture_session_release (GnomeInputCaptureSession  *gnome_i
                                               GError                   **error);
 
 uint32_t gnome_input_capture_session_get_serial (GnomeInputCaptureSession *gnome_input_capture_session);
+
+gboolean gnome_input_capture_connect_to_eis (GnomeInputCaptureSession  *gnome_input_capture_session,
+                                             GUnixFDList              **fd_list,
+                                             GVariant                 **fd_variant,
+                                             GError                   **error);

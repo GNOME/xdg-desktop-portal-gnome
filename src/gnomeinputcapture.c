@@ -517,3 +517,27 @@ gnome_input_capture_session_get_serial (GnomeInputCaptureSession *gnome_input_ca
 {
   return gnome_input_capture_session->serial;
 }
+
+gboolean
+gnome_input_capture_connect_to_eis (GnomeInputCaptureSession  *gnome_input_capture_session,
+                                    GUnixFDList              **fd_list,
+                                    GVariant                 **fd_variant,
+                                    GError                   **error)
+{
+  OrgGnomeMutterInputCaptureSession *session_proxy =
+    gnome_input_capture_session->proxy;
+  g_autoptr(GUnixFDList) in_fd_list = NULL;
+
+  if (!org_gnome_mutter_input_capture_session_call_connect_to_eis_sync (session_proxy,
+                                                                        in_fd_list,
+                                                                        fd_variant,
+                                                                        fd_list,
+                                                                        NULL,
+                                                                        error))
+    {
+      g_prefix_error (error, "Failed to connect to EIS: ");
+      return FALSE;
+    }
+
+  return TRUE;
+}

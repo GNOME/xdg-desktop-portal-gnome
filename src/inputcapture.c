@@ -771,6 +771,43 @@ out:
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
+static gboolean
+handle_connect_to_eis (XdpImplInputCapture *object,
+                       GDBusMethodInvocation *invocation,
+                       GUnixFDList *fd_list,
+                       const gchar *arg_session_handle,
+                       const gchar *arg_app_id,
+                       GVariant *arg_options)
+{
+  Session *session;
+  InputCaptureSession *input_capture_session;
+  GnomeInputCaptureSession *gnome_input_capture_session;
+  g_autoptr(GError) error = NULL;
+  g_autoptr (GUnixFDList) out_fd_list = NULL;
+  GVariant *fd_variant;
+
+  session = lookup_session (arg_session_handle);
+  if (!session)
+    {
+      g_warning ("Tried to connect to EIS on non-existing session %s", arg_session_handle);
+      return FALSE;
+    }
+  input_capture_session = (InputCaptureSession *)session;
+  gnome_input_capture_session = input_capture_session->gnome_input_capture_session;
+
+  if (!gnome_input_capture_connect_to_eis (gnome_input_capture_session,
+                                           &out_fd_list,
+                                           &fd_variant,
+                                           &error))
+    {
+      g_warning ("Failed to connect to EIS: %s", error->message);
+      return FALSE;
+    }
+
+  xdp_impl_input_capture_complete_connect_to_eis (object, invocation, out_fd_list, fd_variant);
+  return TRUE;
+}
+
 static void
 on_gnome_input_capture_enabled (GnomeInputCapture *gnome_input_capture)
 {
@@ -791,6 +828,8 @@ on_gnome_input_capture_enabled (GnomeInputCapture *gnome_input_capture)
                     G_CALLBACK (handle_get_zones), NULL);
   g_signal_connect (impl, "handle-set-pointer-barriers",
                     G_CALLBACK (handle_set_pointer_barriers), NULL);
+  g_signal_connect (impl, "handle-connect-to-eis",
+                    G_CALLBACK (handle_connect_to_eis), NULL);
 
   supported_capabilities =
     gnome_input_capture_get_supported_capabilities (gnome_input_capture);
