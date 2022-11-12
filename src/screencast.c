@@ -679,7 +679,8 @@ handle_select_sources (XdpImplScreenCast     *object,
     types = SCREEN_CAST_SOURCE_TYPE_MONITOR;
 
   if (!(types & (SCREEN_CAST_SOURCE_TYPE_MONITOR |
-                 SCREEN_CAST_SOURCE_TYPE_WINDOW)))
+                 SCREEN_CAST_SOURCE_TYPE_WINDOW |
+                 SCREEN_CAST_SOURCE_TYPE_VIRTUAL)))
     {
       g_warning ("Unknown screen cast source type");
       response = 2;
@@ -805,7 +806,8 @@ on_gnome_screen_cast_enabled (GnomeScreenCast *gnome_screen_cast)
 
   g_object_set (G_OBJECT (impl),
                 "available-source-types", SCREEN_CAST_SOURCE_TYPE_MONITOR |
-                                          SCREEN_CAST_SOURCE_TYPE_WINDOW,
+                                          SCREEN_CAST_SOURCE_TYPE_WINDOW |
+                                          SCREEN_CAST_SOURCE_TYPE_VIRTUAL,
                 "available-cursor-modes", SCREEN_CAST_CURSOR_MODE_HIDDEN |
                                           SCREEN_CAST_CURSOR_MODE_EMBEDDED |
                                           SCREEN_CAST_CURSOR_MODE_METADATA,
