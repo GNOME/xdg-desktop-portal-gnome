@@ -792,9 +792,6 @@ out:
 static void
 on_gnome_screen_cast_enabled (GnomeScreenCast *gnome_screen_cast)
 {
-  int gnome_api_version;
-  ScreenCastSourceType available_source_types;
-  ScreenCastCursorMode available_cursor_modes;
   g_autoptr(GError) error = NULL;
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_screen_cast_skeleton_new ());
@@ -806,25 +803,12 @@ on_gnome_screen_cast_enabled (GnomeScreenCast *gnome_screen_cast)
   g_signal_connect (impl, "handle-start",
                     G_CALLBACK (handle_start), NULL);
 
-  gnome_api_version = gnome_screen_cast_get_api_version (gnome_screen_cast);
-
-  available_source_types = SCREEN_CAST_SOURCE_TYPE_MONITOR;
-  if (gnome_api_version >= 2)
-    available_source_types |= SCREEN_CAST_SOURCE_TYPE_WINDOW;
   g_object_set (G_OBJECT (impl),
-                "available-source-types", available_source_types,
-                NULL);
-
-  available_cursor_modes = SCREEN_CAST_CURSOR_MODE_NONE;
-  if (gnome_api_version >= 2)
-    {
-      available_cursor_modes |= SCREEN_CAST_CURSOR_MODE_HIDDEN |
-                                SCREEN_CAST_CURSOR_MODE_EMBEDDED |
-                                SCREEN_CAST_CURSOR_MODE_METADATA;
-    }
-
-  g_object_set (G_OBJECT (impl),
-                "available-cursor-modes", available_cursor_modes,
+                "available-source-types", SCREEN_CAST_SOURCE_TYPE_MONITOR |
+                                          SCREEN_CAST_SOURCE_TYPE_WINDOW,
+                "available-cursor-modes", SCREEN_CAST_CURSOR_MODE_HIDDEN |
+                                          SCREEN_CAST_CURSOR_MODE_EMBEDDED |
+                                          SCREEN_CAST_CURSOR_MODE_METADATA,
                 NULL);
 
   if (!g_dbus_interface_skeleton_export (impl,
