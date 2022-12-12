@@ -95,7 +95,6 @@ sources = built_sources + files(
   'externalwindow.c',
   'fc-monitor.c',
   'filechooser.c',
-  'fdonotification.c',
   'gnomescreencast.c',
   'lockdown.c',
   'print.c',

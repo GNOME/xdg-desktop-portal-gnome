@@ -18,7 +18,6 @@
 #include "shell-dbus.h"
 
 #include "background.h"
-#include "fdonotification.h"
 #include "request.h"
 #include "utils.h"
 
