@@ -218,12 +218,6 @@ main (int argc, char *argv[])
       return 1;
     }
 
-  if (G_UNLIKELY (!g_setenv ("GSK_RENDERER", "cairo", TRUE)))
-    {
-      g_printerr ("Failed to set GSK_RENDERER: %s\n", g_strerror (errno));
-      return 1;
-    }
-
   gtk_init ();
 
   context = g_option_context_new ("- portal backends");
