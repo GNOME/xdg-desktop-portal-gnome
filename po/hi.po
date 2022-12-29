@@ -1,0 +1,268 @@
+# Hindi translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# Translators: 
+# Hemish <hemish04082005@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues\n"
+"POT-Creation-Date: 2022-11-12 18:50+0000\n"
+"PO-Revision-Date: 2022-12-27 15:29+0530\n"
+"Last-Translator: Hemish <hemish04082005@gmail.com>\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net https://indlinux."
+"org/hindi>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+msgid "Portal"
+msgstr "पोर्टल"
+
+#: src/accountdialog.c:152
+msgid "Select an Image"
+msgstr "एक छवि चुनें"
+
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+msgid "Cancel"
+msgstr "रद्द"
+
+#: src/accountdialog.c:156
+msgid "Select"
+msgstr "चुनें"
+
+#: src/accountdialog.c:157
+msgid "Clear"
+msgstr "खाली करें"
+
+#: src/accountdialog.c:164
+msgid "Images"
+msgstr "छवियाँ"
+
+#: src/accountdialog.c:225
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "अपनी व्यक्तिगत जानकारी %1$s के साथ साझा करें? %2$s"
+
+#: src/accountdialog.c:231
+#, c-format
+msgid "Share your personal information with the requesting application? %s"
+msgstr "अनुरोध करने वाले एप्लिकेशन के साथ अपनी व्यक्तिगत जानकारी साझा करें? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "जानकारी साझा करें"
+
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:265 src/filechooser.c:534
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
+msgid "_Cancel"
+msgstr "रद्द (_C)"
+
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+msgid "_Share"
+msgstr "साझा करें (_S)"
+
+#: src/accountdialog.ui:83
+msgid "Name"
+msgstr "नाम"
+
+#: src/accountdialog.ui:95
+msgid "Username"
+msgstr "उपयोक्ता नाम"
+
+#: src/appchooserdialog.c:229
+msgid "Failed to start Software"
+msgstr "सॉफ़्टवेयर को प्रारंभ करने में विफल"
+
+#: src/appchooserdialog.c:393
+#, c-format
+msgid "Choose an application to open the file “%s”."
+msgstr "फ़ाइल “%s” को खोलने के लिए एक एप्लिकेशन चुनें।"
+
+#: src/appchooserdialog.c:398
+msgid "Choose an application."
+msgstr "एक एप्लिकेशन चुनें।"
+
+#: src/appchooserdialog.c:415
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more applications in "
+"Software"
+msgstr ""
+"\"%s\" को खोल सकने वाले कोई ऐप इंस्टॉल नहीं हैं। आप सॉफ़्टवेयर में और एप्लिकेशन पा सकते हैं।"
+
+#: src/appchooserdialog.c:420
+msgid "No suitable app installed. You can find more applications in Software."
+msgstr "कोई उपयुक्त ऐप इंस्टॉल नहीं है। आप सॉफ़्टवेयर में और एप्लिकेशन पा सकते हैं।"
+
+#: src/appchooserdialog.ui:5
+msgid "Open With…"
+msgstr "इससे खोलें…"
+
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
+msgid "_Open"
+msgstr "खोलें (_O)"
+
+#: src/appchooserdialog.ui:104
+msgid "No Apps available"
+msgstr "कोई ऐप उपलब्ध नहीं है"
+
+#: src/appchooserdialog.ui:144
+msgid "_Find More in Software"
+msgstr "सॉफ्टवेयर में अधिक पाएँ (_F)"
+
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "वेब एप्लिकेशन बनाएँ"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "एप्लिकेशन बनाएँ"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "बनाएँ (_r)"
+
+#: src/filechooser.c:529
+msgid "_Select"
+msgstr "चुनें (_S)"
+
+#: src/filechooser.c:531
+msgid "_Save"
+msgstr "सहेजें (_S)"
+
+#: src/filechooser.c:713
+msgid "Open files read-only"
+msgstr "फ़ाइलें केवल पढ़ने के लिए खोलें"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote desktop"
+msgstr "दूरस्थित डेस्कटॉप"
+
+#: src/remotedesktopdialog.ui:76
+msgid "Allow remote interaction"
+msgstr "दूरस्थित यंत्रों को इंटरेक्ट करने की अनुमति दें"
+
+#: src/screencastdialog.ui:5
+msgid "Screen Share"
+msgstr "स्क्रीन शेयर करें"
+
+#: src/screencastwidget.c:159
+msgid "Virtual monitor"
+msgstr "कृत्रिम मॉनिटर"
+
+#: src/screencastwidget.c:540
+#, c-format
+msgid "Select monitor to share with %s"
+msgstr "%s के साथ साझा करने के लिए मॉनिटर चुनें"
+
+#: src/screencastwidget.c:542
+#, c-format
+msgid "Select window to share with %s"
+msgstr "%s के साथ साझा करने के लिए विंडो चुनें"
+
+#: src/screencastwidget.c:547
+msgid "Select monitor to share with the requesting application"
+msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए मॉनिटर चुनें"
+
+#: src/screencastwidget.c:548
+msgid "Select window to share with the requesting application"
+msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए विंडो चुनें"
+
+#: src/screencastwidget.ui:16
+msgid "Single Window"
+msgstr "अकेली विंडो"
+
+#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "यह चयन याद रखें"
+
+#: src/screencastwidget.ui:64
+msgid "Entire Screen"
+msgstr "पूरी स्क्रीन"
+
+#: src/screenshotdialog.c:435
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "इस स्क्रीनशॉट को %s के साथ साझा करें?"
+
+#: src/screenshotdialog.c:439
+msgid "Share this screenshot with the requesting application?"
+msgstr "अनुरोध करने वाली ऐप्लिकेशन के साथ यह स्क्रीनशॉट साझा करें?"
+
+#: src/screenshotdialog.ui:8
+msgid "Screenshot"
+msgstr "स्क्रीनशॉट"
+
+#: src/screenshotdialog.ui:42
+msgid "_Options…"
+msgstr "विकल्प… (_O)"
+
+#: src/screenshotdialog.ui:67
+msgid "Take _Screenshot"
+msgstr "स्क्रीनशॉट लें (_S)"
+
+#: src/screenshotdialog.ui:120
+msgid "Take Screenshot"
+msgstr "स्क्रीनशॉट लें"
+
+#: src/screenshotdialog.ui:130
+msgid "Grab the whole sc_reen"
+msgstr "पूरी स्क्रीन को ग्रहण करें (_r)"
+
+#: src/screenshotdialog.ui:140
+msgid "Grab the current _window"
+msgstr "वर्तमान विंडो को ग्रहण करें (_w)"
+
+#: src/screenshotdialog.ui:150
+msgid "Select _area to grab"
+msgstr "ग्रहण करने के लिए क्षेत्र चुनें (_a)"
+
+#: src/screenshotdialog.ui:162
+msgid "Grab after a _delay of"
+msgstr "इतनी देरी के बाद पकड़ो (_d)"
+
+#: src/screenshotdialog.ui:173
+msgid "seconds"
+msgstr "सेकेंड"
+
+#: src/screenshotdialog.ui:182
+msgid "Effects"
+msgstr "इफ़ेक्ट"
+
+#: src/screenshotdialog.ui:192
+msgid "Include _pointer"
+msgstr "माउस पॉइंटर शामिल करें (_p)"
+
+#: src/screenshotdialog.ui:200
+msgid "Include the window _border"
+msgstr "विंडो की बॉर्डर सीमा शामिल करें (_b)"
+
+#: src/settings.c:246
+msgid "Requested setting not found"
+msgstr "अनुरोधित सेटिंग नहीं मिली"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "बैकग्राउंड सेट करें"
+
+#: src/wallpaperdialog.ui:32
+msgid "Set"
+msgstr "सेट करें"
+
+#: src/wallpaperdialog.ui:63
+msgid "Failed to load image file"
+msgstr "चित्र फ़ाइल लोड करने में विफल"
+
+#: src/wallpaperpreview.ui:48
+msgid "Activities"
+msgstr "क्रियाएँ"
