@@ -1,3 +1,11 @@
+Changes in 44.alpha
+=================
+
+- Select files in read-write mode, add check box for read-only
+- Advertise screencast support for virtual monitors
+- Remove background permission dialog
+- Translation updates
+
 Changes in 43.0
 =================
 
