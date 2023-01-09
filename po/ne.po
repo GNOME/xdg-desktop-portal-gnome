@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2022-04-26 23:39+0000\n"
-"PO-Revision-Date: 2022-05-09 11:39+0545\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-07-09 18:28+0000\n"
+"PO-Revision-Date: 2023-01-09 22:44+0545\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Team <chautari@gmail.com>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,7 @@ msgstr ""
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
-msgstr ""
-
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-#, fuzzy
-msgid "applications-system-symbolic"
-msgstr " अनुप्रयोगहरू प्रणाली"
+msgstr "पोर्टल"
 
 #: src/accountdialog.c:152
 msgid "Select an Image"
@@ -52,19 +46,20 @@ msgstr "छवि"
 #: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
-msgstr ""
+msgstr "%1$s सँग तपाईँको व्यक्तिगत जानकारी साझेदारी गर्नुहुन्छ? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
-msgstr ""
+msgstr "अनुरोध गर्ने अनुप्रयोगसँग तपाईंको व्यक्तिगत जानकारी साझेदारी गर्नुहुन्छ? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "विवरण साझा गर्नुहोस्"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:452
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14 src/screenshotdialog.ui:14
+#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/dynamic-launcher.c:265
+#: src/filechooser.c:451 src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr "रद्द गर्नुहोस्"
 
@@ -88,10 +83,9 @@ msgstr "सफ्टवेयर शुरु गर्न असक्षम"
 #: src/appchooserdialog.c:393
 #, c-format
 msgid "Choose an application to open the file “%s”."
-msgstr "अनुप्रयोग पिक्सम्याप फाइल पत्ता लगाउन सकेन: %s"
+msgstr "अनुप्रयोग पिक्सम्याप फाइल पत्ता लगाउन सकेन: \"%s\"."
 
 #: src/appchooserdialog.c:398
-#, fuzzy
 msgid "Choose an application."
 msgstr "अनुप्रयोग छान्नुहोस्"
 
@@ -99,19 +93,21 @@ msgstr "अनुप्रयोग छान्नुहोस्"
 #, c-format
 msgid "No apps installed that can open “%s”. You can find more applications in Software"
 msgstr ""
+"\"%s\" खोल्न सक्ने कुनै अनुप्रयोग स्थापना गरिएको छैन । तपाईं सफ्टवेयरमा थप अनुप्रयोगहरू फेला पार्न "
+"सक्नुहुन्छ"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
+"कुनै उपयुक्त अनुप्रयोग स्थापना गरिएको छैन । तपाईं सफ्टवेयरमा थप अनुप्रयोगहरू फेला पार्न सक्नुहुन्छ।."
 
 #: src/appchooserdialog.ui:5
-#, fuzzy
 msgid "Open With…"
-msgstr "यससँग खोल्नुहोस्:"
+msgstr "यससँग खोल्नुहोस्…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:447
+#: src/appchooserdialog.ui:20 src/filechooser.c:446
 msgid "_Open"
-msgstr " खोल्नुहोस्"
+msgstr "खोल्नुहोस्"
 
 #: src/appchooserdialog.ui:104
 msgid "No Apps available"
@@ -132,6 +128,9 @@ msgid ""
 "\n"
 "Note that forcing an application to quit might cause data loss."
 msgstr ""
+"यो वैध कारणको लागि हुन सक्छ, तर आवेदनले एक प्रदान गरेको छैन।.\n"
+"\n"
+"ध्यान दिनुहोस् कि अनुप्रयोगलाई छोड्न बाध्य पार्नाले डेटा हानि हुन सक्छ।."
 
 #: src/background.c:219
 msgid "Force quit"
@@ -149,15 +148,27 @@ msgstr "पृष्ठभूमि क्रियाकलाप"
 msgid "Find out more"
 msgstr "अरू फेला पार्नुहोस्"
 
-#: src/filechooser.c:447
+#: src/dynamic-launcher.c:257
+msgid "Create Web Application"
+msgstr "वेब अनुप्रयोग सिर्जना गर्नुहोस्"
+
+#: src/dynamic-launcher.c:259
+msgid "Create Application"
+msgstr "अनुप्रयोग सिर्जना गर्नुहोस्"
+
+#: src/dynamic-launcher.c:267
+msgid "C_reate"
+msgstr "सिर्जना गर्नुहोस्"
+
+#: src/filechooser.c:446
 msgid "_Select"
 msgstr "_चयन गर्नुहोस्"
 
-#: src/filechooser.c:449
+#: src/filechooser.c:448
 msgid "_Save"
-msgstr " बचत गर्नुहोस्..."
+msgstr "बचत गर्नुहोस्"
 
-#: src/filechooser.c:618
+#: src/filechooser.c:617
 msgid "Open files read-only"
 msgstr "पढ्ने मात्र फाइल खोल्नुहोस्"
 
@@ -166,9 +177,8 @@ msgid "Remote desktop"
 msgstr "टाढाको डेस्कटप"
 
 #: src/remotedesktopdialog.ui:64
-#, fuzzy
 msgid "Allow remote interaction"
-msgstr "अनुमति दिनुहोस्"
+msgstr "टाढाको अन्तरक्रिया अनुमति दिनुहोस्"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
@@ -179,45 +189,43 @@ msgid "Virtual monitor"
 msgstr "अवास्तविक निगरानी"
 
 #: src/screencastwidget.c:542
-#, fuzzy, c-format
+#, c-format
 msgid "Select monitor to share with %s"
-msgstr "%s मोनिटर"
+msgstr "%s सँग साझेदारी गर्न मोनिटर चयन गर्नुहोस्"
 
 #: src/screencastwidget.c:544
-#, fuzzy, c-format
+#, c-format
 msgid "Select window to share with %s"
-msgstr "सञ्झ्यालको उचाइ पिक्सेलमा"
+msgstr "%s सँग साझेदारी गर्न सञ्झ्याल चयन गर्नुहोस्"
 
 #: src/screencastwidget.c:549
 msgid "Select monitor to share with the requesting application"
-msgstr ""
+msgstr "अनुरोध गर्ने अनुप्रयोगसँग साझेदारी गर्न मनिटर चयन गर्नुहोस्"
 
 #: src/screencastwidget.c:550
 msgid "Select window to share with the requesting application"
-msgstr ""
+msgstr "अनुरोध गरिएको अनुप्रयोगसँग साझेदारी गर्न सञ्झ्याल चयन गर्नुहोस्"
 
 #: src/screencastwidget.ui:16
-#, fuzzy
 msgid "Single Window"
-msgstr "यदि बहुँविध सञ्झ्यालहरू खुला छन् भने पहिलो एउटा प्रयोग गरिने एकल सञ्झ्यालमा खोल्नुहोस्"
+msgstr "एकल सञ्झ्याल"
 
 #: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-#, fuzzy
 msgid "Remember this selection"
-msgstr "सधैँ याद गर्नुहोस्"
+msgstr "यो चयन सम्झनुहोस्"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "पूरा पर्दा"
 
 #: src/screenshotdialog.c:420
-#, fuzzy, c-format
+#, c-format
 msgid "Share this screenshot with %s?"
-msgstr "%s बाट स्क्रिनसट"
+msgstr "यो स्क्रिनसट %s सँग साझेदारी गर्नुहुन्छ?"
 
 #: src/screenshotdialog.c:424
 msgid "Share this screenshot with the requesting application?"
-msgstr ""
+msgstr "अनुरोध गर्ने अनुप्रयोगसँग यो स्क्रिनसट साझेदारी गर्नुहुन्छ?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
@@ -237,22 +245,19 @@ msgstr "स्क्रिनसट लिनुहोस्"
 
 #: src/screenshotdialog.ui:118
 msgid "Grab the whole sc_reen"
-msgstr ""
+msgstr "पूरै पर्दा समात्नुहोस्"
 
 #: src/screenshotdialog.ui:128
-#, fuzzy
 msgid "Grab the current _window"
-msgstr ""
-"सम्पूर्ण डेस्कटपको सट्टा हालको सञ्झ्याल लिनुहोस्। यो कुञ्जी बिच्छेद गरिएको छ र यो अब प्रयोगमा छैन।"
+msgstr "हालको सञ्झ्याल समात्नुहोस्"
 
 #: src/screenshotdialog.ui:138
 msgid "Select _area to grab"
-msgstr ""
+msgstr "समात्ने क्षेत्र चयन गर्नुहोस्"
 
 #: src/screenshotdialog.ui:150
-#, fuzzy
 msgid "Grab after a _delay of"
-msgstr "विलम्ब गर्नुहोस्:"
+msgstr "केहि क्षण पछि समाउनुहोस्"
 
 #: src/screenshotdialog.ui:161
 msgid "seconds"
@@ -263,19 +268,16 @@ msgid "Effects"
 msgstr "प्रभाव"
 
 #: src/screenshotdialog.ui:180
-#, fuzzy
 msgid "Include _pointer"
-msgstr "सूचक सम्मिलित गर्नुहोस्"
+msgstr "सूचक समावेश गर्नुहोस्"
 
 #: src/screenshotdialog.ui:188
-#, fuzzy
 msgid "Include the window _border"
-msgstr "सूचक सम्मिलित गर्नुहोस्"
+msgstr "सञ्झ्याल किनारा समावेश गर्नुहोस्"
 
-#: src/settings.c:247
-#, fuzzy
+#: src/settings.c:246
 msgid "Requested setting not found"
-msgstr "अनुरोध गरिएको पृष्ठ '%s' कागजातमा फेला परेन।"
+msgstr "अनुरोध गरिएको सेटिङ फेला परेन"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -286,10 +288,13 @@ msgid "Set"
 msgstr "सेट गर्नुहोस्"
 
 #: src/wallpaperdialog.ui:51
-#, fuzzy
 msgid "Failed to load image file"
-msgstr "TIFF छवि लोड गर्न असफल"
+msgstr "छवि लोड गर्न असफल"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "गतिविधिहरू"
+
+#, fuzzy
+#~ msgid "applications-system-symbolic"
+#~ msgstr " अनुप्रयोगहरू प्रणाली"
