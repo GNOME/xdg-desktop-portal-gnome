@@ -23,11 +23,10 @@ build-fedora:
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
       cd ..
-    - git clone -b 1.15.0 https://github.com/flatpak/xdg-desktop-portal.git &&
+    - git clone -b 1.16.0 https://github.com/flatpak/xdg-desktop-portal.git &&
       cd xdg-desktop-portal &&
-      ./autogen.sh --sysconfdir=/etc --prefix=/usr --disable-dependency-tracking --disable-libportal &&
-      make -j $(getconf _NPROCESSORS_ONLN) &&
-      make install &&
+      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
+      ninja -C _build install &&
       cd ..
 
 build-ubuntu:
@@ -46,9 +45,8 @@ build-ubuntu:
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
       cd ..
-    - git clone -b 1.15.0 https://github.com/flatpak/xdg-desktop-portal.git &&
+    - git clone -b 1.16.0 https://github.com/flatpak/xdg-desktop-portal.git &&
       cd xdg-desktop-portal &&
-      ./autogen.sh --sysconfdir=/etc --prefix=/usr --disable-dependency-tracking --disable-libportal &&
-      make -j $(getconf _NPROCESSORS_ONLN) &&
-      make install &&
+      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
+      ninja -C _build install &&
       cd ..
