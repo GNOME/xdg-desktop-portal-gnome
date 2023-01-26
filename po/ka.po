@@ -1,23 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-06-20 19:19+0000\n"
-"PO-Revision-Date: 2022-10-14 16:41+0200\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-01-26 15:43+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -27,7 +27,7 @@ msgstr "Portal"
 msgid "Select an Image"
 msgstr "მონიშნეთ გამოსახულება"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "გაუქმება"
 
@@ -57,23 +57,23 @@ msgstr "გავუზიაროთ თქვენი პირადი ი
 msgid "Share Details"
 msgstr "დეტალების გაზიარება"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_გაუქმება"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_გაზიარება"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "სახელი"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "მომხმარებელი"
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "გამხსნელი პროგრამა…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_გახსნა"
 
@@ -121,71 +121,41 @@ msgstr "აპები მიუწვდოელია"
 msgid "_Find More in Software"
 msgstr "_მეტის პროგრამის პოვნა"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "\"%s\" ფონურადაა გაშვებული"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"ეს შეიძლება კანონიერი მიზეზიც კი იყოს, მაგრამ აპლიკაციას ეს "
-"გათვალისწინებული არ აქვს.\n"
-"\n"
-"გაითვალისწინეთ, რომ აპლიკაციის ძალით დახურვამ შეიძლება მონაცემების კარგვაც "
-"გამოიწვიოს."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "ძალით გასვლა"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "დაშვება"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "ფონური აქტივობა"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "მეტის გაგება"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "ვებ აპლიკაციის შექმნა"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "აპლიკაციის შექმნა"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_შექმნა"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "ყველას მონიშვნა"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_შენახვა"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "ფაილის მხოლოდ-წაკითხვად რეჟიმში გახსნა"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "საქაღალდეების მხოლოდ-წაკითხვად რეჟიმში გახსნა"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "დაშორებული სამუშაო მაგიდა"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
-msgstr ""
+msgstr "დაშორებული ურთიერთქმედების ნების დართვა"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
@@ -195,21 +165,21 @@ msgstr "ეკრანის გაზიარება"
 msgid "Virtual monitor"
 msgstr "ვირტუალური ეკრანი"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "აირჩიეთ %s-სთან გასაზიარებელი ეკრანი"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "აირჩიეთ %s-სთან გასაზიარებელი ფანჯარა"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "აირჩიეთ მომთხოვნი აპლიკაციისთვის გასაზიარებელი ეკრანი"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "აირჩიეთ მომთხოვნი აპლიკაციისთვის გასაზიარებელი აპლიკაცია"
 
@@ -225,12 +195,12 @@ msgstr "მონიშნულის დამახსოვრება"
 msgid "Entire Screen"
 msgstr "მთელ ეკრანზე"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "გავუზიარო ეკრანის ანაბეჭდი %s-ს?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "გავუზიარო ეკრანის ანაბეჭდი მომთხოვნ აპლიკაციას?"
 
@@ -238,47 +208,47 @@ msgstr "გავუზიარო ეკრანის ანაბეჭდ�
 msgid "Screenshot"
 msgstr "ეკრანის ანაბეჭდი"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "მორგება…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "ეკრანის ანაბეჭდის გადაღება"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "ეკრანის ანაბეჭდის გადაღება"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "მთლიანი _ეკრანის დათრევა"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "_მიმდინარე ფანჯრის დათრევა"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "მონიშნეთ დასათრევი ადგილი"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "დათრევის _პაუზა"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "წამი"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "ეფექტები"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "გამოჩნდება კურსორიც"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "ფანჯრის _ჩარჩოც გამოჩნდება"
 
@@ -290,14 +260,42 @@ msgstr "მოთხოვნილი პარამეტრი ვერ მ
 msgid "Set Background"
 msgstr "ფონის დაყენება"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "დაყენება"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "გამოსახულების ფაილის ჩატვირთვის შეცდომა"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "ქმედებები"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "\"%s\" ფონურადაა გაშვებული"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "ეს შეიძლება კანონიერი მიზეზიც კი იყოს, მაგრამ აპლიკაციას ეს "
+#~ "გათვალისწინებული არ აქვს.\n"
+#~ "\n"
+#~ "გაითვალისწინეთ, რომ აპლიკაციის ძალით დახურვამ შეიძლება მონაცემების "
+#~ "კარგვაც გამოიწვიოს."
+
+#~ msgid "Force quit"
+#~ msgstr "ძალით გასვლა"
+
+#~ msgid "Allow"
+#~ msgstr "დაშვება"
+
+#~ msgid "Background activity"
+#~ msgstr "ფონური აქტივობა"
+
+#~ msgid "Find out more"
+#~ msgstr "მეტის გაგება"
