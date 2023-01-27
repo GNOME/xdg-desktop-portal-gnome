@@ -2,14 +2,14 @@
 # Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
-"issues\n"
-"POT-Creation-Date: 2022-05-09 05:56+0000\n"
-"PO-Revision-Date: 2022-05-16 09:56+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
+"/issues\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-01-27 21:33+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -28,7 +28,7 @@ msgstr "Портал"
 msgid "Select an Image"
 msgstr "Виберіть образ"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -59,23 +59,23 @@ msgstr ""
 msgid "Share Details"
 msgstr "Оприлюднити подробиці"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Оприлюднити"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Назва"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Користувач"
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Відкрити за допомогою…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Відкрити"
 
@@ -123,70 +123,40 @@ msgstr "Немає доступних програм"
 msgid "_Find More in Software"
 msgstr "З_найти інші у програмі «Програмні засоби»"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "«%s» працює у фоновому режимі"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Можливо, причина є вагомою, але програма не надала її.\n"
-"\n"
-"Зауважте, що примусове завершення роботи, ймовірно, може призвести до втрати "
-"даних."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Примусове завершення роботи"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Дозволити"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Фонова робота"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Дізнатися більше"
-
-#: src/dynamic-launcher.c:257
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Створити вебпрограму"
 
-#: src/dynamic-launcher.c:259
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Створити програму"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "С_творити"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Вибрати"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Зберегти"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Відкрити файли лише для читання"
+
+#: src/filechooser.c:721
+#| msgid "Open files read-only"
+msgid "Open directories read-only"
+msgstr "Відкрити каталоги лише для читання"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Віддалена стільниця"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Дозволити віддалену взаємодію"
 
@@ -198,23 +168,23 @@ msgstr "Оприлюднення екрана"
 msgid "Virtual monitor"
 msgstr "Віртуальний монітор"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Виберіть монітор, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Виберіть вікно, дані з якого слід оприлюднити для %s"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr ""
 "Виберіть монітор, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr ""
 "Виберіть вікно, дані з якого слід оприлюднити за допомогою відповідної "
@@ -232,12 +202,12 @@ msgstr "Запам'ятати цей вибір"
 msgid "Entire Screen"
 msgstr "Увесь екран"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Оприлюднити цей знімок екрана за допомогою %s?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Оприлюднити цей знімок екрана за допомогою відповідної програми?"
 
@@ -245,51 +215,51 @@ msgstr "Оприлюднити цей знімок екрана за допом�
 msgid "Screenshot"
 msgstr "Знімок екрана"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "П_араметри…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "З_робити знімок екрана"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Зробити знімок екрана"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Захопити увесь е_кран"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Захопити поточне _вікно"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Вибрати _область для захоплення"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Захопити із з_атримкою у"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "секунд"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Ефекти"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Разом із в_казівником"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Включити _рамку вікна"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Потрібного вам параметра не знайдено"
 
@@ -297,17 +267,44 @@ msgstr "Потрібного вам параметра не знайдено"
 msgid "Set Background"
 msgstr "Встановити тло"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Встановити"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Не вдалося завантажити файл зображення"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Діяльність"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "«%s» працює у фоновому режимі"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Можливо, причина є вагомою, але програма не надала її.\n"
+#~ "\n"
+#~ "Зауважте, що примусове завершення роботи, ймовірно, може призвести до "
+#~ "втрати даних."
+
+#~ msgid "Force quit"
+#~ msgstr "Примусове завершення роботи"
+
+#~ msgid "Allow"
+#~ msgstr "Дозволити"
+
+#~ msgid "Background activity"
+#~ msgstr "Фонова робота"
+
+#~ msgid "Find out more"
+#~ msgstr "Дізнатися більше"
 
 #~ msgid "applications-system-symbolic"
 #~ msgstr "applications-system-symbolic"
