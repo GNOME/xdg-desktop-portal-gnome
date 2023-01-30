@@ -1,26 +1,26 @@
 # Turkish translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2017-2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2017-2023 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
 # Muhammet Kara <muhammetk@gnome.org>, 2017, 2018.
-# Sabri Ünal <libreajans@gmail.com>, 2019-2020.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2020, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2019, 2020, 2023.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2020, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-08-06 14:26+0000\n"
-"PO-Revision-Date: 2022-05-24 10:20+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-01-27 23:31+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -30,7 +30,7 @@ msgstr "Portal"
 msgid "Select an Image"
 msgstr "Resim Seç"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "İptal"
 
@@ -60,23 +60,23 @@ msgstr "Kişisel bilgileriniz, istekte bulunan uygulamayla paylaşılsın mı? %
 msgid "Share Details"
 msgstr "Ayrıntıları Paylaş"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Paylaş"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Ad"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Birlikte Aç…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Aç"
 
@@ -123,67 +123,39 @@ msgstr "Kullanılabilir uygulama yok"
 msgid "_Find More in Software"
 msgstr "Yazılımlar’da Daha Çoğunu _Bul"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "“%s” arka planda çalışıyor"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Bu geçerli nedenden kaynaklanıyor olabilir, ancak uygulama bunu sunmadı.\n"
-"\n"
-"Uygulamayı çıkmaya zorlamak veri yitimine neden olabilir."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Kapanmaya zorla"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "İzin ver"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Arka plan etkinliği"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Daha çoğunu keşfet"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Web Uygulaması Oluştur"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Uygulama Oluştur"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Oluştur"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Seç"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Kaydet"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Dosyaları salt okunur aç"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Dizinleri salt okunur aç"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Uzak masaüstü"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Uzak etkileşime izin ver"
 
@@ -195,21 +167,21 @@ msgstr "Ekran Paylaşımı"
 msgid "Virtual monitor"
 msgstr "Sanal monitör"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "%s ile paylaşılacak monitörü seç"
 
-#: src/screencastwidget.c:543
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "%s ile paylaşılacak pencereyi seç"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "İstekte bulunan uygulama ile paylaşılacak monitörü seç"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "İstekte bulunan uygulama ile paylaşılacak pencereyi seç"
 
@@ -225,12 +197,12 @@ msgstr "Bu seçimi anımsa"
 msgid "Entire Screen"
 msgstr "Tüm Ekran"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Bu ekran görüntüsü %s ile paylaşılsın mı?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Bu ekran görüntüsü, istekte bulunan uygulama ile paylaşılsın mı?"
 
@@ -238,47 +210,47 @@ msgstr "Bu ekran görüntüsü, istekte bulunan uygulama ile paylaşılsın mı?
 msgid "Screenshot"
 msgstr "Ekran Görüntüsü"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Seçenekler…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "Ekran Görüntüsü _Al"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Ekran Görüntüsü Al"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Tüm _masaüstünü yakala"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Geçerli _pencereyi yakala"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Yakalanacak _alan seç"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Yakalamadan önce _beklenecek süre"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "saniye"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Etkiler"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "İ_mleçi içer"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Pencere _kenarlığını içer"
 
@@ -290,11 +262,11 @@ msgstr "İstenen ayar bulunamadı"
 msgid "Set Background"
 msgstr "Arka Plan Belirle"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Belirle"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Resim dosyası yüklenirken hata oluştu"
 
