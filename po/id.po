@@ -1,22 +1,22 @@
 # Indonesian translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2017 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-07-09 18:28+0000\n"
-"PO-Revision-Date: 2022-07-12 17:56+0700\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-01-30 11:50+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -26,7 +26,7 @@ msgstr "Portal"
 msgid "Select an Image"
 msgstr "Pilih Gambar"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Batal"
 
@@ -56,23 +56,23 @@ msgstr "Bagikan informasi pribadi Anda dengan aplikasi yang meminta? %s"
 msgid "Share Details"
 msgstr "Bagikan Detail"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "Ba_tal"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Bagikan"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Nama"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Nama pengguna"
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Buka Dengan…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "B_uka"
 
@@ -120,68 +120,39 @@ msgstr "Tidak ada Aplikasi yang tersedia"
 msgid "_Find More in Software"
 msgstr "T_emukan Lebih Banyak dalam Perangkat Lunak"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "\"%s\" sedang berjalan di latar belakang"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Ini mungkin karena alasan yang sah, tetapi aplikasi belum menyediakannya.\n"
-"\n"
-"Perhatikan bahwa memaksa aplikasi untuk berhenti dapat menyebabkan "
-"kehilangan data."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Keluar paksa"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Izinkan"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Aktivitas latar belakang"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Temukan lebih banyak lagi"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Buat Aplikasi Web"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Buat Aplikasi"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Buat"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Pilih"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Simpan"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Buka berkas hanya-baca"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Buka direktori hanya-baca"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Destop jauh"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Izinkan interaksi jarak jauh"
 
@@ -193,21 +164,21 @@ msgstr "Berbagi Layar"
 msgid "Virtual monitor"
 msgstr "Monitor virtual"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Pilih monitor untuk berbagi dengan %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Pilih jendela untuk dibagikan dengan %s"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Pilih monitor untuk berbagi dengan aplikasi yang meminta"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Pilih jendela untuk dibagikan dengan aplikasi yang meminta"
 
@@ -223,12 +194,12 @@ msgstr "Ingat pilihan ini"
 msgid "Entire Screen"
 msgstr "Keseluruhan Layar"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Bagikan cuplikan layar ini dengan %s?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Bagikan cuplikan layar ini dengan aplikasi yang meminta?"
 
@@ -236,47 +207,47 @@ msgstr "Bagikan cuplikan layar ini dengan aplikasi yang meminta?"
 msgid "Screenshot"
 msgstr "Cuplikan layar"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Opsi…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "Ambil _Cuplikan Layar"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Ambil Cuplikan Layar"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Cuplik seluruh laya_r"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "_Cuplik jendela yang aktif"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Pilih wil_ayah tertentu"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Ambil setelah tun_daan"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "detik"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Efek"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Sertakan _penunjuk"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Sertakan _bingkai jendela"
 
@@ -288,17 +259,44 @@ msgstr "Pengaturan yang diminta tidak ditemukan"
 msgid "Set Background"
 msgstr "Atur Latar Belakang"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Atur"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Gagal memuat berkas gambar"
 
 #: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Aktivitas"
+
+#~ msgid "“%s” is running in the background"
+#~ msgstr "\"%s\" sedang berjalan di latar belakang"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Ini mungkin karena alasan yang sah, tetapi aplikasi belum "
+#~ "menyediakannya.\n"
+#~ "\n"
+#~ "Perhatikan bahwa memaksa aplikasi untuk berhenti dapat menyebabkan "
+#~ "kehilangan data."
+
+#~ msgid "Force quit"
+#~ msgstr "Keluar paksa"
+
+#~ msgid "Allow"
+#~ msgstr "Izinkan"
+
+#~ msgid "Background activity"
+#~ msgstr "Aktivitas latar belakang"
+
+#~ msgid "Find out more"
+#~ msgstr "Temukan lebih banyak lagi"
 
 #~ msgid "applications-system-symbolic"
 #~ msgstr "applications-system-symbolic"
