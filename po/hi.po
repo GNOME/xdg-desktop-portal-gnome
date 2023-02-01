@@ -2,15 +2,15 @@
 # Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Translators: 
-# Hemish <hemish04082005@gmail.com>, 2022.
+# Hemish <hemish04082005@gmail.com>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-11-12 18:50+0000\n"
-"PO-Revision-Date: 2022-12-27 15:29+0530\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-01-28 02:46+0530\n"
 "Last-Translator: Hemish <hemish04082005@gmail.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net https://indlinux."
 "org/hindi>\n"
@@ -60,7 +60,7 @@ msgid "Share Details"
 msgstr "जानकारी साझा करें"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
 #: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -108,7 +108,7 @@ msgstr "कोई उपयुक्त ऐप इंस्टॉल नही�
 msgid "Open With…"
 msgstr "इससे खोलें…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "खोलें (_O)"
 
@@ -120,29 +120,33 @@ msgstr "कोई ऐप उपलब्ध नहीं है"
 msgid "_Find More in Software"
 msgstr "सॉफ्टवेयर में अधिक पाएँ (_F)"
 
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "वेब एप्लिकेशन बनाएँ"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "एप्लिकेशन बनाएँ"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "बनाएँ (_r)"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "चुनें (_S)"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "सहेजें (_S)"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "फ़ाइलें केवल पढ़ने के लिए खोलें"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "डायरेक्टरीज़ केवल पढ़ने के लिए खोलें"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
