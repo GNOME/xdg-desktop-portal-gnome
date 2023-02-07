@@ -34,11 +34,11 @@ top_srcdir = meson.source_root()
 shell_dbus_interfaces = files(
   top_srcdir / 'data' / 'org.freedesktop.Accounts.User.xml',
   top_srcdir / 'data' / 'org.freedesktop.Accounts.xml',
-	top_srcdir / 'data' / 'org.gnome.Mutter.DisplayConfig.xml',
-	top_srcdir / 'data' / 'org.gnome.Mutter.RemoteDesktop.xml',
-	top_srcdir / 'data' / 'org.gnome.Mutter.ScreenCast.xml',
-	top_srcdir / 'data' / 'org.gnome.Shell.Introspect.xml',
-	top_srcdir / 'data' / 'org.gnome.Shell.Screenshot.xml',
+  top_srcdir / 'data' / 'org.gnome.Mutter.DisplayConfig.xml',
+  top_srcdir / 'data' / 'org.gnome.Mutter.RemoteDesktop.xml',
+  top_srcdir / 'data' / 'org.gnome.Mutter.ScreenCast.xml',
+  top_srcdir / 'data' / 'org.gnome.Shell.Introspect.xml',
+  top_srcdir / 'data' / 'org.gnome.Shell.Screenshot.xml',
 )
 
 built_sources += gnome.gdbus_codegen(
