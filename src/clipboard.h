@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Red Hat, Inc
+ * Copyright 2022 Google LLC
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,15 +18,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <gio/gio.h>
+#include <glib.h>
 
-#include "screencast.h"
-
-#define REMOTE_DESKTOP_TYPE_DIALOG (remote_desktop_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (RemoteDesktopDialog, remote_desktop_dialog,
-                      REMOTE_DESKTOP, DIALOG, GtkWindow)
-
-RemoteDesktopDialog * remote_desktop_dialog_new (const char *app_id,
-                                                 RemoteDesktopDeviceType device_types,
-                                                 ScreenCastSelection *screen_cast_select,
-                                                 gboolean clipboard_requested);
+gboolean clipboard_init (GDBusConnection *connection, GError **error);

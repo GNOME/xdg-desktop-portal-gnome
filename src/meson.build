@@ -86,6 +86,7 @@ sources = built_sources + files(
   'appchooserrow.c',
   'appchooserdialog.c',
   'background.c',
+  'clipboard.c',
   'displaystatetracker.c',
   'dynamic-launcher.c',
   'externalwindow.c',

@@ -31,6 +31,8 @@ struct _RemoteDesktopDialog
 
   GtkWidget *accept_button;
   GtkSwitch *allow_remote_interaction_switch;
+  GtkSwitch *allow_remote_clipboard_row;
+  GtkSwitch *allow_remote_clipboard_switch;
   GtkWidget *screen_cast_widget;
   GtkHeaderBar *titlebar;
 
@@ -72,6 +74,7 @@ button_clicked (GtkWidget *button,
                 RemoteDesktopDialog *dialog)
 {
   RemoteDesktopDeviceType device_types = 0;
+  gboolean enable_clipboard;
   g_autoptr(GPtrArray) streams = NULL;
   int response;
 
@@ -86,15 +89,18 @@ button_clicked (GtkWidget *button,
       device_types = get_selected_device_types (dialog);
       if (dialog->screen_cast_enable)
         streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
+      enable_clipboard = gtk_switch_get_active (dialog->allow_remote_clipboard_switch);
     }
   else
     {
       response = GTK_RESPONSE_CANCEL;
       device_types = 0;
       streams = NULL;
+      enable_clipboard = FALSE;
     }
 
-  g_signal_emit (dialog, signals[DONE], 0, response, device_types, streams);
+  g_signal_emit (dialog, signals[DONE], 0, response,
+                 device_types, streams, enable_clipboard);
 }
 
 static void
@@ -134,7 +140,8 @@ on_has_selection_changed (ScreenCastWidget *screen_cast_widget,
 RemoteDesktopDialog *
 remote_desktop_dialog_new (const char *app_id,
                            RemoteDesktopDeviceType device_types,
-                           ScreenCastSelection *screen_cast_select)
+                           ScreenCastSelection *screen_cast_select,
+                           gboolean clipboard_requested)
 {
   RemoteDesktopDialog *dialog;
 
@@ -173,6 +180,19 @@ remote_desktop_dialog_new (const char *app_id,
 
     }
 
+  if (clipboard_requested)
+    {
+      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_remote_clipboard_row),
+                              TRUE);
+      gtk_switch_set_active (dialog->allow_remote_clipboard_switch, TRUE);
+    }
+  else
+    {
+      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_remote_clipboard_row),
+                              FALSE);
+      gtk_switch_set_active (dialog->allow_remote_clipboard_switch, FALSE);
+    }
+
   return dialog;
 }
 
@@ -209,13 +229,16 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
                                 G_TYPE_NONE, 3,
                                 G_TYPE_INT,
                                 G_TYPE_INT,
-                                G_TYPE_PTR_ARRAY);
+                                G_TYPE_PTR_ARRAY,
+                                G_TYPE_BOOLEAN);
 
   g_type_ensure (SCREEN_CAST_TYPE_WIDGET);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/remotedesktopdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_interaction_switch);
+  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_clipboard_row);
+  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_clipboard_switch);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, screen_cast_widget);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);

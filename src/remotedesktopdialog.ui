@@ -71,6 +71,7 @@
                     <style>
                       <class name="content" />
                     </style>
+
                     <child>
                       <object class="AdwActionRow">
                         <property name="title" translatable="yes">Allow remote interaction</property>
@@ -83,6 +84,20 @@
                         </child>
                       </object>
                     </child>
+
+                    <child>
+                      <object class="AdwActionRow" id="allow_remote_clipboard_row">
+                        <property name="title" translatable="yes">Allow clipboard access</property>
+                        <property name="visible">False</property>
+                        <property name="activatable-widget">allow_remote_clipboard_switch</property>
+                        <child>
+                          <object class="GtkSwitch" id="allow_remote_clipboard_switch">
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
                   </object>
                 </child>
 

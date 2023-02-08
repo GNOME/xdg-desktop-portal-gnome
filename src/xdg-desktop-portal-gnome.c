@@ -45,6 +45,7 @@
 #include "account.h"
 #include "appchooser.h"
 #include "background.h"
+#include "clipboard.h"
 #include "filechooser.h"
 #include "lockdown.h"
 #include "print.h"
@@ -156,6 +157,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!remote_desktop_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!clipboard_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);

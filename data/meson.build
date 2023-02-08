@@ -8,6 +8,7 @@ gnome_portal_interfaces = [
   'org.freedesktop.impl.portal.Account',
   'org.freedesktop.impl.portal.AppChooser',
   'org.freedesktop.impl.portal.Background',
+  'org.freedesktop.impl.portal.Clipboard',
   'org.freedesktop.impl.portal.DynamicLauncher',
   'org.freedesktop.impl.portal.FileChooser',
   'org.freedesktop.impl.portal.Lockdown',

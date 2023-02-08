@@ -25,6 +25,7 @@
 #include "xdg-desktop-portal-dbus.h"
 #include "shell-dbus.h"
 
+#include "clipboard.h"
 #include "remotedesktop.h"
 #include "remotedesktopdialog.h"
 #include "screencastdialog.h"
@@ -71,6 +72,14 @@ typedef struct _RemoteDesktopSession
     RemoteDesktopDeviceType device_types;
   } shared;
 
+  struct
+  {
+    gboolean clipboard_enabled;
+    gboolean clipboard_requested;
+    gulong selection_owner_changed_handler_id;
+    gulong selection_transfer_handler_id;
+  } clipboard;
+
   GDBusMethodInvocation *start_invocation;
   RemoteDesktopDialogHandle *dialog_handle;
 } RemoteDesktopSession;
@@ -79,6 +88,16 @@ typedef struct _RemoteDesktopSessionClass
 {
   SessionClass parent_class;
 } RemoteDesktopSessionClass;
+
+enum
+{
+  CLIPBOARD_SELECTION_OWNER_CHANGED,
+  CLIPBOARD_SELECTION_TRANSFER,
+
+  N_SIGNAL
+};
+
+static guint signals[N_SIGNAL];
 
 typedef struct _RemoteDesktopDialogHandle
 {
@@ -125,6 +144,43 @@ remote_desktop_session_sources_selected (RemoteDesktopSession *session,
 {
   session->select.screen_cast_enable = TRUE;
   session->select.screen_cast = *selection;
+}
+
+static void
+on_selection_owner_changed (OrgGnomeMutterRemoteDesktopSession *object,
+                            GVariant *arg_options,
+                            RemoteDesktopSession *session)
+{
+  g_signal_emit (session, signals[CLIPBOARD_SELECTION_OWNER_CHANGED], 0,
+                 arg_options);
+}
+
+static void
+on_selection_transfer (OrgGnomeMutterRemoteDesktopSession *object,
+                       const gchar *arg_mime_type,
+                       guint arg_serial,
+                       RemoteDesktopSession *session)
+{
+  g_signal_emit (session, signals[CLIPBOARD_SELECTION_TRANSFER], 0,
+                 arg_mime_type, arg_serial);
+}
+
+void
+remote_desktop_session_request_clipboard (RemoteDesktopSession *session)
+{
+  session->clipboard.clipboard_requested = TRUE;
+}
+
+gboolean
+remote_desktop_session_is_clipboard_enabled (RemoteDesktopSession *session)
+{
+  return session->clipboard.clipboard_enabled;
+}
+
+OrgGnomeMutterRemoteDesktopSession *
+remote_desktop_session_mutter_session_proxy (RemoteDesktopSession *session)
+{
+  return session->mutter_session_proxy;
 }
 
 static void
@@ -229,7 +285,8 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
     GTK_WINDOW (remote_desktop_dialog_new (request->app_id,
                                            session->select.device_types,
                                            session->select.screen_cast_enable ?
-                                             &session->select.screen_cast : NULL));
+                                             &session->select.screen_cast : NULL,
+                                           session->clipboard.clipboard_requested));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, TRUE);
 
@@ -414,12 +471,44 @@ start_done (RemoteDesktopSession *remote_desktop_session)
   GVariantBuilder results_builder;
   RemoteDesktopDeviceType shared_device_types;
   GnomeScreenCastSession *gnome_screen_cast_session;
+  gboolean clipboard_enabled;
 
   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
 
   shared_device_types = remote_desktop_session->shared.device_types;
   g_variant_builder_add (&results_builder, "{sv}",
                          "devices", g_variant_new_uint32 (shared_device_types));
+
+  if (remote_desktop_session->clipboard.clipboard_requested)
+  {
+    g_autoptr (GError) error = NULL;
+    GVariantBuilder options_builder;
+    GVariant *options;
+
+    remote_desktop_session->clipboard.selection_owner_changed_handler_id =
+      g_signal_connect (remote_desktop_session->mutter_session_proxy,
+                        "selection-owner-changed",
+                        G_CALLBACK (on_selection_owner_changed),
+                        remote_desktop_session);
+    remote_desktop_session->clipboard.selection_transfer_handler_id =
+      g_signal_connect (remote_desktop_session->mutter_session_proxy,
+                        "selection-transfer",
+                        G_CALLBACK (on_selection_transfer),
+                        remote_desktop_session);
+
+    g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+    options = g_variant_builder_end (&options_builder);
+
+    if (!org_gnome_mutter_remote_desktop_session_call_enable_clipboard_sync (
+      remote_desktop_session->mutter_session_proxy, options, NULL, &error))
+      {
+        g_warning ("Failed to enable clipboard: %s", error->message);
+      }
+
+    clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
+    g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
+                           g_variant_new_boolean (clipboard_enabled));
+  }
 
   gnome_screen_cast_session = remote_desktop_session->gnome_screen_cast_session;
   if (gnome_screen_cast_session)
@@ -883,6 +972,7 @@ remote_desktop_name_appeared (GDBusConnection *connection,
     }
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_remote_desktop_skeleton_new ());
+  xdp_impl_remote_desktop_set_version (XDP_IMPL_REMOTE_DESKTOP (impl), 2);
 
   g_signal_connect (impl, "handle-create-session",
                     G_CALLBACK (handle_create_session), NULL);
@@ -984,6 +1074,16 @@ remote_desktop_session_close (Session *session)
   g_signal_handler_disconnect (session_proxy,
                                remote_desktop_session->closed_handler_id);
 
+  if (remote_desktop_session->clipboard.clipboard_enabled)
+    {
+      g_signal_handler_disconnect (
+          session_proxy, remote_desktop_session->clipboard
+                             .selection_owner_changed_handler_id);
+      g_signal_handler_disconnect (
+          session_proxy, remote_desktop_session->clipboard
+                             .selection_transfer_handler_id);
+    }
+
   if (!org_gnome_mutter_remote_desktop_session_call_stop_sync (session_proxy,
                                                                NULL,
                                                                &error))
@@ -1019,4 +1119,25 @@ remote_desktop_session_class_init (RemoteDesktopSessionClass *klass)
 
   session_class = (SessionClass *)klass;
   session_class->close = remote_desktop_session_close;
+
+  signals[CLIPBOARD_SELECTION_OWNER_CHANGED] =
+    g_signal_new ("clipboard-selection-owner-changed",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL, NULL,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_VARIANT);
+
+  signals[CLIPBOARD_SELECTION_TRANSFER] =
+    g_signal_new ("clipboard-selection-transfer",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL, NULL,
+                  G_TYPE_NONE,
+                  2,
+                  G_TYPE_STRING,
+                  G_TYPE_INT);
 }
