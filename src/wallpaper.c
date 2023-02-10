@@ -186,7 +186,6 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
   WallpaperDialogHandle *handle;
   const char *sender;
   gboolean show_preview = FALSE;
-  GdkDisplay *display;
   ExternalWindow *external_parent = NULL;
   GdkSurface *surface;
   GtkWidget *fake_parent;
@@ -216,14 +215,7 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = (GtkWindow *)wallpaper_dialog_new (arg_uri, arg_app_id);

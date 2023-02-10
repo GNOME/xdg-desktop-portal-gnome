@@ -156,7 +156,6 @@ handle_choose_application (XdpImplAppChooser *object,
   const char *location;
   gboolean modal;
   GdkSurface *surface;
-  GdkDisplay *display;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
@@ -182,14 +181,7 @@ handle_choose_application (XdpImplAppChooser *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (app_chooser_dialog_new (choices, latest_chosen_id, content_type, location));

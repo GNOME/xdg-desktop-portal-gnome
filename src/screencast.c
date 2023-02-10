@@ -350,7 +350,6 @@ create_screen_cast_dialog (ScreenCastSession     *session,
 {
   ScreenCastDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
-  GdkDisplay *display;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
@@ -367,13 +366,7 @@ create_screen_cast_dialog (ScreenCastSession     *session,
       external_parent = NULL;
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (screen_cast_dialog_new (request->app_id,

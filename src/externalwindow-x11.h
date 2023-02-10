@@ -30,3 +30,5 @@ G_DECLARE_FINAL_TYPE (ExternalWindowX11, external_window_x11,
                       EXTERNAL, WINDOW_X11, ExternalWindow)
 
 ExternalWindowX11 *external_window_x11_new (const char *handle_str);
+
+GdkDisplay * init_external_window_x11_display (GError **error);

@@ -29,8 +29,6 @@
 #include "externalwindow-x11.h"
 
 
-static GdkDisplay *x11_display;
-
 struct _ExternalWindowX11
 {
   ExternalWindow parent;
@@ -46,45 +44,32 @@ struct _ExternalWindowX11Class
 G_DEFINE_TYPE (ExternalWindowX11, external_window_x11,
                EXTERNAL_TYPE_WINDOW)
 
-static GdkDisplay *
-get_x11_display (void)
-{
-  if (x11_display)
-    return x11_display;
-
-  gdk_set_allowed_backends ("x11");
-  x11_display = gdk_display_open (NULL);
-  gdk_set_allowed_backends (NULL);
-  if (!x11_display)
-    g_warning ("Failed to open X11 display");
-
-  return x11_display;
-}
-
 ExternalWindowX11 *
 external_window_x11_new (const char *handle_str)
 {
   ExternalWindowX11 *external_window_x11;
-  GdkDisplay *display;
+  const char x11_prefix[] = "x11:";
+  const char *x11_handle_str;
   int xid;
 
-  display = get_x11_display ();
-  if (!display)
+  if (!g_str_has_prefix (handle_str, x11_prefix))
     {
-      g_warning ("No X display connection, ignoring X11 parent");
+      g_warning ("Invalid external window handle string '%s'", handle_str);
       return NULL;
     }
 
+  x11_handle_str = handle_str + strlen (x11_prefix);
+
   errno = 0;
-  xid = strtol (handle_str, NULL, 16);
+  xid = strtol (x11_handle_str, NULL, 16);
   if (errno != 0)
     {
-      g_warning ("Failed to reference external X11 window, invalid XID %s", handle_str);
+      g_warning ("Failed to reference external X11 window, invalid XID %s",
+                 x11_handle_str);
       return NULL;
     }
 
   external_window_x11 = g_object_new (EXTERNAL_TYPE_WINDOW_X11,
-                                      "display", display,
                                       NULL);
   external_window_x11->foreign_xid = xid;
 
@@ -101,7 +86,7 @@ external_window_x11_set_parent_of (ExternalWindow *external_window,
   Display *xdisplay;
   Atom atom;
 
-  display = get_x11_display ();
+  display = gdk_display_get_default ();
   xdisplay = gdk_x11_display_get_xdisplay (display);
 
   XSetTransientForHint (xdisplay,
@@ -127,4 +112,11 @@ external_window_x11_class_init (ExternalWindowX11Class *klass)
   ExternalWindowClass *external_window_class = EXTERNAL_WINDOW_CLASS (klass);
 
   external_window_class->set_parent_of = external_window_x11_set_parent_of;
+}
+
+GdkDisplay *
+init_external_window_x11_display (GError **error)
+{
+  gdk_set_allowed_backends ("x11");
+  return gdk_display_open (NULL);
 }

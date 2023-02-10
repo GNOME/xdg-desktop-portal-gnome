@@ -24,54 +24,35 @@
 
 #include "externalwindow.h"
 #ifdef HAVE_GTK_X11
+#include <gdk/x11/gdkx.h>
 #include "externalwindow-x11.h"
 #endif
 #ifdef HAVE_GTK_WAYLAND
+#include <gdk/wayland/gdkwayland.h>
 #include "externalwindow-wayland.h"
 #endif
 
-enum
-{
-  PROP_0,
-
-  PROP_DISPLAY,
-};
-
-typedef struct _ExternalWindowPrivate
-{
-  GdkDisplay *display;
-} ExternalWindowPrivate;
-
-G_DEFINE_TYPE_WITH_PRIVATE (ExternalWindow, external_window, G_TYPE_OBJECT)
+G_DEFINE_TYPE (ExternalWindow, external_window, G_TYPE_OBJECT)
 
 ExternalWindow *
 create_external_window_from_handle (const char *handle_str)
 {
 #ifdef HAVE_GTK_X11
+  if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
-      const char x11_prefix[] = "x11:";
-      if (g_str_has_prefix (handle_str, x11_prefix))
-        {
-          ExternalWindowX11 *external_window_x11;
-          const char *x11_handle_str = handle_str + strlen (x11_prefix);
+      ExternalWindowX11 *external_window_x11;
 
-          external_window_x11 = external_window_x11_new (x11_handle_str);
-          return EXTERNAL_WINDOW (external_window_x11);
-        }
+      external_window_x11 = external_window_x11_new (handle_str);
+      return EXTERNAL_WINDOW (external_window_x11);
     }
 #endif
 #ifdef HAVE_GTK_WAYLAND
+  if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
     {
-      const char wayland_prefix[] = "wayland:";
-      if (g_str_has_prefix (handle_str, wayland_prefix))
-        {
-          ExternalWindowWayland *external_window_wayland;
-          const char *wayland_handle_str = handle_str + strlen (wayland_prefix);
+      ExternalWindowWayland *external_window_wayland;
 
-          external_window_wayland =
-            external_window_wayland_new (wayland_handle_str);
-          return EXTERNAL_WINDOW (external_window_wayland);
-        }
+      external_window_wayland = external_window_wayland_new (handle_str);
+      return EXTERNAL_WINDOW (external_window_wayland);
     }
 #endif
 
@@ -87,57 +68,6 @@ external_window_set_parent_of (ExternalWindow *external_window,
                                                               surface);
 }
 
-GdkDisplay *
-external_window_get_display (ExternalWindow *external_window)
-{
-  ExternalWindowPrivate *priv =
-    external_window_get_instance_private (external_window);
-
-  return priv->display;
-}
-
-static void
-external_window_set_property (GObject      *object,
-                              guint         prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
-{
-  ExternalWindow *external_window = EXTERNAL_WINDOW (object);
-  ExternalWindowPrivate *priv =
-    external_window_get_instance_private (external_window);
-
-  switch (prop_id)
-    {
-    case PROP_DISPLAY:
-      g_set_object (&priv->display, g_value_get_object (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
-external_window_get_property (GObject    *object,
-                              guint       prop_id,
-                              GValue     *value,
-                              GParamSpec *pspec)
-{
-  ExternalWindow *external_window = EXTERNAL_WINDOW (object);
-  ExternalWindowPrivate *priv =
-    external_window_get_instance_private (external_window);
-
-  switch (prop_id)
-    {
-    case PROP_DISPLAY:
-      g_value_set_object (value, priv->display);
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
 static void
 external_window_init (ExternalWindow *external_window)
 {
@@ -146,18 +76,21 @@ external_window_init (ExternalWindow *external_window)
 static void
 external_window_class_init (ExternalWindowClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+}
 
-  object_class->get_property = external_window_get_property;
-  object_class->set_property = external_window_set_property;
+GdkDisplay *
+init_external_window_display (GError **error)
+{
+  const char *session_type;
 
-  g_object_class_install_property (object_class,
-                                   PROP_DISPLAY,
-                                   g_param_spec_object ("display",
-                                                        "GdkDisplay",
-                                                        "The GdkDisplay instance",
-                                                        GDK_TYPE_DISPLAY,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_CONSTRUCT_ONLY |
-                                                        G_PARAM_STATIC_STRINGS));
+  session_type = getenv ("XDG_SESSION_TYPE");
+  if (g_strcmp0 (session_type, "wayland") == 0)
+    return init_external_window_wayland_display (error);
+  else if (g_strcmp0 (session_type, "x11") == 0)
+    return init_external_window_x11_display (error);
+
+  g_set_error (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
+               "Unsupported or missing session type '%s'",
+               session_type ? session_type : "");
+  return FALSE;
 }

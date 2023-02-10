@@ -479,7 +479,6 @@ handle_open (XdpImplFileChooser    *object,
   g_autoptr (GVariant) current_filter = NULL;
   g_autoptr(Request) request = NULL;
   ExternalWindow *external_parent = NULL;
-  GdkDisplay *display;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
@@ -542,14 +541,7 @@ handle_open (XdpImplFileChooser    *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (gtk_file_chooser_dialog_new (arg_title, GTK_WINDOW (fake_parent), action,

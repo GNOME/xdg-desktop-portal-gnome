@@ -29,3 +29,5 @@ G_DECLARE_FINAL_TYPE (ExternalWindowWayland, external_window_wayland,
                       EXTERNAL, WINDOW_WAYLAND, ExternalWindow)
 
 ExternalWindowWayland *external_window_wayland_new (const char *handle_str);
+
+GdkDisplay * init_external_window_wayland_display (GError **error);

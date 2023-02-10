@@ -55,6 +55,7 @@
 #include "settings.h"
 #include "wallpaper.h"
 #include "dynamic-launcher.h"
+#include "externalwindow.h"
 
 
 static GMainLoop *loop = NULL;
@@ -196,6 +197,37 @@ on_name_lost (GDBusConnection *connection,
   g_main_loop_quit (loop);
 }
 
+static gboolean
+init_gtk (GError **error)
+{
+  GdkDisplay *display;
+
+  /* Avoid pointless and confusing recursion */
+  g_unsetenv ("GTK_USE_PORTAL");
+
+  if (G_UNLIKELY (!g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE)))
+    {
+      g_set_error (error, G_IO_ERROR, g_io_error_from_errno (errno),
+                   "Failed to set ADW_DISABLE_PORTAL: %s", g_strerror (errno));
+      return FALSE;
+    }
+
+  display = init_external_window_display (error);
+  if (!display)
+    return FALSE;
+
+  if (!gtk_init_check ())
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Failed to initialize GTK");
+      return FALSE;
+    }
+
+  g_assert (gdk_display_get_default () == display);
+
+  return TRUE;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -209,22 +241,12 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  /* Avoid pointless and confusing recursion */
-  g_unsetenv ("GTK_USE_PORTAL");
-
-  if (G_UNLIKELY (!g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE)))
+  if (!init_gtk (&error))
     {
-      g_printerr ("Failed to set ADW_DISABLE_PORTAL: %s\n", g_strerror (errno));
+      g_printerr ("Failed to initialize display server connection: %s\n",
+                  error->message);
       return 1;
     }
-
-  if (G_UNLIKELY (!g_setenv ("GSK_RENDERER", "cairo", TRUE)))
-    {
-      g_printerr ("Failed to set GSK_RENDERER: %s\n", g_strerror (errno));
-      return 1;
-    }
-
-  gtk_init ();
 
   context = g_option_context_new ("- portal backends");
   g_option_context_set_summary (context,

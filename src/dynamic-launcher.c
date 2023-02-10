@@ -179,7 +179,6 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
 {
   g_autoptr(Request) request = NULL;
   const char *sender;
-  GdkDisplay *display;
   GdkSurface *surface;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
@@ -209,14 +208,7 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   handle = g_new0 (InstallDialogHandle, 1);

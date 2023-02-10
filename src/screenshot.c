@@ -159,7 +159,6 @@ handle_screenshot (XdpImplScreenshot *object,
   gboolean interactive;
   GtkWindow *dialog;
   GdkSurface *surface;
-  GdkDisplay *display;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
@@ -183,14 +182,7 @@ handle_screenshot (XdpImplScreenshot *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id,

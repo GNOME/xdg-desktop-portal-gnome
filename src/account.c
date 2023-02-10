@@ -155,7 +155,6 @@ handle_get_user_information (XdpImplAccount        *object,
   const char *icon_file;
   GtkWindow *dialog;
   GdkSurface *surface;
-  GdkDisplay *display;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
   const char *reason;
@@ -179,14 +178,7 @@ handle_get_user_information (XdpImplAccount        *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (account_dialog_new (arg_app_id, user_name, real_name, icon_file, reason));

@@ -207,7 +207,6 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
   RemoteDesktopDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
   GdkSurface *surface;
-  GdkDisplay *display;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
 
@@ -223,13 +222,7 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
       external_parent = NULL;
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   dialog =

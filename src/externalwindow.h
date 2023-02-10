@@ -40,4 +40,4 @@ ExternalWindow *create_external_window_from_handle (const char *handle_str);
 void external_window_set_parent_of (ExternalWindow *external_window,
                                     GdkSurface     *surface);
 
-GdkDisplay *external_window_get_display (ExternalWindow *external_window);
+GdkDisplay * init_external_window_display (GError **error);

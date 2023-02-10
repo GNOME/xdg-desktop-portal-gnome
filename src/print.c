@@ -444,7 +444,6 @@ handle_print (XdpImplPrint          *object,
   PrintParams *params;
   int idx, fd;
   gboolean modal;
-  GdkDisplay *display;
   GdkSurface *surface;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
@@ -488,14 +487,7 @@ handle_print (XdpImplPrint          *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
 
@@ -624,7 +616,6 @@ handle_prepare_print (XdpImplPrint          *object,
   GtkPrintSettings *settings;
   GtkPageSetup *page_setup;
   gboolean modal;
-  GdkDisplay *display;
   GdkSurface *surface;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
@@ -641,14 +632,7 @@ handle_prepare_print (XdpImplPrint          *object,
                    arg_parent_window);
     }
 
-  if (external_parent)
-    display = external_window_get_display (external_parent);
-  else
-    display = gdk_display_get_default ();
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW,
-                              "display", display,
-                              NULL);
+  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
   settings = gtk_print_settings_new_from_gvariant (arg_settings);
