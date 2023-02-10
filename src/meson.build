@@ -4,7 +4,8 @@ pkg = import('pkgconfig')
 xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.15.0')
 
 # Desktop Portal D-Bus interfaces
-desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_pkgconfig_variable('interfaces_dir')
+desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_variable(
+  pkgconfig: 'interfaces_dir')
 desktop_portal_dbus_interfaces = [
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Account.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
@@ -30,7 +31,7 @@ built_sources = gnome.gdbus_codegen(
 )
 
 # Mutter / GNOME Shell D-Bus interfaces
-top_srcdir = meson.source_root()
+top_srcdir = meson.project_source_root()
 shell_dbus_interfaces = files(
   top_srcdir / 'data' / 'org.freedesktop.Accounts.User.xml',
   top_srcdir / 'data' / 'org.freedesktop.Accounts.xml',

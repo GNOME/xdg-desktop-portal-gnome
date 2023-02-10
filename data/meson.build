@@ -34,7 +34,7 @@ i18n.merge_file(
   type: 'desktop',
   input: desktop_in,
   output: 'xdg-desktop-portal-gnome.desktop',
-  po_dir: meson.source_root() / 'po',
+  po_dir: meson.project_source_root() / 'po',
   install: true,
   install_dir: datadir / 'applications',
 )
