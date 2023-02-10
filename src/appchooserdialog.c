@@ -84,7 +84,6 @@ update_header (GtkListBoxRow *row,
       GtkWidget *separator;
 
       separator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-      gtk_widget_show (separator);
       gtk_list_box_row_set_header (row, separator);
     }
 }
@@ -130,7 +129,7 @@ show_more (AppChooserDialog *dialog)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (dialog->scrolled_window),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   gtk_window_set_resizable (GTK_WINDOW (dialog), TRUE);
-  gtk_widget_hide (dialog->more_row);
+  gtk_widget_set_visible (dialog->more_row, FALSE);
 
   g_return_if_fail (g_strv_length ((char **)dialog->choices) > INITIAL_LIST_SIZE);
 
@@ -207,7 +206,7 @@ show_error_dialog (const gchar *primary,
                 "secondary-text", secondary,
                 NULL);
   gtk_dialog_set_default_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
-  gtk_widget_show (message_dialog);
+  gtk_window_present (GTK_WINDOW (message_dialog));
   g_signal_connect (message_dialog, "response",
                     G_CALLBACK (gtk_window_destroy), NULL);
 }
@@ -405,7 +404,7 @@ app_chooser_dialog_new (const char **choices,
   n_choices = g_strv_length ((char **)choices);
   if (n_choices == 0)
     {
-      gtk_widget_show (dialog->empty_box);
+      gtk_widget_set_visible (dialog->empty_box, TRUE);
       gtk_stack_set_visible_child_name (GTK_STACK (dialog->stack), "empty");
       gtk_window_set_default_widget (GTK_WINDOW (dialog), dialog->find_software_button);
       if (location)

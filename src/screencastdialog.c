@@ -64,7 +64,7 @@ on_button_clicked_cb (GtkWidget        *button,
   g_autoptr(GPtrArray) streams = NULL;
   int response;
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (button == dialog->accept_button)
     {
@@ -103,7 +103,7 @@ on_has_selection_changed (ScreenCastWidget *screen_cast_widget,
 static gboolean
 screen_cast_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
 
@@ -145,8 +145,6 @@ screen_cast_dialog_init (ScreenCastDialog *dialog)
 
   g_signal_connect (dialog->screen_cast_widget, "has-selection-changed",
                     G_CALLBACK (on_has_selection_changed), dialog);
-  gtk_widget_show (dialog->screen_cast_widget);
-
 }
 
 ScreenCastDialog *

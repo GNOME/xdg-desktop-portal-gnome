@@ -54,7 +54,7 @@ account_dialog_finalize (GObject *object)
 static gboolean
 account_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
 
@@ -69,7 +69,7 @@ button_clicked (GtkWidget     *button,
   const char *user_name;
   const char *real_name;
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (button == dialog->accept_button)
     response = GTK_RESPONSE_OK;
@@ -167,7 +167,7 @@ image_button_clicked (AccountDialog *dialog)
 
   g_signal_connect (chooser, "response", G_CALLBACK (file_chooser_response), dialog);
 
-  gtk_widget_show (chooser);
+  gtk_window_present (GTK_WINDOW (chooser));
 }
 
 static void

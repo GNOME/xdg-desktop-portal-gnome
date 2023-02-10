@@ -75,7 +75,7 @@ button_clicked (GtkWidget *button,
   g_autoptr(GPtrArray) streams = NULL;
   int response;
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (button == dialog->accept_button)
     {
@@ -162,7 +162,7 @@ remote_desktop_dialog_new (const char *app_id,
 
       g_signal_connect (screen_cast_widget, "has-selection-changed",
                         G_CALLBACK (on_has_selection_changed), dialog);
-      gtk_widget_show (GTK_WIDGET (screen_cast_widget));
+      gtk_widget_set_visible (GTK_WIDGET (screen_cast_widget), TRUE);
 
       if (__builtin_popcount (screen_cast_select->source_types) > 1 &&
           (screen_cast_select->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW))
@@ -185,7 +185,7 @@ remote_desktop_dialog_init (RemoteDesktopDialog *dialog)
 static gboolean
 remote_desktop_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL);
 

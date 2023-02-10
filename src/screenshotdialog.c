@@ -143,13 +143,13 @@ maybe_show_screenshot (ScreenshotDialog *dialog,
 {
   if (dialog->skip_dialog)
     {
-      gtk_widget_hide (GTK_WIDGET (dialog));
+      gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
       g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_OK, filename);
     }
   else
     {
       show_screenshot (dialog, filename);
-      gtk_widget_show (GTK_WIDGET (dialog));
+      gtk_window_present (GTK_WINDOW (dialog));
     }
 }
 
@@ -316,7 +316,7 @@ take_screenshot (ScreenshotDialog *dialog)
   grab = g_action_get_state (action);
   kind = g_variant_get_string (grab, NULL);
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (strcmp (kind, "area") == 0)
     {
@@ -345,7 +345,7 @@ button_clicked (GtkWidget *button,
   else
     response = GTK_RESPONSE_CANCEL;
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
   g_signal_emit (dialog, signals[DONE], 0, response, dialog->filename);
 }
 
@@ -371,7 +371,7 @@ screenshot_dialog_finalize (GObject *object)
 static gboolean
 screenshot_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, NULL);
 

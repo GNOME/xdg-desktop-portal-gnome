@@ -392,7 +392,7 @@ create_screen_cast_dialog (ScreenCastSession     *session,
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (GTK_WIDGET (dialog));
+  gtk_window_present (dialog);
 
   return dialog_handle;
 }

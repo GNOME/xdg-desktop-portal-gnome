@@ -205,7 +205,7 @@ handle_get_user_information (XdpImplAccount        *object,
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (GTK_WIDGET (dialog));
+  gtk_window_present (dialog);
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 

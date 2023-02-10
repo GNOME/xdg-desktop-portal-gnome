@@ -92,7 +92,7 @@ create_window_widget (Window *window)
   gtk_image_set_pixel_size (GTK_IMAGE (window_image), 32);
 
   check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
-  gtk_widget_hide (check_image);
+  gtk_widget_set_visible (check_image, FALSE);
 
   row = adw_action_row_new ();
   adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
@@ -117,7 +117,7 @@ create_monitor_widget (LogicalMonitor *logical_monitor)
   GList *l;
 
   check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
-  gtk_widget_hide (check_image);
+  gtk_widget_set_visible (check_image, FALSE);
 
   row = adw_action_row_new ();
 
@@ -152,7 +152,7 @@ create_virtual_widget (void)
   GtkWidget *row;
 
   check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
-  gtk_widget_hide (check_image);
+  gtk_widget_set_visible (check_image, FALSE);
 
   row = adw_action_row_new ();
   adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
@@ -507,9 +507,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
 
   update_monitors_list (widget);
   update_windows_list (widget);
-
-  gtk_widget_show (widget->monitor_list);
-  gtk_widget_show (widget->window_list);
 }
 
 GtkWidget *
@@ -573,16 +570,16 @@ screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
   screen_cast_widget->source_types = source_types;
 
   if (source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
-    gtk_widget_show (screen_cast_widget->monitor_selection);
+    gtk_widget_set_visible (screen_cast_widget->monitor_selection, TRUE);
 
   if (source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW)
-    gtk_widget_show (screen_cast_widget->window_selection);
+    gtk_widget_set_visible (screen_cast_widget->window_selection, TRUE);
 
   if (source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
-    gtk_widget_show (screen_cast_widget->monitor_selection);
+    gtk_widget_set_visible (screen_cast_widget->monitor_selection, TRUE);
 
   if (__builtin_popcount (source_types) > 1)
-    gtk_widget_show (screen_cast_widget->source_type_switcher);
+    gtk_widget_set_visible (screen_cast_widget->source_type_switcher, TRUE);
 
   update_monitors_list (screen_cast_widget);
 }
