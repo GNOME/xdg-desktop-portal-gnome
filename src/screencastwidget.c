@@ -484,18 +484,18 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   g_signal_connect (widget->source_type, "notify::visible-child",
                     G_CALLBACK (on_stack_switch),
                     widget);
-  g_signal_connect (widget->monitor_list, "row-activated",
-                    G_CALLBACK (on_row_activated),
-                    NULL);
-  g_signal_connect (widget->window_list, "row-activated",
-                    G_CALLBACK (on_row_activated),
-                    NULL);
-  g_signal_connect (widget->monitor_list, "selected-rows-changed",
-                    G_CALLBACK (on_selected_rows_changed),
-                    widget);
-  g_signal_connect (widget->window_list, "selected-rows-changed",
-                    G_CALLBACK (on_selected_rows_changed),
-                    widget);
+  g_signal_connect_object (widget->monitor_list, "row-activated",
+                           G_CALLBACK (on_row_activated), NULL,
+                           G_CONNECT_DEFAULT);
+  g_signal_connect_object (widget->window_list, "row-activated",
+                           G_CALLBACK (on_row_activated), NULL,
+                           G_CONNECT_DEFAULT);
+  g_signal_connect_object (widget->monitor_list, "selected-rows-changed",
+                           G_CALLBACK (on_selected_rows_changed), widget,
+                           G_CONNECT_DEFAULT);
+  g_signal_connect_object (widget->window_list, "selected-rows-changed",
+                           G_CALLBACK (on_selected_rows_changed), widget,
+                           G_CONNECT_DEFAULT);
 
   widget->display_state_tracker = display_state_tracker_get ();
   widget->monitors_changed_handler_id =
