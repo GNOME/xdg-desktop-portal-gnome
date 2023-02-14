@@ -37,6 +37,12 @@ G_DEFINE_TYPE (ExternalWindow, external_window, G_TYPE_OBJECT)
 ExternalWindow *
 create_external_window_from_handle (const char *handle_str)
 {
+  if (!handle_str)
+    return NULL;
+
+  if (strlen (handle_str) == 0)
+    return NULL;
+
 #ifdef HAVE_GTK_X11
   if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {

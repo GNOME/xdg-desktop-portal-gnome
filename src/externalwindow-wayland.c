@@ -101,6 +101,11 @@ external_window_wayland_new (const char *handle_str)
       external_window_wayland->parent_type = PARENT_WINDOW_TYPE_X11;
       external_window_wayland->x11.xid = xid;
     }
+  else
+    {
+      g_warning ("Invalid external window handle string '%s'", handle_str);
+      return NULL;
+    }
 
   return g_steal_pointer (&external_window_wayland);
 }
