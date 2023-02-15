@@ -651,7 +651,7 @@ screen_cast_widget_set_persist_mode (ScreenCastWidget      *screen_cast_widget,
   screen_cast_widget->persist_mode = persist_mode;
 
   gtk_widget_set_visible (GTK_WIDGET (screen_cast_widget->persist_check),
-                                      persist_mode != SCREEN_CAST_PERSIST_MODE_NONE);
+                          persist_mode == SCREEN_CAST_PERSIST_MODE_PERSISTENT);
 }
 
 ScreenCastPersistMode
