@@ -526,7 +526,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
             const char *match_string = g_variant_get_string (data, NULL);
             Monitor *monitor = find_monitor_by_string (match_string);
 
-            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR) ||
+            if (!(screen_cast_selection->source_types.monitor) ||
                 !g_variant_check_format_string (data, MONITOR_TYPE, FALSE))
               return NULL;
 
@@ -548,7 +548,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
             const char *title = NULL;
             Window *window;
 
-            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW) ||
+            if (!(screen_cast_selection->source_types.window) ||
                 !g_variant_check_format_string (data, WINDOW_TYPE, FALSE))
               return NULL;
 
@@ -571,7 +571,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
           {
             ScreenCastStreamInfo *info;
 
-            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL) ||
+            if (!(screen_cast_selection->source_types.virtual_monitor) ||
                 !g_variant_check_format_string (data, VIRTUAL_TYPE, FALSE))
               return NULL;
 
@@ -683,6 +683,15 @@ err:
   return TRUE;
 }
 
+ScreenCastSourceTypes
+screen_cast_source_types_from_flags (uint32_t flags) {
+  return (ScreenCastSourceTypes) {
+    .monitor = (flags & SCREEN_CAST_SOURCE_TYPE_MONITOR) > 0,
+    .window = (flags & SCREEN_CAST_SOURCE_TYPE_WINDOW) > 0,
+    .virtual_monitor = (flags & SCREEN_CAST_SOURCE_TYPE_VIRTUAL) > 0,
+  };
+}
+
 static gboolean
 handle_select_sources (XdpImplScreenCast     *object,
                        GDBusMethodInvocation *invocation,
@@ -743,7 +752,7 @@ handle_select_sources (XdpImplScreenCast     *object,
     }
 
   select.multiple = multiple;
-  select.source_types = types;
+  select.source_types = screen_cast_source_types_from_flags (types);
   select.cursor_mode = cursor_mode;
 
   if (is_screen_cast_session (session))

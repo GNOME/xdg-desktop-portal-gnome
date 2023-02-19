@@ -31,6 +31,15 @@ typedef enum _ScreenCastSourceType
   SCREEN_CAST_SOURCE_TYPE_VIRTUAL = 4,
 } ScreenCastSourceType;
 
+typedef struct _ScreenCastSourceTypes
+{
+  int monitor : 1;
+  int window : 1;
+  int virtual_monitor : 1;
+} ScreenCastSourceTypes;
+
+ScreenCastSourceTypes screen_cast_source_types_from_flags (uint32_t flags);
+
 typedef enum _ScreenCastCursorMode
 {
   SCREEN_CAST_CURSOR_MODE_NONE = 0,
@@ -49,7 +58,7 @@ typedef enum _ScreenCastPersistMode
 typedef struct _ScreenCastSelection
 {
   gboolean multiple;
-  ScreenCastSourceType source_types;
+  ScreenCastSourceTypes source_types;
   ScreenCastCursorMode cursor_mode;
 } ScreenCastSelection;
 

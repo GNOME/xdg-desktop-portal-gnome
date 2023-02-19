@@ -1,0 +1,3 @@
+@define-color monitor_button_bg mix(@window_bg_color, @window_fg_color, 0.15);
+@define-color monitor_button_hover_bg shade(@monitor_button_bg, 1.1);
+@define-color monitor_button_active_bg shade(@monitor_button_bg, 1.2);

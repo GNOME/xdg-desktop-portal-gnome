@@ -2,10 +2,8 @@
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
   <template class="RemoteDesktopDialog" parent="AdwWindow">
-    <property name="width-request">360</property>
-    <property name="height-request">294</property>
-    <property name="default-width">500</property>
-    <property name="default-height">300</property>
+    <property name="default-width">660</property>
+    <property name="default-height">500</property>
     <property name="title" translatable="yes">Remote Desktop</property>
 
     <child>
@@ -52,11 +50,11 @@
             <property name="max-content-height">500</property>
             <property name="child">
               <object class="AdwClamp">
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
                 <property name="margin-top">32</property>
                 <property name="margin-bottom">32</property>
-                <property name="maximum-size">446</property>
+                <property name="margin-start">32</property>
+                <property name="margin-end">32</property>
+                <property name="maximum-size">800</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
@@ -105,10 +103,9 @@
                       <object class="ScreenCastWidget" id="screen_cast_widget">
                         <property name="visible">False</property>
                         <property name="halign">fill</property>
-                        <property name="vexpand">False</property>
+                        <property name="vexpand">True</property>
                       </object>
                     </child>
-
                   </object>
                 </property>
               </object>

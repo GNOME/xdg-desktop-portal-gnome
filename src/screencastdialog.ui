@@ -4,8 +4,8 @@
   <template class="ScreenCastDialog" parent="AdwWindow">
     <property name="title" translatable="yes">Share Screen</property>
     <property name="resizable">0</property>
-    <property name="default-width">500</property>
-    <property name="default-height">300</property>
+    <property name="default-width">660</property>
+    <property name="default-height">500</property>
 
     <child>
       <object class="GtkShortcutController">
@@ -53,11 +53,11 @@
             <property name="max-content-height">500</property>
             <property name="child">
               <object class="AdwClamp">
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
                 <property name="margin-top">32</property>
                 <property name="margin-bottom">32</property>
-                <property name="maximum-size">446</property>
+                <property name="margin-start">32</property>
+                <property name="margin-end">32</property>
+                <property name="maximum-size">800</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>

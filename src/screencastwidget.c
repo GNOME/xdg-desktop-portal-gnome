@@ -24,6 +24,9 @@
 
 #include "screencastwidget.h"
 #include "displaystatetracker.h"
+#include "gtk/gtkcssprovider.h"
+#include "screencastgeometrycontainer.h"
+#include "screencast.h"
 #include "shellintrospect.h"
 
 enum
@@ -37,31 +40,33 @@ static guint signals[N_SIGNALS];
 
 struct _ScreenCastWidget
 {
-  GtkBox parent;
+  GtkBox                 parent;
 
-  GtkWidget *source_type_switcher;
-  GtkWidget *source_type;
-  GtkWidget *window_selection;
-  GtkWidget *monitor_selection;
+  GtkWidget             *source_type_switcher;
+  GtkWidget             *source_type;
+  GtkWidget             *monitor_selection_page;
+  GtkWidget             *window_selection_page;
 
-  GtkWidget *monitor_heading;
-  GtkWidget *monitor_list;
+  GtkWidget             *monitor_heading;
+  GtkWidget             *monitor_container;
 
-  GtkWidget *window_heading;
-  GtkWidget *window_list;
+  GtkWidget             *window_heading;
+  GtkWidget             *window_list;
 
-  GtkCheckButton *persist_check;
-  ScreenCastPersistMode persist_mode;
+  GtkCheckButton        *persist_check;
+  ScreenCastPersistMode  persist_mode;
 
-  DisplayStateTracker *display_state_tracker;
-  gulong monitors_changed_handler_id;
+  DisplayStateTracker   *display_state_tracker;
+  ulong                  monitors_changed_handler_id;
 
-  ShellIntrospect *shell_introspect;
-  gulong windows_changed_handler_id;
+  ShellIntrospect       *shell_introspect;
+  ulong                  windows_changed_handler_id;
 
-  guint selection_changed_timeout_id;
-  gboolean allow_multiple;
-  ScreenCastSourceType source_types;
+  uint                   selection_changed_timeout_id;
+  bool                   allow_multiple;
+  ScreenCastSourceTypes  source_types;
+
+  GtkCssProvider        *colors_provider;
 };
 
 static GQuark quark_monitor_widget_data;
@@ -109,61 +114,88 @@ create_window_widget (Window *window)
   return row;
 }
 
-static GtkWidget *
-create_monitor_widget (LogicalMonitor *logical_monitor)
+static void
+foreach_widget_child (GtkWidget *parent, GFunc func, gpointer user_data)
 {
-  g_autoptr(GString) string = NULL;
-  GtkWidget *check_image;
-  GtkWidget *row;
-  GList *l;
+  GtkWidget *child;
 
-  check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
-  gtk_widget_set_visible (check_image, FALSE);
-
-  row = adw_action_row_new ();
-
-  string = g_string_new (NULL);
-  for (l = logical_monitor_get_monitors (logical_monitor); l; l = l->next)
+  for (child = gtk_widget_get_first_child (parent);
+       child;
+       child = gtk_widget_get_next_sibling (child))
     {
-      Monitor *monitor = l->data;
-
-      if (!l->prev)
-        {
-          g_object_set_qdata_full (G_OBJECT (row),
-                                   quark_monitor_widget_data,
-                                   monitor_dup (monitor),
-                                   (GDestroyNotify) monitor_free);
-        }
-
-      g_string_append (string, monitor_get_display_name (monitor));
-
-      if (l->next)
-        g_string_append (string, "\n");
+      func (child, user_data);
     }
-
-  adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
-  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), string->str);
-  g_object_set_data (G_OBJECT (row), "check", check_image);
-
-  return row;
 }
 
+static void
+prepend_selected_monitor_button (GtkToggleButton *button, GList **selected_monitors)
+{
+  if (gtk_toggle_button_get_active (button))
+    *selected_monitors = g_list_prepend (*selected_monitors, button);
+}
+
+static GList *
+monitor_container_get_selected_buttons (GtkWidget *monitor_container)
+{
+  GList *selected_monitor_buttons = NULL;
+
+  foreach_widget_child (monitor_container,
+                        (GFunc) prepend_selected_monitor_button,
+                        &selected_monitor_buttons);
+
+  return selected_monitor_buttons;
+}
+
+static void
+schedule_selection_change (ScreenCastWidget *widget);
+static void
+on_monitor_button_toggled_cb (GtkToggleButton *monitor_button, ScreenCastWidget *self)
+{
+  if (gtk_toggle_button_get_active (monitor_button) && !self->allow_multiple)
+    {
+      /* Single selection: unselect other buttons */
+      g_autoptr(GList) selected_monitor_buttons = NULL;
+      GList *l;
+
+      selected_monitor_buttons = monitor_container_get_selected_buttons (self->monitor_container);
+
+      for (l = selected_monitor_buttons; l; l = l->next)
+        {
+          if (l->data != monitor_button)
+            gtk_toggle_button_set_active (l->data, FALSE);
+        }
+    }
+  schedule_selection_change (self);
+}
 
 static GtkWidget *
-create_virtual_widget (void)
+create_monitor_button (Monitor *monitor, const MonitorIllustration *monitor_illustration)
 {
-  GtkWidget *check_image;
-  GtkWidget *row;
+  GtkWidget *button;
+  GtkWidget *inscription;
 
-  check_image = gtk_image_new_from_icon_name ("object-select-symbolic");
-  gtk_widget_set_visible (check_image, FALSE);
+  inscription = gtk_inscription_new (monitor_illustration->label);
+  gtk_inscription_set_text_overflow (GTK_INSCRIPTION (inscription), GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END);
+  gtk_inscription_set_xalign (GTK_INSCRIPTION (inscription), 0.5);
+  gtk_inscription_set_min_chars (GTK_INSCRIPTION (inscription), 5);
+  gtk_widget_set_halign (inscription, GTK_ALIGN_FILL);
+  gtk_widget_set_valign (inscription, GTK_ALIGN_FILL);
+  gtk_widget_add_css_class (inscription, "text");
 
-  row = adw_action_row_new ();
-  adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
-  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), _("Virtual monitor"));
-  g_object_set_data (G_OBJECT (row), "check", check_image);
+  button = gtk_toggle_button_new ();
+  gtk_button_set_child ( GTK_BUTTON (button), inscription);
+  gtk_widget_add_css_class (button, "monitor");
+  if (monitor_illustration->primary)
+    gtk_widget_add_css_class (button, "primary");
+  gtk_accessible_update_relation (GTK_ACCESSIBLE (button),
+                                  GTK_ACCESSIBLE_RELATION_LABELLED_BY, inscription, NULL,
+                                  -1);
+  g_object_set_qdata_full (G_OBJECT (button),
+                           quark_monitor_widget_data,
+                           monitor ? monitor_dup (monitor) : NULL,
+                           (GDestroyNotify) monitor_free);
 
-  return row;
+  return button;
 }
 
 static gboolean
@@ -203,6 +235,7 @@ update_windows_list (ScreenCastWidget *widget)
     return;
 
   windows = shell_introspect_get_windows (widget->shell_introspect);
+
   for (size_t i = 0; windows && i < windows->len; i++)
     {
       Window *window = g_ptr_array_index (windows, i);
@@ -217,33 +250,73 @@ update_windows_list (ScreenCastWidget *widget)
 }
 
 static void
-update_monitors_list (ScreenCastWidget *widget)
+update_monitor_container (ScreenCastWidget *widget)
 {
-  GtkListBox *monitor_list = GTK_LIST_BOX (widget->monitor_list);
-  GtkWidget *child;
+  GList *logical_monitors;
+  GList *l;
+  GtkWidget *monitor_container;
 
-  while ((child = gtk_widget_get_first_child (GTK_WIDGET (monitor_list))) != NULL)
-    gtk_list_box_remove (monitor_list, child);
+  if (!(widget->source_types.monitor || widget->source_types.virtual_monitor))
+    return;
 
-  if (widget->source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
+  monitor_container = widget->monitor_container;
+
+  /* Clear monitor container */
+  screen_cast_geometry_container_remove_all (SCREEN_CAST_GEOMETRY_CONTAINER (monitor_container));
+
+  if (widget->source_types.monitor)
     {
-      GList *logical_monitors;
-      GList *l;
-
       logical_monitors =
         display_state_tracker_get_logical_monitors (widget->display_state_tracker);
+
       for (l = logical_monitors; l; l = l->next)
         {
+          Monitor *first_monitor;
+          const MonitorIllustration *illustration;
+          GtkWidget *monitor_button;
           LogicalMonitor *logical_monitor = l->data;
-          GtkWidget *monitor_widget;
 
-          monitor_widget = create_monitor_widget (logical_monitor);
-          gtk_list_box_append (monitor_list, monitor_widget);
+          illustration = logical_monitor_get_illustration (logical_monitor);
+
+          /* Add illustrative monitor GtkToggleButton to container */
+          first_monitor = logical_monitor_get_monitors (logical_monitor)->data;
+          g_assert_nonnull (first_monitor);
+          monitor_button = create_monitor_button (first_monitor, illustration);
+          g_signal_connect (monitor_button, "toggled",
+                            G_CALLBACK (on_monitor_button_toggled_cb),
+                            widget);
+
+          screen_cast_geometry_container_add (SCREEN_CAST_GEOMETRY_CONTAINER (monitor_container),
+                                              monitor_button,
+                                              &illustration->rect);
         }
+  }
+
+  if (widget->source_types.virtual_monitor)
+    {
+      GtkWidget *monitor_button;
+      MonitorIllustration illustration =
+        {
+          .label = _("Virtual Monitor"),
+          .primary = false,
+          .rect = GRAPHENE_RECT_INIT (0, 0, 1280, 720),
+        };
+
+      monitor_button = create_monitor_button (NULL, &illustration);
+      g_signal_connect (monitor_button, "toggled",
+                        G_CALLBACK (on_monitor_button_toggled_cb),
+                        widget);
+
+      screen_cast_geometry_container_add_with_hint (SCREEN_CAST_GEOMETRY_CONTAINER (monitor_container),
+                                                    monitor_button,
+                                                    &illustration.rect,
+                                                    SCREEN_CAST_GEOMETRY_CONTAINER_HINT_BOTTOM);
     }
 
-  if (widget->source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
-    gtk_list_box_append (monitor_list, create_virtual_widget ());
+  if (screen_cast_geometry_container_get_child_count (SCREEN_CAST_GEOMETRY_CONTAINER (monitor_container)) == 1)
+    gtk_widget_add_css_class (monitor_container, "singular");
+  else
+    gtk_widget_remove_css_class (monitor_container, "singular");
 }
 
 static gboolean
@@ -262,24 +335,24 @@ set_row_is_selected (GtkListBoxRow *row,
 }
 
 static void
-unselect_rows (GtkListBox *listbox)
+unselect_row (GtkListBoxRow *row, GtkListBox *listbox)
 {
-  GtkWidget *child;
+  set_row_is_selected (row, FALSE);
+  gtk_list_box_unselect_row (listbox, row);
+}
 
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (listbox));
-       child;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      GtkListBoxRow *row;
+static void
+untoggle_button (GtkToggleButton *button, GtkFixed *monitor_container)
+{
+  gtk_toggle_button_set_active (button, FALSE);
+}
 
-      if (!GTK_IS_LIST_BOX_ROW (child))
-        continue;
+static void
+reset_selection (ScreenCastWidget *self)
+{
 
-      row = GTK_LIST_BOX_ROW (child);
-
-      set_row_is_selected (row, FALSE);
-      gtk_list_box_unselect_row (listbox, row);
-    }
+  foreach_widget_child (self->monitor_container, (GFunc) untoggle_button, self->monitor_container);
+  foreach_widget_child (self->window_list, (GFunc) unselect_row, self->window_list);
 }
 
 static void
@@ -290,54 +363,25 @@ on_windows_changed (ShellIntrospect  *shell_introspect,
 }
 
 static void
-connect_windows_changed_listener (ScreenCastWidget *widget)
-{
-  g_assert (!widget->windows_changed_handler_id);
-  widget->windows_changed_handler_id =
-    g_signal_connect (widget->shell_introspect,
-                      "windows-changed",
-                      G_CALLBACK (on_windows_changed),
-                      widget);
-  shell_introspect_ref_listeners (widget->shell_introspect);
-}
-
-static void
-disconnect_windows_changed_listener (ScreenCastWidget *widget)
-{
-  g_assert (widget->windows_changed_handler_id);
-  g_clear_signal_handler (&widget->windows_changed_handler_id,
-                          widget->shell_introspect);
-  shell_introspect_unref_listeners (widget->shell_introspect);
-}
-
-static void
-on_stack_switch (GtkStack   *stack,
+on_stack_switch (ScreenCastWidget *self,
                  GParamSpec *pspec,
-                 gpointer   *data)
+                 AdwViewStack   *stack)
 {
-  ScreenCastWidget *widget = (ScreenCastWidget *)data;
-  GtkWidget *visible_child;
+  AdwViewStackPage *selected_page;
+  bool monitor_page_selected;
 
-  unselect_rows (GTK_LIST_BOX (widget->monitor_list));
-  unselect_rows (GTK_LIST_BOX (widget->window_list));
-
-  visible_child = gtk_stack_get_visible_child (stack);
-  if (visible_child == widget->window_selection)
-    {
-      if (!widget->windows_changed_handler_id)
-        connect_windows_changed_listener (widget);
-    }
-  else
-    {
-      if (widget->windows_changed_handler_id)
-        disconnect_windows_changed_listener (widget);
-    }
+  selected_page = adw_view_stack_pages_get_selected_page (
+          ADW_VIEW_STACK_PAGES (adw_view_stack_get_pages (ADW_VIEW_STACK (self->source_type))));
+  monitor_page_selected = selected_page == ADW_VIEW_STACK_PAGE (self->monitor_selection_page);
+  gtk_widget_set_visible (self->monitor_heading, monitor_page_selected);
+  gtk_widget_set_visible (self->window_heading, !monitor_page_selected);
+  reset_selection (self);
 }
 
 static void
-on_row_activated (GtkListBox    *box,
-                  GtkListBoxRow *row,
-                  gpointer      *data)
+on_row_activated (ScreenCastWidget *self,
+                  GtkListBoxRow    *row,
+                  GtkListBox       *box)
 {
   if (!row)
     return;
@@ -355,41 +399,24 @@ on_row_activated (GtkListBox    *box,
 }
 
 static void
-update_selected_rows (GtkListBox *listbox)
+update_selected_row (GtkListBoxRow *row, gpointer user_data)
 {
-  GtkWidget *child;
-
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (listbox));
-       child;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      GtkListBoxRow *row;
-
-      if (!GTK_IS_LIST_BOX_ROW (child))
-        continue;
-
-      row = GTK_LIST_BOX_ROW (child);
-      set_row_is_selected (row, gtk_list_box_row_is_selected (row));
-    }
+  set_row_is_selected (row, gtk_list_box_row_is_selected (row));
 }
 
 static gboolean
-emit_selection_change_in_idle_cb (gpointer data)
+emit_selection_change_in_idle_cb (ScreenCastWidget *widget)
 {
-  ScreenCastWidget *widget = (ScreenCastWidget *)data;
-  GList *selected_monitor_rows;
-  GList *selected_window_rows;
+  g_autoptr(GList) selected_monitor_buttons = NULL;
+  g_autoptr(GList) selected_window_rows = NULL;
 
   /* Update the selected rows */
-  update_selected_rows (GTK_LIST_BOX (widget->monitor_list));
-  update_selected_rows (GTK_LIST_BOX (widget->window_list));
+  foreach_widget_child (widget->window_list, (GFunc) update_selected_row, NULL);
 
-  selected_monitor_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->monitor_list));
+  selected_monitor_buttons = monitor_container_get_selected_buttons (widget->monitor_container);
   selected_window_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
   g_signal_emit (widget, signals[HAS_SELECTION_CHANGED], 0,
-                 !!selected_monitor_rows || !!selected_window_rows);
-  g_list_free (selected_monitor_rows);
-  g_list_free (selected_window_rows);
+                 !!selected_monitor_buttons || !!selected_window_rows);
 
   widget->selection_changed_timeout_id = 0;
   return G_SOURCE_REMOVE;
@@ -402,12 +429,11 @@ schedule_selection_change (ScreenCastWidget *widget)
     return;
 
   widget->selection_changed_timeout_id =
-    g_idle_add (emit_selection_change_in_idle_cb, widget);
+    g_idle_add (G_SOURCE_FUNC (emit_selection_change_in_idle_cb), widget);
 }
 
 static void
-on_selected_rows_changed (GtkListBox       *box,
-                          ScreenCastWidget *widget)
+on_selected_rows_changed (ScreenCastWidget *widget, GtkListBox *box)
 {
   /* GtkListBox activates rows after selecting them, which prevents
    * us from emitting the HAS_SELECTION_CHANGED signal here */
@@ -415,10 +441,9 @@ on_selected_rows_changed (GtkListBox       *box,
 }
 
 static void
-on_monitors_changed (DisplayStateTracker *display_state_tracker,
-                     ScreenCastWidget    *widget)
+monitors_changed_cb (ScreenCastWidget *self, gconstpointer user_data)
 {
-  update_monitors_list (widget);
+  update_monitor_container (self);
 }
 
 /*
@@ -433,8 +458,10 @@ screen_cast_widget_finalize (GObject *object)
   g_signal_handler_disconnect (widget->display_state_tracker,
                                widget->monitors_changed_handler_id);
 
-  if (widget->windows_changed_handler_id)
-    disconnect_windows_changed_listener (widget);
+  /* Disconnect windows changed listener */
+  g_clear_signal_handler (&widget->windows_changed_handler_id,
+                          widget->shell_introspect);
+  shell_introspect_unref_listeners (widget->shell_introspect);
 
   if (widget->selection_changed_timeout_id > 0)
     {
@@ -442,7 +469,37 @@ screen_cast_widget_finalize (GObject *object)
       widget->selection_changed_timeout_id = 0;
     }
 
+  g_clear_object (&widget->colors_provider);
+
   G_OBJECT_CLASS (screen_cast_widget_parent_class)->finalize (object);
+}
+static void
+screen_cast_widget_map (GtkWidget *widget)
+{
+  static GtkCssProvider *provider = NULL;
+
+  GTK_WIDGET_CLASS (screen_cast_widget_parent_class)->map (widget);
+
+  if (provider == NULL)
+    {
+      provider = gtk_css_provider_new ();
+      gtk_css_provider_load_from_resource (provider,
+                                           "/org/freedesktop/portal/desktop/gnome/screencastwidget.css");
+      gtk_style_context_add_provider_for_display (gtk_widget_get_display (widget),
+                                                  GTK_STYLE_PROVIDER (provider),
+                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+}
+
+static void
+screen_cast_widget_root (GtkWidget *widget)
+{
+  ScreenCastWidget *self = SCREEN_CAST_WIDGET (widget);
+  GTK_WIDGET_CLASS (screen_cast_widget_parent_class)->root (widget);
+
+  update_monitor_container (self);
+  update_windows_list (self);
+  reset_selection (self);
 }
 
 static void
@@ -452,6 +509,8 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = screen_cast_widget_finalize;
+  widget_class->map = screen_cast_widget_map;
+  widget_class->root = screen_cast_widget_root;
 
   signals[HAS_SELECTION_CHANGED] = g_signal_new ("has-selection-changed",
                                                  G_TYPE_FROM_CLASS (klass),
@@ -462,14 +521,16 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
                                                  G_TYPE_NONE, 1,
                                                  G_TYPE_BOOLEAN);
 
+  g_type_ensure (SCREEN_CAST_TYPE_GEOMETRY_CONTAINER);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastwidget.ui");
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, persist_check);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type_switcher);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection_page);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection_page);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_heading);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_list);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_container);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
 
@@ -478,45 +539,73 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
 }
 
 static void
+adjust_to_color_scheme (ScreenCastWidget *self, gpointer user_data)
+{
+  char *resource_path;
+
+  resource_path = adw_style_manager_get_dark (adw_style_manager_get_default ())
+    ? "/org/freedesktop/portal/desktop/gnome/screencastwidget-dark.css"
+    : "/org/freedesktop/portal/desktop/gnome/screencastwidget-light.css";
+
+  gtk_css_provider_load_from_resource (self->colors_provider, resource_path);
+}
+
+static void
 screen_cast_widget_init (ScreenCastWidget *widget)
 {
+  int i;
+
+  widget->selection_changed_timeout_id = 0;
+
   gtk_widget_init_template (GTK_WIDGET (widget));
 
   screen_cast_widget_set_app_id (widget, NULL);
   screen_cast_widget_set_allow_multiple (widget, FALSE);
-
-  g_signal_connect (widget->source_type, "notify::visible-child",
-                    G_CALLBACK (on_stack_switch),
-                    widget);
-  g_signal_connect_object (widget->monitor_list, "row-activated",
-                           G_CALLBACK (on_row_activated), NULL,
-                           G_CONNECT_DEFAULT);
-  g_signal_connect_object (widget->window_list, "row-activated",
-                           G_CALLBACK (on_row_activated), NULL,
-                           G_CONNECT_DEFAULT);
-  g_signal_connect_object (widget->monitor_list, "selected-rows-changed",
-                           G_CALLBACK (on_selected_rows_changed), widget,
-                           G_CONNECT_DEFAULT);
-  g_signal_connect_object (widget->window_list, "selected-rows-changed",
-                           G_CALLBACK (on_selected_rows_changed), widget,
-                           G_CONNECT_DEFAULT);
+  screen_cast_widget_set_source_types (widget, screen_cast_source_types_from_flags (0));
+  screen_cast_widget_set_persist_mode (widget, SCREEN_CAST_PERSIST_MODE_NONE);
 
   widget->display_state_tracker = display_state_tracker_get ();
   widget->monitors_changed_handler_id =
-    g_signal_connect (widget->display_state_tracker,
-                      "monitors-changed",
-                      G_CALLBACK (on_monitors_changed),
-                      widget);
+    g_signal_connect_swapped (widget->display_state_tracker,
+                              "monitors-changed",
+                              G_CALLBACK (monitors_changed_cb),
+                              widget);
   widget->shell_introspect = shell_introspect_get ();
 
-  update_monitors_list (widget);
-  update_windows_list (widget);
-}
+  widget->colors_provider = gtk_css_provider_new ();
+  gtk_style_context_add_provider_for_display (gtk_widget_get_display (GTK_WIDGET (widget)),
+                                              GTK_STYLE_PROVIDER (widget->colors_provider),
+                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-GtkWidget *
-screen_cast_widget_get_stack_switcher (ScreenCastWidget *widget)
-{
-  return widget->source_type_switcher;
+  adjust_to_color_scheme (widget, adw_style_manager_get_default ());
+
+  /* Connect windows changed listener */
+  widget->windows_changed_handler_id =
+    g_signal_connect (widget->shell_introspect,
+                      "windows-changed",
+                      G_CALLBACK (on_windows_changed),
+                      widget);
+  shell_introspect_ref_listeners (widget->shell_introspect);
+
+  const struct {
+    gpointer instance;
+    const gchar *detailed_signal;
+    GCallback c_handler;
+  } cons[] = {
+    {widget->source_type, "notify::visible-child", G_CALLBACK (on_stack_switch)},
+    {widget->window_list, "row-activated", G_CALLBACK (on_row_activated)},
+    {widget->window_list, "selected-rows-changed", G_CALLBACK (on_selected_rows_changed)},
+    {adw_style_manager_get_default (), "notify::dark", G_CALLBACK (adjust_to_color_scheme)},
+    {NULL, NULL, NULL}
+  };
+
+  for (i = 0; cons[i].instance != NULL; i++)
+    {
+      g_signal_connect_swapped (cons[i].instance,
+                                cons[i].detailed_signal,
+                                cons[i].c_handler,
+                                widget);
+    }
 }
 
 void
@@ -559,33 +648,39 @@ screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
 {
   widget->allow_multiple = multiple;
 
-  gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->monitor_list),
-                                   multiple ? GTK_SELECTION_MULTIPLE
-                                            : GTK_SELECTION_SINGLE);
   gtk_list_box_set_selection_mode (GTK_LIST_BOX (widget->window_list),
-                                   multiple ? GTK_SELECTION_MULTIPLE
-                                            : GTK_SELECTION_SINGLE);
+                                   multiple ? GTK_SELECTION_MULTIPLE : GTK_SELECTION_SINGLE);
+
+  if (!multiple)
+    reset_selection (widget);
 }
 
 void
 screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
-                                     ScreenCastSourceType  source_types)
+                                     ScreenCastSourceTypes source_types)
 {
+  gboolean monitors_visible, windows_visible;
+
   screen_cast_widget->source_types = source_types;
 
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR)
-    gtk_widget_set_visible (screen_cast_widget->monitor_selection, TRUE);
+  monitors_visible = source_types.monitor || source_types.virtual_monitor;
+  windows_visible = source_types.window;
 
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW)
-    gtk_widget_set_visible (screen_cast_widget->window_selection, TRUE);
+  adw_view_stack_page_set_visible (ADW_VIEW_STACK_PAGE (screen_cast_widget->monitor_selection_page),
+                                   monitors_visible);
+  adw_view_stack_page_set_visible (ADW_VIEW_STACK_PAGE (screen_cast_widget->window_selection_page),
+                                   windows_visible);
+  gtk_widget_set_visible (screen_cast_widget->source_type_switcher, monitors_visible && windows_visible);
 
-  if (source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL)
-    gtk_widget_set_visible (screen_cast_widget->monitor_selection, TRUE);
+  /* Prefer showing monitor page */
+  adw_view_stack_pages_set_selected_page (
+    ADW_VIEW_STACK_PAGES (adw_view_stack_get_pages (ADW_VIEW_STACK (screen_cast_widget->source_type))),
+    ADW_VIEW_STACK_PAGE (monitors_visible
+                         ? screen_cast_widget->monitor_selection_page
+                         : screen_cast_widget->window_selection_page));
 
-  if (__builtin_popcount (source_types) > 1)
-    gtk_widget_set_visible (screen_cast_widget->source_type_switcher, TRUE);
-
-  update_monitors_list (screen_cast_widget);
+  if (monitors_visible)
+    update_monitor_container (screen_cast_widget);
 }
 
 GPtrArray *
@@ -593,7 +688,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 {
   ScreenCastStreamInfo *info;
   g_autoptr(GPtrArray) streams = NULL;
-  g_autoptr(GList) selected_monitor_rows = NULL;
+  g_autoptr(GList) selected_monitor_buttons = NULL;
   g_autoptr(GList) selected_window_rows = NULL;
   uint32_t id = 0;
   GList *l;
@@ -601,15 +696,15 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   streams =
     g_ptr_array_new_with_free_func ((GDestroyNotify) screen_cast_stream_info_free);
 
-  selected_monitor_rows =
-    gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->monitor_list));
+  selected_monitor_buttons = monitor_container_get_selected_buttons (self->monitor_container);
+
   selected_window_rows =
     gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->window_list));
 
-  if (!selected_monitor_rows && !selected_window_rows)
+  if (!selected_monitor_buttons && !selected_window_rows)
     return g_steal_pointer (&streams);
 
-  for (l = selected_monitor_rows; l; l = l->next)
+  for (l = selected_monitor_buttons; l; l = l->next)
     {
 
       Monitor *monitor;

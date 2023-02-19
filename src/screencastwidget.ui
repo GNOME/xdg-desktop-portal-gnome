@@ -3,104 +3,89 @@
   <requires lib="gtk" version="4.0"/>
   <template class="ScreenCastWidget" parent="GtkBox">
     <property name="orientation">vertical</property>
-    <property name="spacing">12</property>
+    <property name="spacing">17</property>
     <child>
-      <object class="GtkStack" id="source_type">
-        <property name="vhomogeneous">False</property>
-        <property name="transition-type">crossfade</property>
-        <!-- Window selection page -->
-        <child>
-          <object class="GtkStackPage">
-            <property name="visible" bind-source="window_selection" bind-property="visible" bind-flags="sync-create"/>
-            <property name="name">windows_page</property>
-            <property name="title" translatable="yes">Single _Window</property>
-            <property name="use-underline">True</property>
-            <property name="child">
-              <object class="GtkBox" id="window_selection">
-                <property name="orientation">vertical</property>
-                <property name="visible">0</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkLabel" id="window_heading">
-                    <property name="xalign">0.0</property>
-                  </object>
-                </child>
-
-                <!-- Persist permission -->
-                <child>
-                  <object class="GtkCheckButton" id="persist_check">
-                    <property name="visible">False</property>
-                    <property name="active">True</property>
-                    <property name="halign">center</property>
-                    <property name="label" translatable="yes">_Remember This Selection</property>
-                    <property name="use-underline">True</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBox" id="window_list">
-                    <property name="hexpand">1</property>
-                    <property name="vexpand">1</property>
-                    <property name="valign">start</property>
-                    <style>
-                      <class name="content" />
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </property>
-          </object>
-        </child>
-
-        <!-- Physical monitor selection page -->
-        <child>
-          <object class="GtkStackPage">
-            <property name="visible" bind-source="monitor_selection" bind-property="visible" bind-flags="sync-create"/>
-            <property name="name">monitors_page</property>
-            <property name="title" translatable="yes">_Entire Screen</property>
-            <property name="use-underline">True</property>
-            <property name="child">
-              <object class="GtkBox" id="monitor_selection">
-                <property name="visible">0</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkLabel" id="monitor_heading">
-                    <property name="xalign">0.0</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkCheckButton">
-                    <property name="visible" bind-source="persist_check" bind-property="visible" bind-flags="sync-create" />
-                    <property name="active" bind-source="persist_check" bind-property="active" bind-flags="sync-create|bidirectional" />
-                    <property name="halign">center</property>
-                    <property name="label" translatable="yes">_Remember This Selection</property>
-                    <property name="use-underline">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkListBox" id="monitor_list">
-                    <property name="hexpand">1</property>
-                    <property name="vexpand">1</property>
-                    <property name="valign">start</property>
-                    <style>
-                      <class name="content" />
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </property>
-          </object>
-        </child>
-
-      </object>
+      <object class="GtkLabel" id="window_heading"></object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="monitor_heading"></object>
     </child>
 
-  </template>
+    <!-- Persist permission -->
+    <child>
+      <object class="GtkCheckButton" id="persist_check">
+        <property name="visible">False</property>
+        <property name="active">True</property>
+        <property name="halign">center</property>
+        <property name="label" translatable="yes">_Remember this selection</property>
+        <property name="use-underline">True</property>
+      </object>
+    </child>
+    <child>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="margin-top">5</property>
+        <property name="margin-bottom">5</property>
+        <property name="spacing">17</property>
+        <child>
+          <object class="AdwViewSwitcher" id="source_type_switcher">
+            <property name="policy">wide</property>
+            <property name="stack">source_type</property>
+            <property name="halign">center</property>
+            <property name="height-request">34</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwViewStack" id="source_type">
+            <property name="vhomogeneous">False</property>
 
-  <object class="GtkStackSwitcher" id="source_type_switcher">
-    <property name="visible">0</property>
-    <property name="stack">source_type</property>
-    <property name="halign">center</property>
-  </object>
+            <!-- Application Window selection page -->
+            <child>
+              <object class="AdwViewStackPage" id="window_selection_page">
+                <property name="name">windows_page</property>
+                <property name="icon-name">focus-windows-symbolic</property>
+                <property name="title" translatable="yes">Application _Window</property>
+                <property name="use-underline">True</property>
+                <property name="child">
+                  <object class="GtkListBox" id="window_list">
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="content" />
+                    </style>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <!-- Entire Screen selection page -->
+            <child>
+              <object class="AdwViewStackPage" id="monitor_selection_page">
+                <property name="name">monitors_page</property>
+                <property name="icon-name">video-display-symbolic</property>
+                <property name="title" translatable="yes">_Entire Screen</property>
+                <property name="use-underline">True</property>
+                <property name="child">
+                  <object class="AdwBin">
+                    <child>
+                      <object class="ScreenCastGeometryContainer" id="monitor_container">
+                        <property name="vexpand">True</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="monitor-selection-container" />
+                    </style>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
 </interface>

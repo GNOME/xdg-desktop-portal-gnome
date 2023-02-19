@@ -8,6 +8,9 @@
     <file>inputcapturedialog.ui</file>
     <file>screenshotdialog.ui</file>
     <file>screencastwidget.ui</file>
+    <file>screencastwidget.css</file>
+    <file>screencastwidget-light.css</file>
+    <file>screencastwidget-dark.css</file>
     <file>screencastdialog.ui</file>
     <file>remotedesktopdialog.ui</file>
     <file>wallpaperdialog.ui</file>

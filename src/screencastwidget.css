@@ -1,0 +1,44 @@
+
+.monitor-selection-container {
+  padding: 11px 11px 5.5px 11px;
+  border: 1px @borders solid;
+  border-radius: 9px;
+  color: @view_fg_color;
+  background-color: @view_bg_color;
+}
+
+geometry-container.singular {
+  padding: 50px 100px 50px 100px;
+}
+
+.monitor {
+  border-radius: 12px;
+  margin: 3.5px 7px 3.5px 7px;
+  padding: 5px;
+  background-color: shade(@view_bg_color, 0.8);
+}
+
+.monitor:checked {
+  padding: 2px;
+  border: 3px @accent_bg_color solid;
+}
+
+.monitor > .text {
+  font-weight: normal;
+  padding: .5em;
+  border-radius: 7px;
+  background-color: @monitor_button_bg;
+}
+
+.monitor.primary > .text {
+  border-top: 8.5px black solid;
+}
+
+.monitor:hover > .text {
+  background-color: @monitor_button_hover_bg;
+}
+
+.monitor.keyboard-activating > .text,
+.monitor:active > .text {
+  background-color: @monitor_button_active_bg;
+}

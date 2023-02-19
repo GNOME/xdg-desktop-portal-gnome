@@ -158,13 +158,5 @@ screen_cast_dialog_new (const char            *app_id,
                                        select->source_types);
   screen_cast_widget_set_persist_mode (screen_cast_widget, persist_mode);
 
-  if (__builtin_popcount (select->source_types) > 1 &&
-      (select->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW))
-    {
-      ScreenCastWidget *widget = SCREEN_CAST_WIDGET (dialog->screen_cast_widget);
-      gtk_header_bar_set_title_widget (dialog->titlebar,
-                                       screen_cast_widget_get_stack_switcher (widget));
-    }
-
   return dialog;
 }

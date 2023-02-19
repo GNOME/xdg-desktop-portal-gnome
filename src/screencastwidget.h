@@ -28,8 +28,6 @@ typedef struct _ScreenCastWidget ScreenCastWidget;
 G_DECLARE_FINAL_TYPE (ScreenCastWidget, screen_cast_widget,
                       SCREEN_CAST, WIDGET, GtkBox)
 
-GtkWidget *screen_cast_widget_get_stack_switcher (ScreenCastWidget *self);
-
 void screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                     const char       *app_id);
 
@@ -37,7 +35,7 @@ void screen_cast_widget_set_allow_multiple (ScreenCastWidget *widget,
                                             gboolean          multiple);
 
 void screen_cast_widget_set_source_types (ScreenCastWidget     *screen_cast_widget,
-                                          ScreenCastSourceType  source_types);
+                                          ScreenCastSourceTypes source_types);
 
 GPtrArray *screen_cast_widget_get_selected_streams (ScreenCastWidget *self);
 

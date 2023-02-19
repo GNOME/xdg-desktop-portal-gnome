@@ -181,14 +181,6 @@ remote_desktop_dialog_new (const char *app_id,
       g_signal_connect (screen_cast_widget, "has-selection-changed",
                         G_CALLBACK (on_has_selection_changed), dialog);
       gtk_widget_set_visible (GTK_WIDGET (screen_cast_widget), TRUE);
-
-      if (__builtin_popcount (screen_cast_select->source_types) > 1 &&
-          (screen_cast_select->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW))
-        {
-          adw_header_bar_set_title_widget (dialog->titlebar,
-                                           screen_cast_widget_get_stack_switcher (screen_cast_widget));
-        }
-
     }
 
   if (clipboard_requested)
