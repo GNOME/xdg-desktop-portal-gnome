@@ -1,16 +1,16 @@
 # Hungarian translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2016, 2017, 2018, 2019, 2021, 2022 Free Software Foundation, Inc.
+# Copyright (C) 2016, 2017, 2018, 2019, 2021, 2022, 2023 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xdg-sesktop-portal-gtk package.
 #
-# Balázs Úr <ur.balazs at fsf dot hu>, 2016, 2017, 2018, 2019, 2022.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2016, 2017, 2018, 2019, 2022, 2023.
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2022-07-09 18:28+0000\n"
-"PO-Revision-Date: 2022-09-01 02:22+0200\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-02-21 01:48+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -28,7 +28,7 @@ msgstr "Portál"
 msgid "Select an Image"
 msgstr "Válasszon lemezképet"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -58,23 +58,23 @@ msgstr "Megosztja a személyes információit a kérelmező alkalmazással? %s"
 msgid "Share Details"
 msgstr "Részletek megosztása"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Mégse"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "Meg_osztás"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Név"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Megnyitás ezzel…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "Meg_nyitás"
 
@@ -122,70 +122,40 @@ msgstr "Nem érhető el alkalmazás"
 msgid "_Find More in Software"
 msgstr "_Továbbiak keresése a Szoftverben"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "A(z) „%s” a háttérben fut"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Ez jogos okból is lehet, de az alkalmazás nem adott meg egyet sem.\n"
-"\n"
-"Vegye figyelemben, hogy az alkalmazás kilépésre kényszerítése adatvesztést "
-"okozhat."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Erőltetett kilépés"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Engedélyezés"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Háttérbeli tevékenység"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Tudjon meg többet"
-
-#: src/dynamic-launcher.c:257
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Webalkalmazás létrehozása"
 
-#: src/dynamic-launcher.c:259
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Alkalmazás létrehozása"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Létrehozás"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Kiválasztás"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Mentés"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Fájlok megnyitása csak olvasásra"
+
+#: src/filechooser.c:721
+#| msgid "Open files read-only"
+msgid "Open directories read-only"
+msgstr "Könyvtárak megnyitása csak olvasásra"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Távoli asztal"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Távoli interakció engedélyezése"
 
@@ -197,21 +167,21 @@ msgstr "Képernyőmegosztás"
 msgid "Virtual monitor"
 msgstr "Virtuális képernyő"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Válasszon képernyőt az ezzel történő megosztáshoz: %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Válasszon ablakot az ezzel történő megosztáshoz: %s"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Válasszon képernyőt a kérő alkalmazással történő megosztáshoz"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Válasszon ablakot a kérő alkalmazással történő megosztáshoz"
 
@@ -227,12 +197,12 @@ msgstr "Emlékezzen erre a kijelölésre"
 msgid "Entire Screen"
 msgstr "Teljes képernyő"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Megosztja ezt a képernyőképet ezzel: %s?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Megosztja ezt a képernyőképet a kérő alkalmazással?"
 
@@ -240,47 +210,47 @@ msgstr "Megosztja ezt a képernyőképet a kérő alkalmazással?"
 msgid "Screenshot"
 msgstr "Képernyőkép"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Beállítások…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "_Képernyőkép készítése"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Képernyőkép készítése"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "A teljes képernyő _rögzítése"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "A jelenlegi _ablak rögzítése"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Rögzítendő _terület kijelölése"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Rögzítés ennyi késleltetés _után"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "másodperc"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Hatások"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "_Mutató felvétele"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Az ablak _szegélyét is tartalmazza"
 
@@ -292,11 +262,11 @@ msgstr "A kért beállítás nem található"
 msgid "Set Background"
 msgstr "Háttér beállítása"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Beállítás"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "A képfájl betöltése sikertelen"
 
