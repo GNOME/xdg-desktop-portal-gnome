@@ -5,7 +5,7 @@
 #
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2016, 2018.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
-# Philipp Kiemle <philipp.kiemle@gmail.com>, 2022.
+# Philipp Kiemle <philipp.kiemle@gmail.com>, 2022-2023.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
 msgid ""
@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-08-06 14:26+0000\n"
-"PO-Revision-Date: 2022-08-07 21:54+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-02-22 10:46+0100\n"
+"Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -32,7 +32,7 @@ msgstr "Portal"
 msgid "Select an Image"
 msgstr "Bild auswählen"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -64,23 +64,23 @@ msgstr ""
 msgid "Share Details"
 msgstr "Details freigeben"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "Abbre_chen"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Freigeben"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Name"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Benutzername"
 
@@ -104,7 +104,7 @@ msgid ""
 "Software"
 msgstr ""
 "Es sind keine Apps zum Öffnen von »%s« installiert. Suchen Sie weitere "
-"Anwendungen in Software."
+"Anwendungen in Software"
 
 #: src/appchooserdialog.c:420
 msgid "No suitable app installed. You can find more applications in Software."
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Öffnen mit …"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Öffnen"
 
@@ -128,68 +128,39 @@ msgstr "Keine Apps verfügbar"
 msgid "_Find More in Software"
 msgstr "Mehr in Software _finden"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "»%s« läuft im Hintergrund"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Dies kann aus gutem Grund sein, aber die Anwendungen hat keinen geliefert.\n"
-"\n"
-"Bedenken Sie, dass erzwungenes Beenden einer Anwendung zu Datenverlust "
-"führen kann."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Beenden erzwingen"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Erlauben"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Hintergrundaktivität"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Mehr herausfinden"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
-msgstr "Erstellen Sie eine Web-Anwendung."
+msgstr "Web-Anwendung erstellen"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
-msgstr "Erstellen Sie eine Anwendung."
+msgstr "Anwendung erstellen"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Erstellen"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "A_uswählen"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Speichern"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Dateien schreibgeschützt öffnen"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Verzeichnisse schreibgeschützt öffnen"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Entfernter Bildschirm"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Fernzugriff zulassen"
 
@@ -201,22 +172,22 @@ msgstr "Bildschirmfreigabe"
 msgid "Virtual monitor"
 msgstr "Virtueller Bildschirm"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Bildschirm wählen, der mit %s geteilt werden soll"
 
-#: src/screencastwidget.c:543
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Wählen Sie das Fenster, das mit %s geteilt werden soll"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr ""
 "Bildschirm wählen, der mit der anfragenden Anwendung geteilt werden soll"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr ""
 "Wählen Sie das Fenster, das mit der anfragenden Anwendung geteilt werden soll"
@@ -233,12 +204,12 @@ msgstr "Diese Auswahl merken"
 msgid "Entire Screen"
 msgstr "Ganzer Bildschirm"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Soll dieses Bildschirmfoto mit %s geteilt werden?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr ""
 "Soll dieses Bildschirmfoto mit der anfragenden Anwendung geteilt werden?"
@@ -247,47 +218,47 @@ msgstr ""
 msgid "Screenshot"
 msgstr "Bildschirmfoto"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Einstellungen …"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "Bild_schirmfoto aufnehmen"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Bildschirmfoto aufnehmen"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Gesamten _Bildschirm aufnehmen"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Aktuelles _Fenster aufnehmen"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Aufnahmebereich _auswählen"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Bildschirmfoto _verzögert aufnehmen nach"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "Sekunden"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Effekte"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "_Zeiger einbeziehen"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Fenster_rahmen einbeziehen"
 
@@ -299,17 +270,45 @@ msgstr "Angeforderte Einstellung wurde nicht gefunden"
 msgid "Set Background"
 msgstr "Hintergrund festlegen"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Festlegen"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Bilddatei konnte nicht geladen werden"
 
 #: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Aktivitäten"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "»%s« läuft im Hintergrund"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Dies kann aus gutem Grund sein, aber die Anwendungen hat keinen "
+#~ "geliefert.\n"
+#~ "\n"
+#~ "Bedenken Sie, dass erzwungenes Beenden einer Anwendung zu Datenverlust "
+#~ "führen kann."
+
+#~ msgid "Force quit"
+#~ msgstr "Beenden erzwingen"
+
+#~ msgid "Allow"
+#~ msgstr "Erlauben"
+
+#~ msgid "Background activity"
+#~ msgstr "Hintergrundaktivität"
+
+#~ msgid "Find out more"
+#~ msgstr "Mehr herausfinden"
 
 # soll nicht übersetzt werden
 #~ msgid "applications-system-symbolic"
