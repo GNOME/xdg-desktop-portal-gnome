@@ -1,16 +1,16 @@
 # Polish translation for xdg-desktop-portal-gnome.
-# Copyright © 2016-2022 the xdg-desktop-portal-gnome authors.
+# Copyright © 2016-2023 the xdg-desktop-portal-gnome authors.
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Piotr Drąg <piotrdrag@gmail.com>, 2016-2022.
-# Aviary.pl <community-poland@mozilla.org>, 2016-2022.
+# Piotr Drąg <piotrdrag@gmail.com>, 2016-2023.
+# Aviary.pl <community-poland@mozilla.org>, 2016-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-07-09 18:28+0000\n"
-"PO-Revision-Date: 2022-08-15 15:12+0200\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-03-04 17:44+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -28,7 +28,7 @@ msgstr "Portal"
 msgid "Select an Image"
 msgstr "Wybór obrazu"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -58,23 +58,23 @@ msgstr "Udostępnić informacje o użytkowniku proszącemu o to programowi? %s
 msgid "Share Details"
 msgstr "Udostępnianie informacji"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Udostępnij"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Imię i nazwisko"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Otwarcie za pomocą…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Otwórz"
 
@@ -122,68 +122,39 @@ msgstr "Brak dostępnych programów"
 msgid "_Find More in Software"
 msgstr "_Znajdź więcej w Menedżerze oprogramowania"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "Program „%s” działa w tle."
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Może się tak dziać z uzasadnionego powodu, ale program go nie podał.\n"
-"\n"
-"Proszę pamiętać, że wymuszenie zakończenia działania programu może "
-"spowodować utratę danych."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Wymuś zakończenie"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Zezwól"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Działanie w tle"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Więcej informacji"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Utworzenie programu WWW"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Utworzenie programu"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Utwórz"
 
-#: src/filechooser.c:446
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Wybierz"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Zapisz"
 
-#: src/filechooser.c:617
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Otwarcie plików tylko do odczytu"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Otwarcie katalogów tylko do odczytu"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Zdalny pulpit"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Zdalne sterowanie"
 
@@ -195,21 +166,21 @@ msgstr "Udostępnianie ekranu"
 msgid "Virtual monitor"
 msgstr "Wirtualny monitor"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Wybór monitora do udostępnienia programowi „%s”"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Wybór okna do udostępnienia programowi „%s”"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Wybór monitora do udostępnienia proszącemu o to programowi"
 
-#: src/screencastwidget.c:550
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Wybór okna do udostępnienia proszącemu o to programowi"
 
@@ -225,12 +196,12 @@ msgstr "Zapamiętanie tego wyboru"
 msgid "Entire Screen"
 msgstr "Cały ekran"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Udostępnić ten zrzut ekranu programowi „%s”?"
 
-#: src/screenshotdialog.c:424
+#: src/screenshotdialog.c:439
 msgid "Share this screenshot with the requesting application?"
 msgstr "Udostępnić ten zrzut ekranu proszącemu o to programowi?"
 
@@ -238,47 +209,47 @@ msgstr "Udostępnić ten zrzut ekranu proszącemu o to programowi?"
 msgid "Screenshot"
 msgstr "Zrzut ekranu"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Opcje…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "_Wykonaj zrzut ekranu"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Zrzut ekranu"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "_Cały ekran"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "O_becne okno"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Zaznaczony ob_szar"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Po _upływie"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "s"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Efekty"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Wi_doczny kursor"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "_Krawędź okna"
 
@@ -290,11 +261,11 @@ msgstr "Nie odnaleziono żądanego ustawienia"
 msgid "Set Background"
 msgstr "Ustawienie tła"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Ustaw"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Wczytanie pliku obrazu się nie powiodło"
 
