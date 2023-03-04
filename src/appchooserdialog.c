@@ -389,12 +389,12 @@ app_chooser_dialog_new (const char **choices,
     {
       g_autofree char *heading = NULL;
 
-      heading = g_strdup_printf (_("Choose an application to open the file “%s”."), short_location);
+      heading = g_strdup_printf (_("Choose an app to open the file “%s”."), short_location);
       gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
     }
   else
     {
-      gtk_label_set_label (GTK_LABEL (dialog->heading), _("Choose an application."));
+      gtk_label_set_label (GTK_LABEL (dialog->heading), _("Choose an app."));
     }
 
   ensure_default_in_initial_list (choices, default_id);
@@ -411,12 +411,12 @@ app_chooser_dialog_new (const char **choices,
         {
           g_autofree char *label = NULL;
 
-          label = g_strdup_printf (_("No apps installed that can open “%s”. You can find more applications in Software"), short_location);
+          label = g_strdup_printf (_("No apps installed that can open “%s”. You can find more apps in Software"), short_location);
           gtk_label_set_label (GTK_LABEL (dialog->empty_label), label);
         }
       else
         {
-          gtk_label_set_label (GTK_LABEL (dialog->empty_label), _("No suitable app installed. You can find more applications in Software."));
+          gtk_label_set_label (GTK_LABEL (dialog->empty_label), _("No suitable app installed. You can find more apps in Software."));
         }
     }
   else

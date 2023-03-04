@@ -247,9 +247,9 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
     dialog_flags = GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_USE_HEADER_BAR;
 
   if (launcher_type == DYNAMIC_LAUNCHER_TYPE_WEBAPP)
-    title = _("Create Web Application");
+    title = _("Create Web App");
   else
-    title = _("Create Application");
+    title = _("Create App");
 
   /* Show dialog with icon, title. */
   dialog = GTK_WINDOW (gtk_dialog_new_with_buttons (title,

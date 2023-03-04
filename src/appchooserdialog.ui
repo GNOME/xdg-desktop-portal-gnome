@@ -115,7 +115,7 @@
                             <property name="margin-end">40</property>
                             <property name="wrap">1</property>
                             <property name="max-width-chars">45</property>
-                            <property name="label">No apps installed that are able to open file.extension. You can find more applications in Software.</property>
+                            <property name="label">No apps installed that are able to open file.extension. You can find more apps in Software.</property>
                           </object>
                         </child>
                         <child>

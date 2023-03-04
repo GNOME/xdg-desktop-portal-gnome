@@ -545,8 +545,8 @@ screen_cast_widget_set_app_id (ScreenCastWidget *widget,
     }
   else
     {
-      monitor_heading = g_strdup (_("Select monitor to share with the requesting application"));
-      window_heading = g_strdup (_("Select window to share with the requesting application"));
+      monitor_heading = g_strdup (_("Select monitor to share with the requesting app"));
+      window_heading = g_strdup (_("Select window to share with the requesting app"));
     }
 
   gtk_label_set_label (GTK_LABEL (widget->monitor_heading), monitor_heading);

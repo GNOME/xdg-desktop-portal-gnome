@@ -436,7 +436,7 @@ screenshot_dialog_new (const char *app_id,
     }
 
   if (heading == NULL)
-    heading = g_strdup (_("Share this screenshot with the requesting application?"));
+    heading = g_strdup (_("Share this screenshot with the requesting app?"));
 
   gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
 

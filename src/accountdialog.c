@@ -228,7 +228,7 @@ account_dialog_new (const char *app_id,
     }
   else
     {
-      heading = g_strdup_printf (_("Share your personal information with the requesting application? %s"),
+      heading = g_strdup_printf (_("Share your personal information with the requesting app? %s"),
                                  reason ?: "");
     }
 
