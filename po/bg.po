@@ -1,13 +1,14 @@
 # This is the Bulgarian translation of xdg-desktop-portal-gnome po-file.
-# Copyright (C) 2022 Alexander Shopov.
-# Alexander Shopov <ash@kambanaria.org>, 2022.
+# Copyright (C) 2022, 2023 Alexander Shopov.
+# Alexander Shopov <ash@kambanaria.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2022-09-11 20:56+0000\n"
-"PO-Revision-Date: 2022-10-04 12:57+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-03-05 09:27+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -24,7 +25,7 @@ msgstr "Портал"
 msgid "Select an Image"
 msgstr "Избор на изображение"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -54,23 +55,23 @@ msgstr "Да се сподели ли личната ви информация �
 msgid "Share Details"
 msgstr "Споделяне на детайли"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Отказ"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Споделяне"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Име"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Име на потребител"
 
@@ -104,7 +105,7 @@ msgstr "Липсва подходяща програма. Може да потъ
 msgid "Open With…"
 msgstr "Отваряне с…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Отваряне"
 
@@ -116,67 +117,39 @@ msgstr "Липсват програми"
 msgid "_Find More in Software"
 msgstr "_Търсене на приложение в „Програми“"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "„%s“ работи на фонов режим"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Може да има реална причина за това, но програмата не е я е обявила.\n"
-"\n"
-"Принудителното спиране на програма може да причини загуба на данни."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Принудитело спиране"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Позволяване"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Работа на фонов режим"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Още информация"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Създаване на уеб приложение"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Създаване на приложение"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_Създаване"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Избор"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Запазване"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Отваряне на файловете само за четене"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Отваряне на папките само за четене"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Отдалечен работен плот"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Позволяване на отдалечена работа"
 
@@ -188,21 +161,21 @@ msgstr "Споделяне на екрана"
 msgid "Virtual monitor"
 msgstr "Виртуален монитор"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Избор на екран за споделяне на „%s“"
 
-#: src/screencastwidget.c:543
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Избор на прозорец за споделяне на „%s“"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Избор на екран за споделяне с искащата това програма"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Избор на прозорец за споделяне с искащата това програма"
 
@@ -231,47 +204,47 @@ msgstr "Да се сподели ли снимката на екрана с ис
 msgid "Screenshot"
 msgstr "Снимка на екрана"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Настройки…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "Снимане на _екрана"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Снимане на екрана"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Снимане на _целия екран"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Снимане на текущия _прозорец"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Избор на _област за снимане"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "_Изчакване преди снимката"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "секунди"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Ефекти"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Включване и на по_казалеца"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Включване и на _рамката на прозореца"
 
@@ -283,11 +256,11 @@ msgstr "Поисканата настройка липсва"
 msgid "Set Background"
 msgstr "Задаване на фон"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Задаване"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Неуспешно зареждане на файла с изображение"
 
