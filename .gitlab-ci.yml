@@ -1,42 +1,93 @@
----
+.templates_sha: &template_sha b791bd48996e3ced9ca13f1c5ee82be8540b8adb
+
+include:
+  - project: 'Infrastructure/Mirrors/lorry-mirrors/gitlab_freedesktop_org/freedesktop/ci-templates'
+    ref: *template_sha
+    file:
+      - '/templates/fedora.yml'
+      - '/templates/ubuntu.yml'
 
 stages:
+  - prepare
   - build
+
+variables:
+  FDO_UPSTREAM_REPO: GNOME/xdg-desktop-portal-gnome
+
+default:
+  interruptible: true
+
+.container-common:
+  variables:
+    FDO_DISTRIBUTION_TAG: '2023-10-04.0'
+
+.fedora-container:
+  extends:
+    - .container-common
+  variables:
+    FDO_DISTRIBUTION_VERSION: 38
+    FDO_DISTRIBUTION_PACKAGES:
+      meson git gtk4-devel sassc gsettings-desktop-schemas-devel
+      fuse3-devel gettext-devel fontconfig-devel glib2-devel wayland-devel
+      libudev-devel systemd-devel libxkbcommon-devel xkeyboard-config-devel
+      libseccomp-devel
+    FDO_DISTRIBUTION_EXEC: |
+      ./.gitlab-ci/install-meson-project.sh \
+        https://github.com/flatpak/xdg-desktop-portal.git \
+        1.18.0 .
+
+.ubuntu-container:
+  extends:
+    - .container-common
+  variables:
+    FDO_DISTRIBUTION_VERSION: rolling
+    FDO_DISTRIBUTION_PACKAGES:
+      meson git libgtk4-dev sassc gsettings-desktop-schemas-dev
+      libfuse3-dev gettext-dev fontconfig-dev libglib2-dev libwayland-dev
+      libudev-dev libsystemd-dev libxkbcommon-dev xkeyboard-dev
+      libseccomp-dev
+    FDO_DISTRIBUTION_EXEC: |
+      sed -i '/deb-src/s/^# //' /etc/apt/sources.list &&
+
+      ./.gitlab-ci/install-meson-project.sh \
+        https://github.com/flatpak/xdg-desktop-portal.git \
+        1.18.0 .
+
+prepare-fedora:
+  extends:
+    - .fdo.container-build@fedora
+    - .fedora-container
+  stage: prepare
+  variables:
+    GIT_STRATEGY: none
+
+prepare-ubuntu:
+  extends:
+    - .fdo.container-build@ubuntu
+    - .ubuntu-container
+  stage: prepare
+  variables:
+    GIT_STRATEGY: none
 
 .build-common:
   stage: build
-  interruptible: true
   script:
-    - meson setup . _build
-    - ninja -C _build
-    - ninja -C _build install
+    - meson setup _build .
+    - meson compile -C _build
+    - meson install -C _build
 
 build-fedora:
-  image: fedora:latest
-  extends: .build-common
-  before_script:
-    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel
-    - dnf install -y fuse3-devel gettext-devel
-    - dnf builddep -y xdg-desktop-portal-gnome xdg-desktop-portal
-    - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
-      cd xdg-desktop-portal &&
-      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
-      ninja -C _build install &&
-      cd ..
+  extends:
+    - .fdo.distribution-image@fedora
+    - .fedora-container
+    - .build-common
+  needs:
+    - prepare-fedora
 
 build-ubuntu:
-  image: ubuntu:rolling
-  extends: .build-common
-  allow_failure: true
-  variables:
-    DEBIAN_FRONTEND: noninteractive
-  before_script:
-    - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
-    - apt-get update
-    - apt-get install -y meson git libgtk-4-dev sassc libfuse3-dev libseccomp-dev
-    - apt-get build-dep -y xdg-desktop-portal-gnome xdg-desktop-portal
-    - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
-      cd xdg-desktop-portal &&
-      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
-      ninja -C _build install &&
-      cd ..
+  extends:
+    - .fdo.distribution-image@ubuntu
+    - .ubuntu-container
+    - .build-common
+  needs:
+    - prepare-ubuntu
