@@ -1,42 +1,205 @@
----
+include:
+  - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/fedora.yml'
+  - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ubuntu.yml'
+  - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ci-fairy.yml'
 
 stages:
+  - review
+  - prepare
   - build
+
+variables:
+  FDO_UPSTREAM_REPO: GNOME/xdg-desktop-portal-gnome
+
+default:
+  interruptible: true
+
+workflow:
+  rules:
+    # Allow to switch from branch pipelines to MR pipelines seamlessly
+    # https://docs.gitlab.com/ee/ci/jobs/job_control.html#avoid-duplicate-pipelines
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    # Don't trigger a branch pipeline if there is an open MR
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+    - if: '$CI_COMMIT_TAG'
+
+.skip-git-clone:
+  variables:
+    GIT_STRATEGY: none
+
+.only-merge-requests:
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^$/'
+      when: never
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+      when: on_success
+
+.pipeline-guard:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_TAG'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH =~ /^gnome-[0-9-]+$/'
+    # Avoid catchall `when: manual` rule which might
+    # cause duplicate pipelines to be triggered.
+    # https://docs.gitlab.com/ee/ci/jobs/job_control.html#avoid-duplicate-pipelines
+    #
+    # Also make it so pipelines without MR need to be started
+    # manually, since their state will most likely be WIP
+    - if: '$CI_COMMIT_BRANCH'
+      when: 'manual'
+
+repo-sanity:
+  extends:
+    - .fdo.ci-fairy
+  stage: review
+  variables:
+    GIT_DEPTH: "1"
+  script:
+    - >
+      if [[ -z "$CI_REGISTRY_IMAGE" ]] ;
+      then
+        .gitlab-ci/simple-junit-report.sh check-junit-report.xml \
+          repo-sanity "The container registry should be enabled in the project general settings panel at $CI_PROJECT_URL/edit" ;
+        exit 1 ;
+      fi
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - check-junit-report.xml
+    reports:
+      junit: check-junit-report.xml
+  rules:
+    - !reference [.only-merge-requests, rules]
+
+check-merge-request:
+  extends:
+    - .fdo.ci-fairy
+    - .skip-git-clone
+  stage: review
+  script:
+    ci-fairy check-merge-request --require-allow-collaboration --junit-xml=check-merge-request-report.xml
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - check-merge-request-report.xml
+    reports:
+      junit: check-merge-request-report.xml
+  rules:
+    - !reference [.only-merge-requests, rules]
+
+.container-common:
+  variables:
+    FDO_DISTRIBUTION_TAG: '2023-06-19.0'
+
+.fedora-container:
+  extends:
+    - .container-common
+  variables:
+    FDO_DISTRIBUTION_VERSION: 40
+    FDO_DISTRIBUTION_PACKAGES:
+      bubblewrap
+      fontconfig-devel
+      fuse3-devel
+      gcc
+      gettext-devel
+      git
+      glib2-devel
+      gnome-desktop4-devel
+      gsettings-desktop-schemas-devel
+      gtk4-devel
+      json-glib-devel
+      libadwaita-devel
+      libseccomp-devel
+      libudev-devel
+      libxkbcommon-devel
+      meson
+      pipewire-devel
+      sassc
+      systemd-devel
+      wayland-devel
+      xdg-desktop-portal
+      xkeyboard-config-devel
+
+    FDO_DISTRIBUTION_EXEC: |
+      ./.gitlab-ci/install-meson-project.sh \
+        https://github.com/flatpak/xdg-desktop-portal.git \
+        1.18.2 .
+
+.ubuntu-container:
+  extends:
+    - .container-common
+  variables:
+    FDO_DISTRIBUTION_VERSION: '23.10'
+    FDO_DISTRIBUTION_PACKAGES:
+      bubblewrap
+      ca-certificates
+      gcc
+      git
+      gsettings-desktop-schemas-dev
+      libfuse3-dev
+      libgtk-4-dev
+      libjson-glib-dev
+      libpipewire-0.3-dev
+      libudev-dev
+      libseccomp-dev
+      libsystemd-dev
+      libwayland-dev
+      libxkbcommon-dev
+      meson
+      sassc
+
+    FDO_DISTRIBUTION_EXEC: |
+      sed -i '/deb-src/s/^# //' /etc/apt/sources.list &&
+
+      ./.gitlab-ci/install-meson-project.sh \
+        https://github.com/flatpak/xdg-desktop-portal.git \
+        1.18.2 .
+
+prepare-fedora:
+  extends:
+    - .fdo.container-build@fedora
+    - .fedora-container
+    - .skip-git-clone
+  stage: prepare
+  rules:
+    - !reference [.pipeline-guard, rules]
+
+prepare-ubuntu:
+  extends:
+    - .fdo.container-build@ubuntu
+    - .ubuntu-container
+    - .skip-git-clone
+  stage: prepare
+  rules:
+    - !reference [.pipeline-guard, rules]
+  when: manual
 
 .build-common:
   stage: build
-  interruptible: true
   script:
-    - meson setup . _build
-    - ninja -C _build
-    - ninja -C _build install
+    - meson setup --wrap-mode=nofallback _build .
+    - meson compile -C _build
+    - meson install -C _build
 
 build-fedora:
-  image: fedora:39
-  extends: .build-common
-  before_script:
-    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel libadwaita-devel
-    - dnf install -y fuse3-devel gettext-devel
-    - dnf builddep -y xdg-desktop-portal-gnome xdg-desktop-portal
-    - git clone -b 1.18.2 https://github.com/flatpak/xdg-desktop-portal.git &&
-      cd xdg-desktop-portal &&
-      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
-      ninja -C _build install &&
-      cd ..
+  extends:
+    - .fdo.distribution-image@fedora
+    - .fedora-container
+    - .build-common
+  needs:
+    - job: prepare-fedora
+      artifacts: false
 
 build-ubuntu:
-  image: ubuntu:rolling
-  extends: .build-common
-  allow_failure: true
-  variables:
-    DEBIAN_FRONTEND: noninteractive
-  before_script:
-    - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
-    - apt-get update
-    - apt-get install -y meson git libgtk-4-dev sassc libfuse3-dev libseccomp-dev
-    - apt-get build-dep -y xdg-desktop-portal-gnome xdg-desktop-portal gtk4 libgtk-4-media-gstreamer
-    - git clone -b 1.18.2 https://github.com/flatpak/xdg-desktop-portal.git &&
-      cd xdg-desktop-portal &&
-      meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
-      ninja -C _build install &&
-      cd ..
+  extends:
+    - .fdo.distribution-image@ubuntu
+    - .ubuntu-container
+    - .build-common
+  needs:
+    - job: prepare-ubuntu
+      artifacts: false
