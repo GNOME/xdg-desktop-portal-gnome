@@ -263,7 +263,6 @@ on_service_channel_name_appeared (GDBusConnection *connection,
 GdkDisplay *
 init_external_window_wayland_display (GError **error)
 {
-  guint watch_name_id;
   gboolean name_appeared = FALSE;
   g_autoptr(OrgGnomeMutterServiceChannel) proxy = NULL;
   g_autoptr(GVariant) fd_variant = NULL;
@@ -271,17 +270,6 @@ init_external_window_wayland_display (GError **error)
   int fd;
   g_autofree char *fd_str = NULL;
   GdkDisplay *display;
-
-  watch_name_id =
-    g_bus_watch_name (G_BUS_TYPE_SESSION,
-                      "org.gnome.Mutter.ServiceChannel",
-                      G_BUS_NAME_WATCHER_FLAGS_NONE,
-                      on_service_channel_name_appeared,
-                      NULL,
-                      &name_appeared, NULL);
-  while (!name_appeared)
-    g_main_context_iteration (NULL, TRUE);
-  g_bus_unwatch_name (watch_name_id);
 
   proxy = org_gnome_mutter_service_channel_proxy_new_for_bus_sync (
     G_BUS_TYPE_SESSION,
