@@ -55,6 +55,53 @@ typedef struct {
 
 } AppDialogHandle;
 
+/**
+static void
+show_error_dialog (const gchar *primary,
+                   const gchar *secondary,
+                   GtkWindow *parent)
+{
+  GtkWidget *message_dialog;
+
+  message_dialog = gtk_message_dialog_new (parent, 0,
+                                           GTK_MESSAGE_ERROR,
+                                           GTK_BUTTONS_OK,
+                                           NULL);
+  g_object_set (message_dialog,
+                "text", primary,
+                "secondary-text", secondary,
+                NULL);
+  gtk_dialog_set_default_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
+  gtk_widget_show (message_dialog);
+  g_signal_connect (message_dialog, "response",
+                    G_CALLBACK (gtk_window_destroy), NULL);
+}
+
+static void
+launch_software (AppChooserDialog *dialog)
+{
+  g_autofree char *option = NULL;
+  g_autoptr(GSubprocess) process = NULL;
+  g_autoptr(GError) error = NULL;
+
+  if (dialog->content_type)
+    option = g_strconcat ("--search=", dialog->content_type, NULL);
+  else
+    option = g_strdup ("--mode=overview");
+
+  process = g_subprocess_new (0, &error, "gnome-software", option, NULL);
+  if (!process)
+    show_error_dialog (_("Failed to start Software"), error->message, GTK_WINDOW (dialog));
+}
+
+static void
+find_in_software (GtkWidget *button,
+                  AppChooserDialog *dialog)
+{
+  launch_software (dialog);
+}
+**/
+
 static void
 app_dialog_handle_free (gpointer data)
 {

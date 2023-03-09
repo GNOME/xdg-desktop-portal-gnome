@@ -21,6 +21,7 @@
 #pragma once
 
 #include <gtk/gtk.h>
+#include <libadwaita-1/adwaita.h>
 
 #define APP_TYPE_CHOOSER_ROW (app_chooser_row_get_type ())
 #define APP_CHOOSER_ROW(object) (G_TYPE_CHECK_INSTANCE_CAST (object, APP_TYPE_CHOOSER_ROW, AppChooserRow))
@@ -31,5 +32,4 @@ typedef struct _AppChooserRowClass AppChooserRowClass;
 GType app_chooser_row_get_type (void);
 AppChooserRow *app_chooser_row_new (GAppInfo *info);
 GAppInfo *app_chooser_row_get_info (AppChooserRow *row);
-void app_chooser_row_set_selected (AppChooserRow *row,
-                                   gboolean       selected);
+

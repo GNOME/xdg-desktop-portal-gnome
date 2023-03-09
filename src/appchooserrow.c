@@ -22,21 +22,19 @@
 #include "appchooserrow.h"
 
 struct _AppChooserRow {
-  GtkListBoxRow parent;
+  AdwActionRow parent;
 
   GAppInfo *info;
   gboolean selected;
 
   GtkWidget *icon;
-  GtkWidget *name;
-  GtkWidget *check;
 };
 
 struct _AppChooserRowClass {
-  GtkListBoxRowClass parent_class;
+  AdwActionRowClass parent_class;
 };
 
-G_DEFINE_TYPE (AppChooserRow, app_chooser_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE (AppChooserRow, app_chooser_row, ADW_TYPE_ACTION_ROW)
 
 static void
 app_chooser_row_init (AppChooserRow *row)
@@ -64,8 +62,6 @@ app_chooser_row_class_init (AppChooserRowClass *class)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/appchooserrow.ui");
   gtk_widget_class_bind_template_child (widget_class, AppChooserRow, icon);
-  gtk_widget_class_bind_template_child (widget_class, AppChooserRow, name);
-  gtk_widget_class_bind_template_child (widget_class, AppChooserRow, check);
 }
 
 AppChooserRow *
@@ -84,7 +80,7 @@ app_chooser_row_new (GAppInfo *info)
 
   gtk_image_set_from_gicon (GTK_IMAGE (row->icon), icon);
   gtk_image_set_pixel_size (GTK_IMAGE (row->icon), 32);
-  gtk_label_set_label (GTK_LABEL (row->name), g_app_info_get_name (info));
+  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), g_app_info_get_name (info));
 
   return row;
 }
@@ -95,9 +91,3 @@ app_chooser_row_get_info (AppChooserRow *row)
   return row->info;
 }
 
-void
-app_chooser_row_set_selected (AppChooserRow *row,
-                              gboolean       selected)
-{
-  gtk_widget_set_opacity (row->check, selected ? 1.0 : 0.0);
-}

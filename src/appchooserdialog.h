@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #define APP_TYPE_CHOOSER_DIALOG (app_chooser_dialog_get_type ())
 #define APP_CHOOSER_DIALOG(object) (G_TYPE_CHECK_INSTANCE_CAST (object, APP_TYPE_CHOOSER_DIALOG, AppChooserDialog))

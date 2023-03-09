@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
-  <template class="AppChooserRow" parent="GtkListBoxRow">
-    <property name="child">
-      <object class="GtkBox">
-        <property name="spacing">10</property>
-        <child>
-          <object class="GtkImage" id="icon">
-            <property name="margin-start">10</property>
-            <property name="margin-end">10</property>
-            <property name="margin-top">10</property>
-            <property name="margin-bottom">10</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="name">
-            <property name="xalign">0</property>
-            <property name="width-chars">30</property>
-            <property name="max-width-chars">30</property>
-            <property name="hexpand">1</property>
-            <property name="ellipsize">end</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage" id="check">
-            <property name="margin-start">10</property>
-            <property name="margin-end">10</property>
-            <property name="margin-top">10</property>
-            <property name="margin-bottom">10</property>
-            <property name="opacity">0</property>
-            <property name="icon-name">object-select-symbolic</property>
-          </object>
-        </child>
+  <template class="AppChooserRow" parent="AdwActionRow">
+    <child type="prefix">
+      <object class="GtkImage" id="icon">
+        <style>
+          <class name="icon-dropshadow"/>
+        </style>
       </object>
-    </property>
+    </child>
   </template>
 </interface>
