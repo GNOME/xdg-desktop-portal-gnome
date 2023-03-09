@@ -21,7 +21,6 @@
   <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
   <programming-language>C</programming-language>
 
-  <!--
   <maintainer>
     <foaf:Person>
       <foaf:name>Jamie Murphy</foaf:name>
@@ -29,7 +28,6 @@
       <gnome:userid>jmurphy</gnome:userid>
     </foaf:Person>
   </maintainer>
-  -->
   <maintainer>
     <foaf:Person>
       <foaf:name>Christopher Davis</foaf:name>
