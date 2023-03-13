@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-09-11 20:56+0000\n"
-"PO-Revision-Date: 2022-09-17 14:40+0200\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-03-05 18:06+0100\n"
 "Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -27,7 +27,7 @@ msgstr "Portail"
 msgid "Select an Image"
 msgstr "Choisir une image"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -58,23 +58,23 @@ msgstr ""
 msgid "Share Details"
 msgstr "Partager les détails"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "A_nnuler"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Partager"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Nom"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Nom d’utilisateur"
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Ouvrir avec…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Ouvrir"
 
@@ -122,69 +122,39 @@ msgstr "Aucune application disponible"
 msgid "_Find More in Software"
 msgstr "En _trouver plus dans Logiciels"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "« %s » est en cours d’exécution en arrière-plan"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Cela peut être pour une raison légitime, mais l’application n’en a fournie "
-"aucune.\n"
-"\n"
-"Notez que forcer l’application à quitter pourrait causer une perte de "
-"données."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Forcer à quitter"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Autoriser"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Activité en arrière-plan"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Plus d’informations"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Créer une application web"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Créer une application"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "C_réer"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Choisir"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "_Enregistrer"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:714
 msgid "Open files read-only"
-msgstr "Ouvrir le fichier en lecture seule"
+msgstr "Ouvrir les fichiers en lecture seule"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Ouvrir les répertoires en lecture seule"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Bureau à distance"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Autoriser l’interaction à distance"
 
@@ -196,21 +166,21 @@ msgstr "Partage d’écran"
 msgid "Virtual monitor"
 msgstr "Écran virtuel"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Choisir l’écran à partager avec %s"
 
-#: src/screencastwidget.c:543
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Choisir la fenêtre à partager avec %s"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Choisir l’écran à partager avec l’application qui le demande"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Choisir la fenêtre à partager avec l’application qui le demande"
 
@@ -239,47 +209,47 @@ msgstr "Partager la capture d’écran avec l’application qui le demande ?"
 msgid "Screenshot"
 msgstr "Capture d’écran"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Options…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "_Capturer l’écran"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Capturer l’écran"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Capturer l’écran _entier"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Capturer la _fenêtre courante"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Choisir la _zone à capturer"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Capturer après un _délai de"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "secondes"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Effets"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Inclure le _pointeur"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Inclure la _bordure de la fenêtre"
 
@@ -291,17 +261,45 @@ msgstr "Le réglage demandé n’a pas été trouvé"
 msgid "Set Background"
 msgstr "Définir le fond d’écran"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Définir"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Échec de chargement du fichier image"
 
 #: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Activités"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "« %s » est en cours d’exécution en arrière-plan"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Cela peut être pour une raison légitime, mais l’application n’en a "
+#~ "fournie aucune.\n"
+#~ "\n"
+#~ "Notez que forcer l’application à quitter pourrait causer une perte de "
+#~ "données."
+
+#~ msgid "Force quit"
+#~ msgstr "Forcer à quitter"
+
+#~ msgid "Allow"
+#~ msgstr "Autoriser"
+
+#~ msgid "Background activity"
+#~ msgstr "Activité en arrière-plan"
+
+#~ msgid "Find out more"
+#~ msgstr "Plus d’informations"
 
 #~ msgid "applications-system-symbolic"
 #~ msgstr "applications-system-symbolic"
