@@ -21,30 +21,13 @@
   <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
   <programming-language>C</programming-language>
 
-  <!--
   <maintainer>
     <foaf:Person>
-      <foaf:name>Jamie Murphy</foaf:name>
-      <foaf:mbox rdf:resource="mailto:jmurphy@gnome.org"/>
-      <gnome:userid>jmurphy</gnome:userid>
+      <foaf:name>Georges Basile Stavracas Neto</foaf:name>
+      <foaf:mbox rdf:resource="mailto:gbsneto@gnome.org" />
+      <gnome:userid>gbsneto</gnome:userid>
     </foaf:Person>
   </maintainer>
-  -->
-  <maintainer>
-    <foaf:Person>
-      <foaf:name>Christopher Davis</foaf:name>
-      <foaf:mbox rdf:resource="mailto:christopherdavis@gnome.org"/>
-      <gnome:userid>christopherdavis</gnome:userid>
-    </foaf:Person>
-  </maintainer>
-  <maintainer>
-    <foaf:Person>
-      <foaf:name>Emmanuele Bassi</foaf:name>
-      <foaf:mbox rdf:resource="mailto:ebassi@gnome.org"/>
-      <gnome:userid>ebassi</gnome:userid>
-    </foaf:Person>
-  </maintainer>
-
   <author>
     <foaf:Person>
       <foaf:name>Matthias Clasen</foaf:name>
