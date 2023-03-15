@@ -28,6 +28,13 @@
       <gnome:userid>gbsneto</gnome:userid>
     </foaf:Person>
   </maintainer>
+  <helper>
+    <foaf:Person>
+      <foaf:name>Jonas Ådahl</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jadahl@gmail.com" />
+      <gnome:userid>jadahl</gnome:userid>
+    </foaf:Person>
+  </helper>
   <author>
     <foaf:Person>
       <foaf:name>Matthias Clasen</foaf:name>
