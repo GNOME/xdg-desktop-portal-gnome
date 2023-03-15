@@ -35,6 +35,13 @@
       <gnome:userid>jadahl</gnome:userid>
     </foaf:Person>
   </helper>
+  <helper>
+    <foaf:Person>
+      <foaf:name>Emmanuele Bassi</foaf:name>
+      <foaf:mbox rdf:resource="mailto:ebassi@gnome.org"/>
+      <gnome:userid>ebassi</gnome:userid>
+    </foaf:Person>
+  </helper>
   <author>
     <foaf:Person>
       <foaf:name>Matthias Clasen</foaf:name>
