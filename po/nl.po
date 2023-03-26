@@ -1,23 +1,23 @@
 # Dutch translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Nathan Follens <nfollens@gnome.org>, 2022.
+# Nathan Follens <nfollens@gnome.org>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-42\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-10-07 16:57+0000\n"
-"PO-Revision-Date: 2022-11-02 00:21+0100\n"
+"POT-Creation-Date: 2023-01-25 22:32+0000\n"
+"PO-Revision-Date: 2023-03-26 17:11+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
-"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Language-Team: Dutch <https://matrix.to/#/#nl:gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -27,7 +27,7 @@ msgstr "Portaal"
 msgid "Select an Image"
 msgstr "Kies een afbeelding"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -57,23 +57,23 @@ msgstr "Uw persoonlijke gegevens delen met de toepassing? %s"
 msgid "Share Details"
 msgstr "Details delen"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Annuleren"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Delen"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Naam"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Gebruikersnaam"
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Openen met…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:20 src/filechooser.c:530
 msgid "_Open"
 msgstr "_Openen"
 
@@ -121,69 +121,39 @@ msgstr "Geen toepassingen beschikbaar"
 msgid "_Find More in Software"
 msgstr "_Zoeken in Software"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "‘%s’ draait op de achtergrond"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Hier kan een geldige reden voor zijn, maar de toepassing heeft er geen "
-"opgegeven.\n"
-"\n"
-"Let op: een toepassing geforceerd afsluiten kan leiden tot verlies van "
-"bepaalde gegevens."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Afsluiten forceren"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Toestaan"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Achtergrondactiviteit"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Kom meer te weten"
-
-#: src/dynamic-launcher.c:257
+#: src/dynamic-launcher.c:258
 msgid "Create Web Application"
 msgstr "Webtoepassing aanmaken"
 
-#: src/dynamic-launcher.c:259
+#: src/dynamic-launcher.c:260
 msgid "Create Application"
 msgstr "Toepassing aanmaken"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "Aan_maken"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:530
 msgid "_Select"
 msgstr "_Selecteren"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:532
 msgid "_Save"
 msgstr "Op_slaan"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:714
 msgid "Open files read-only"
 msgstr "Bestanden als alleen-lezen openen"
+
+#: src/filechooser.c:721
+msgid "Open directories read-only"
+msgstr "Mappen als alleen-lezen openen"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Bureaublad op afstand"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Interactie vanop afstand toestaan"
 
@@ -195,21 +165,21 @@ msgstr "Scherm delen"
 msgid "Virtual monitor"
 msgstr "Virtueel beeldscherm"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:540
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Kies een beeldscherm om met %s te delen"
 
-#: src/screencastwidget.c:543
+#: src/screencastwidget.c:542
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Kies een venster om met %s te delen"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:547
 msgid "Select monitor to share with the requesting application"
 msgstr "Kies een beeldscherm om met de toepassing te delen"
 
-#: src/screencastwidget.c:549
+#: src/screencastwidget.c:548
 msgid "Select window to share with the requesting application"
 msgstr "Kies een venster om met de toepassing te delen"
 
@@ -238,47 +208,47 @@ msgstr "Deze schermafdruk delen met de toepassing?"
 msgid "Screenshot"
 msgstr "Schermafdruk"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Opties…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "_Schermafdruk maken"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Schermafdruk maken"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Het hele _scherm"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Het huidige _venster"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Selecteer een _gebied"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Met een _vertraging van"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "seconden"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Effecten"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Muisaanwijzer o_pnemen"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "De _vensterrand in de schermafdruk opnemen"
 
@@ -290,17 +260,45 @@ msgstr "Gevraagde instelling niet gevonden"
 msgid "Set Background"
 msgstr "Bureaubladachtergrond instellen"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Instellen"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Laden van afbeeldingsbestand mislukt"
 
 #: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Activiteiten"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "‘%s’ draait op de achtergrond"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Hier kan een geldige reden voor zijn, maar de toepassing heeft er geen "
+#~ "opgegeven.\n"
+#~ "\n"
+#~ "Let op: een toepassing geforceerd afsluiten kan leiden tot verlies van "
+#~ "bepaalde gegevens."
+
+#~ msgid "Force quit"
+#~ msgstr "Afsluiten forceren"
+
+#~ msgid "Allow"
+#~ msgstr "Toestaan"
+
+#~ msgid "Background activity"
+#~ msgstr "Achtergrondactiviteit"
+
+#~ msgid "Find out more"
+#~ msgstr "Kom meer te weten"
 
 #~ msgid "applications-system-symbolic"
 #~ msgstr "applications-system-symbolic"
