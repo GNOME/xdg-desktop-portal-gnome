@@ -90,10 +90,14 @@ init_external_window_display (GError **error)
   const char *session_type;
 
   session_type = getenv ("XDG_SESSION_TYPE");
+#ifdef HAVE_GTK_WAYLAND
   if (g_strcmp0 (session_type, "wayland") == 0)
     return init_external_window_wayland_display (error);
-  else if (g_strcmp0 (session_type, "x11") == 0)
+#endif
+#ifdef HAVE_GTK_X11
+  if (g_strcmp0 (session_type, "x11") == 0)
     return init_external_window_x11_display (error);
+#endif
 
   g_set_error (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
                "Unsupported or missing session type '%s'",
