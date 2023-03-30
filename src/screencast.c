@@ -471,6 +471,24 @@ find_best_window_by_app_id_and_title (const char *app_id,
   return best_match;
 }
 
+void
+screen_cast_stream_info_free (ScreenCastStreamInfo *info)
+{
+  switch (info->type)
+    {
+    case SCREEN_CAST_SOURCE_TYPE_MONITOR:
+      g_clear_pointer (&info->data.monitor, monitor_free);
+      break;
+    case SCREEN_CAST_SOURCE_TYPE_WINDOW:
+      g_clear_pointer (&info->data.window, window_free);
+      break;
+    case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
+      break;
+    }
+
+  g_free (info);
+}
+
 static gboolean
 restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
@@ -488,7 +506,8 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
   if (!screen_cast_session->restored.data)
     return FALSE;
 
-  streams = g_ptr_array_new_with_free_func (g_free);
+  streams =
+    g_ptr_array_new_with_free_func ((GDestroyNotify) screen_cast_stream_info_free);
 
   g_variant_get (screen_cast_session->restored.data,
                  RESTORE_VARIANT_TYPE,
@@ -514,7 +533,7 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
-            info->data.monitor = monitor;
+            info->data.monitor = monitor_dup (monitor);
             info->id = id;
             g_ptr_array_add (streams, info);
           }
@@ -539,7 +558,7 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-            info->data.window = window;
+            info->data.window = window_dup (window);
             info->id = id;
             g_ptr_array_add (streams, info);
           }

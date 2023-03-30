@@ -101,9 +101,10 @@ create_window_widget (Window *window)
   escaped_name = g_markup_escape_text (window_get_title (window), -1);
   adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), escaped_name);
 
-  g_object_set_qdata (G_OBJECT (row),
-                      quark_window_widget_data,
-                      window);
+  g_object_set_qdata_full (G_OBJECT (row),
+                           quark_window_widget_data,
+                           window_dup (window),
+                           (GDestroyNotify) window_free);
   g_object_set_data (G_OBJECT (row), "check", check_image);
   return row;
 }
@@ -127,9 +128,12 @@ create_monitor_widget (LogicalMonitor *logical_monitor)
       Monitor *monitor = l->data;
 
       if (!l->prev)
-        g_object_set_qdata (G_OBJECT (row),
-                            quark_monitor_widget_data,
-                            monitor);
+        {
+          g_object_set_qdata_full (G_OBJECT (row),
+                                   quark_monitor_widget_data,
+                                   monitor_dup (monitor),
+                                   (GDestroyNotify) monitor_free);
+        }
 
       g_string_append (string, monitor_get_display_name (monitor));
 
@@ -594,7 +598,8 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   uint32_t id = 0;
   GList *l;
 
-  streams = g_ptr_array_new_with_free_func (g_free);
+  streams =
+    g_ptr_array_new_with_free_func ((GDestroyNotify) screen_cast_stream_info_free);
 
   selected_monitor_rows =
     gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->monitor_list));
@@ -615,7 +620,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
         {
           info = g_new0 (ScreenCastStreamInfo, 1);
           info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
-          info->data.monitor = monitor;
+          info->data.monitor = monitor_dup (monitor);
           info->id = id++;
           g_ptr_array_add (streams, info);
         }
@@ -636,7 +641,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-      info->data.window = window;
+      info->data.window = window_dup (window);
       info->id = id++;
       g_ptr_array_add (streams, info);
     }

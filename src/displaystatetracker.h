@@ -26,6 +26,10 @@ typedef struct _LogicalMonitor LogicalMonitor;
 G_DECLARE_FINAL_TYPE (DisplayStateTracker, display_state_tracker,
                       DISPLAY, STATE_TRACKER, GObject)
 
+void monitor_free (Monitor *monitor);
+
+Monitor * monitor_dup (Monitor *monitor);
+
 const char * monitor_get_connector (Monitor *monitor);
 
 const char * monitor_get_match_string (Monitor *monitor);

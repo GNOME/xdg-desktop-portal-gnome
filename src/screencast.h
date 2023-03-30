@@ -65,3 +65,5 @@ typedef struct
 
 gboolean screen_cast_init (GDBusConnection *connection,
                            GError **error);
+
+void screen_cast_stream_info_free (ScreenCastStreamInfo *info);

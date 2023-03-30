@@ -62,12 +62,25 @@ static guint signals[N_SIGNALS];
 
 static ShellIntrospect *_shell_introspect;
 
-static void
+void
 window_free (Window *window)
 {
   g_free (window->title);
   g_free (window->app_id);
   g_free (window);
+}
+
+Window *
+window_dup (Window *window)
+{
+  Window *new_window;
+
+  new_window = g_new0 (Window, 1);
+  new_window->id = window->id;
+  new_window->title = g_strdup (window->title);
+  new_window->app_id = g_strdup (window->app_id);
+
+  return new_window;
 }
 
 static void

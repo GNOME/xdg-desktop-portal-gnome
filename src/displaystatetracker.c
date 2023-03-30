@@ -62,13 +62,26 @@ G_DEFINE_TYPE (DisplayStateTracker, display_state_tracker, G_TYPE_OBJECT)
 
 static DisplayStateTracker *_display_state_tracker;
 
-static void
+void
 monitor_free (Monitor *monitor)
 {
   g_free (monitor->connector);
   g_free (monitor->match_string);
   g_free (monitor->display_name);
   g_free (monitor);
+}
+
+Monitor *
+monitor_dup (Monitor *monitor)
+{
+  Monitor *new_monitor;
+
+  new_monitor = g_new0 (Monitor, 1);
+  new_monitor->connector = g_strdup (monitor->connector);
+  new_monitor->match_string = g_strdup (monitor->match_string);
+  new_monitor->display_name = g_strdup (monitor->display_name);
+
+  return new_monitor;
 }
 
 const char *

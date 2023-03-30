@@ -34,6 +34,10 @@ void shell_introspect_ref_listeners (ShellIntrospect *shell_introspect);
 
 void shell_introspect_unref_listeners (ShellIntrospect *shell_introspect);
 
+void window_free (Window *window);
+
+Window * window_dup (Window *window);
+
 const char * window_get_app_id (Window *window);
 
 const char * window_get_title (Window *window);
