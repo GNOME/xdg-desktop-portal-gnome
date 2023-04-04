@@ -39,6 +39,21 @@ get_actual_app_id (const char *app_id)
   return app;
 }
 
+static const char *
+app_state_to_str (AppState state)
+{
+  switch (state)
+    {
+    case BACKGROUND:
+      return "BACKGROUND";
+    case RUNNING:
+      return "RUNNING";
+    case ACTIVE:
+      return "ACTIVE";
+    }
+  g_assert_not_reached ();
+}
+
 static GVariant *
 get_app_state (void)
 {
@@ -289,7 +304,8 @@ compare_app_states (GVariant *a, GVariant *b)
       if ((v1 == BACKGROUND && v2 != BACKGROUND) ||
           (v1 != BACKGROUND && v2 == BACKGROUND))
         {
-          g_debug ("App %s changed state: %u != %u", app_id, v1, v2);
+          g_debug ("App %s changed state: %s != %s", app_id,
+                   app_state_to_str (v1), app_state_to_str (v2));
           changed = TRUE;
         }
     }
