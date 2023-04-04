@@ -98,6 +98,8 @@ get_app_state (void)
           if (seats != NULL)
             state = MAX (state, ACTIVE);
 
+          g_debug ("\tUpdating app '%s' state to %s", app, app_state_to_str (state));
+
           g_hash_table_insert (app_states, app, GINT_TO_POINTER (state));
         }
     }
