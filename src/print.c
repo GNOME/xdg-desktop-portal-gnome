@@ -658,7 +658,7 @@ handle_prepare_print (XdpImplPrint          *object,
 
   /* We are not printing, so Print is not a suitable button label */
   button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
-  gtk_button_set_label (GTK_BUTTON (button), "_Select");
+  gtk_button_set_label (GTK_BUTTON (button), _("_Select"));
 
   g_object_unref (settings);
   g_object_unref (page_setup);
