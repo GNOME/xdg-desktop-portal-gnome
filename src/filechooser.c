@@ -295,6 +295,24 @@ send_response (FileDialogHandle *handle)
   file_dialog_handle_close (handle);
 }
 
+// Copied from https://gitlab.gnome.org/GNOME/totem/blob/master/src/backend/bacon-video-widget.c#L3571
+static char *
+get_target_uri (GFile *file)
+{
+  g_autoptr (GFileInfo) info = NULL;
+  g_autofree char *target = NULL;
+
+  info = g_file_query_info (file, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, G_FILE_QUERY_INFO_NONE, NULL, NULL);
+  if (info != NULL)
+    {
+      const char *val = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
+      if (val != NULL)
+        target = g_strdup (val);
+    }
+
+  return g_steal_pointer (&target);
+}
+
 static GSList *
 get_uris (GtkFileChooser *filechooser)
 {
@@ -308,6 +326,36 @@ get_uris (GtkFileChooser *filechooser)
     {
       g_autoptr(GFile) file = g_list_model_get_item (files, i);
       g_autofree char *uri = g_file_get_uri (file);
+      const char *path;
+
+      /* Transform 'trash:///' and 'recent:///' URIs into
+       * local ones.
+       */
+      if (g_file_has_uri_scheme (file, "trash") ||
+          g_file_has_uri_scheme (file, "recent"))
+        {
+          g_autofree char *target_uri = get_target_uri (file);
+          if (target_uri != NULL)
+            {
+              g_clear_pointer (&uri, g_free);
+              uri = g_steal_pointer (&target_uri);
+            }
+        }
+
+      /* GTK4's file chooser does not translate the selected files
+       * to a file:// URI, so do that ourselves here. The portal
+       * expects only file:// URIs from backends.
+       */
+      path = g_file_peek_path (file);
+      if (!g_file_has_uri_scheme (file, "file") && path != NULL)
+        {
+          g_autofree char *filename_uri = g_filename_to_uri (path, NULL, NULL);
+          if (filename_uri != NULL)
+            {
+              g_clear_pointer (&uri, g_free);
+              uri = g_steal_pointer (&filename_uri);
+            }
+        }
 
       uris = g_slist_prepend (uris, g_steal_pointer (&uri));
     }
