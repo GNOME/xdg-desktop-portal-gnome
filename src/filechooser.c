@@ -650,7 +650,17 @@ handle_open (XdpImplFileChooser    *object,
       if (g_variant_lookup (arg_options, "current_file", "^&ay", &path))
         {
           g_autoptr(GFile) file = g_file_new_for_path (path);
-          gtk_file_chooser_set_file (GTK_FILE_CHOOSER (dialog), file, NULL);
+          if (g_file_test (path, G_FILE_TEST_EXISTS))
+            {
+              gtk_file_chooser_set_file (GTK_FILE_CHOOSER (dialog), file, NULL);
+            }
+          else
+            {
+              g_autoptr(GFile) folder = g_file_get_parent (file);
+              g_autofree char *name = g_file_get_basename (file);
+              gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), folder, NULL);
+              gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), name);
+            }
         }
       else
         {
