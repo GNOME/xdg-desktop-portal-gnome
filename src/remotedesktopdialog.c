@@ -33,6 +33,7 @@ struct _RemoteDesktopDialog
   GtkSwitch *allow_remote_interaction_switch;
   GtkSwitch *allow_remote_clipboard_row;
   GtkSwitch *allow_remote_clipboard_switch;
+  GtkCheckButton *persist_check;
   GtkWidget *screen_cast_widget;
   GtkHeaderBar *titlebar;
 
@@ -69,6 +70,12 @@ get_selected_device_types (RemoteDesktopDialog *dialog)
     return REMOTE_DESKTOP_DEVICE_TYPE_NONE;
 }
 
+static gboolean
+get_persist (RemoteDesktopDialog *dialog)
+{
+  return gtk_check_button_get_active (dialog->persist_check);
+}
+
 static void
 button_clicked (GtkWidget *button,
                 RemoteDesktopDialog *dialog)
@@ -76,6 +83,7 @@ button_clicked (GtkWidget *button,
   RemoteDesktopDeviceType device_types = 0;
   gboolean enable_clipboard;
   g_autoptr(GPtrArray) streams = NULL;
+  gboolean persist = FALSE;
   int response;
 
   gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
@@ -87,6 +95,9 @@ button_clicked (GtkWidget *button,
 
       response = GTK_RESPONSE_OK;
       device_types = get_selected_device_types (dialog);
+
+      persist = get_persist (dialog);
+
       if (dialog->screen_cast_enable)
         streams = screen_cast_widget_get_selected_streams (screen_cast_widget);
       enable_clipboard = gtk_switch_get_active (dialog->allow_remote_clipboard_switch);
@@ -100,7 +111,7 @@ button_clicked (GtkWidget *button,
     }
 
   g_signal_emit (dialog, signals[DONE], 0, response,
-                 device_types, streams, enable_clipboard);
+                 device_types, streams, enable_clipboard, persist);
 }
 
 static void
@@ -141,7 +152,8 @@ RemoteDesktopDialog *
 remote_desktop_dialog_new (const char *app_id,
                            RemoteDesktopDeviceType device_types,
                            ScreenCastSelection *screen_cast_select,
-                           gboolean clipboard_requested)
+                           gboolean clipboard_requested,
+                           RemoteDesktopPersistMode persist_mode)
 {
   RemoteDesktopDialog *dialog;
 
@@ -193,6 +205,18 @@ remote_desktop_dialog_new (const char *app_id,
       gtk_switch_set_active (dialog->allow_remote_clipboard_switch, FALSE);
     }
 
+  switch (persist_mode)
+    {
+    case REMOTE_DESKTOP_PERSIST_MODE_NONE:
+      break;
+    case REMOTE_DESKTOP_PERSIST_MODE_PERSISTENT:
+      gtk_widget_set_visible (GTK_WIDGET (dialog->persist_check), TRUE);
+      G_GNUC_FALLTHROUGH;
+    case REMOTE_DESKTOP_PERSIST_MODE_TRANSIENT:
+      gtk_check_button_set_active (dialog->persist_check, TRUE);
+      break;
+    }
+
   return dialog;
 }
 
@@ -207,7 +231,7 @@ remote_desktop_dialog_close_request (GtkWindow *dialog)
 {
   gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
-  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL);
+  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL, FALSE, FALSE);
 
   return TRUE;
 }
@@ -226,10 +250,11 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
                                 0,
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 3,
+                                G_TYPE_NONE, 5,
                                 G_TYPE_INT,
                                 G_TYPE_INT,
                                 G_TYPE_PTR_ARRAY,
+                                G_TYPE_BOOLEAN,
                                 G_TYPE_BOOLEAN);
 
   g_type_ensure (SCREEN_CAST_TYPE_WIDGET);
@@ -239,6 +264,7 @@ remote_desktop_dialog_class_init (RemoteDesktopDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_interaction_switch);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_clipboard_row);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, allow_remote_clipboard_switch);
+  gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, persist_check);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, screen_cast_widget);
   gtk_widget_class_bind_template_child (widget_class, RemoteDesktopDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);

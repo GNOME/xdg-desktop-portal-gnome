@@ -35,6 +35,9 @@
 #include "session.h"
 #include "utils.h"
 
+#define RESTORE_FORMAT_VERSION 1
+#define REMOTE_DESKTOP_RESTORE_VARIANT_TYPE "(xxub" SCREEN_CAST_STREAMS_VARIANT_TYPE ")"
+
 typedef enum _GnomeRemoteDesktopDeviceType
 {
   GNOME_REMOTE_DESKTOP_DEVICE_TYPE_KEYBOARD = 1 << 0,
@@ -69,6 +72,7 @@ typedef struct _RemoteDesktopSession
   } select;
 
   struct {
+    gboolean persist_allowed;
     RemoteDesktopDeviceType device_types;
   } shared;
 
@@ -79,6 +83,13 @@ typedef struct _RemoteDesktopSession
     gulong selection_owner_changed_handler_id;
     gulong selection_transfer_handler_id;
   } clipboard;
+
+  RemoteDesktopPersistMode persist_mode;
+  GPtrArray *streams_to_restore;
+  struct {
+    GVariant *data;
+    int64_t creation_time;
+  } restored;
 
   GDBusMethodInvocation *start_invocation;
   RemoteDesktopDialogHandle *dialog_handle;
@@ -127,6 +138,7 @@ start_session (RemoteDesktopSession     *session,
                RemoteDesktopDeviceType   device_types,
                GPtrArray                *streams,
                gboolean                  clipboard_enabled,
+               gboolean                  persist_allowed,
                GError                  **error);
 
 static void
@@ -218,6 +230,7 @@ remote_desktop_dialog_done (GtkWidget                 *widget,
                             RemoteDesktopDeviceType    device_types,
                             GPtrArray                 *streams,
                             gboolean                   clipboard_enabled,
+                            gboolean                   persist_allowed,
                             RemoteDesktopDialogHandle *dialog_handle)
 {
   int response;
@@ -249,6 +262,7 @@ remote_desktop_dialog_done (GtkWidget                 *widget,
                           device_types,
                           streams,
                           clipboard_enabled,
+                          persist_allowed,
                           &error))
         {
           g_warning ("Failed to start session: %s", error->message);
@@ -292,7 +306,8 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
                                            session->select.device_types,
                                            session->select.screen_cast_enable ?
                                              &session->select.screen_cast : NULL,
-                                           session->clipboard.clipboard_requested));
+                                           session->clipboard.clipboard_requested,
+                                           session->persist_mode));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, TRUE);
 
@@ -434,6 +449,8 @@ handle_select_devices (XdpImplRemoteDesktop *object,
                        const char *arg_app_id,
                        GVariant *arg_options)
 {
+  g_autofree char *provider = NULL;
+  g_autoptr(GVariant) restore_data = NULL;
   const char *sender;
   g_autoptr(Request) request = NULL;
   RemoteDesktopSession *remote_desktop_session;
@@ -441,6 +458,7 @@ handle_select_devices (XdpImplRemoteDesktop *object,
   uint32_t device_types;
   GVariantBuilder results_builder;
   GVariant *results;
+  uint32_t version;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
   request = request_new (sender, arg_app_id, arg_handle);
@@ -460,6 +478,25 @@ handle_select_devices (XdpImplRemoteDesktop *object,
   remote_desktop_session->select.device_types = device_types;
   response = 0;
 
+  g_variant_lookup (arg_options, "persist_mode", "u",
+                    &remote_desktop_session->persist_mode);
+
+  if (g_variant_lookup (arg_options, "restore_data", "(suv)",
+                        &provider, &version, &restore_data))
+    {
+      if (!g_variant_check_format_string (restore_data,
+                                          REMOTE_DESKTOP_RESTORE_VARIANT_TYPE,
+                                          FALSE))
+        {
+          g_warning ("Cannot parse restore data, ignoring");
+          goto out;
+        }
+
+      if (g_strcmp0 (provider, "GNOME") == 0 &&
+          version == RESTORE_FORMAT_VERSION)
+        remote_desktop_session->restored.data = g_variant_ref (restore_data);
+    }
+
 out:
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
@@ -471,6 +508,43 @@ out:
   return TRUE;
 }
 
+static GVariant *
+serialize_session_as_restore_data (RemoteDesktopSession *remote_desktop_session,
+                                   GPtrArray            *streams)
+{
+  GVariantBuilder restore_data_builder;
+  GVariantBuilder impl_builder;
+  int64_t creation_time;
+  int64_t last_used_time;
+
+  if ((!streams || streams->len == 0) &&
+      !remote_desktop_session->shared.device_types)
+    return NULL;
+
+  last_used_time = g_get_real_time ();
+  if (remote_desktop_session->restored.creation_time != -1)
+    creation_time = remote_desktop_session->restored.creation_time;
+  else
+    creation_time = g_get_real_time ();
+
+  g_variant_builder_init (&impl_builder,
+                          G_VARIANT_TYPE (REMOTE_DESKTOP_RESTORE_VARIANT_TYPE));
+  g_variant_builder_add (&impl_builder, "x", creation_time);
+  g_variant_builder_add (&impl_builder, "x", last_used_time);
+
+  g_variant_builder_add (&impl_builder, "u",
+                         remote_desktop_session->shared.device_types);
+  g_variant_builder_add (&impl_builder, "b",
+                         remote_desktop_session->clipboard.clipboard_enabled);
+  serialize_screen_cast_streams_as_restore_data (streams, &impl_builder);
+
+  g_variant_builder_init (&restore_data_builder, G_VARIANT_TYPE ("(suv)"));
+  g_variant_builder_add (&restore_data_builder, "s", "GNOME");
+  g_variant_builder_add (&restore_data_builder, "u", RESTORE_FORMAT_VERSION);
+  g_variant_builder_add (&restore_data_builder, "v", g_variant_builder_end (&impl_builder));
+  return g_variant_builder_end (&restore_data_builder);
+}
+
 static void
 start_done (RemoteDesktopSession *remote_desktop_session)
 {
@@ -478,6 +552,7 @@ start_done (RemoteDesktopSession *remote_desktop_session)
   RemoteDesktopDeviceType shared_device_types;
   GnomeScreenCastSession *gnome_screen_cast_session;
   gboolean clipboard_enabled;
+  RemoteDesktopPersistMode persist_mode;
 
   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
 
@@ -529,6 +604,26 @@ start_done (RemoteDesktopSession *remote_desktop_session)
                              g_variant_builder_end (&streams_builder));
     }
 
+  persist_mode = remote_desktop_session->persist_mode;
+  if (persist_mode != REMOTE_DESKTOP_PERSIST_MODE_NONE &&
+      remote_desktop_session->shared.persist_allowed)
+    {
+      g_autoptr(GPtrArray) streams = NULL;
+      GVariant *restore_data;
+
+      streams = g_steal_pointer (&remote_desktop_session->streams_to_restore);
+      restore_data = serialize_session_as_restore_data (remote_desktop_session,
+                                                        streams);
+
+      if (restore_data)
+        {
+          g_variant_builder_add (&results_builder, "{sv}", "persist_mode",
+                                 g_variant_new_uint32 (persist_mode));
+          g_variant_builder_add (&results_builder, "{sv}", "restore_data",
+                                 restore_data);
+        }
+    }
+
   xdp_impl_remote_desktop_complete_start (XDP_IMPL_REMOTE_DESKTOP (impl),
                                           remote_desktop_session->start_invocation,
                                           0,
@@ -568,6 +663,9 @@ open_screen_cast_session (RemoteDesktopSession  *remote_desktop_session,
                       G_CALLBACK (on_gnome_screen_cast_session_ready),
                       remote_desktop_session);
 
+  if (remote_desktop_session->persist_mode != REMOTE_DESKTOP_PERSIST_MODE_NONE)
+    remote_desktop_session->streams_to_restore = g_ptr_array_ref (streams);
+
   if (!gnome_screen_cast_session_record_selections (gnome_screen_cast_session,
                                                     streams,
                                                     &remote_desktop_session->select.screen_cast,
@@ -582,11 +680,13 @@ start_session (RemoteDesktopSession     *remote_desktop_session,
                RemoteDesktopDeviceType   device_types,
                GPtrArray                *streams,
                gboolean                  clipboard_enabled,
+               gboolean                  persist_allowed,
                GError                  **error)
 {
   OrgGnomeMutterRemoteDesktopSession *session_proxy;
   gboolean need_streams;
 
+  remote_desktop_session->shared.persist_allowed = persist_allowed;
   remote_desktop_session->shared.device_types = device_types;
   remote_desktop_session->clipboard.clipboard_enabled = clipboard_enabled;
 
@@ -628,6 +728,53 @@ cancel_start_session (RemoteDesktopSession *remote_desktop_session,
 }
 
 static gboolean
+restore_from_data (RemoteDesktopSession *remote_desktop_session)
+{
+  g_autoptr(GPtrArray) streams = NULL;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GVariantIter) screen_cast_streams_iter = NULL;
+  int64_t creation_time;
+  int64_t last_used_time;
+  uint32_t restored_device_types;
+  gboolean clipboard_enabled;
+
+  if (!remote_desktop_session->restored.data)
+    return FALSE;
+
+  g_variant_get (remote_desktop_session->restored.data,
+                 REMOTE_DESKTOP_RESTORE_VARIANT_TYPE,
+                 &creation_time,
+                 &last_used_time,
+                 &restored_device_types,
+                 &clipboard_enabled,
+                 &screen_cast_streams_iter);
+
+  if (restored_device_types & ~REMOTE_DESKTOP_DEVICE_TYPE_ALL)
+    {
+      g_warning ("Tried to restore bogus device type mask 0x%x",
+                 restored_device_types);
+      return FALSE;
+    }
+
+  streams = restore_screen_cast_streams (screen_cast_streams_iter,
+                                         &remote_desktop_session->select.screen_cast);
+
+  remote_desktop_session->restored.creation_time = creation_time;
+
+  if (!start_session (remote_desktop_session,
+                      restored_device_types, streams,
+                      clipboard_enabled,
+                      TRUE,
+                      &error))
+    {
+      g_warning ("Error restoring stream from session: %s", error->message);
+      return FALSE;
+    }
+
+  return TRUE;
+}
+
+static gboolean
 handle_start (XdpImplRemoteDesktop *object,
               GDBusMethodInvocation *invocation,
               const char *arg_handle,
@@ -639,7 +786,6 @@ handle_start (XdpImplRemoteDesktop *object,
   const char *sender;
   g_autoptr(Request) request = NULL;
   RemoteDesktopSession *remote_desktop_session;
-  RemoteDesktopDialogHandle *dialog_handle;
   GVariantBuilder results_builder;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
@@ -661,13 +807,18 @@ handle_start (XdpImplRemoteDesktop *object,
       goto err;
     }
 
-  dialog_handle = create_remote_desktop_dialog (remote_desktop_session,
-                                                invocation,
-                                                request,
-                                                arg_parent_window);
-
   remote_desktop_session->start_invocation = invocation;
-  remote_desktop_session->dialog_handle = dialog_handle;
+
+  if (!restore_from_data (remote_desktop_session))
+    {
+      RemoteDesktopDialogHandle *dialog_handle;
+
+      dialog_handle = create_remote_desktop_dialog (remote_desktop_session,
+                                                    invocation,
+                                                    request,
+                                                    arg_parent_window);
+      remote_desktop_session->dialog_handle = dialog_handle;
+    }
 
   return TRUE;
 
@@ -1153,6 +1304,9 @@ remote_desktop_session_finalize (GObject *object)
 {
   RemoteDesktopSession *remote_desktop_session = (RemoteDesktopSession *)object;
 
+  g_clear_pointer (&remote_desktop_session->streams_to_restore,
+                   g_ptr_array_unref);
+  g_clear_pointer (&remote_desktop_session->restored.data, g_variant_unref);
   g_free (remote_desktop_session->mutter_session_path);
 
   G_OBJECT_CLASS (remote_desktop_session_parent_class)->finalize (object);

@@ -39,6 +39,13 @@ typedef enum _RemoteDesktopDeviceType
                                     REMOTE_DESKTOP_DEVICE_TYPE_TOUCHSCREEN)
 } RemoteDesktopDeviceType;
 
+typedef enum _RemoteDesktopPersistMode
+{
+  REMOTE_DESKTOP_PERSIST_MODE_NONE = 0,
+  REMOTE_DESKTOP_PERSIST_MODE_TRANSIENT = 1,
+  REMOTE_DESKTOP_PERSIST_MODE_PERSISTENT = 2,
+} RemoteDesktopPersistMode;
+
 gboolean is_remote_desktop_session (Session *session);
 
 void remote_desktop_session_sources_selected (RemoteDesktopSession *session,

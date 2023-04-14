@@ -53,6 +53,16 @@
                 <property name="orientation">vertical</property>
                 <property name="hexpand">1</property>
                 <property name="vexpand">1</property>
+
+                <child>
+                  <object class="GtkCheckButton" id="persist_check">
+                    <property name="visible">False</property>
+                    <property name="active">False</property>
+                    <property name="halign">center</property>
+                    <property name="label" translatable="yes">Remember this selection</property>
+                  </object>
+                </child>
+
                 <child>
                   <object class="ScreenCastWidget" id="screen_cast_widget">
                     <property name="visible">False</property>

@@ -29,4 +29,5 @@ G_DECLARE_FINAL_TYPE (RemoteDesktopDialog, remote_desktop_dialog,
 RemoteDesktopDialog * remote_desktop_dialog_new (const char *app_id,
                                                  RemoteDesktopDeviceType device_types,
                                                  ScreenCastSelection *screen_cast_select,
-                                                 gboolean clipboard_requested);
+                                                 gboolean clipboard_requested,
+                                                 RemoteDesktopPersistMode persist_mode);
