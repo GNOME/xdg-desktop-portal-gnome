@@ -63,7 +63,15 @@ typedef struct
   } data;
 } ScreenCastStreamInfo;
 
+#define SCREEN_CAST_STREAMS_VARIANT_TYPE "a(uuv)"
+
 gboolean screen_cast_init (GDBusConnection *connection,
                            GError **error);
 
 void screen_cast_stream_info_free (ScreenCastStreamInfo *info);
+
+void serialize_screen_cast_streams_as_restore_data (GPtrArray       *streams,
+                                                    GVariantBuilder *impl_builder);
+
+GPtrArray * restore_screen_cast_streams (GVariantIter *streams_iter,
+                                         ScreenCastSelection *screen_cast_selection);

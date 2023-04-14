@@ -37,7 +37,7 @@
 #include "utils.h"
 
 #define RESTORE_FORMAT_VERSION 1
-#define RESTORE_VARIANT_TYPE "(xxa(uuv))"
+#define RESTORE_VARIANT_TYPE "(xx" SCREEN_CAST_STREAMS_VARIANT_TYPE ")"
 #define MONITOR_TYPE "s"
 #define WINDOW_TYPE "(ss)"
 #define VIRTUAL_TYPE "b"
@@ -113,30 +113,14 @@ screen_cast_dialog_handle_close (ScreenCastDialogHandle *dialog_handle)
   screen_cast_dialog_handle_free (dialog_handle);
 }
 
-static GVariant *
-serialize_streams_as_restore_data (ScreenCastSession *screen_cast_session,
-                                   GPtrArray         *streams)
+void
+serialize_screen_cast_streams_as_restore_data (GPtrArray       *streams,
+                                               GVariantBuilder *impl_builder)
 {
-  GVariantBuilder restore_data_builder;
-  GVariantBuilder impl_builder;
-  int64_t creation_time;
-  int64_t last_used_time;
   guint i;
 
-  if (!streams || streams->len == 0)
-    return NULL;
+  g_variant_builder_open (impl_builder, G_VARIANT_TYPE ("a(uuv)"));
 
-  last_used_time = g_get_real_time ();
-  if (screen_cast_session->restored.creation_time != -1)
-    creation_time = screen_cast_session->restored.creation_time;
-  else
-    creation_time = g_get_real_time ();
-
-  g_variant_builder_init (&impl_builder, G_VARIANT_TYPE (RESTORE_VARIANT_TYPE));
-  g_variant_builder_add (&impl_builder, "x", creation_time);
-  g_variant_builder_add (&impl_builder, "x", last_used_time);
-
-  g_variant_builder_open (&impl_builder, G_VARIANT_TYPE ("a(uuv)"));
   for (i = 0; i < streams->len; i++)
     {
       ScreenCastStreamInfo *info = g_ptr_array_index (streams, i);
@@ -168,13 +152,39 @@ serialize_streams_as_restore_data (ScreenCastSession *screen_cast_session,
           break;
         }
 
-      g_variant_builder_add (&impl_builder,
+      g_variant_builder_add (impl_builder,
                              "(uuv)",
                              info->id,
                              info->type,
                              stream_variant);
     }
-  g_variant_builder_close (&impl_builder);
+  g_variant_builder_close (impl_builder);
+}
+
+static GVariant *
+serialize_session_as_restore_data (ScreenCastSession *screen_cast_session,
+                                   GPtrArray         *streams)
+{
+  GVariantBuilder restore_data_builder;
+  GVariantBuilder impl_builder;
+  int64_t creation_time;
+  int64_t last_used_time;
+
+  if (!streams || streams->len == 0)
+    return NULL;
+
+  last_used_time = g_get_real_time ();
+  if (screen_cast_session->restored.creation_time != -1)
+    creation_time = screen_cast_session->restored.creation_time;
+  else
+    creation_time = g_get_real_time ();
+
+  g_variant_builder_init (&impl_builder,
+                          G_VARIANT_TYPE (RESTORE_VARIANT_TYPE));
+  g_variant_builder_add (&impl_builder, "x", creation_time);
+  g_variant_builder_add (&impl_builder, "x", last_used_time);
+
+  serialize_screen_cast_streams_as_restore_data (streams, &impl_builder);
 
   g_variant_builder_init (&restore_data_builder, G_VARIANT_TYPE ("(suv)"));
   g_variant_builder_add (&restore_data_builder, "s", "GNOME");
@@ -231,7 +241,8 @@ on_gnome_screen_cast_session_ready (GnomeScreenCastSession *gnome_screen_cast_se
       g_autoptr(GPtrArray) streams = g_steal_pointer (&screen_cast_session->streams_to_restore);
       GVariant *restore_data;
 
-      restore_data = serialize_streams_as_restore_data (screen_cast_session, streams);
+      restore_data = serialize_session_as_restore_data (screen_cast_session,
+                                                        streams);
 
       if (restore_data)
         {
@@ -489,47 +500,34 @@ screen_cast_stream_info_free (ScreenCastStreamInfo *info)
   g_free (info);
 }
 
-static gboolean
-restore_stream_from_data (ScreenCastSession *screen_cast_session)
-
+GPtrArray *
+restore_screen_cast_streams (GVariantIter        *streams_iter,
+                             ScreenCastSelection *screen_cast_selection)
 {
-  ScreenCastStreamInfo *info;
-  g_autoptr(GVariantIter) array_iter = NULL;
   g_autoptr(GPtrArray) streams = NULL;
-  g_autoptr(GError) error = NULL;
+  g_autoptr(GVariant) data = NULL;
   ScreenCastSourceType source_type;
-  GVariant *data;
   uint32_t id;
-  int64_t creation_time;
-  int64_t last_used_time;
-
-  if (!screen_cast_session->restored.data)
-    return FALSE;
 
   streams =
     g_ptr_array_new_with_free_func ((GDestroyNotify) screen_cast_stream_info_free);
 
-  g_variant_get (screen_cast_session->restored.data,
-                 RESTORE_VARIANT_TYPE,
-                 &creation_time,
-                 &last_used_time,
-                 &array_iter);
-
-  while (g_variant_iter_next (array_iter, "(uuv)", &id, &source_type, &data))
+  while (g_variant_iter_next (streams_iter, "(uuv)", &id, &source_type, &data))
     {
       switch (source_type)
         {
         case SCREEN_CAST_SOURCE_TYPE_MONITOR:
           {
-            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR) ||
-                !g_variant_check_format_string (data, MONITOR_TYPE, FALSE))
-              goto fail;
-
+            ScreenCastStreamInfo *info;
             const char *match_string = g_variant_get_string (data, NULL);
             Monitor *monitor = find_monitor_by_string (match_string);
 
+            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_MONITOR) ||
+                !g_variant_check_format_string (data, MONITOR_TYPE, FALSE))
+              return NULL;
+
             if (!monitor)
-              goto fail;
+              return NULL;
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_MONITOR;
@@ -541,20 +539,21 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
         case SCREEN_CAST_SOURCE_TYPE_WINDOW:
           {
-            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW) ||
-                !g_variant_check_format_string (data, WINDOW_TYPE, FALSE))
-              goto fail;
-
+            ScreenCastStreamInfo *info;
             const char *app_id = NULL;
             const char *title = NULL;
             Window *window;
+
+            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_WINDOW) ||
+                !g_variant_check_format_string (data, WINDOW_TYPE, FALSE))
+              return NULL;
 
             g_variant_get (data, "(&s&s)", &app_id, &title);
 
             window = find_best_window_by_app_id_and_title (app_id, title);
 
             if (!window)
-              goto fail;
+              return NULL;
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
@@ -566,9 +565,11 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
 
         case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
           {
-            if (!(screen_cast_session->select.source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL) ||
+            ScreenCastStreamInfo *info;
+
+            if (!(screen_cast_selection->source_types & SCREEN_CAST_SOURCE_TYPE_VIRTUAL) ||
                 !g_variant_check_format_string (data, VIRTUAL_TYPE, FALSE))
-              goto fail;
+              return NULL;
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_VIRTUAL;
@@ -578,9 +579,35 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
           break;
 
         default:
-          goto fail;
+          return NULL;
         }
     }
+
+  return g_steal_pointer (&streams);
+}
+
+static gboolean
+restore_stream_from_data (ScreenCastSession *screen_cast_session)
+{
+  g_autoptr(GVariantIter) array_iter = NULL;
+  g_autoptr(GPtrArray) streams = NULL;
+  int64_t creation_time;
+  int64_t last_used_time;
+  g_autoptr(GError) error = NULL;
+
+  if (!screen_cast_session->restored.data)
+    return FALSE;
+
+  g_variant_get (screen_cast_session->restored.data,
+                 RESTORE_VARIANT_TYPE,
+                 &creation_time,
+                 &last_used_time,
+                 &array_iter);
+
+  streams = restore_screen_cast_streams (array_iter,
+                                         &screen_cast_session->select);
+  if (!streams)
+    return FALSE;
 
   screen_cast_session->restored.creation_time = creation_time;
 
@@ -593,9 +620,6 @@ restore_stream_from_data (ScreenCastSession *screen_cast_session)
     }
 
   return TRUE;
-
-fail:
-  return FALSE;
 }
 
 static gboolean
