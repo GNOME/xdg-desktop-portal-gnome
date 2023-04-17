@@ -241,13 +241,6 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  if (!init_gtk (&error))
-    {
-      g_printerr ("Failed to initialize display server connection: %s\n",
-                  error->message);
-      return 1;
-    }
-
   context = g_option_context_new ("- portal backends");
   g_option_context_set_summary (context,
       "A backend implementation for xdg-desktop-portal.");
@@ -282,6 +275,13 @@ main (int argc, char *argv[])
     g_log_set_handler (NULL, G_LOG_LEVEL_DEBUG, message_handler, NULL);
 
   g_set_prgname ("xdg-desktop-portal-gnome");
+
+  if (!init_gtk (&error))
+    {
+      g_printerr ("Failed to initialize display server connection: %s\n",
+                  error->message);
+      return 1;
+    }
 
   loop = g_main_loop_new (NULL, FALSE);
 
