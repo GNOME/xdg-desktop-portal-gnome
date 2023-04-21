@@ -249,21 +249,9 @@ init_x11_interop (GdkDisplay *display)
     g_debug ("Missing X11 interop protocol support");
 }
 
-static void
-on_service_channel_name_appeared (GDBusConnection *connection,
-                                  const char      *name,
-                                  const char      *name_owner,
-                                  gpointer         user_data)
-{
-  gboolean *name_appeared = user_data;
-
-  *name_appeared = TRUE;
-}
-
 GdkDisplay *
 init_external_window_wayland_display (GError **error)
 {
-  gboolean name_appeared = FALSE;
   g_autoptr(OrgGnomeMutterServiceChannel) proxy = NULL;
   g_autoptr(GVariant) fd_variant = NULL;
   g_autoptr(GUnixFDList) fd_list = NULL;
