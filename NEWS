@@ -1,3 +1,12 @@
+Changes in 44.1
+=================
+
+- Improve handling of non-existing files on the filechooser portal
+- Minor debugging improvements to the backgrounds portal
+- More precise initialization timing
+- Fix duplicate monitor and window streams
+- Translation updates
+
 Changes in 44.0
 =================
 
