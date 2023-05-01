@@ -619,6 +619,7 @@ handle_prepare_print (XdpImplPrint          *object,
   GdkSurface *surface;
   ExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
+  const char *accept_label;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
 
@@ -641,6 +642,12 @@ handle_prepare_print (XdpImplPrint          *object,
     modal = TRUE;
 
   dialog = GTK_WINDOW (gtk_print_unix_dialog_new (arg_title, NULL));
+  if (g_variant_lookup (arg_options, "accept_label", "&s", &accept_label))
+    {
+      GtkWidget *button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+      gtk_button_set_label (GTK_BUTTON (button), accept_label);
+    }
+
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, modal);
   gtk_print_unix_dialog_set_manual_capabilities (GTK_PRINT_UNIX_DIALOG (dialog),
