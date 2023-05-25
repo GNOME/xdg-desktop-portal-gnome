@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-03-05 18:06+0100\n"
-"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
+"POT-Creation-Date: 2023-04-26 15:12+0000\n"
+"PO-Revision-Date: 2023-05-25 10:28+0900\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -46,20 +46,21 @@ msgstr "Images"
 #: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
-msgstr "Partager mes informations personelles avec %1$s ? %2$s"
+msgstr "Partager mes informations personnelles avec %1$s ? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
 msgid "Share your personal information with the requesting application? %s"
 msgstr ""
-"Partager mes informations personelles avec l’application qui le demande ? %s"
+"Partager mes informations personnelles avec l’application qui le demande ? "
+"%s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "Partager les détails"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -78,20 +79,20 @@ msgstr "Nom"
 msgid "Username"
 msgstr "Nom d’utilisateur"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "Échec de lancement de Logiciels"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
 msgid "Choose an application to open the file “%s”."
 msgstr "Choisir une application pour ouvrir le fichier « %s »."
 
-#: src/appchooserdialog.c:398
+#: src/appchooserdialog.c:397
 msgid "Choose an application."
 msgstr "Choisir une application."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
@@ -100,7 +101,7 @@ msgstr ""
 "Aucune application installée capable d’ouvrir « %s ». Vous pouvez trouver "
 "plus d’applications dans Logiciels."
 
-#: src/appchooserdialog.c:420
+#: src/appchooserdialog.c:419
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
 "Aucune application adaptée n’est installée. Vous pouvez trouver plus "
@@ -110,7 +111,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Ouvrir avec…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_Ouvrir"
 
@@ -122,31 +123,31 @@ msgstr "Aucune application disponible"
 msgid "_Find More in Software"
 msgstr "En _trouver plus dans Logiciels"
 
-#: src/dynamic-launcher.c:258
+#: src/dynamic-launcher.c:250
 msgid "Create Web Application"
 msgstr "Créer une application web"
 
-#: src/dynamic-launcher.c:260
+#: src/dynamic-launcher.c:252
 msgid "Create Application"
 msgstr "Créer une application"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "C_réer"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Choisir"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Enregistrer"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:716
 msgid "Open files read-only"
 msgstr "Ouvrir les fichiers en lecture seule"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:723
 msgid "Open directories read-only"
 msgstr "Ouvrir les répertoires en lecture seule"
 
@@ -162,25 +163,25 @@ msgstr "Autoriser l’interaction à distance"
 msgid "Screen Share"
 msgstr "Partage d’écran"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Écran virtuel"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Choisir l’écran à partager avec %s"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Choisir la fenêtre à partager avec %s"
 
-#: src/screencastwidget.c:547
+#: src/screencastwidget.c:548
 msgid "Select monitor to share with the requesting application"
 msgstr "Choisir l’écran à partager avec l’application qui le demande"
 
-#: src/screencastwidget.c:548
+#: src/screencastwidget.c:549
 msgid "Select window to share with the requesting application"
 msgstr "Choisir la fenêtre à partager avec l’application qui le demande"
 
