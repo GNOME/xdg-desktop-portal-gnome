@@ -8,19 +8,19 @@ desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_variable(
   pkgconfig: 'interfaces_dir')
 desktop_portal_dbus_interfaces = [
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Account.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Request.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Session.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.AppChooser.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Screenshot.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.ScreenCast.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.RemoteDesktop.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Lockdown.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Background.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.DynamicLauncher.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.FileChooser.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Lockdown.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.RemoteDesktop.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Request.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.ScreenCast.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Screenshot.xml',
+  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Session.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Settings.xml',
   desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Wallpaper.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.FileChooser.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.DynamicLauncher.xml',
 ]
 
 built_sources = gnome.gdbus_codegen(
