@@ -4,28 +4,38 @@ pkg = import('pkgconfig')
 xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.15.0')
 
 # Desktop Portal D-Bus interfaces
+desktop_portal_dbus_interfaces = [
+  'org.freedesktop.impl.portal.Account',
+  'org.freedesktop.impl.portal.AppChooser',
+  'org.freedesktop.impl.portal.Background',
+  'org.freedesktop.impl.portal.DynamicLauncher',
+  'org.freedesktop.impl.portal.FileChooser',
+  'org.freedesktop.impl.portal.Lockdown',
+  'org.freedesktop.impl.portal.Print',
+  'org.freedesktop.impl.portal.RemoteDesktop',
+  'org.freedesktop.impl.portal.ScreenCast',
+  'org.freedesktop.impl.portal.Screenshot',
+  'org.freedesktop.impl.portal.Settings',
+  'org.freedesktop.impl.portal.Wallpaper',
+]
+
+# These two we need the dbus-codegen for but we don't provide them
+desktop_portal_dbus_interfaces_all = desktop_portal_dbus_interfaces + [
+  'org.freedesktop.impl.portal.Request',
+  'org.freedesktop.impl.portal.Session',
+]
+
 desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_variable(
   pkgconfig: 'interfaces_dir')
-desktop_portal_dbus_interfaces = [
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Account.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.AppChooser.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Background.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.DynamicLauncher.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.FileChooser.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Lockdown.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Print.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.RemoteDesktop.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Request.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.ScreenCast.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Screenshot.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Session.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Settings.xml',
-  desktop_portal_interfaces_dir / 'org.freedesktop.impl.portal.Wallpaper.xml',
-]
+
+desktop_portal_dbus_interfaces_files = []
+foreach intf: desktop_portal_dbus_interfaces_all
+  desktop_portal_dbus_interfaces_files += [desktop_portal_interfaces_dir / '@0@.xml'.format(intf)]
+endforeach
 
 built_sources = gnome.gdbus_codegen(
   'xdg-desktop-portal-dbus',
-  sources: desktop_portal_dbus_interfaces,
+  sources: desktop_portal_dbus_interfaces_files,
   interface_prefix: 'org.freedesktop.impl.portal.',
   namespace: 'XdpImpl',
 )
