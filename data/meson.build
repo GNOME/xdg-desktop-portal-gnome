@@ -4,8 +4,30 @@ libexecdir_conf = configuration_data()
 libexecdir_conf.set('libexecdir', prefix / libexecdir)
 
 # Portal
+gnome_portal_interfaces = [
+  'org.freedesktop.impl.portal.Account',
+  'org.freedesktop.impl.portal.AppChooser',
+  'org.freedesktop.impl.portal.Background',
+  'org.freedesktop.impl.portal.DynamicLauncher',
+  'org.freedesktop.impl.portal.FileChooser',
+  'org.freedesktop.impl.portal.Lockdown',
+  'org.freedesktop.impl.portal.Print',
+  'org.freedesktop.impl.portal.RemoteDesktop',
+  'org.freedesktop.impl.portal.ScreenCast',
+  'org.freedesktop.impl.portal.Screenshot',
+  'org.freedesktop.impl.portal.Settings',
+  'org.freedesktop.impl.portal.Wallpaper',
+]
+gnome_portal_conf = configuration_data()
+gnome_portal_conf.set('PORTALS', ';'.join(gnome_portal_interfaces))
+
 portal_dir = datadir / 'xdg-desktop-portal' / 'portals'
-install_data('gnome.portal', install_dir: portal_dir)
+configure_file(
+  input: 'gnome.portal.in',
+  output: 'gnome.portal',
+  configuration: gnome_portal_conf,
+  install_dir: portal_dir,
+)
 
 # Service
 configure_file(
