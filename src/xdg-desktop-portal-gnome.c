@@ -64,6 +64,7 @@ static GHashTable *outstanding_handles = NULL;
 static gboolean opt_verbose;
 static gboolean opt_replace;
 static gboolean show_version;
+static gboolean settings_only = FALSE;
 
 static GOptionEntry entries[] = {
   { "verbose", 'v', 0, G_OPTION_ARG_NONE, &opt_verbose, "Print debug information during command processing", NULL },
@@ -106,6 +107,15 @@ on_bus_acquired (GDBusConnection *connection,
                  gpointer         user_data)
 {
   GError *error = NULL;
+
+  if (!settings_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (settings_only)
+    return;
 
   if (!file_chooser_init (connection, &error))
     {
@@ -156,12 +166,6 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!remote_desktop_init (connection, &error))
-    {
-      g_warning ("error: %s\n", error->message);
-      g_clear_error (&error);
-    }
-
-  if (!settings_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
@@ -241,6 +245,13 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+  if (session_bus == NULL)
+    {
+      g_printerr ("No session bus: %s\n", error->message);
+      return 2;
+    }
+
   context = g_option_context_new ("- portal backends");
   g_option_context_set_summary (context,
       "A backend implementation for xdg-desktop-portal.");
@@ -269,6 +280,15 @@ main (int argc, char *argv[])
       return 0;
     }
 
+  if (!init_gtk (&error))
+    {
+      g_debug ("Failed to initialize display server connection: %s",
+               error->message);
+      g_clear_error (&error);
+      g_printerr ("Non-compatible display server, exposing settings only.\n");
+      settings_only = TRUE;
+    }
+
   g_set_printerr_handler (printerr_handler);
 
   if (opt_verbose)
@@ -276,23 +296,9 @@ main (int argc, char *argv[])
 
   g_set_prgname ("xdg-desktop-portal-gnome");
 
-  if (!init_gtk (&error))
-    {
-      g_printerr ("Failed to initialize display server connection: %s\n",
-                  error->message);
-      return 1;
-    }
-
   loop = g_main_loop_new (NULL, FALSE);
 
   outstanding_handles = g_hash_table_new (g_str_hash, g_str_equal);
-
-  session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-  if (session_bus == NULL)
-    {
-      g_printerr ("No session bus: %s\n", error->message);
-      return 2;
-    }
 
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
                              "org.freedesktop.impl.portal.desktop.gnome",
@@ -303,7 +309,8 @@ main (int argc, char *argv[])
                              NULL,
                              NULL);
 
-  adw_init ();
+  if (!settings_only)
+    adw_init ();
 
   g_main_loop_run (loop);
 
