@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2021, 2022.
+# Sveinn í Felli <sv1@fellsnet.is>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2022-10-07 16:57+0000\n"
-"PO-Revision-Date: 2022-10-17 11:08+0000\n"
+"POT-Creation-Date: 2023-04-26 15:12+0000\n"
+"PO-Revision-Date: 2023-06-18 09:03+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -26,7 +26,7 @@ msgstr "Gátt"
 msgid "Select an Image"
 msgstr "Veldu mynd"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -57,40 +57,40 @@ msgstr ""
 msgid "Share Details"
 msgstr "Deila nánari upplýsingum"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
+#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Hætta við"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
+#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Deila"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Nafn"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Notandanafn"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "Mistókst að ræsa hugbúnaðarsafnið"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
 msgid "Choose an application to open the file “%s”."
 msgstr "Veldu forrit til að opna með skrána “%s”."
 
-#: src/appchooserdialog.c:398
+#: src/appchooserdialog.c:397
 msgid "Choose an application."
 msgstr "Veldu forrit."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more applications in "
@@ -99,7 +99,7 @@ msgstr ""
 "Engin uppsett forrit geta opnað “%s”. Þú getur fundið fleiri forrit í "
 "hugbúnaðarsafninu"
 
-#: src/appchooserdialog.c:420
+#: src/appchooserdialog.c:419
 msgid "No suitable app installed. You can find more applications in Software."
 msgstr ""
 "Ekkert hentugt forrit er uppsett. Þú getur fundið fleiri forrit í "
@@ -121,50 +121,15 @@ msgstr "Engin forrit tiltæk"
 msgid "_Find More in Software"
 msgstr "_Finna meira í hugbúnaðarsafni"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "\"%s\" keyrir í bakgrunni"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Þetta gæti verið af lögmætri ástæðu, en forritið hefur ekki getað sýnt fram "
-"á neina.\n"
-"\n"
-"Athugaðu að ef forrit er þvingað til að loka, geta gögn tapast."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Þvinga til að hætta"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Leyfa"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Bakgrunnsvirkni"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Finna frekari upplýsingar"
-
-#: src/dynamic-launcher.c:257
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:250
 msgid "Create Web Application"
 msgstr "Búa til vefforrit"
 
-#: src/dynamic-launcher.c:259
-#| msgid "Choose an application."
+#: src/dynamic-launcher.c:252
 msgid "Create Application"
 msgstr "Búa til forrit"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Búa til"
 
@@ -176,15 +141,20 @@ msgstr "_Velja"
 msgid "_Save"
 msgstr "Vi_sta"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:716
 msgid "Open files read-only"
 msgstr "Opna skrár skrifvarðar"
+
+#: src/filechooser.c:723
+#| msgid "Open files read-only"
+msgid "Open directories read-only"
+msgstr "Opna möppur skrifvarðar"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Fjartengt skjáborð"
 
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:76
 msgid "Allow remote interaction"
 msgstr "Leyfa fjartengda virkni"
 
@@ -192,7 +162,7 @@ msgstr "Leyfa fjartengda virkni"
 msgid "Screen Share"
 msgstr "Skjádeiling"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Sýndarskjár"
 
@@ -239,47 +209,47 @@ msgstr "Deila þessari skjámynd með forritinu sem biður um það?"
 msgid "Screenshot"
 msgstr "Skjámynd"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Valkostir..."
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "Taka _skjámynd"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Taka skjámynd"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Taka mynd af ö_llum skjánum"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Taka mynd af þessum _glugga"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Velja _svæði til að mynda"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Taka skjámynd _eftir"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "sekúndur"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Sjónbrellur"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Hafa með músar_bendil"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Láta _rammann sjást á myndinni"
 
@@ -291,17 +261,44 @@ msgstr "Umbeðinn stilling fannst ekki"
 msgid "Set Background"
 msgstr "Setja bakgrunn"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Setja"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Gat ekki hlaðið inn myndskrá"
 
 #: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Aðgerðir"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "\"%s\" keyrir í bakgrunni"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Þetta gæti verið af lögmætri ástæðu, en forritið hefur ekki getað sýnt "
+#~ "fram á neina.\n"
+#~ "\n"
+#~ "Athugaðu að ef forrit er þvingað til að loka, geta gögn tapast."
+
+#~ msgid "Force quit"
+#~ msgstr "Þvinga til að hætta"
+
+#~ msgid "Allow"
+#~ msgstr "Leyfa"
+
+#~ msgid "Background activity"
+#~ msgstr "Bakgrunnsvirkni"
+
+#~ msgid "Find out more"
+#~ msgstr "Finna frekari upplýsingar"
 
 #~ msgid "applications-system-symbolic"
 #~ msgstr "applications-system-symbolic"
