@@ -29,7 +29,7 @@ enum
   N_STREAM_SIGNALS
 };
 
-guint stream_signals[N_STREAM_SIGNALS];
+static guint stream_signals[N_STREAM_SIGNALS];
 
 enum
 {
