@@ -43,7 +43,7 @@ main (int argc, char *argv[])
         window = GTK_WIDGET (app_chooser_dialog_new (apps, default_id, content_type, location));
         g_signal_connect (window, "close", G_CALLBACK (close_cb), NULL);
 
-        gtk_widget_show (window);
+        gtk_window_present (GTK_WINDOW (window));
 
         gtk_main ();
 
