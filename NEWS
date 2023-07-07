@@ -1,3 +1,12 @@
+Changes in 45.alpha
+=================
+
+- Support setting current folder in the file chooser's OpenFile method
+- Ensure wallpaper is set with a valid URI
+- Use provided accept label in Printer dialog
+- Generate the gnome.portal file
+- Translation updates
+
 Changes in 44.1
 =================
 
