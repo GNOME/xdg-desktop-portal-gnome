@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-01-26 15:43+0100\n"
+"POT-Creation-Date: 2023-07-18 21:47+0000\n"
+"PO-Revision-Date: 2023-07-28 06:50+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -50,7 +50,7 @@ msgstr "გავუზიაროთ თქვენი პირადი ი
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "გავუზიაროთ თქვენი პირადი ინფორმაცია მომთხოვნ აპლიკაციას? %s"
 
 #: src/accountdialog.ui:4
@@ -58,7 +58,7 @@ msgid "Share Details"
 msgstr "დეტალების გაზიარება"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -77,39 +77,37 @@ msgstr "სახელი"
 msgid "Username"
 msgstr "მომხმარებელი"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "პროგრამის გაშვების შეცდომა"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
-msgstr "აირჩიეთ \"%s\" ფაილის გასახნელი აპლიკაცია."
+msgid "Choose an app to open the file “%s”."
+msgstr "აირჩიეთ \"%s\" ფაილის გამხსნელი აპლიკაცია."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
 msgstr "აირჩიეთ აპლიკაცია."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "დაყენებული პროგრამებიდან %s-ის გახსნა არც ერთს არ შეუძლია. დააყენეთ მეტი "
 "პროგრამა"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
-"შესაბამისი აპლიკაცია დაყენებული არაა. მეტი აპლიკაციების პოვნა პროგრამებში "
-"შეგიძლიათ."
+"შესაბამისი აპლიკაცია დაყენებული არაა. მეტი აპის პოვნა პროგრამებში შეგიძლიათ."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "გამხსნელი პროგრამა…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_გახსნა"
 
@@ -121,31 +119,31 @@ msgstr "აპები მიუწვდოელია"
 msgid "_Find More in Software"
 msgstr "_მეტის პროგრამის პოვნა"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
-msgstr "ვებ აპლიკაციის შექმნა"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "ვებ აპის შექმნა"
 
-#: src/dynamic-launcher.c:260
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+msgid "Create App"
 msgstr "აპლიკაციის შექმნა"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_შექმნა"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "ყველას მონიშვნა"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_შენახვა"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "ფაილის მხოლოდ-წაკითხვად რეჟიმში გახსნა"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "საქაღალდეების მხოლოდ-წაკითხვად რეჟიმში გახსნა"
 
@@ -153,35 +151,39 @@ msgstr "საქაღალდეების მხოლოდ-წაკი�
 msgid "Remote desktop"
 msgstr "დაშორებული სამუშაო მაგიდა"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:77
 msgid "Allow remote interaction"
 msgstr "დაშორებული ურთიერთქმედების ნების დართვა"
+
+#: src/remotedesktopdialog.ui:90
+msgid "Allow clipboard access"
+msgstr "ბაფერთან წვდომის დაშვება"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "ეკრანის გაზიარება"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "ვირტუალური ეკრანი"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "აირჩიეთ %s-სთან გასაზიარებელი ეკრანი"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "აირჩიეთ %s-სთან გასაზიარებელი ფანჯარა"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
+#: src/screencastwidget.c:548
+msgid "Select monitor to share with the requesting app"
 msgstr "აირჩიეთ მომთხოვნი აპლიკაციისთვის გასაზიარებელი ეკრანი"
 
-#: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "აირჩიეთ მომთხოვნი აპლიკაციისთვის გასაზიარებელი აპლიკაცია"
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
+msgstr "აირჩიეთ მომთხოვნი აპლიკაციისთვის გასაზიარებელი ფანჯარა"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
@@ -201,8 +203,8 @@ msgid "Share this screenshot with %s?"
 msgstr "გავუზიარო ეკრანის ანაბეჭდი %s-ს?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
-msgstr "გავუზიარო ეკრანის ანაბეჭდი მომთხოვნ აპლიკაციას?"
+msgid "Share this screenshot with the requesting app?"
+msgstr "გავუზიარო ეს ეკრანის ანაბეჭდი მომთხოვნ აპლიკაციას?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
