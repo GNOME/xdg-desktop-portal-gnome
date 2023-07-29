@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-02-18 19:07+0330\n"
+"POT-Creation-Date: 2023-07-18 21:47+0000\n"
+"PO-Revision-Date: 2023-07-29 05:11+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -49,15 +49,15 @@ msgstr "هم‌رسانی اطّلاعات شخصیتان با %1$s؟ %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
-msgstr "هم‌رسانی اطّلاعات شخصیتان با برنامهٔ درخواستگر؟ %s"
+msgid "Share your personal information with the requesting app? %s"
+msgstr "هم‌رسانی اطّلاعات شخصیتان با کارهٔ درخواستگر؟ %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "هم‌رسانی جزییات"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12 src/dynamic-launcher.c:266
-#: src/filechooser.c:535 src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12 src/dynamic-launcher.c:258
+#: src/filechooser.c:534 src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_لغو"
@@ -75,37 +75,35 @@ msgstr "نام"
 msgid "Username"
 msgstr "نام کاربری"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "شکست در اجرای نرم‌افزار"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
-msgstr "گزینش برنامه‌ای برای گشودن پروندهٔ «%s»."
+msgid "Choose an app to open the file “%s”."
+msgstr "گزینش کاره‌ای برای گشودن پروندهٔ «%s»."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
-msgstr "گزینش یک برنامه."
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
+msgstr "گزینش یک کاره."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
-msgid ""
-"No apps installed that can open “%s”. You can find more applications in Software"
+msgid "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. ممکن است بتوانید برنامه‌های بیش‌تری "
-"را در نرم‌افزارها بیابید"
+"هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در "
+"نرم‌افزارها بیابید"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
-msgstr ""
-"هیچ کارهٔ مناسبی نصب نشده. می‌توانید برنامه‌های بیش‌تری را در نرم‌افزارها بیابید."
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr "هیچ کارهٔ مناسبی نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در نرم‌افزارها بیابید."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "گشودن با…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_گشودن"
 
@@ -117,31 +115,31 @@ msgstr "هیچ کاره‌ای موجود نیست"
 msgid "_Find More in Software"
 msgstr "_یافتن بیش‌تر در نرم‌افزارها"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
-msgstr "ایجاد برنامهٔ وب"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "ایجاد کارهٔ وب"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "ایجاد کاره"
 
 #: src/dynamic-launcher.c:260
-msgid "Create Application"
-msgstr "ایجاد برنامه"
-
-#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "_ایجاد"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_گزینش"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_ذخیره"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "گشودن فقط‌خواندنی پرونده‌ها"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "گشودن فقط‌خواندنی شاخه‌ها"
 
@@ -149,35 +147,39 @@ msgstr "گشودن فقط‌خواندنی شاخه‌ها"
 msgid "Remote desktop"
 msgstr "میزکار دوردست"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:77
 msgid "Allow remote interaction"
 msgstr "اجازه به برهم‌کنش دوردست"
+
+#: src/remotedesktopdialog.ui:90
+msgid "Allow clipboard access"
+msgstr "اجازهٔ دسترسی به تخته‌گیره"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "هم‌رسانی صفحه"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "نمایشگر مجازی"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "نمایشگر را برای هم‌رسانی با %s برگزینید"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "پنجره را برای هم‌رسانی با %s برگزینید"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "نمایشگر را برای هم‌رسانی با برنامهٔ درخواستگر برگزینید"
-
 #: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "پنجره را برای هم‌رسانی با برنامهٔ درخواستگر برگزینید"
+msgid "Select monitor to share with the requesting app"
+msgstr "نمایشگر را برای هم‌رسانی با کارهٔ درخواستگر برگزینید"
+
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
+msgstr "پنجره را برای هم‌رسانی با کارهٔ درخواستگر برگزینید"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
@@ -197,8 +199,8 @@ msgid "Share this screenshot with %s?"
 msgstr "هم‌رسانی این نماگرفت با %s؟"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
-msgstr "هم‌رسانی این نماگرفت با برنامهٔ درخواستگر؟"
+msgid "Share this screenshot with the requesting app?"
+msgstr "هم‌رسانی این نماگرفت با کارهٔ درخواستگر؟"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
