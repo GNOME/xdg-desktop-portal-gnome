@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-02-21 01:48+0100\n"
+"POT-Creation-Date: 2023-07-18 21:47+0000\n"
+"PO-Revision-Date: 2023-07-29 02:02+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
-"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -51,7 +51,8 @@ msgstr "Megosztja a személyes információit ezzel: %1$s? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+#| msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "Megosztja a személyes információit a kérelmező alkalmazással? %s"
 
 #: src/accountdialog.ui:4
@@ -59,7 +60,7 @@ msgid "Share Details"
 msgstr "Részletek megosztása"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -78,30 +79,36 @@ msgstr "Név"
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "Nem sikerült elindítani a Szoftvereket"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
+#| msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Válasszon egy alkalmazást a(z) „%s” fájl megnyitásához."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:397
+#| msgid "Choose an application."
+msgid "Choose an app."
 msgstr "Válasszon egy alkalmazást."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
+#| msgid ""
+#| "No apps installed that can open “%s”. You can find more applications in "
+#| "Software"
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Nincsenek olyan alkalmazások telepítve, amelyek meg tudják nyitni a(z) „%s” "
-"fájlt. További alkalmazásokat találhat a Szoftverben"
+"fájlt. További alkalmazásokat találhat a Szoftverben."
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:419
+#| msgid ""
+#| "No suitable app installed. You can find more applications in Software."
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nincs megfelelő alkalmazás telepítve. További alkalmazásokat találhat a "
 "Szoftverben."
@@ -110,7 +117,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Megnyitás ezzel…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "Meg_nyitás"
 
@@ -122,32 +129,33 @@ msgstr "Nem érhető el alkalmazás"
 msgid "_Find More in Software"
 msgstr "_Továbbiak keresése a Szoftverben"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
+#: src/dynamic-launcher.c:250
+#| msgid "Create Web Application"
+msgid "Create Web App"
 msgstr "Webalkalmazás létrehozása"
 
-#: src/dynamic-launcher.c:260
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+#| msgid "Create Application"
+msgid "Create App"
 msgstr "Alkalmazás létrehozása"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Létrehozás"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Kiválasztás"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Mentés"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "Fájlok megnyitása csak olvasásra"
 
-#: src/filechooser.c:721
-#| msgid "Open files read-only"
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "Könyvtárak megnyitása csak olvasásra"
 
@@ -155,35 +163,41 @@ msgstr "Könyvtárak megnyitása csak olvasásra"
 msgid "Remote desktop"
 msgstr "Távoli asztal"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:77
 msgid "Allow remote interaction"
 msgstr "Távoli interakció engedélyezése"
+
+#: src/remotedesktopdialog.ui:90
+msgid "Allow clipboard access"
+msgstr "Vágólap-hozzáférés engedélyezése"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Képernyőmegosztás"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Virtuális képernyő"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Válasszon képernyőt az ezzel történő megosztáshoz: %s"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Válasszon ablakot az ezzel történő megosztáshoz: %s"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "Válasszon képernyőt a kérő alkalmazással történő megosztáshoz"
-
 #: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "Válasszon ablakot a kérő alkalmazással történő megosztáshoz"
+#| msgid "Select monitor to share with the requesting application"
+msgid "Select monitor to share with the requesting app"
+msgstr "Válasszon képernyőt a kérelmező alkalmazással történő megosztáshoz"
+
+#: src/screencastwidget.c:549
+#| msgid "Select window to share with the requesting application"
+msgid "Select window to share with the requesting app"
+msgstr "Válasszon ablakot a kérelmező alkalmazással történő megosztáshoz"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
@@ -203,8 +217,9 @@ msgid "Share this screenshot with %s?"
 msgstr "Megosztja ezt a képernyőképet ezzel: %s?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
-msgstr "Megosztja ezt a képernyőképet a kérő alkalmazással?"
+#| msgid "Share this screenshot with the requesting application?"
+msgid "Share this screenshot with the requesting app?"
+msgstr "Megosztja ezt a képernyőképet a kérelmező alkalmazással?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
