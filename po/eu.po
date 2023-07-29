@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-02-26 19:22+0000\n"
+"POT-Creation-Date: 2023-07-18 21:47+0000\n"
+"PO-Revision-Date: 2023-07-29 19:22+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -46,7 +46,7 @@ msgstr "Partekatu zure informazio pertsonala honekin: %1$s? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "Partekatu zure informazio pertsonala hura eskatu duen aplikazioarekin? %s"
 
 #: src/accountdialog.ui:4
@@ -54,7 +54,7 @@ msgid "Share Details"
 msgstr "Partekatu xehetasunak"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
 #: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
 #: src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -73,35 +73,34 @@ msgstr "Izena"
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "Ezin izan da Software abiarazi"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Aukeratu aplikazio bat “%s” fitxategia irekitzeko."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
 msgstr "Aukeratu aplikazio bat."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr "Ez dago “%s” ireki dezakeen aplikaziorik instalatuta. Aplikazio gehiago aurkitu ditzakezu Softwaren"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
-msgstr "Ez dago aplikazio egokirik instalatuta. Aplikazio gehiago aurkitu ditzakezu Softwaren."
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr "Ez dago aplikazio egokirik instalatuta. Aplikazio gehiago aurkitu ditzakezu Softwaren"
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Ireki honekin…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_Ireki"
 
@@ -113,31 +112,31 @@ msgstr "Ez dago aplikaziorik erabilgarri"
 msgid "_Find More in Software"
 msgstr "Au_rkitu gehiago Softwaren"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
 msgstr "Sortu web aplikazioa"
 
-#: src/dynamic-launcher.c:260
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+msgid "Create App"
 msgstr "Sortu aplikazioa"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Sortu"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Hautatu"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Gorde"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "Ireki fitxategiak irakurtzeko soilik"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "Ireki direktorioak irakurtzeko soilik"
 
@@ -145,34 +144,38 @@ msgstr "Ireki direktorioak irakurtzeko soilik"
 msgid "Remote desktop"
 msgstr "Urruneko mahaigaina"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:77
 msgid "Allow remote interaction"
 msgstr "Onartu urruneko interakzioa"
+
+#: src/remotedesktopdialog.ui:90
+msgid "Allow clipboard access"
+msgstr "Onartu arbela atzitzea"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Pantaila partekatzea"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Monitore birtuala"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Hautatu %s aplikazioarekin partekatuko den pantaila"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Hautatu %s aplikazioarekin partekatuko den leihoa"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
+#: src/screencastwidget.c:548
+msgid "Select monitor to share with the requesting app"
 msgstr "Hautatu eskatzen ari den aplikazioarekin partekatuko den pantaila"
 
-#: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
 msgstr "Hautatu eskatzen ari den aplikazioarekin partekatuko den leihoa"
 
 #: src/screencastwidget.ui:16
@@ -193,7 +196,7 @@ msgid "Share this screenshot with %s?"
 msgstr "Partekatu pantaila-argazki hau %s aplikazioarekin?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
+msgid "Share this screenshot with the requesting app?"
 msgstr "Partekatu pantaila-argazki hau hori eskatzen ari den aplikazioarekin?"
 
 #: src/screenshotdialog.ui:8
