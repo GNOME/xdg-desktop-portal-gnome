@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
 "POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-08-04 18:11+0100\n"
+"PO-Revision-Date: 2023-08-04 18:12+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -158,7 +158,7 @@ msgstr "Permitir interação remota"
 
 #: src/remotedesktopdialog.ui:90
 msgid "Allow clipboard access"
-msgstr ""
+msgstr "Permitir o acesso à área de transferência"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
