@@ -1,3 +1,12 @@
+Changes in 45.beta
+=================
+
+- Implement the Input Capture portal
+- Implement the Clipboard portal
+- Implement restoration of remote desktop sessions
+- Remote desktop: add the ability to communicate via an EIS socket
+- Translation updates
+
 Changes in 45.alpha
 =================
 
