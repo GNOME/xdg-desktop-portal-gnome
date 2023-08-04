@@ -126,6 +126,7 @@ static gboolean
 start_session (RemoteDesktopSession     *session,
                RemoteDesktopDeviceType   device_types,
                GPtrArray                *streams,
+               gboolean                  clipboard_enabled,
                GError                  **error);
 
 static void
@@ -216,6 +217,7 @@ remote_desktop_dialog_done (GtkWidget                 *widget,
                             int                        dialog_response,
                             RemoteDesktopDeviceType    device_types,
                             GPtrArray                 *streams,
+                            gboolean                   clipboard_enabled,
                             RemoteDesktopDialogHandle *dialog_handle)
 {
   int response;
@@ -243,7 +245,11 @@ remote_desktop_dialog_done (GtkWidget                 *widget,
     {
       g_autoptr(GError) error = NULL;
 
-      if (!start_session (dialog_handle->session, device_types, streams, &error))
+      if (!start_session (dialog_handle->session,
+                          device_types,
+                          streams,
+                          clipboard_enabled,
+                          &error))
         {
           g_warning ("Failed to start session: %s", error->message);
           response = 2;
@@ -575,12 +581,14 @@ static gboolean
 start_session (RemoteDesktopSession     *remote_desktop_session,
                RemoteDesktopDeviceType   device_types,
                GPtrArray                *streams,
+               gboolean                  clipboard_enabled,
                GError                  **error)
 {
   OrgGnomeMutterRemoteDesktopSession *session_proxy;
   gboolean need_streams;
 
   remote_desktop_session->shared.device_types = device_types;
+  remote_desktop_session->clipboard.clipboard_enabled = clipboard_enabled;
 
   if (streams)
     {
