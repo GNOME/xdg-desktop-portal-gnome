@@ -282,7 +282,7 @@ cursor_mode_to_gnome_cursor_mode (ScreenCastCursorMode cursor_mode)
 static gboolean
 gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_cast_session,
                                          uint32_t                 id,
-                                         Window                  *window,
+                                         ShellWindow             *window,
                                          ScreenCastSelection     *select,
                                          GError                 **error)
 {
@@ -299,7 +299,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_c
   g_variant_builder_init (&properties_builder, G_VARIANT_TYPE_VARDICT);
   g_variant_builder_add (&properties_builder, "{sv}",
                          "window-id",
-                         g_variant_new_uint64 (window_get_id (window)));
+                         g_variant_new_uint64 (shell_window_get_id (window)));
   if (select->cursor_mode)
     {
       uint32_t gnome_cursor_mode;

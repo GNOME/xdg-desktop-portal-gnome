@@ -23,10 +23,12 @@
 #include <gio/gio.h>
 #include <stdint.h>
 
-typedef struct _Window Window;
-
 G_DECLARE_FINAL_TYPE (ShellIntrospect, shell_introspect,
                       SHELL, INTROSPECT, GObject)
+
+G_DECLARE_FINAL_TYPE (ShellWindow, shell_window, SHELL, WINDOW, GObject)
+
+#define SHELL_TYPE_WINDOW shell_window_get_type()
 
 ShellIntrospect * shell_introspect_get (void);
 
@@ -34,15 +36,13 @@ void shell_introspect_ref_listeners (ShellIntrospect *shell_introspect);
 
 void shell_introspect_unref_listeners (ShellIntrospect *shell_introspect);
 
-void window_free (Window *window);
+ShellWindow * shell_window_dup (ShellWindow *window);
 
-Window * window_dup (Window *window);
+const char * shell_window_get_app_id (ShellWindow *window);
 
-const char * window_get_app_id (Window *window);
+const char * shell_window_get_title (ShellWindow *window);
 
-const char * window_get_title (Window *window);
-
-const uint64_t window_get_id (Window *window);
+const uint64_t shell_window_get_id (ShellWindow *window);
 
 GPtrArray * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 

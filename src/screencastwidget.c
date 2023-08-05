@@ -74,7 +74,7 @@ G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
  */
 
 static GtkWidget *
-create_window_widget (Window *window)
+create_window_widget (ShellWindow *window)
 {
   GtkWidget *window_image;
   GtkWidget *check_image;
@@ -83,7 +83,7 @@ create_window_widget (Window *window)
   g_autoptr(GDesktopAppInfo) info = NULL;
   g_autofree char *escaped_name = NULL;
 
-  info = g_desktop_app_info_new (window_get_app_id (window));
+  info = g_desktop_app_info_new (shell_window_get_app_id (window));
   if (info != NULL)
     icon = g_app_info_get_icon (G_APP_INFO (info));
   if (icon == NULL)
@@ -98,13 +98,13 @@ create_window_widget (Window *window)
   adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
   adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
 
-  escaped_name = g_markup_escape_text (window_get_title (window), -1);
+  escaped_name = g_markup_escape_text (shell_window_get_title (window), -1);
   adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), escaped_name);
 
   g_object_set_qdata_full (G_OBJECT (row),
                            quark_window_widget_data,
-                           window_dup (window),
-                           (GDestroyNotify) window_free);
+                           shell_window_dup (window),
+                           (GDestroyNotify) g_object_unref);
   g_object_set_data (G_OBJECT (row), "check", check_image);
   return row;
 }
@@ -167,16 +167,16 @@ create_virtual_widget (void)
 }
 
 static gboolean
-should_skip_window (Window    *window,
-                    GtkWindow *toplevel)
+should_skip_window (ShellWindow *window,
+                    GtkWindow   *toplevel)
 {
   g_autofree char *processed_app_id = NULL;
 
-  if (g_strcmp0 (window_get_title (window),
+  if (g_strcmp0 (shell_window_get_title (window),
                  gtk_window_get_title (toplevel)) != 0)
     return FALSE;
 
-  processed_app_id = g_strdup (window_get_app_id (window));
+  processed_app_id = g_strdup (shell_window_get_app_id (window));
   if (g_str_has_suffix (processed_app_id, ".desktop"))
     processed_app_id[strlen (processed_app_id) -
                      strlen (".desktop")] = '\0';
@@ -205,7 +205,7 @@ update_windows_list (ScreenCastWidget *widget)
   windows = shell_introspect_get_windows (widget->shell_introspect);
   for (size_t i = 0; windows && i < windows->len; i++)
     {
-      Window *window = g_ptr_array_index (windows, i);
+      ShellWindow *window = g_ptr_array_index (windows, i);
       GtkWidget *window_widget;
 
       if (should_skip_window (window, GTK_WINDOW (toplevel)))
@@ -635,13 +635,13 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
   for (l = selected_window_rows; l; l = l->next)
     {
-      Window *window;
+      ShellWindow *window;
 
       window = g_object_get_qdata (G_OBJECT (l->data), quark_window_widget_data);
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-      info->data.window = window_dup (window);
+      info->data.window = shell_window_dup (window);
       info->id = id++;
       g_ptr_array_add (streams, info);
     }
