@@ -68,7 +68,7 @@ typedef struct
   uint32_t id;
   union {
     Monitor *monitor;
-    Window *window;
+    ShellWindow *window;
   } data;
 } ScreenCastStreamInfo;
 

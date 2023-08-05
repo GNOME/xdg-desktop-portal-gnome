@@ -22,8 +22,10 @@
 #include "shell-dbus.h"
 #include "shellintrospect.h"
 
-struct _Window
+struct _ShellWindow
 {
+  GObject parent;
+
   uint64_t id;
   char *title;
   char *app_id;
@@ -62,25 +64,145 @@ static guint signals[N_SIGNALS];
 
 static ShellIntrospect *_shell_introspect;
 
-void
-window_free (Window *window)
+
+struct _WindowClass
 {
-  g_free (window->title);
-  g_free (window->app_id);
-  g_free (window);
+  GObjectClass parent;
+};
+
+G_DEFINE_TYPE (ShellWindow, shell_window, G_TYPE_OBJECT)
+
+enum
+{
+  PROP_0,
+  PROP_ID,
+  PROP_TITLE,
+  PROP_APP_ID,
+  N_PROPS
+};
+
+GParamSpec *properties[N_PROPS] = {NULL, };
+
+static void
+shell_window_init (ShellWindow *obj)
+{
 }
 
-Window *
-window_dup (Window *window)
+static void
+shell_window_dispose (GObject *obj)
 {
-  Window *new_window;
+  ShellWindow *self = SHELL_WINDOW (obj);
 
-  new_window = g_new0 (Window, 1);
-  new_window->id = window->id;
-  new_window->title = g_strdup (window->title);
-  new_window->app_id = g_strdup (window->app_id);
+  g_clear_pointer (&self->title, g_free);
+  g_clear_pointer (&self->app_id, g_free);
+}
+
+static void
+shell_window_set_title (ShellWindow *window,
+                        const char  *title)
+{
+  g_clear_pointer (&window->title, g_free);
+
+  if (title == NULL)
+    window->title = g_strdup ("");
+  else
+    window->title = g_markup_escape_text (title, -1);
+
+  g_object_notify (G_OBJECT (window), "title");
+}
+
+static void
+shell_window_get_property (GObject    *object,
+                           guint       property_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+  ShellWindow *window = SHELL_WINDOW (object);
+
+  switch (property_id)
+    {
+    case PROP_ID:
+      g_value_set_uint64 (value, window->id);
+      break;
+
+    case PROP_TITLE:
+      g_value_set_string (value, window->title);
+      break;
+
+    case PROP_APP_ID:
+      g_value_set_string (value, window->app_id);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    }
+}
+
+static void
+shell_window_set_property (GObject      *object,
+                           guint         property_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
+{
+  ShellWindow *window = SHELL_WINDOW (object);
+
+  switch (property_id)
+    {
+    case PROP_ID:
+      window->id = g_value_get_uint64 (value);
+      break;
+
+    case PROP_TITLE:
+      shell_window_set_title (window, g_value_get_string (value));
+      break;
+
+    case PROP_APP_ID:
+      window->app_id = g_strdup (g_value_get_string (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    }
+}
+
+
+static void
+shell_window_class_init (ShellWindowClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  object_class->dispose = shell_window_dispose;
+  object_class->get_property = shell_window_get_property;
+  object_class->set_property = shell_window_set_property;
+
+  properties[PROP_ID] = g_param_spec_uint64 ("id", NULL, NULL, 0, G_MAXUINT64, 0,
+                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+  properties[PROP_TITLE] = g_param_spec_string ("title", NULL, NULL, "",
+                                                G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
+  properties[PROP_APP_ID] = g_param_spec_string ("app_id", NULL, NULL, "",
+                                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
+}
+
+static ShellWindow *
+shell_window_new (uint64_t  id,
+                  char     *title,
+                  char     *app_id)
+{
+  ShellWindow *new_window;
+
+  new_window = g_object_new (SHELL_TYPE_WINDOW, "id", id,
+                             "title", title,
+                             "app_id", app_id, NULL);
 
   return new_window;
+}
+
+ShellWindow *
+shell_window_dup (ShellWindow *window)
+{
+  return shell_window_new (window->id, window->title, window->app_id);
 }
 
 static void
@@ -111,25 +233,20 @@ get_windows_cb (GObject *source_object,
   g_variant_iter_init (&iter, windows_variant);
 
   windows = g_ptr_array_new_full (g_variant_iter_n_children (&iter),
-                                  (GDestroyNotify) window_free);
+                                  (GDestroyNotify) g_object_unref);
 
   while (g_variant_iter_loop (&iter, "{t@a{sv}}", &id, &params))
     {
-      char *app_id = NULL;
-      char *title = NULL;
+      g_autofree char *app_id = NULL;
+      g_autofree char *title = NULL;
       unsigned int time_since_user_time = UINT_MAX;
-      Window *window;
+      ShellWindow *window;
 
       g_variant_lookup (params, "app-id", "s", &app_id);
       g_variant_lookup (params, "title", "s", &title);
       g_variant_lookup (params, "time-since-user-time", "u", &time_since_user_time);
 
-      window = g_new0 (Window, 1);
-      *window = (Window) {
-        .id = id,
-        .title = title,
-        .app_id = app_id
-      };
+      window = shell_window_new (id, title, app_id);
       g_ptr_array_add (windows, window);
 
       g_clear_pointer (&params, g_variant_unref);
@@ -325,19 +442,19 @@ shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
 }
 
 const char *
-window_get_title (Window *window)
+shell_window_get_title (ShellWindow *window)
 {
   return window->title;
 }
 
 const char *
-window_get_app_id (Window *window)
+shell_window_get_app_id (ShellWindow *window)
 {
   return window->app_id;
 }
 
 const uint64_t
-window_get_id (Window *window)
+shell_window_get_id (ShellWindow *window)
 {
   return window->id;
 }
