@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
-"/issues\n"
-"POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-07-28 20:33+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
+"issues\n"
+"POT-Creation-Date: 2023-08-05 10:30+0000\n"
+"PO-Revision-Date: 2023-08-05 21:18+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -51,7 +51,6 @@ msgstr "Поділитися вашими особистими даними з %
 
 #: src/accountdialog.c:231
 #, c-format
-#| msgid "Share your personal information with the requesting application? %s"
 msgid "Share your personal information with the requesting app? %s"
 msgstr ""
 "Поділитися вашими особистими даними з програмою, яка про це просить? %s"
@@ -62,13 +61,14 @@ msgstr "Оприлюднити подробиці"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Оприлюднити"
 
@@ -86,20 +86,15 @@ msgstr "Не вдалося запустити «Програмні засоби
 
 #: src/appchooserdialog.c:392
 #, c-format
-#| msgid "Choose an application to open the file “%s”."
 msgid "Choose an app to open the file “%s”."
 msgstr "Виберіть програму для відкриття файла «%s»."
 
 #: src/appchooserdialog.c:397
-#| msgid "Choose an application."
 msgid "Choose an app."
 msgstr "Виберіть програму."
 
 #: src/appchooserdialog.c:414
 #, c-format
-#| msgid ""
-#| "No apps installed that can open “%s”. You can find more applications in "
-#| "Software"
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
@@ -107,8 +102,6 @@ msgstr ""
 "вам програми ви можете знайти за допомогою програми «Програмні засоби»."
 
 #: src/appchooserdialog.c:419
-#| msgid ""
-#| "No suitable app installed. You can find more applications in Software."
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Не встановлено відповідної програми. Потрібні вам програми ви можете знайти "
@@ -131,12 +124,10 @@ msgid "_Find More in Software"
 msgstr "З_найти інші у програмі «Програмні засоби»"
 
 #: src/dynamic-launcher.c:250
-#| msgid "Create Web Application"
 msgid "Create Web App"
 msgstr "Створити вебпрограму"
 
 #: src/dynamic-launcher.c:252
-#| msgid "Create Application"
 msgid "Create App"
 msgstr "Створити програму"
 
@@ -160,15 +151,38 @@ msgstr "Відкрити файли лише для читання"
 msgid "Open directories read-only"
 msgstr "Відкрити каталоги лише для читання"
 
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Програма %s хоче захоплювати події з введення даних"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Програма хоче захоплювати події з введення даних"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Захоплення введення"
+
+#: src/inputcapturedialog.ui:68
+#| msgid "Allow remote interaction"
+msgid "Allow remote input capturing"
+msgstr "Дозволити віддалене захоплення введення"
+
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Віддалена стільниця"
 
-#: src/remotedesktopdialog.ui:77
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Запам'ятати цей вибір"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Дозволити віддалену взаємодію"
 
-#: src/remotedesktopdialog.ui:90
+#: src/remotedesktopdialog.ui:100
 msgid "Allow clipboard access"
 msgstr "Дозволити доступ до буфера обміну"
 
@@ -191,14 +205,12 @@ msgid "Select window to share with %s"
 msgstr "Виберіть вікно, дані з якого слід оприлюднити для %s"
 
 #: src/screencastwidget.c:548
-#| msgid "Select monitor to share with the requesting application"
 msgid "Select monitor to share with the requesting app"
 msgstr ""
 "Виберіть монітор, дані з якого слід оприлюднити за допомогою відповідної "
 "програми"
 
 #: src/screencastwidget.c:549
-#| msgid "Select window to share with the requesting application"
 msgid "Select window to share with the requesting app"
 msgstr ""
 "Виберіть вікно, дані з якого слід оприлюднити за допомогою відповідної "
@@ -207,10 +219,6 @@ msgstr ""
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Окреме вікно"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Запам'ятати цей вибір"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
@@ -222,7 +230,6 @@ msgid "Share this screenshot with %s?"
 msgstr "Оприлюднити цей знімок екрана за допомогою %s?"
 
 #: src/screenshotdialog.c:439
-#| msgid "Share this screenshot with the requesting application?"
 msgid "Share this screenshot with the requesting app?"
 msgstr "Оприлюднити цей знімок екрана за допомогою відповідної програми?"
 
