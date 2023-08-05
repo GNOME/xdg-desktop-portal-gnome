@@ -126,7 +126,7 @@ serialize_screen_cast_streams_as_restore_data (GPtrArray       *streams,
       ScreenCastStreamInfo *info = g_ptr_array_index (streams, i);
       GVariant *stream_variant;
       Monitor *monitor;
-      Window *window;
+      ShellWindow *window;
 
       switch (info->type)
         {
@@ -139,8 +139,8 @@ serialize_screen_cast_streams_as_restore_data (GPtrArray       *streams,
         case SCREEN_CAST_SOURCE_TYPE_WINDOW:
           window = info->data.window;
           stream_variant = g_variant_new (WINDOW_TYPE,
-                                          window_get_app_id (window),
-                                          window_get_title (window));
+                                          shell_window_get_app_id (window),
+                                          shell_window_get_title (window));
           break;
 
         case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
@@ -439,13 +439,13 @@ find_monitor_by_string (const char *monitor_string)
   return NULL;
 }
 
-static Window *
+static ShellWindow *
 find_best_window_by_app_id_and_title (const char *app_id,
                                       const char *title)
 {
   ShellIntrospect *shell_introspect = shell_introspect_get ();
   GPtrArray *windows;
-  Window *best_match;
+  ShellWindow *best_match;
   glong best_match_distance;
 
   best_match = NULL;
@@ -457,13 +457,13 @@ find_best_window_by_app_id_and_title (const char *app_id,
   windows = shell_introspect_get_windows (shell_introspect);
   for (size_t i = 0; windows && i < windows->len; i++)
     {
-      Window *window = g_ptr_array_index (windows, i);
+      ShellWindow *window = g_ptr_array_index (windows, i);
       glong distance;
 
-      if (g_strcmp0 (window_get_app_id (window), app_id) != 0)
+      if (g_strcmp0 (shell_window_get_app_id (window), app_id) != 0)
         continue;
 
-      distance = str_distance (window_get_title (window), title);
+      distance = str_distance (shell_window_get_title (window), title);
 
       if (distance == 0)
         return window;
@@ -495,7 +495,7 @@ screen_cast_stream_info_free (ScreenCastStreamInfo *info)
       g_clear_pointer (&info->data.monitor, monitor_free);
       break;
     case SCREEN_CAST_SOURCE_TYPE_WINDOW:
-      g_clear_pointer (&info->data.window, window_free);
+      g_clear_pointer (&info->data.window, g_object_unref);
       break;
     case SCREEN_CAST_SOURCE_TYPE_VIRTUAL:
       break;
@@ -546,7 +546,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
             ScreenCastStreamInfo *info;
             const char *app_id = NULL;
             const char *title = NULL;
-            Window *window;
+            ShellWindow *window;
 
             if (!(screen_cast_selection->source_types.window) ||
                 !g_variant_check_format_string (data, WINDOW_TYPE, FALSE))
@@ -561,7 +561,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
 
             info = g_new0 (ScreenCastStreamInfo, 1);
             info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-            info->data.window = window_dup (window);
+            info->data.window = shell_window_dup (window);
             info->id = id;
             g_ptr_array_add (streams, info);
           }
