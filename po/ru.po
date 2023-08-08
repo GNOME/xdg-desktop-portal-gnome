@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-07-24 12:00+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
+"POT-Creation-Date: 2023-08-05 10:30+0000\n"
+"PO-Revision-Date: 2023-08-05 15:20+0300\n"
+"Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
-"X-DL-Team: ru\n"
-"X-DL-Module: xdg-desktop-portal-gnome\n"
-"X-DL-Branch: main\n"
-"X-DL-Domain: po\n"
-"X-DL-State: None\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -67,13 +62,14 @@ msgstr "Подробности"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Дать доступ"
 
@@ -156,15 +152,37 @@ msgstr "Открыть файлы только для чтения"
 msgid "Open directories read-only"
 msgstr "Открыть каталоги только для чтения"
 
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Приложение «%s» хочет перехватить события входного сигнала"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Приложение хочет перехватить события входного сигнала"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Перехват входного сигнала"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Разрешить удалённый перехват входного сигнала"
+
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Удалённый рабочий стол"
 
-#: src/remotedesktopdialog.ui:77
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Запомнить этот выбор"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Разрешить удалённое взаимодействие"
 
-#: src/remotedesktopdialog.ui:90
+#: src/remotedesktopdialog.ui:100
 msgid "Allow clipboard access"
 msgstr "Разрешить доступ к буферу обмена"
 
@@ -197,10 +215,6 @@ msgstr "Выберите окно, которое сможет записыва�
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Одно окно"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Запомнить этот выбор"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
