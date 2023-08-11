@@ -81,7 +81,6 @@ create_window_widget (ShellWindow *window)
   GtkWidget *row;
   GIcon *icon = NULL;
   g_autoptr(GDesktopAppInfo) info = NULL;
-  g_autofree char *escaped_name = NULL;
 
   info = g_desktop_app_info_new (shell_window_get_app_id (window));
   if (info != NULL)
@@ -98,8 +97,7 @@ create_window_widget (ShellWindow *window)
   adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
   adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
 
-  escaped_name = g_markup_escape_text (shell_window_get_title (window), -1);
-  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), escaped_name);
+  g_object_bind_property (window, "title", row, "title", G_BINDING_SYNC_CREATE);
 
   g_object_set_qdata_full (G_OBJECT (row),
                            quark_window_widget_data,
