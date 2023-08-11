@@ -55,7 +55,6 @@ G_DEFINE_TYPE (ShellIntrospect, shell_introspect, G_TYPE_OBJECT)
 
 enum
 {
-  WINDOWS_CHANGED,
   ANIMATIONS_ENABLED_CHANGED,
 
   N_SIGNALS
@@ -255,8 +254,6 @@ get_windows_cb (GObject *source_object,
 
   g_list_store_splice (shell_introspect->windows, 0, 0, windows->pdata, windows->len);
   shell_introspect->initialized = TRUE;
-
-  g_signal_emit (shell_introspect, signals[WINDOWS_CHANGED], 0);
 }
 
 static void
@@ -379,12 +376,6 @@ on_shell_introspect_name_vanished (GDBusConnection *connection,
 static void
 shell_introspect_class_init (ShellIntrospectClass *klass)
 {
-  signals[WINDOWS_CHANGED] = g_signal_new ("windows-changed",
-                                           G_TYPE_FROM_CLASS (klass),
-                                           G_SIGNAL_RUN_LAST,
-                                           0,
-                                           NULL, NULL, NULL,
-                                           G_TYPE_NONE, 0);
   signals[ANIMATIONS_ENABLED_CHANGED] =
     g_signal_new ("animations-enabled-changed",
                   G_TYPE_FROM_CLASS (klass),

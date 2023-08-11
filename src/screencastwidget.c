@@ -57,7 +57,6 @@ struct _ScreenCastWidget
   gulong monitors_changed_handler_id;
 
   ShellIntrospect *shell_introspect;
-  gulong windows_changed_handler_id;
 
   guint selection_changed_timeout_id;
   gboolean allow_multiple;
@@ -281,55 +280,14 @@ unselect_rows (GtkListBox *listbox)
 }
 
 static void
-on_windows_changed (ShellIntrospect  *shell_introspect,
-                    ScreenCastWidget *widget)
-{
-  update_windows_list (widget);
-}
-
-static void
-connect_windows_changed_listener (ScreenCastWidget *widget)
-{
-  g_assert (!widget->windows_changed_handler_id);
-  widget->windows_changed_handler_id =
-    g_signal_connect (widget->shell_introspect,
-                      "windows-changed",
-                      G_CALLBACK (on_windows_changed),
-                      widget);
-  shell_introspect_ref_listeners (widget->shell_introspect);
-}
-
-static void
-disconnect_windows_changed_listener (ScreenCastWidget *widget)
-{
-  g_assert (widget->windows_changed_handler_id);
-  g_clear_signal_handler (&widget->windows_changed_handler_id,
-                          widget->shell_introspect);
-  shell_introspect_unref_listeners (widget->shell_introspect);
-}
-
-static void
 on_stack_switch (GtkStack   *stack,
                  GParamSpec *pspec,
                  gpointer   *data)
 {
   ScreenCastWidget *widget = (ScreenCastWidget *)data;
-  GtkWidget *visible_child;
 
   unselect_rows (GTK_LIST_BOX (widget->monitor_list));
   unselect_rows (GTK_LIST_BOX (widget->window_list));
-
-  visible_child = gtk_stack_get_visible_child (stack);
-  if (visible_child == widget->window_selection)
-    {
-      if (!widget->windows_changed_handler_id)
-        connect_windows_changed_listener (widget);
-    }
-  else
-    {
-      if (widget->windows_changed_handler_id)
-        disconnect_windows_changed_listener (widget);
-    }
 }
 
 static void
@@ -430,9 +388,6 @@ screen_cast_widget_finalize (GObject *object)
 
   g_signal_handler_disconnect (widget->display_state_tracker,
                                widget->monitors_changed_handler_id);
-
-  if (widget->windows_changed_handler_id)
-    disconnect_windows_changed_listener (widget);
 
   if (widget->selection_changed_timeout_id > 0)
     {
