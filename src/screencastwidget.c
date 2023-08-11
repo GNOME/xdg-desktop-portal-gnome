@@ -57,6 +57,7 @@ struct _ScreenCastWidget
   gulong monitors_changed_handler_id;
 
   ShellIntrospect *shell_introspect;
+  GListModel *filter_model;
 
   guint selection_changed_timeout_id;
   gboolean allow_multiple;
@@ -64,7 +65,6 @@ struct _ScreenCastWidget
 };
 
 static GQuark quark_monitor_widget_data;
-static GQuark quark_window_widget_data;
 
 G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
 
@@ -98,10 +98,6 @@ create_window_widget (ShellWindow *window)
 
   g_object_bind_property (window, "title", row, "title", G_BINDING_SYNC_CREATE);
 
-  g_object_set_qdata_full (G_OBJECT (row),
-                           quark_window_widget_data,
-                           shell_window_dup (window),
-                           (GDestroyNotify) g_object_unref);
   g_object_set_data (G_OBJECT (row), "check", check_image);
   return row;
 }
@@ -164,14 +160,17 @@ create_virtual_widget (void)
 }
 
 static gboolean
-should_skip_window (ShellWindow *window,
-                    GtkWindow   *toplevel)
+should_show_window (ShellWindow *window,
+                    ScreenCastWidget *self)
 {
+  GtkWidget *toplevel;
   g_autofree char *processed_app_id = NULL;
 
-  if (g_strcmp0 (shell_window_get_title (window),
-                 gtk_window_get_title (toplevel)) != 0)
-    return FALSE;
+  toplevel = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_WINDOW);
+
+  if (toplevel && g_strcmp0 (shell_window_get_title (window),
+                             gtk_window_get_title (GTK_WINDOW (toplevel))) != 0)
+    return TRUE;
 
   processed_app_id = g_strdup (shell_window_get_app_id (window));
   if (g_str_has_suffix (processed_app_id, ".desktop"))
@@ -179,38 +178,9 @@ should_skip_window (ShellWindow *window,
                      strlen (".desktop")] = '\0';
 
   if (g_strcmp0 (processed_app_id, g_get_prgname ()) != 0)
-    return FALSE;
+    return TRUE;
 
-  return TRUE;
-}
-
-static void
-update_windows_list (ScreenCastWidget *widget)
-{
-  GtkListBox *window_list = GTK_LIST_BOX (widget->window_list);
-  GtkWidget *toplevel;
-  GtkWidget *child;
-  GListModel *windows;
-
-  while ((child = gtk_widget_get_first_child (GTK_WIDGET (window_list))) != NULL)
-    gtk_list_box_remove (window_list, child);
-
-  toplevel = gtk_widget_get_ancestor (GTK_WIDGET (widget), GTK_TYPE_WINDOW);
-  if (!toplevel)
-    return;
-
-  windows = shell_introspect_get_windows (widget->shell_introspect);
-  for (size_t i = 0; windows && i < g_list_model_get_n_items (windows); i++)
-    {
-      g_autoptr (ShellWindow) window = g_list_model_get_item (windows, i);
-      GtkWidget *window_widget;
-
-      if (should_skip_window (window, GTK_WINDOW (toplevel)))
-        continue;
-
-      window_widget = create_window_widget (window);
-      gtk_list_box_append (window_list, window_widget);
-    }
+  return FALSE;
 }
 
 static void
@@ -427,12 +397,14 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
 
   quark_monitor_widget_data = g_quark_from_static_string ("-monitor-widget-connector-quark");
-  quark_window_widget_data = g_quark_from_static_string ("-window-widget-connector-quark");
 }
 
 static void
 screen_cast_widget_init (ScreenCastWidget *widget)
 {
+  GtkExpression *expression;
+  g_autoptr(GtkFilter) filter = NULL;
+
   gtk_widget_init_template (GTK_WIDGET (widget));
 
   screen_cast_widget_set_app_id (widget, NULL);
@@ -462,8 +434,23 @@ screen_cast_widget_init (ScreenCastWidget *widget)
                       widget);
   widget->shell_introspect = shell_introspect_get ();
 
+  expression = gtk_cclosure_expression_new (G_TYPE_BOOLEAN, NULL, 0,
+                                            NULL,
+                                            G_CALLBACK (should_show_window),
+                                            widget, NULL);
+
+  filter = GTK_FILTER (gtk_bool_filter_new (expression));
+  widget->filter_model = G_LIST_MODEL (gtk_filter_list_model_new (NULL, NULL));
+  gtk_filter_list_model_set_model (GTK_FILTER_LIST_MODEL (widget->filter_model),
+                                   shell_introspect_get_windows (widget->shell_introspect));
+  gtk_filter_list_model_set_filter (GTK_FILTER_LIST_MODEL (widget->filter_model), filter);
+
+  gtk_list_box_bind_model (GTK_LIST_BOX (widget->window_list),
+                           widget->filter_model,
+                           (GtkListBoxCreateWidgetFunc) create_window_widget,
+                           widget, NULL);
+
   update_monitors_list (widget);
-  update_windows_list (widget);
 }
 
 GtkWidget *
@@ -588,13 +575,14 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
   for (l = selected_window_rows; l; l = l->next)
     {
-      ShellWindow *window;
+      int row_index = gtk_list_box_row_get_index (l->data);
+      g_autoptr (ShellWindow) window = NULL;
 
-      window = g_object_get_qdata (G_OBJECT (l->data), quark_window_widget_data);
+      window = g_list_model_get_item (self->filter_model, row_index);
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-      info->data.window = shell_window_dup (window);
+      info->data.window = g_steal_pointer (&window);
       info->id = id++;
       g_ptr_array_add (streams, info);
     }
