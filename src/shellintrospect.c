@@ -42,9 +42,10 @@ struct _ShellIntrospect
 
   unsigned int version;
 
-  GPtrArray *windows;
 
   int num_listeners;
+  GListStore *windows;
+  gboolean initialized;
 
   gboolean animations_enabled;
   gboolean animations_enabled_valid;
@@ -252,14 +253,16 @@ get_windows_cb (GObject *source_object,
       g_clear_pointer (&params, g_variant_unref);
     }
 
-  shell_introspect->windows = g_steal_pointer (&windows);
+  g_list_store_splice (shell_introspect->windows, 0, 0, windows->pdata, windows->len);
+  shell_introspect->initialized = TRUE;
+
   g_signal_emit (shell_introspect, signals[WINDOWS_CHANGED], 0);
 }
 
 static void
 sync_state (ShellIntrospect *shell_introspect)
 {
-  g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
+  g_list_store_remove_all (shell_introspect->windows);
 
   g_cancellable_cancel (shell_introspect->cancellable);
   g_clear_object (&shell_introspect->cancellable);
@@ -394,6 +397,7 @@ shell_introspect_class_init (ShellIntrospectClass *klass)
 static void
 shell_introspect_init (ShellIntrospect *shell_introspect)
 {
+  shell_introspect->windows = g_list_store_new (SHELL_TYPE_WINDOW);
 }
 
 ShellIntrospect *
@@ -416,10 +420,12 @@ shell_introspect_get (void)
   return shell_introspect;
 }
 
-GPtrArray *
+GListModel *
 shell_introspect_get_windows (ShellIntrospect *shell_introspect)
 {
-  return shell_introspect->windows;
+  g_return_val_if_fail (shell_introspect->initialized, NULL);
+
+  return G_LIST_MODEL (shell_introspect->windows);
 }
 
 void
@@ -438,7 +444,7 @@ shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
 
   shell_introspect->num_listeners--;
   if (shell_introspect->num_listeners == 0)
-    g_clear_pointer (&shell_introspect->windows, g_ptr_array_unref);
+    g_clear_object (&shell_introspect->windows);
 }
 
 const char *
@@ -477,6 +483,6 @@ shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect)
 
   sync_state (shell_introspect);
 
-  while (!shell_introspect->windows)
+  while (!shell_introspect->initialized)
     g_main_context_iteration (NULL, TRUE);
 }
