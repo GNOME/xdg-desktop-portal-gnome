@@ -22,7 +22,9 @@
         WindowsChanged:
         @short_description: Notifies when any window opens or closes
     -->
-    <signal name="WindowsChanged" />
+    <signal name="WindowsChanged">
+      <arg type="a{sv}" name="window" />
+    </signal>
 
     <!--
         GetRunningApplications:

@@ -205,6 +205,16 @@ shell_window_dup (ShellWindow *window)
   return shell_window_new (window->id, window->title, window->app_id);
 }
 
+gboolean
+shell_window_equals (gconstpointer a,
+                     gconstpointer b)
+{
+  if (shell_window_get_id ((ShellWindow *) a) == shell_window_get_id ((ShellWindow *) b))
+    return TRUE;
+
+  return FALSE;
+}
+
 static void
 get_windows_cb (GObject *source_object,
                 GAsyncResult *res,
@@ -273,10 +283,66 @@ sync_state (ShellIntrospect *shell_introspect)
 
 static void
 on_windows_changed_cb (GDBusProxy      *proxy,
+                       GVariant        *window,
                        ShellIntrospect *shell_introspect)
 {
-  if (shell_introspect->num_listeners > 0)
-    sync_state (shell_introspect);
+  g_autofree char *action = NULL;
+  g_autofree char *title = NULL;
+  g_autofree char *app_id = NULL;
+  gboolean is_eligible;
+  guint64 id;
+
+  if (!shell_introspect->windows)
+    return;
+
+  g_variant_lookup (window, "is-eligible", "b", &is_eligible);
+  if (!is_eligible)
+    return;
+
+  g_variant_lookup (window, "action", "s", &action);
+  g_variant_lookup (window, "id", "t", &id);
+
+  if (g_strcmp0 (action, "removed") == 0)
+    {
+      guint pos;
+      g_autoptr(ShellWindow) item = shell_window_new (id, "", "");
+
+      if (g_list_store_find_with_equal_func (shell_introspect->windows, item, shell_window_equals, &pos))
+        g_list_store_remove (shell_introspect->windows, pos);
+
+      return;
+    }
+
+  g_variant_lookup (window, "title", "s", &title);
+  g_variant_lookup (window, "app-id", "s", &app_id);
+
+  if (app_id == NULL)
+    return;
+
+  if (g_strcmp0 (action, "added") == 0)
+    {
+      g_autoptr(ShellWindow) item = shell_window_new (id, title, app_id);
+
+      g_list_store_append (shell_introspect->windows, item);
+    }
+  else if (g_strcmp0 (action, "changed") == 0)
+    {
+      guint n_items = g_list_model_get_n_items (G_LIST_MODEL (shell_introspect->windows));
+
+      for (guint i = 0; i < n_items; i++)
+        {
+          g_autoptr(ShellWindow) item = NULL;
+
+          item = g_list_model_get_item (G_LIST_MODEL (shell_introspect->windows), i);
+          if (shell_window_get_id (item) == id)
+            {
+              shell_window_set_title (item, title);
+              break;
+            }
+        }
+    }
+  else
+    g_warn_if_reached ();
 }
 
 static void
@@ -471,8 +537,6 @@ void
 shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect)
 {
   g_assert (shell_introspect->num_listeners > 0);
-
-  sync_state (shell_introspect);
 
   while (!shell_introspect->initialized)
     g_main_context_iteration (NULL, TRUE);
