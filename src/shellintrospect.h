@@ -44,7 +44,7 @@ const char * shell_window_get_title (ShellWindow *window);
 
 const uint64_t shell_window_get_id (ShellWindow *window);
 
-GPtrArray * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
+GListModel * shell_introspect_get_windows (ShellIntrospect *shell_introspect);
 
 gboolean shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
                                                   gboolean        *enable_animations);
