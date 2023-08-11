@@ -42,8 +42,6 @@ struct _ShellIntrospect
 
   unsigned int version;
 
-
-  int num_listeners;
   GListStore *windows;
   gboolean initialized;
 
@@ -393,8 +391,7 @@ on_shell_introspect_proxy_acquired (GObject      *object,
                     G_CALLBACK (on_windows_changed_cb),
                     shell_introspect);
 
-  if (shell_introspect->num_listeners > 0)
-    sync_state (shell_introspect);
+  sync_state (shell_introspect);
 
   shell_introspect->version =
     org_gnome_shell_introspect_get_version (shell_introspect->proxy);
@@ -485,25 +482,6 @@ shell_introspect_get_windows (ShellIntrospect *shell_introspect)
   return G_LIST_MODEL (shell_introspect->windows);
 }
 
-void
-shell_introspect_ref_listeners (ShellIntrospect *shell_introspect)
-{
-  shell_introspect->num_listeners++;
-
-  if (shell_introspect->proxy)
-    sync_state (shell_introspect);
-}
-
-void
-shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
-{
-  g_return_if_fail (shell_introspect->num_listeners > 0);
-
-  shell_introspect->num_listeners--;
-  if (shell_introspect->num_listeners == 0)
-    g_clear_object (&shell_introspect->windows);
-}
-
 const char *
 shell_window_get_title (ShellWindow *window)
 {
@@ -536,8 +514,6 @@ shell_introspect_are_animations_enabled (ShellIntrospect *shell_introspect,
 void
 shell_introspect_wait_for_windows (ShellIntrospect *shell_introspect)
 {
-  g_assert (shell_introspect->num_listeners > 0);
-
   while (!shell_introspect->initialized)
     g_main_context_iteration (NULL, TRUE);
 }
