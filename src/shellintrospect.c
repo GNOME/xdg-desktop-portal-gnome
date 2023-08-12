@@ -255,7 +255,7 @@ get_windows_cb (GObject *source_object,
       g_variant_lookup (params, "time-since-user-time", "u", &time_since_user_time);
 
       window = shell_window_new (id, title, app_id);
-      g_ptr_array_add (windows, window);
+      g_ptr_array_insert (windows, 0, window);
 
       g_clear_pointer (&params, g_variant_unref);
     }
@@ -321,7 +321,7 @@ on_windows_changed_cb (GDBusProxy      *proxy,
     {
       g_autoptr(ShellWindow) item = shell_window_new (id, title, app_id);
 
-      g_list_store_append (shell_introspect->windows, item);
+      g_list_store_insert (shell_introspect->windows, 0, item);
     }
   else if (g_strcmp0 (action, "changed") == 0)
     {
