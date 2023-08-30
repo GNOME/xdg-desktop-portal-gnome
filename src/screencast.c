@@ -834,7 +834,7 @@ on_gnome_screen_cast_enabled (GnomeScreenCast *gnome_screen_cast)
   g_autoptr(GError) error = NULL;
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_screen_cast_skeleton_new ());
-  xdp_impl_screen_cast_set_version (XDP_IMPL_SCREEN_CAST (impl), 4);
+  xdp_impl_screen_cast_set_version (XDP_IMPL_SCREEN_CAST (impl), 5);
 
   g_signal_connect (impl, "handle-create-session",
                     G_CALLBACK (handle_create_session), NULL);

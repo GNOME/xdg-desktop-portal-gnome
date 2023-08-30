@@ -212,6 +212,8 @@
 	                   compositor coordinate space.
 	* "size" (ii): Size of the source of the stream in the compositor
 		       coordinate space.
+	* "mapping-id" s: An optional unique identifier used map this stream
+			  to the corresponding region on a libei absolute device.
     -->
     <property name="Parameters" type="a{sv}" access="read" />
 

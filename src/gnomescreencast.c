@@ -72,6 +72,8 @@ typedef struct _GnomeScreenCastStream
   gboolean has_size;
   int width;
   int height;
+
+  char *mapping_id;
 } GnomeScreenCastStream;
 
 typedef struct _GnomeScreenCastStreamClass
@@ -161,6 +163,7 @@ gnome_screen_cast_stream_finalize (GObject *object)
 
   g_clear_object (&stream->proxy);
   g_free (stream->path);
+  g_free (stream->mapping_id);
 
   G_OBJECT_CLASS (gnome_screen_cast_stream_parent_class)->finalize (object);
 }
@@ -252,6 +255,10 @@ gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_s
         g_variant_builder_add (&stream_properties_builder, "{sv}",
                                "size",
                                g_variant_new ("(ii)", width, height));
+      if (stream->mapping_id)
+        g_variant_builder_add (&stream_properties_builder, "{sv}",
+                               "mapping_id",
+                               g_variant_new ("s", stream->mapping_id));
 
       pipewire_node_id = gnome_screen_cast_stream_get_pipewire_node_id (stream);
       g_variant_builder_add (streams_builder, "(ua{sv})",
@@ -345,6 +352,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_c
       if (g_variant_lookup (parameters, "size", "(ii)",
                             &stream->width, &stream->height))
         stream->has_size = TRUE;
+      g_variant_lookup (parameters, "mapping-id", "s", &stream->mapping_id);
     }
   else
     {
@@ -429,6 +437,7 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_
       if (g_variant_lookup (parameters, "size", "(ii)",
                             &stream->width, &stream->height))
         stream->has_size = TRUE;
+      g_variant_lookup (parameters, "mapping-id", "s", &stream->mapping_id);
     }
   else
     {
@@ -509,6 +518,7 @@ gnome_screen_cast_session_record_virtual (GnomeScreenCastSession  *gnome_screen_
       if (g_variant_lookup (parameters, "size", "(ii)",
                             &stream->width, &stream->height))
         stream->has_size = TRUE;
+      g_variant_lookup (parameters, "mapping-id", "s", &stream->mapping_id);
     }
   else
     {
