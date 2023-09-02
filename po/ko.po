@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-03-03 01:33+0900\n"
-"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
+"POT-Creation-Date: 2023-08-05 10:30+0000\n"
+"PO-Revision-Date: 2023-08-27 02:48+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -50,22 +50,23 @@ msgstr "%1$s에 개인 정보를 공유할까요? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
-msgstr "요청 프로그램에 이 개인 정보를 공유할까요? %s"
+msgid "Share your personal information with the requesting app? %s"
+msgstr "요청 앱에 개인 정보를 공유할까요? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "공유 세부 내용"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "공유(_S)"
 
@@ -77,39 +78,38 @@ msgstr "이름"
 msgid "Username"
 msgstr "사용자 이름"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "소프트웨어 시작 실패"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
-msgstr "“%s” 파일을 열 프로그램을 선택하십시오."
+msgid "Choose an app to open the file “%s”."
+msgstr "“%s” 파일을 열 앱을 선택하십시오."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
-msgstr "프로그램을 선택하십시오."
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
+msgstr "앱을 선택하십시오."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"“%s” 파일을 열 수 있는 앱을 설치하지 않았습니다. 소프트웨어에서 추가 프로그"
-"램을 찾아볼 수 있습니다"
+"“%s” 파일을 열 수 있는 앱을 설치하지 않았습니다. 소프트웨어에서 추가 앱을 찾"
+"아볼 수 있습니다"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
-"적절한 앱을 설치하지 않았습니다. 소프트웨어에서 추가 프로그램을 찾아볼 수 있"
-"습니다."
+"적절한 앱을 설치하지 않았습니다. 소프트웨어에서 추가 앱을 찾아볼 수 있습니"
+"다."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "다른 프로그램으로 열기…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "열기(_O)"
 
@@ -121,75 +121,97 @@ msgstr "사용할 수 있는 앱 없음"
 msgid "_Find More in Software"
 msgstr "소프트웨어에서 더 찾아보기(_F)"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
-msgstr "웹 프로그램 만들기"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "웹 앱 만들기"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "앱 만들기"
 
 #: src/dynamic-launcher.c:260
-msgid "Create Application"
-msgstr "프로그램 만들기"
-
-#: src/dynamic-launcher.c:268
 msgid "C_reate"
 msgstr "만들기(_R)"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "선택(_S)"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "저장(_S)"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "읽기 전용 파일 열기"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "읽기 전용 디렉터리 열기"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "%s 앱에서 입력 이벤트를 캡쳐하려고 합니다"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "앱에서 입력 이벤트를 캡쳐하려고 합니다"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "입력 캡쳐"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "원격 입력 캡쳐 허용"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "원격 데스크톱"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "이 선택 기억"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "원격 조종 허용"
+
+#: src/remotedesktopdialog.ui:100
+msgid "Allow clipboard access"
+msgstr "클립보드 접근 허용"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "화면 공유"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "가상 모니터"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "%s와(과) 공유할 모니터 선택"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "%s와(과) 공유할 창 선택"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "요청 프로그램과 공유할 모니터를 선택하십시오"
-
 #: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "요청 프로그램과 공유할 창을 선택하십시오"
+msgid "Select monitor to share with the requesting app"
+msgstr "요청 앱과 공유할 모니터를 선택하십시오"
+
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
+msgstr "요청 앱과 공유할 창을 선택하십시오"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "단일 창"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "이 선택 기억"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
@@ -201,8 +223,8 @@ msgid "Share this screenshot with %s?"
 msgstr "%s와(과) 스크린샷을 공유할까요?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
-msgstr "요청 프로그램에 이 스크린샷을 공유할까요?"
+msgid "Share this screenshot with the requesting app?"
+msgstr "요청 앱에 이 스크린샷을 공유할까요?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
