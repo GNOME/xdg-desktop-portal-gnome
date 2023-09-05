@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-07-29 02:02+0200\n"
+"POT-Creation-Date: 2023-08-05 10:30+0000\n"
+"PO-Revision-Date: 2023-09-05 21:27+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -51,7 +51,6 @@ msgstr "Megosztja a személyes információit ezzel: %1$s? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-#| msgid "Share your personal information with the requesting application? %s"
 msgid "Share your personal information with the requesting app? %s"
 msgstr "Megosztja a személyes információit a kérelmező alkalmazással? %s"
 
@@ -61,13 +60,14 @@ msgstr "Részletek megosztása"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Mégse"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "Meg_osztás"
 
@@ -85,20 +85,15 @@ msgstr "Nem sikerült elindítani a Szoftvereket"
 
 #: src/appchooserdialog.c:392
 #, c-format
-#| msgid "Choose an application to open the file “%s”."
 msgid "Choose an app to open the file “%s”."
 msgstr "Válasszon egy alkalmazást a(z) „%s” fájl megnyitásához."
 
 #: src/appchooserdialog.c:397
-#| msgid "Choose an application."
 msgid "Choose an app."
 msgstr "Válasszon egy alkalmazást."
 
 #: src/appchooserdialog.c:414
 #, c-format
-#| msgid ""
-#| "No apps installed that can open “%s”. You can find more applications in "
-#| "Software"
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
@@ -106,8 +101,6 @@ msgstr ""
 "fájlt. További alkalmazásokat találhat a Szoftverben."
 
 #: src/appchooserdialog.c:419
-#| msgid ""
-#| "No suitable app installed. You can find more applications in Software."
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nincs megfelelő alkalmazás telepítve. További alkalmazásokat találhat a "
@@ -130,12 +123,10 @@ msgid "_Find More in Software"
 msgstr "_Továbbiak keresése a Szoftverben"
 
 #: src/dynamic-launcher.c:250
-#| msgid "Create Web Application"
 msgid "Create Web App"
 msgstr "Webalkalmazás létrehozása"
 
 #: src/dynamic-launcher.c:252
-#| msgid "Create Application"
 msgid "Create App"
 msgstr "Alkalmazás létrehozása"
 
@@ -159,15 +150,38 @@ msgstr "Fájlok megnyitása csak olvasásra"
 msgid "Open directories read-only"
 msgstr "Könyvtárak megnyitása csak olvasásra"
 
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "A(z) %s alkalmazás el akarja fogni a bemeneti eseményeket"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Egy alkalmazás el akarja fogni a bemeneti eseményeket"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Bemenet elfogása"
+
+#: src/inputcapturedialog.ui:68
+#| msgid "Allow remote interaction"
+msgid "Allow remote input capturing"
+msgstr "Távoli bemenet elfogásának engedélyezése"
+
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Távoli asztal"
 
-#: src/remotedesktopdialog.ui:77
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Emlékezzen erre a kijelölésre"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Távoli interakció engedélyezése"
 
-#: src/remotedesktopdialog.ui:90
+#: src/remotedesktopdialog.ui:100
 msgid "Allow clipboard access"
 msgstr "Vágólap-hozzáférés engedélyezése"
 
@@ -190,22 +204,16 @@ msgid "Select window to share with %s"
 msgstr "Válasszon ablakot az ezzel történő megosztáshoz: %s"
 
 #: src/screencastwidget.c:548
-#| msgid "Select monitor to share with the requesting application"
 msgid "Select monitor to share with the requesting app"
 msgstr "Válasszon képernyőt a kérelmező alkalmazással történő megosztáshoz"
 
 #: src/screencastwidget.c:549
-#| msgid "Select window to share with the requesting application"
 msgid "Select window to share with the requesting app"
 msgstr "Válasszon ablakot a kérelmező alkalmazással történő megosztáshoz"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Egyetlen ablak"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Emlékezzen erre a kijelölésre"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
@@ -217,7 +225,6 @@ msgid "Share this screenshot with %s?"
 msgstr "Megosztja ezt a képernyőképet ezzel: %s?"
 
 #: src/screenshotdialog.c:439
-#| msgid "Share this screenshot with the requesting application?"
 msgid "Share this screenshot with the requesting app?"
 msgstr "Megosztja ezt a képernyőképet a kérelmező alkalmazással?"
 
