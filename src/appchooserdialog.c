@@ -24,6 +24,8 @@
 
 #include <string.h>
 
+#include <adwaita.h>
+
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 #include <gio/gdesktopappinfo.h>
@@ -46,7 +48,6 @@ struct _AppChooserDialog {
   GtkWidget *heading;
   GtkWidget *stack;
   GtkWidget *empty_box;
-  GtkWidget *empty_label;
 
   char *content_type;
 
@@ -291,7 +292,6 @@ app_chooser_dialog_class_init (AppChooserDialogClass *class)
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, heading);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, stack);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, empty_box);
-  gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, empty_label);
 
   gtk_widget_class_bind_template_callback (widget_class, row_activated);
   gtk_widget_class_bind_template_callback (widget_class, row_selected);
@@ -412,11 +412,11 @@ app_chooser_dialog_new (const char **choices,
           g_autofree char *label = NULL;
 
           label = g_strdup_printf (_("No apps installed that can open “%s”. You can find more apps in Software"), short_location);
-          gtk_label_set_label (GTK_LABEL (dialog->empty_label), label);
+          adw_status_page_set_description (ADW_STATUS_PAGE (dialog->empty_box), label);
         }
       else
         {
-          gtk_label_set_label (GTK_LABEL (dialog->empty_label), _("No suitable app installed. You can find more apps in Software."));
+          adw_status_page_set_description (ADW_STATUS_PAGE (dialog->empty_box), _("No suitable app installed. You can find more apps in Software."));
         }
     }
   else
