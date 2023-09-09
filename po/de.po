@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-30 15:36+0200\n"
+"POT-Creation-Date: 2023-09-01 14:14+0000\n"
+"PO-Revision-Date: 2023-09-09 00:04+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -159,21 +159,19 @@ msgstr "Verzeichnisse schreibgeschützt öffnen"
 #: src/inputcapturedialog.c:105
 #, c-format
 msgid "The application %s wants to capture input events"
-msgstr ""
+msgstr "Die Anwendung %s möchte Eingabeereignisse aufzeichnen"
 
 #: src/inputcapturedialog.c:110
 msgid "An application wants to capture input events"
-msgstr ""
+msgstr "Eine Anwendung möchte Eingabeereignisse aufzeichnen"
 
 #: src/inputcapturedialog.ui:7
 msgid "Capture input"
 msgstr "Eingaben aufzeichnen"
 
 #: src/inputcapturedialog.ui:68
-#, fuzzy
-#| msgid "Allow remote interaction"
 msgid "Allow remote input capturing"
-msgstr "Fernzugriff zulassen"
+msgstr "Entfernte Eingabeaufzeichnung zulassen"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
