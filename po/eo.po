@@ -1,0 +1,296 @@
+# Esperanto translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2023 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues\n"
+"POT-Creation-Date: 2023-09-12 21:27+0000\n"
+"PO-Revision-Date: 2023-09-14 12:05+0200\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+msgid "Portal"
+msgstr "Portalo"
+
+#: src/accountdialog.c:152
+msgid "Select an Image"
+msgstr "Elekti bildon"
+
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+msgid "Cancel"
+msgstr "Nuligi"
+
+#: src/accountdialog.c:156
+msgid "Select"
+msgstr "Elekti"
+
+#: src/accountdialog.c:157
+msgid "Clear"
+msgstr "Forigi"
+
+#: src/accountdialog.c:164
+msgid "Images"
+msgstr "Bildoj"
+
+#: src/accountdialog.c:225
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Kunhavigi viajn personajn datumojn kun %1$s? %2$s"
+
+#: src/accountdialog.c:231
+#, c-format
+msgid "Share your personal information with the requesting app? %s"
+msgstr ""
+"Ĉu vi volas kunhavigi viajn personajn datumojn kun la petanta aplikaĵo? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Kunhavigi detalojn"
+
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
+msgid "_Cancel"
+msgstr "_Nuligi"
+
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
+msgid "_Share"
+msgstr "_Kunhavigi"
+
+#: src/accountdialog.ui:83
+msgid "Name"
+msgstr "Nomo"
+
+#: src/accountdialog.ui:95
+msgid "Username"
+msgstr "Uzantnomo"
+
+#: src/appchooserdialog.c:228
+msgid "Failed to start Software"
+msgstr "Malsukcesis lanĉi programon"
+
+#: src/appchooserdialog.c:392
+#, c-format
+msgid "Choose an app to open the file “%s”."
+msgstr "Elektu aplikaĵon por malfermi la dosieron “%s”."
+
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
+msgstr "Elektu aplikaĵon."
+
+#: src/appchooserdialog.c:414
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"Neniu instalita aplikaĵo kapablas malfermi “%s”. Vi povas trovi pliajn "
+"aplikaĵojn en Programaro"
+
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr ""
+"Neniu taŭga aplikaĵo instalita. Vi povas trovi pliajn aplikaĵojn en "
+"Programaro."
+
+#: src/appchooserdialog.ui:5
+msgid "Open With…"
+msgstr "Malfermi per…"
+
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
+msgid "_Open"
+msgstr "_Malfermi"
+
+#: src/appchooserdialog.ui:104
+msgid "No Apps available"
+msgstr "Neniu disponebla aplikaĵo"
+
+#: src/appchooserdialog.ui:144
+msgid "_Find More in Software"
+msgstr "_Trovi pliajn en Programaro"
+
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Krei TTT-aplikaĵon"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Krei aplikaĵon"
+
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "K_rei"
+
+#: src/filechooser.c:529
+msgid "_Select"
+msgstr "_Elekti"
+
+#: src/filechooser.c:531
+msgid "_Save"
+msgstr "Kon_servi"
+
+#: src/filechooser.c:724
+msgid "Open files read-only"
+msgstr "Malfermi dosierojn nur-lege"
+
+#: src/filechooser.c:731
+msgid "Open directories read-only"
+msgstr "Malfermi dosierujojn nur-lege"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "La aplikaĵo %s volas registri enigojn"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Aplikaĵo volas registri enigojn"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Registri enigojn"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Permesi deforan registradon de enigoj"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote desktop"
+msgstr "Defora labortablo"
+
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Memori ĉi tiun elekton"
+
+#: src/remotedesktopdialog.ui:87
+msgid "Allow remote interaction"
+msgstr "Permesi deforan interagon"
+
+#: src/remotedesktopdialog.ui:100
+msgid "Allow clipboard access"
+msgstr "Permesi aliron al tondujo"
+
+#: src/screencastdialog.ui:5
+msgid "Screen Share"
+msgstr "Ekran-kunhavigado"
+
+#: src/screencastwidget.c:163
+msgid "Virtual monitor"
+msgstr "Virtuala ekrano"
+
+#: src/screencastwidget.c:541
+#, c-format
+msgid "Select monitor to share with %s"
+msgstr "Elektu ekronon por kunhavigi kun %s"
+
+#: src/screencastwidget.c:543
+#, c-format
+msgid "Select window to share with %s"
+msgstr "Elektu fenestron por kunhavigi kun %s"
+
+#: src/screencastwidget.c:548
+msgid "Select monitor to share with the requesting app"
+msgstr "Elektu ekranon por kunhavigi kun la petanta aplikaĵo"
+
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
+msgstr "Elektu fenestron por kunhavigi kun la petanta aplikaĵo"
+
+#: src/screencastwidget.ui:16
+msgid "Single Window"
+msgstr "Unuopa fenestro"
+
+#: src/screencastwidget.ui:64
+msgid "Entire Screen"
+msgstr "Tutta ekrano"
+
+#: src/screenshotdialog.c:435
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "Ĉu vi volas kunhavigi ĉi tiun ekrankopion kun %s?"
+
+#: src/screenshotdialog.c:439
+msgid "Share this screenshot with the requesting app?"
+msgstr "Ĉu vi volas kunhavigi ĉi tiun ekrankopion kun la petanta aplikaĵo?"
+
+#: src/screenshotdialog.ui:8
+msgid "Screenshot"
+msgstr "Ekrankopio"
+
+#: src/screenshotdialog.ui:42
+msgid "_Options…"
+msgstr "_Agordoj…"
+
+#: src/screenshotdialog.ui:67
+msgid "Take _Screenshot"
+msgstr "Fari _ekrankopion"
+
+#: src/screenshotdialog.ui:120
+msgid "Take Screenshot"
+msgstr "Fari ekrankopion"
+
+#: src/screenshotdialog.ui:130
+msgid "Grab the whole sc_reen"
+msgstr "Fari bildon de la tuta ek_rano"
+
+#: src/screenshotdialog.ui:140
+msgid "Grab the current _window"
+msgstr "Fari bildon de la aktuala _fenestro"
+
+#: src/screenshotdialog.ui:150
+msgid "Select _area to grab"
+msgstr "Elekti la _areon por foti"
+
+#: src/screenshotdialog.ui:162
+msgid "Grab after a _delay of"
+msgstr "Foti post _prokrastaĵo de"
+
+#: src/screenshotdialog.ui:173
+msgid "seconds"
+msgstr "sekundoj"
+
+#: src/screenshotdialog.ui:182
+msgid "Effects"
+msgstr "Efikoj"
+
+#: src/screenshotdialog.ui:192
+msgid "Include _pointer"
+msgstr "Enmeti _montrilon"
+
+#: src/screenshotdialog.ui:200
+msgid "Include the window _border"
+msgstr "Enmeti la _fenestran kadron"
+
+#: src/settings.c:246
+msgid "Requested setting not found"
+msgstr "La petita agordo ne troviĝis"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "Agordi fondon"
+
+#: src/wallpaperdialog.ui:32
+msgid "Set"
+msgstr "Agordi"
+
+#: src/wallpaperdialog.ui:63
+msgid "Failed to load image file"
+msgstr "Malsukcesis ŝargi bildan dosieron"
+
+#: src/wallpaperpreview.ui:48
+msgid "Activities"
+msgstr "Aktivecoj"
