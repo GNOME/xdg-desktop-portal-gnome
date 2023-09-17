@@ -27,7 +27,7 @@
 
 struct _RemoteDesktopDialog
 {
-  GtkWindow parent;
+  AdwWindow parent;
 
   GtkWidget *accept_button;
   AdwSwitchRow *allow_remote_interaction_switch;
@@ -46,7 +46,7 @@ struct _RemoteDesktopDialog
 
 struct _RemoteDesktopDialogClass
 {
-  GtkWindowClass *parent_class;
+  AdwWindowClass *parent_class;
 };
 
 enum
@@ -58,7 +58,7 @@ enum
 
 static guint signals[N_SIGNAL];
 
-G_DEFINE_TYPE (RemoteDesktopDialog, remote_desktop_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (RemoteDesktopDialog, remote_desktop_dialog, ADW_TYPE_WINDOW)
 
 static RemoteDesktopDeviceType
 get_selected_device_types (RemoteDesktopDialog *dialog)

@@ -25,7 +25,7 @@
 
 #define REMOTE_DESKTOP_TYPE_DIALOG (remote_desktop_dialog_get_type ())
 G_DECLARE_FINAL_TYPE (RemoteDesktopDialog, remote_desktop_dialog,
-                      REMOTE_DESKTOP, DIALOG, GtkWindow)
+                      REMOTE_DESKTOP, DIALOG, AdwWindow)
 
 RemoteDesktopDialog * remote_desktop_dialog_new (const char *app_id,
                                                  RemoteDesktopDeviceType device_types,
