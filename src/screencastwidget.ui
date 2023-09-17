@@ -21,9 +21,10 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="window_heading">
-                    <attributes>
-                      <attribute name="weight" value="bold"></attribute>
-                    </attributes>
+                    <property name="xalign">0.0</property>
+                    <style>
+                      <class name="heading"/>
+                    </style>
                   </object>
                 </child>
 
@@ -65,9 +66,10 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="monitor_heading">
-                    <attributes>
-                      <attribute name="weight" value="bold"></attribute>
-                    </attributes>
+                    <property name="xalign">0.0</property>
+                    <style>
+                      <class name="heading"/>
+                    </style>
                   </object>
                 </child>
                 <child>
