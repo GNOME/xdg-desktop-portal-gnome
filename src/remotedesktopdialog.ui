@@ -51,56 +51,60 @@
             <property name="propagate-natural-height">1</property>
             <property name="max-content-height">500</property>
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="hexpand">1</property>
-                <property name="vexpand">1</property>
-
-                <child>
-                  <object class="GtkCheckButton" id="persist_check">
-                    <property name="visible">False</property>
-                    <property name="active">False</property>
-                    <property name="halign">center</property>
-                    <property name="label" translatable="yes">Remember this selection</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="ScreenCastWidget" id="screen_cast_widget">
-                    <property name="visible">False</property>
-                    <property name="halign">fill</property>
-                    <property name="vexpand">False</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBox">
-                    <property name="valign">start</property>
-                    <property name="margin-bottom">32</property>
-                    <property name="margin-start">32</property>
-                    <property name="margin-end">32</property>
-                    <property name="selection-mode">none</property>
-                    <style>
-                      <class name="content" />
-                    </style>
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
 
                     <child>
-                      <object class="AdwSwitchRow" id="allow_remote_interaction_switch">
-                        <property name="title" translatable="yes">Allow remote interaction</property>
-                        <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="AdwSwitchRow" id="allow_remote_clipboard_switch">
-                        <property name="title" translatable="yes">Allow clipboard access</property>
+                      <object class="GtkCheckButton" id="persist_check">
                         <property name="visible">False</property>
+                        <property name="active">False</property>
+                        <property name="halign">center</property>
+                        <property name="label" translatable="yes">Remember this selection</property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="ScreenCastWidget" id="screen_cast_widget">
+                        <property name="visible">False</property>
+                        <property name="halign">fill</property>
+                        <property name="vexpand">False</property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBox">
+                        <property name="valign">start</property>
+                        <property name="margin-bottom">32</property>
+                        <property name="margin-start">32</property>
+                        <property name="margin-end">32</property>
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="content" />
+                        </style>
+
+                        <child>
+                          <object class="AdwSwitchRow" id="allow_remote_interaction_switch">
+                            <property name="title" translatable="yes">Allow remote interaction</property>
+                            <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="AdwSwitchRow" id="allow_remote_clipboard_switch">
+                            <property name="title" translatable="yes">Allow clipboard access</property>
+                            <property name="visible">False</property>
+                          </object>
+                        </child>
+
                       </object>
                     </child>
 
                   </object>
-                </child>
-
+                </property>
               </object>
             </property>
           </object>
