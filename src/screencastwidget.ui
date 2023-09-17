@@ -16,10 +16,6 @@
             <property name="title" translatable="yes">Single Window</property>
             <property name="child">
               <object class="GtkBox" id="window_selection">
-                <property name="margin-top">32</property>
-                <property name="margin-bottom">32</property>
-                <property name="margin-start">32</property>
-                <property name="margin-end">32</property>
                 <property name="orientation">vertical</property>
                 <property name="visible">0</property>
                 <property name="spacing">12</property>
@@ -65,10 +61,6 @@
             <property name="child">
               <object class="GtkBox" id="monitor_selection">
                 <property name="visible">0</property>
-                <property name="margin-top">32</property>
-                <property name="margin-bottom">32</property>
-                <property name="margin-start">32</property>
-                <property name="margin-end">32</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>

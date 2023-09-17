@@ -52,11 +52,17 @@
             <property name="max-content-height">500</property>
             <property name="child">
               <object class="AdwClamp">
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">32</property>
+                <property name="margin-bottom">32</property>
+                <property name="maximum-size">446</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <property name="hexpand">1</property>
                     <property name="vexpand">1</property>
+                    <property name="spacing">24</property>
 
                     <child>
                       <object class="GtkCheckButton" id="persist_check">
@@ -78,9 +84,6 @@
                     <child>
                       <object class="GtkListBox">
                         <property name="valign">start</property>
-                        <property name="margin-bottom">32</property>
-                        <property name="margin-start">32</property>
-                        <property name="margin-end">32</property>
                         <property name="selection-mode">none</property>
                         <style>
                           <class name="content" />
