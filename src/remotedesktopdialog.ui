@@ -85,28 +85,16 @@
                     </style>
 
                     <child>
-                      <object class="AdwActionRow">
+                      <object class="AdwSwitchRow" id="allow_remote_interaction_switch">
                         <property name="title" translatable="yes">Allow remote interaction</property>
-                        <property name="activatable-widget">allow_remote_interaction_switch</property>
-                        <child>
-                          <object class="GtkSwitch" id="allow_remote_interaction_switch">
-                            <property name="valign">center</property>
-                            <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
-                          </object>
-                        </child>
+                        <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
                       </object>
                     </child>
 
                     <child>
-                      <object class="AdwActionRow" id="allow_remote_clipboard_row">
+                      <object class="AdwSwitchRow" id="allow_remote_clipboard_switch">
                         <property name="title" translatable="yes">Allow clipboard access</property>
                         <property name="visible">False</property>
-                        <property name="activatable-widget">allow_remote_clipboard_switch</property>
-                        <child>
-                          <object class="GtkSwitch" id="allow_remote_clipboard_switch">
-                            <property name="valign">center</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
 
