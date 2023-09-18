@@ -60,10 +60,17 @@ config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), mes
 built_sources += configure_file(output: 'config.h', configuration: config_h)
 
 # Sources
+adw_min_version = '>= 1.2.0'
+
 libadwaita_dep = dependency(
   'libadwaita-1',
-  fallback: ['libadwaita', 'libadwaita_dep'],
-  default_options: ['examples=false', 'introspection=disabled', 'tests=false', 'vapi=false'],
+  version: adw_min_version,
+  default_options: [
+    'examples=false',
+    'introspection=disabled',
+    'tests=false',
+    'vapi=false',
+  ],
 )
 deps = [
   declare_dependency(sources: built_sources),
