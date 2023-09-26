@@ -1,23 +1,23 @@
 # French translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2017-2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2017-2023 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Claude Paroz <claude@2xlibre.net>, 2017, 2022.
+# Claude Paroz <claude@2xlibre.net>, 2017, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-04-26 15:12+0000\n"
-"PO-Revision-Date: 2023-05-25 10:28+0900\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"POT-Creation-Date: 2023-09-18 13:10+0000\n"
+"PO-Revision-Date: 2023-09-23 12:34+0200\n"
+"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -50,10 +50,9 @@ msgstr "Partager mes informations personnelles avec %1$s ? %2$s"
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr ""
-"Partager mes informations personnelles avec l’application qui le demande ? "
-"%s"
+"Partager mes informations personnelles avec l’application qui le demande ? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
@@ -61,13 +60,14 @@ msgstr "Partager les détails"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "A_nnuler"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Partager"
 
@@ -85,24 +85,23 @@ msgstr "Échec de lancement de Logiciels"
 
 #: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Choisir une application pour ouvrir le fichier « %s »."
 
 #: src/appchooserdialog.c:397
-msgid "Choose an application."
+msgid "Choose an app."
 msgstr "Choisir une application."
 
 #: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Aucune application installée capable d’ouvrir « %s ». Vous pouvez trouver "
-"plus d’applications dans Logiciels."
+"plus d’applications dans Logiciels"
 
 #: src/appchooserdialog.c:419
-msgid "No suitable app installed. You can find more applications in Software."
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Aucune application adaptée n’est installée. Vous pouvez trouver plus "
 "d’applications dans Logiciels."
@@ -124,11 +123,11 @@ msgid "_Find More in Software"
 msgstr "En _trouver plus dans Logiciels"
 
 #: src/dynamic-launcher.c:250
-msgid "Create Web Application"
+msgid "Create Web App"
 msgstr "Créer une application web"
 
 #: src/dynamic-launcher.c:252
-msgid "Create Application"
+msgid "Create App"
 msgstr "Créer une application"
 
 #: src/dynamic-launcher.c:260
@@ -143,21 +142,48 @@ msgstr "_Choisir"
 msgid "_Save"
 msgstr "_Enregistrer"
 
-#: src/filechooser.c:716
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "Ouvrir les fichiers en lecture seule"
 
-#: src/filechooser.c:723
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "Ouvrir les répertoires en lecture seule"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "L’application %s désire capture les événements entrants"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Une application désire capturer les événements entrants"
+
+# Titre de la fenêtre
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Capture des entrées"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Autoriser la capture à distance des entrées"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Bureau à distance"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Se souvenir de ce choix"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Autoriser l’interaction à distance"
+
+#: src/remotedesktopdialog.ui:100
+msgid "Allow clipboard access"
+msgstr "Autoriser l’accès au presse-papiers"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
@@ -178,20 +204,16 @@ msgid "Select window to share with %s"
 msgstr "Choisir la fenêtre à partager avec %s"
 
 #: src/screencastwidget.c:548
-msgid "Select monitor to share with the requesting application"
+msgid "Select monitor to share with the requesting app"
 msgstr "Choisir l’écran à partager avec l’application qui le demande"
 
 #: src/screencastwidget.c:549
-msgid "Select window to share with the requesting application"
+msgid "Select window to share with the requesting app"
 msgstr "Choisir la fenêtre à partager avec l’application qui le demande"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Fenêtre seule"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Se souvenir de ce choix"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
@@ -203,7 +225,7 @@ msgid "Share this screenshot with %s?"
 msgstr "Partager la capture d’écran avec %s ?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
+msgid "Share this screenshot with the requesting app?"
 msgstr "Partager la capture d’écran avec l’application qui le demande ?"
 
 #: src/screenshotdialog.ui:8
@@ -301,6 +323,3 @@ msgstr "Activités"
 
 #~ msgid "Find out more"
 #~ msgstr "Plus d’informations"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
