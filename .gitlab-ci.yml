@@ -23,8 +23,7 @@ build-fedora:
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
       cd ..
-    # TODO: replace 'main' with '1.18.0' when available
-    - git clone -b main https://github.com/flatpak/xdg-desktop-portal.git &&
+    - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
       cd xdg-desktop-portal &&
       meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
       ninja -C _build install &&
@@ -46,7 +45,7 @@ build-ubuntu:
       meson . _build --prefix /usr -Ddesktop_docs=false &&
       ninja -C _build install &&
       cd ..
-    - git clone -b 1.16.0 https://github.com/flatpak/xdg-desktop-portal.git &&
+    - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
       cd xdg-desktop-portal &&
       meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
       ninja -C _build install &&
