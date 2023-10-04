@@ -36,11 +36,6 @@ struct _ScreenCastDialog
   gboolean multiple;
 };
 
-struct _ScreenCastDialogClass
-{
-  GtkWindowClass *parent_class;
-};
-
 enum
 {
   DONE,
