@@ -52,8 +52,12 @@
             <property name="propagate-natural-height">1</property>
             <property name="max-content-height">500</property>
             <property name="child">
-              <object class="GtkViewport">
-                <property name="scroll-to-focus">True</property>
+              <object class="AdwClamp">
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">32</property>
+                <property name="margin-bottom">32</property>
+                <property name="maximum-size">446</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
