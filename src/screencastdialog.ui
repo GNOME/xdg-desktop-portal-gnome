@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
-  <template class="ScreenCastDialog" parent="GtkWindow">
+  <template class="ScreenCastDialog" parent="AdwWindow">
     <property name="title" translatable="yes">Screen Share</property>
     <property name="resizable">0</property>
     <property name="default-width">500</property>
@@ -18,54 +18,63 @@
       </object>
     </child>
 
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="titlebar">
-        <property name="show-title-buttons">false</property>
-        <child type="start">
-          <object class="GtkButton" id="cancel_button">
-            <property name="label" translatable="yes">_Cancel</property>
-            <property name="use_underline">1</property>
-            <signal name="clicked" handler="on_button_clicked_cb"/>
+
+    <property name="content">
+      <object class="AdwToolbarView">
+
+        <child type="top">
+          <object class="GtkHeaderBar" id="titlebar">
+            <property name="show-title-buttons">false</property>
+            <child type="start">
+              <object class="GtkButton" id="cancel_button">
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="use_underline">1</property>
+                <signal name="clicked" handler="on_button_clicked_cb"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="accept_button">
+                <property name="sensitive">0</property>
+                <property name="label" translatable="yes">_Share</property>
+                <property name="use_underline">1</property>
+                <signal name="clicked" handler="on_button_clicked_cb"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
-        <child type="end">
-          <object class="GtkButton" id="accept_button">
-            <property name="sensitive">0</property>
-            <property name="label" translatable="yes">_Share</property>
-            <property name="use_underline">1</property>
-            <signal name="clicked" handler="on_button_clicked_cb"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkScrolledWindow">
-        <property name="hscrollbar-policy">never</property>
-        <property name="propagate-natural-height">1</property>
-        <property name="max-content-height">500</property>
-        <property name="child">
-          <object class="GtkViewport">
-            <property name="scroll-to-focus">True</property>
+
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hscrollbar-policy">never</property>
+            <property name="propagate-natural-height">1</property>
+            <property name="max-content-height">500</property>
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="hexpand">1</property>
-                <property name="vexpand">1</property>
-                <child>
-                  <object class="ScreenCastWidget" id="screen_cast_widget">
-                    <property name="visible">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="halign">fill</property>
+              <object class="GtkViewport">
+                <property name="scroll-to-focus">True</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
+                    <child>
+                      <object class="ScreenCastWidget" id="screen_cast_widget">
+                        <property name="visible">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="halign">fill</property>
+                      </object>
+                    </child>
                   </object>
-                </child>
+                </property>
               </object>
             </property>
           </object>
-        </property>
+        </child>
+
       </object>
-    </child>
+    </property>
+
   </template>
 </interface>
