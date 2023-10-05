@@ -15,7 +15,7 @@ build-fedora:
   image: fedora:latest
   extends: .build-common
   before_script:
-    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel
+    - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel libadwaita-devel
     - dnf install -y fuse3-devel gettext-devel
     - dnf builddep -y xdg-desktop-portal-gnome xdg-desktop-portal
     - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
@@ -34,7 +34,7 @@ build-ubuntu:
     - sed -i '/deb-src/s/^# //' /etc/apt/sources.list
     - apt-get update
     - apt-get install -y meson git libgtk-4-dev sassc libfuse3-dev libseccomp-dev
-    - apt-get build-dep -y xdg-desktop-portal-gnome xdg-desktop-portal
+    - apt-get build-dep -y xdg-desktop-portal-gnome xdg-desktop-portal gtk4 libgtk-4-media-gstreamer
     - git clone -b 1.18.0 https://github.com/flatpak/xdg-desktop-portal.git &&
       cd xdg-desktop-portal &&
       meson setup . _build --sysconfdir /etc --prefix /usr -Dlibportal=disabled &&
