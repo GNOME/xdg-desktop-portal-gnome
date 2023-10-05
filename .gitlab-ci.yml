@@ -1,11 +1,6 @@
-.templates_sha: &template_sha b791bd48996e3ced9ca13f1c5ee82be8540b8adb
-
 include:
-  - project: 'Infrastructure/Mirrors/lorry-mirrors/gitlab_freedesktop_org/freedesktop/ci-templates'
-    ref: *template_sha
-    file:
-      - '/templates/fedora.yml'
-      - '/templates/ubuntu.yml'
+  - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/185ede0e9b9b1924b92306ab8b882a6294e92613/templates/fedora.yml'
+  - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/185ede0e9b9b1924b92306ab8b882a6294e92613/templates/ubuntu.yml'
 
 stages:
   - prepare
