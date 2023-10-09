@@ -583,7 +583,7 @@ restore_screen_cast_streams (GVariantIter        *streams_iter,
         }
     }
 
-  return g_steal_pointer (&streams);
+  return streams->len > 0 ? g_steal_pointer (&streams) : NULL;
 }
 
 static gboolean
