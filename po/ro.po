@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-07-29 13:20+0300\n"
+"POT-Creation-Date: 2023-10-07 14:56+0000\n"
+"PO-Revision-Date: 2023-10-09 17:40+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian; Moldavian; Moldovan <gnomero-list@lists.sourceforge."
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -67,13 +67,14 @@ msgstr "Partajează detaliile"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Anulează"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Partajează"
 
@@ -156,16 +157,39 @@ msgstr "Deschide fișierele în modul „citire”"
 msgid "Open directories read-only"
 msgstr "Deschide directoarele în modul „doar citire”"
 
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Aplicația %s vrea să captureze evenimentele de intrare"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "O aplicație vrea să captureze evenimentele de intrare"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Capturează intrarea"
+
+# Ar putea fi și controlul
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Permite capturarea intrării de la distanță"
+
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Desktop la distanță"
 
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Reține această selecție"
+
 # Ar putea fi și controlul
-#: src/remotedesktopdialog.ui:77
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Permite interacțiunea de la distanță"
 
-#: src/remotedesktopdialog.ui:90
+#: src/remotedesktopdialog.ui:100
 msgid "Allow clipboard access"
 msgstr "Permite accesul la clipboard"
 
@@ -198,10 +222,6 @@ msgstr "Selectați fereastra de partajat cu aplicația care cere acest lucru"
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "O singură fereastră"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Reține această selecție"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
