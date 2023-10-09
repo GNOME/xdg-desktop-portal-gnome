@@ -1116,8 +1116,8 @@ handle_connect_to_eis (XdpImplRemoteDesktop *object,
   proxy = remote_desktop_session->mutter_session_proxy;
 
   g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_add (&options_builder, "device-types", "u",
-                         remote_desktop_session->shared.device_types);
+  g_variant_builder_add (&options_builder, "{sv}", "device-types",
+                         g_variant_new_uint32 (remote_desktop_session->shared.device_types));
   options = g_variant_builder_end (&options_builder);
 
   if (!org_gnome_mutter_remote_desktop_session_call_connect_to_eis_sync (proxy,
