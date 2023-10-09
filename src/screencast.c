@@ -121,7 +121,7 @@ serialize_screen_cast_streams_as_restore_data (GPtrArray       *streams,
 
   g_variant_builder_open (impl_builder, G_VARIANT_TYPE ("a(uuv)"));
 
-  for (i = 0; i < streams->len; i++)
+  for (i = 0; streams && i < streams->len; i++)
     {
       ScreenCastStreamInfo *info = g_ptr_array_index (streams, i);
       GVariant *stream_variant;
