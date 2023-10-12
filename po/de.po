@@ -6,16 +6,16 @@
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2016, 2018.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2022-2023.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-09-01 14:14+0000\n"
-"PO-Revision-Date: 2023-09-09 00:04+0200\n"
-"Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
+"POT-Creation-Date: 2023-10-06 15:56+0000\n"
+"PO-Revision-Date: 2023-10-06 19:52+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Name"
 msgid "Username"
 msgstr "Benutzername"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:229
 msgid "Failed to start Software"
 msgstr "Starten von Software schlug fehl"
 
@@ -120,11 +120,19 @@ msgstr "Öffnen mit …"
 msgid "_Open"
 msgstr "_Öffnen"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
-msgstr "Keine Apps verfügbar"
+#: src/appchooserdialog.ui:84
+msgid "No Apps Available"
+msgstr "Keine Anwendungen verfügbar"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:85
+msgid ""
+"No apps installed that are able to open file.extension. You can find more "
+"apps in Software."
+msgstr ""
+"Es sind keine Anwendungen installiert, die Dateien mit dieser Endung öffnen "
+"können. Suchen Sie weitere Anwendungen in Software."
+
+#: src/appchooserdialog.ui:106
 msgid "_Find More in Software"
 msgstr "Mehr in Software _finden"
 
