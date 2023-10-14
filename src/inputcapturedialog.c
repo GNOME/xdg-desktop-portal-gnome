@@ -90,7 +90,7 @@ set_app_id (InputCaptureDialog *dialog,
 {
   g_autofree char *heading = NULL;
 
-  if (app_id && !g_string_equal (app_id, ""))
+  if (app_id && app_id[0] != '\0')
     {
       g_autofree char *id = NULL;
       g_autoptr(GAppInfo) info = NULL;
