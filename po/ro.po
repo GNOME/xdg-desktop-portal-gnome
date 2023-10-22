@@ -9,9 +9,10 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2022-02-13 19:05+0000\n"
-"PO-Revision-Date: 2022-02-19 21:21+0200\n"
-"Last-Translator: Daniel Batalu <dbatalu@protonmail.com>\n"
+"POT-Creation-Date: 2023-10-09 15:58+0000\n"
+"PO-Revision-Date: 2023-10-09 17:40+0300\n"
+"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
+"gmail [dot] com>\n"
 "Language-Team: Romanian; Moldavian; Moldovan <gnomero-list@lists.sourceforge."
 "net>\n"
 "Language: ro\n"
@@ -20,48 +21,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-#. TRANSLATORS: Don't translate this text (this is icon name)
-#: data/xdg-desktop-portal-gnome.desktop.in.in:6
-msgid "applications-system-symbolic"
-msgstr "applications-system-symbolic"
-
-#: src/accountdialog.c:151
+#: src/accountdialog.c:152
 msgid "Select an Image"
 msgstr "Selectează o imagine"
 
-#: src/accountdialog.c:154 src/wallpaperdialog.ui:14
+#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
 msgid "Cancel"
 msgstr "Anulează"
 
-#: src/accountdialog.c:155
+#: src/accountdialog.c:156
 msgid "Select"
 msgstr "Selectează"
 
 # Firefox îl folosește la descărcări, pare mai potrivit decât „șterge”
-#: src/accountdialog.c:156
+#: src/accountdialog.c:157
 msgid "Clear"
 msgstr "Curăță"
 
-#: src/accountdialog.c:163
+#: src/accountdialog.c:164
 msgid "Images"
 msgstr "Imagini"
 
 # Am văzut că uneori e folosit și „partaja”, deși din câte am citit în dicționar se referă mai degrabă la operațiunea juridică/împărțirea în bucăți decât la distribuire/împărtășire
-#: src/accountdialog.c:224
+#: src/accountdialog.c:225
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Partajați-vă informațiile personale cu %1$s? %2$s"
 
-#: src/accountdialog.c:230
+#: src/accountdialog.c:231
 #, c-format
-#| msgid "Share this screenshot with the requesting application?"
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr ""
 "Partajați informațiile personale cu aplicația care cere acest lucru? %s"
 
@@ -70,58 +65,59 @@ msgstr ""
 msgid "Share Details"
 msgstr "Partajează detaliile"
 
-#: src/accountdialog.ui:12 src/appchooserdialog.ui:12 src/filechooser.c:451
-#: src/remotedesktopdialog.ui:13 src/screencastdialog.ui:14
-#: src/screenshotdialog.ui:14
+#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
+#: src/dynamic-launcher.c:258 src/filechooser.c:534
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Anulează"
 
-#: src/accountdialog.ui:19 src/remotedesktopdialog.ui:21
-#: src/screencastdialog.ui:22 src/screenshotdialog.ui:37
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Partajează"
 
-#: src/accountdialog.ui:72
+#: src/accountdialog.ui:83
 msgid "Name"
 msgstr "Nume"
 
-#: src/accountdialog.ui:84
+#: src/accountdialog.ui:95
 msgid "Username"
 msgstr "Nume de utilizator"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:228
 msgid "Failed to start Software"
 msgstr "Eșec la pornirea Aplicații Gnome"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Alegeți o aplicație pentru a deschide fișierul „%s”."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:397
+msgid "Choose an app."
 msgstr "Alegeți o aplicație."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Nicio aplicație instalată nu poate deschide „%s”. Puteți găsi mai multe "
-"aplicații în Aplicații Gnome"
+"aplicații în Software"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:419
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nicio aplicație potrivită instalată. Puteți găsi mai multe aplicații în "
-"Aplicații Gnome"
+"Software."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Deschide cu…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:446
+#: src/appchooserdialog.ui:20 src/filechooser.c:529
 msgid "_Open"
 msgstr "_Deschide"
 
@@ -133,155 +129,162 @@ msgstr "Nicio aplicație disponibilă"
 msgid "_Find More in Software"
 msgstr "_Găsiți mai multe în Aplicații Gnome"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "„%s” rulează în fundal"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Creează aplicație web"
 
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"Aceasta poate fi dintr-un motiv legitim, dar aplicația nu a oferit unul.\n"
-"\n"
-"Luați aminte că oprirea forțată a aplicației poate cauza pierderi de date."
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Creează aplicație"
 
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Închide forțat"
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "C_reează"
 
-#: src/background.c:220
-msgid "Allow"
-msgstr "Permite"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Activitate de fundal"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Aflați mai multe"
-
-#: src/filechooser.c:446
+#: src/filechooser.c:529
 msgid "_Select"
 msgstr "_Selectează"
 
-#: src/filechooser.c:448
+#: src/filechooser.c:531
 msgid "_Save"
 msgstr "_Salvează"
 
-#: src/filechooser.c:614
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "Deschide fișierele în modul „citire”"
+
+#: src/filechooser.c:731
+msgid "Open directories read-only"
+msgstr "Deschide directoarele în modul „doar citire”"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Aplicația %s vrea să captureze evenimentele de intrare"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "O aplicație vrea să captureze evenimentele de intrare"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Capturează intrarea"
+
+# Ar putea fi și controlul
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Permite capturarea intrării de la distanță"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Desktop la distanță"
 
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Reține această selecție"
+
 # Ar putea fi și controlul
-#: src/remotedesktopdialog.ui:64
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Permite interacțiunea de la distanță"
+
+#: src/remotedesktopdialog.ui:100
+msgid "Allow clipboard access"
+msgstr "Permite accesul la clipboard"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Partajează ecranul"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Monitor virtual"
 
-#: src/screencastwidget.c:542
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Selectați monitorul de partajat cu %s"
 
-#: src/screencastwidget.c:544
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Selectați fereastra de partajat cu %s"
 
-#: src/screencastwidget.c:549
-msgid "Select monitor to share with the requesting application"
+#: src/screencastwidget.c:548
+msgid "Select monitor to share with the requesting app"
 msgstr "Selectați monitorul de partajat cu aplicația care cere acest lucru"
 
-#: src/screencastwidget.c:550
-msgid "Select window to share with the requesting application"
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
 msgstr "Selectați fereastra de partajat cu aplicația care cere acest lucru"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "O singură fereastră"
 
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Reține această selecție"
-
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
 msgstr "Întregul ecran"
 
-#: src/screenshotdialog.c:420
+#: src/screenshotdialog.c:435
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Partajați această captură de ecran cu %s?"
 
-#: src/screenshotdialog.c:424
-msgid "Share this screenshot with the requesting application?"
+#: src/screenshotdialog.c:439
+msgid "Share this screenshot with the requesting app?"
 msgstr "Partajați această captură de ecran cu aplicația care cere acest lucru?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
 msgstr "Captură de ecran"
 
-#: src/screenshotdialog.ui:30
+#: src/screenshotdialog.ui:42
 msgid "_Options…"
 msgstr "_Opțiuni…"
 
-#: src/screenshotdialog.ui:55
+#: src/screenshotdialog.ui:67
 msgid "Take _Screenshot"
 msgstr "_Fă captură de ecran"
 
-#: src/screenshotdialog.ui:108
+#: src/screenshotdialog.ui:120
 msgid "Take Screenshot"
 msgstr "Fă captură de ecran"
 
-#: src/screenshotdialog.ui:118
+#: src/screenshotdialog.ui:130
 msgid "Grab the whole sc_reen"
 msgstr "Capturează întregul ec_ran"
 
-#: src/screenshotdialog.ui:128
+#: src/screenshotdialog.ui:140
 msgid "Grab the current _window"
 msgstr "Capturează _fereastra curentă"
 
-#: src/screenshotdialog.ui:138
+#: src/screenshotdialog.ui:150
 msgid "Select _area to grab"
 msgstr "Selectează o _zonă de capturat"
 
-#: src/screenshotdialog.ui:150
+#: src/screenshotdialog.ui:162
 msgid "Grab after a _delay of"
 msgstr "Capturează cu o întârziere _de"
 
-#: src/screenshotdialog.ui:161
+#: src/screenshotdialog.ui:173
 msgid "seconds"
 msgstr "secunde"
 
-#: src/screenshotdialog.ui:170
+#: src/screenshotdialog.ui:182
 msgid "Effects"
 msgstr "Efecte"
 
-#: src/screenshotdialog.ui:180
+#: src/screenshotdialog.ui:192
 msgid "Include _pointer"
 msgstr "Include _cursorul"
 
-#: src/screenshotdialog.ui:188
+#: src/screenshotdialog.ui:200
 msgid "Include the window _border"
 msgstr "Include _bordura ferestrei"
 
-#: src/settings.c:247
+#: src/settings.c:246
 msgid "Requested setting not found"
 msgstr "Configurarea cerută nu a fost găsită"
 
@@ -289,17 +292,46 @@ msgstr "Configurarea cerută nu a fost găsită"
 msgid "Set Background"
 msgstr "Stabilește fundalul"
 
-#: src/wallpaperdialog.ui:20
+#: src/wallpaperdialog.ui:32
 msgid "Set"
 msgstr "Stabilește"
 
-#: src/wallpaperdialog.ui:51
+#: src/wallpaperdialog.ui:63
 msgid "Failed to load image file"
 msgstr "Eșec la încărcarea fișierului imagine"
 
-#: src/wallpaperpreview.ui:50
+#: src/wallpaperpreview.ui:48
 msgid "Activities"
 msgstr "Activități"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "„%s” rulează în fundal"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Aceasta poate fi dintr-un motiv legitim, dar aplicația nu a oferit unul.\n"
+#~ "\n"
+#~ "Luați aminte că oprirea forțată a aplicației poate cauza pierderi de date."
+
+#~ msgid "Force quit"
+#~ msgstr "Închide forțat"
+
+#~ msgid "Allow"
+#~ msgstr "Permite"
+
+#~ msgid "Background activity"
+#~ msgstr "Activitate de fundal"
+
+#~ msgid "Find out more"
+#~ msgstr "Aflați mai multe"
 
 #~ msgid "Pointer"
 #~ msgstr "Indicator"
