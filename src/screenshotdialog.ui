@@ -127,7 +127,7 @@
                   <object class="GtkCheckButton" id="grab_screen">
                     <property name="use_underline">1</property>
                     <property name="margin-start">20</property>
-                    <property name="label" translatable="yes">Grab the whole sc_reen</property>
+                    <property name="label" translatable="yes">Grab Whole Sc_reen</property>
                     <property name="action-name">dialog.grab</property>
                     <property name="action-target">&apos;screen&apos;</property>
                   </object>
@@ -137,7 +137,7 @@
                     <property name="use_underline">1</property>
                     <property name="margin-start">20</property>
                     <property name="group">grab_screen</property>
-                    <property name="label" translatable="yes">Grab the current _window</property>
+                    <property name="label" translatable="yes">Grab Current _Window</property>
                     <property name="action-name">dialog.grab</property>
                     <property name="action-target">&apos;window&apos;</property>
                   </object>
@@ -147,7 +147,7 @@
                     <property name="use_underline">1</property>
                     <property name="margin-start">20</property>
                     <property name="group">grab_screen</property>
-                    <property name="label" translatable="yes">Select _area to grab</property>
+                    <property name="label" translatable="yes">Select _Area to Grab</property>
                     <property name="action-name">dialog.grab</property>
                     <property name="action-target">&apos;area&apos;</property>
                   </object>
@@ -189,7 +189,7 @@
                   <object class="GtkCheckButton" id="include_pointer">
                     <property name="use_underline">1</property>
                     <property name="margin-start">20</property>
-                    <property name="label" translatable="yes">Include _pointer</property>
+                    <property name="label" translatable="yes">Include _Pointer</property>
                     <property name="action-name">dialog.pointer</property>
                   </object>
                 </child>
@@ -197,7 +197,7 @@
                   <object class="GtkCheckButton" id="include_border">
                     <property name="use_underline">1</property>
                     <property name="margin-start">20</property>
-                    <property name="label" translatable="yes">Include the window _border</property>
+                    <property name="label" translatable="yes">Include Window _Border</property>
                     <property name="action-name">dialog.border</property>
                   </object>
                 </child>
