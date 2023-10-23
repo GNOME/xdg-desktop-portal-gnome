@@ -34,7 +34,7 @@
                     <property name="visible">False</property>
                     <property name="active">True</property>
                     <property name="halign">center</property>
-                    <property name="label" translatable="yes">Remember this selection</property>
+                    <property name="label" translatable="yes">Remember This Selection</property>
                   </object>
                 </child>
 
@@ -77,7 +77,7 @@
                     <property name="visible" bind-source="persist_check" bind-property="visible" bind-flags="sync-create" />
                     <property name="active" bind-source="persist_check" bind-property="active" bind-flags="sync-create|bidirectional" />
                     <property name="halign">center</property>
-                    <property name="label" translatable="yes">Remember this selection</property>
+                    <property name="label" translatable="yes">Remember This Selection</property>
                   </object>
                 </child>
                 <child>
