@@ -12,7 +12,7 @@ stages:
     - ninja -C _build install
 
 build-fedora:
-  image: fedora:latest
+  image: fedora:39
   extends: .build-common
   before_script:
     - dnf install -y 'dnf-command(builddep)' meson git gtk4-devel sassc gsettings-desktop-schemas-devel libadwaita-devel
