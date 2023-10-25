@@ -74,14 +74,6 @@
                     </child>
 
                     <child>
-                      <object class="ScreenCastWidget" id="screen_cast_widget">
-                        <property name="visible">False</property>
-                        <property name="halign">fill</property>
-                        <property name="vexpand">False</property>
-                      </object>
-                    </child>
-
-                    <child>
                       <object class="GtkListBox">
                         <property name="valign">start</property>
                         <property name="selection-mode">none</property>
@@ -103,6 +95,14 @@
                           </object>
                         </child>
 
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="ScreenCastWidget" id="screen_cast_widget">
+                        <property name="visible">False</property>
+                        <property name="halign">fill</property>
+                        <property name="vexpand">False</property>
                       </object>
                     </child>
 
