@@ -60,8 +60,7 @@
                         <child>
                           <object class="GtkListBox" id="list">
                             <style>
-                              <class name="frame"/>
-                              <class name="view"/>
+                              <class name="boxed-list"/>
                             </style>
                             <signal name="row-activated" handler="row_activated"/>
                             <signal name="row-selected" handler="row_selected"/>

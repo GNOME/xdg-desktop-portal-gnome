@@ -75,26 +75,9 @@ static guint signals[LAST_SIGNAL];
 G_DEFINE_TYPE (AppChooserDialog, app_chooser_dialog, ADW_TYPE_WINDOW)
 
 static void
-update_header (GtkListBoxRow *row,
-               GtkListBoxRow *before,
-               gpointer       data)
-{
-  if (before != NULL &&
-      gtk_list_box_row_get_header (row) == NULL)
-    {
-      GtkWidget *separator;
-
-      separator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-      gtk_list_box_row_set_header (row, separator);
-    }
-}
-
-static void
 app_chooser_dialog_init (AppChooserDialog *dialog)
 {
   gtk_widget_init_template (GTK_WIDGET (dialog));
-
-  gtk_list_box_set_header_func (GTK_LIST_BOX (dialog->list), update_header, NULL, NULL);
 }
 
 static void
