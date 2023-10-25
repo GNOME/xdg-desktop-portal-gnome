@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-02-15 01:25+0000\n"
-"PO-Revision-Date: 2023-02-16 10:52+0100\n"
+"POT-Creation-Date: 2023-10-09 15:58+0000\n"
+"PO-Revision-Date: 2023-10-25 07:35+0200\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -51,7 +51,7 @@ msgstr "Да ли желите поделити ваше личне податк
 
 #: src/accountdialog.c:231
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "Да ли желите поделити ваше личне податке са овим програмом? %s"
 
 #: src/accountdialog.ui:4
@@ -60,13 +60,14 @@ msgstr "Подели појединости"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "От_кажи"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Дели"
 
@@ -84,24 +85,23 @@ msgstr "Нисам успео да покренем Програме"
 
 #: src/appchooserdialog.c:392
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Изаберите програм за отварање датотеке „%s“."
 
 #: src/appchooserdialog.c:397
-msgid "Choose an application."
+msgid "Choose an app."
 msgstr "Изаберите програм."
 
 #: src/appchooserdialog.c:414
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Нема инсталираних програма који могу отворити „%s“. Можете наћи више "
 "програма у Програмима"
 
 #: src/appchooserdialog.c:419
-msgid "No suitable app installed. You can find more applications in Software."
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Ниједан одговарајући програм није инсталиран. Можете наћи више програма у "
 "Програмима."
@@ -123,11 +123,11 @@ msgid "_Find More in Software"
 msgstr "_Нађи више у Програмима"
 
 #: src/dynamic-launcher.c:250
-msgid "Create Web Application"
+msgid "Create Web App"
 msgstr "Направи веб програм"
 
 #: src/dynamic-launcher.c:252
-msgid "Create Application"
+msgid "Create App"
 msgstr "Направи програм"
 
 #: src/dynamic-launcher.c:260
@@ -142,55 +142,77 @@ msgstr "_Изабери"
 msgid "_Save"
 msgstr "_Сачувај"
 
-#: src/filechooser.c:706
+#: src/filechooser.c:724
 msgid "Open files read-only"
 msgstr "Отвори датотеке само за читање"
 
-#: src/filechooser.c:713
+#: src/filechooser.c:731
 msgid "Open directories read-only"
 msgstr "Отвори фасцикле само за читање"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Програм %s жели хватати улазне догађаје"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Програм жели преглед улазних догађаја"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Хватај улаз"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Дозволи удаљено хватање улаза"
 
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Удаљена радна површ"
 
-#: src/remotedesktopdialog.ui:76
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Запамти овај избор"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Дозволи удаљено управљање"
+
+#: src/remotedesktopdialog.ui:100
+msgid "Allow clipboard access"
+msgstr "Дозволи приступ остави"
 
 #: src/screencastdialog.ui:5
 msgid "Screen Share"
 msgstr "Дељење екрана"
 
-#: src/screencastwidget.c:159
+#: src/screencastwidget.c:163
 msgid "Virtual monitor"
 msgstr "Виртуелни екран"
 
-#: src/screencastwidget.c:537
+#: src/screencastwidget.c:541
 #, c-format
 msgid "Select monitor to share with %s"
 msgstr "Изаберите екран за дељење са програмом %s"
 
-#: src/screencastwidget.c:539
+#: src/screencastwidget.c:543
 #, c-format
 msgid "Select window to share with %s"
 msgstr "Изаберите прозор за дељење са програмом %s"
 
-#: src/screencastwidget.c:544
-msgid "Select monitor to share with the requesting application"
+#: src/screencastwidget.c:548
+msgid "Select monitor to share with the requesting app"
 msgstr "Изаберите екран који треба поделити са програмом"
 
-#: src/screencastwidget.c:545
-msgid "Select window to share with the requesting application"
+#: src/screencastwidget.c:549
+msgid "Select window to share with the requesting app"
 msgstr "Изаберите прозор који треба поделити са програмом"
 
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Један прозор"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Запамти овај избор"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
@@ -202,8 +224,8 @@ msgid "Share this screenshot with %s?"
 msgstr "Да поделим овај снимак екрана са „%s“?"
 
 #: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
-msgstr "Да поделим овај снимак екрана са програмом који то захтева?"
+msgid "Share this screenshot with the requesting app?"
+msgstr "Поделити овај снимак екрана са програмом који то захтева?"
 
 #: src/screenshotdialog.ui:8
 msgid "Screenshot"
