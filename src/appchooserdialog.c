@@ -59,12 +59,6 @@ struct _AppChooserDialog {
   GAppInfo *info;
 };
 
-struct _AppChooserDialogClass {
-  GtkWindowClass parent_class;
-
-  void (* close) (AppChooserDialog *dialog);
-};
-
 enum {
   CLOSE,
   LAST_SIGNAL
@@ -103,6 +97,7 @@ close_dialog (AppChooserDialog *dialog,
 {
   dialog->info = info;
   g_signal_emit (dialog, signals[CLOSE], 0);
+  gtk_window_close (GTK_WINDOW (dialog));
 }
 
 static void
@@ -229,12 +224,6 @@ app_chooser_close_request (GtkWindow *window)
 }
 
 static void
-app_chooser_dialog_close (AppChooserDialog *dialog)
-{
-  gtk_window_close (GTK_WINDOW (dialog));
-}
-
-static void
 app_chooser_dialog_class_init (AppChooserDialogClass *class)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
@@ -245,15 +234,13 @@ app_chooser_dialog_class_init (AppChooserDialogClass *class)
 
   window_class->close_request = app_chooser_close_request;
 
-  class->close = app_chooser_dialog_close;
-
   signals[CLOSE] = g_signal_new ("close",
-                                G_TYPE_FROM_CLASS (class),
-                                G_SIGNAL_ACTION | G_SIGNAL_RUN_LAST,
-                                0,
-                                NULL, NULL,
-                                NULL,
-                                G_TYPE_NONE, 0);
+                                 G_TYPE_FROM_CLASS (class),
+                                 G_SIGNAL_ACTION | G_SIGNAL_RUN_LAST,
+                                 0,
+                                 NULL, NULL,
+                                 NULL,
+                                 G_TYPE_NONE, 0);
 
   gtk_widget_class_add_binding (widget_class, GDK_KEY_Escape, 0, close_dialog_binding_cb, NULL);
 
