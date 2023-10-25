@@ -37,7 +37,7 @@
 #define INITIAL_LIST_SIZE 3
 
 struct _AppChooserDialog {
-  GtkWindow parent;
+  AdwWindow parent;
 
   GtkWidget *scrolled_window;
   GtkWidget *titlebar;
@@ -72,7 +72,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (AppChooserDialog, app_chooser_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (AppChooserDialog, app_chooser_dialog, ADW_TYPE_WINDOW)
 
 static void
 update_header (GtkListBoxRow *row,

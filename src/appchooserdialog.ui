@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
-  <template class="AppChooserDialog" parent="GtkWindow">
+  <template class="AppChooserDialog" parent="AdwWindow">
     <property name="title" translatable="yes">Open With…</property>
     <property name="resizable">0</property>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="titlebar">
-        <property name="show-title-buttons">false</property>
-        <child>
-          <object class="GtkButton" id="cancel_button">
-            <property name="label" translatable="yes">_Cancel</property>
-            <property name="use-underline">1</property>
-            <signal name="clicked" handler="cancel_clicked"/>
+
+    <property name="content">
+      <object class="AdwToolbarView">
+
+        <child type="top">
+          <object class="GtkHeaderBar" id="titlebar">
+            <property name="show-title-buttons">false</property>
+            <child>
+              <object class="GtkButton" id="cancel_button">
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="use-underline">1</property>
+                <signal name="clicked" handler="cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="open_button">
+                <property name="sensitive">0</property>
+                <property name="label" translatable="yes">_Open</property>
+                <property name="use-underline">1</property>
+                <signal name="clicked" handler="open_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
-        <child type="end">
-          <object class="GtkButton" id="open_button">
-            <property name="sensitive">0</property>
-            <property name="label" translatable="yes">_Open</property>
-            <property name="use-underline">1</property>
-            <signal name="clicked" handler="open_clicked"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
+
+        <property name="content">
           <object class="GtkStack" id="stack">
             <child>
               <object class="GtkStackPage">
@@ -116,8 +118,10 @@
               </object>
             </child>
           </object>
-        </child>
+        </property>
+
       </object>
-    </child>
+    </property>
+
   </template>
 </interface>

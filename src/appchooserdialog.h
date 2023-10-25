@@ -20,15 +20,12 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
-#define APP_TYPE_CHOOSER_DIALOG (app_chooser_dialog_get_type ())
-#define APP_CHOOSER_DIALOG(object) (G_TYPE_CHECK_INSTANCE_CAST (object, APP_TYPE_CHOOSER_DIALOG, AppChooserDialog))
+G_BEGIN_DECLS
 
-typedef struct _AppChooserDialog AppChooserDialog;
-typedef struct _AppChooserDialogClass AppChooserDialogClass;
-
-GType              app_chooser_dialog_get_type (void) G_GNUC_CONST;
+#define APP_TYPE_CHOOSER_DIALOG (app_chooser_dialog_get_type())
+G_DECLARE_FINAL_TYPE (AppChooserDialog, app_chooser_dialog, APP, CHOOSER_DIALOG, AdwWindow)
 
 AppChooserDialog * app_chooser_dialog_new (const char **app_ids,
                                            const char  *default_id,
