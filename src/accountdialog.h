@@ -1,10 +1,11 @@
-#include <gtk/gtk.h>
+#pragma once
 
-#define ACCOUNT_TYPE_DIALOG (account_dialog_get_type ())
-#define ACCOUNT_DIALOG(object) (G_TYPE_CHECK_INSTANCE_CAST (object, ACCOUNT_TYPE_DIALOG, AccountDialog))
+#include <adwaita.h>
 
-typedef struct _AccountDialog AccountDialog;
-typedef struct _AccountDialogClass AccountDialogClass;
+G_BEGIN_DECLS
+
+#define ACCOUNT_TYPE_DIALOG (account_dialog_get_type())
+G_DECLARE_FINAL_TYPE (AccountDialog, account_dialog, ACCOUNT, DIALOG, AdwWindow)
 
 AccountDialog * account_dialog_new (const char *app_id,
                                     const char *user_name,
@@ -15,3 +16,5 @@ AccountDialog * account_dialog_new (const char *app_id,
 const char *account_dialog_get_user_name (AccountDialog *dialog);
 const char *account_dialog_get_real_name (AccountDialog *dialog);
 const char *account_dialog_get_icon_file (AccountDialog *dialog);
+
+G_END_DECLS

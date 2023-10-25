@@ -11,7 +11,7 @@
 #include "accountdialog.h"
 
 struct _AccountDialog {
-  GtkWindow parent;
+  AdwWindow parent;
 
   GtkWidget *heading;
   GtkWidget *accept_button;
@@ -22,10 +22,6 @@ struct _AccountDialog {
   char *icon_file;
 };
 
-struct _AccountDialogClass {
-  GtkWindowClass parent_class;
-};
-
 enum {
   DONE,
   LAST_SIGNAL
@@ -33,7 +29,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (AccountDialog, account_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (AccountDialog, account_dialog, ADW_TYPE_WINDOW)
 
 static void
 account_dialog_init (AccountDialog *dialog)
