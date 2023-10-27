@@ -198,18 +198,10 @@ show_error_dialog (const gchar *primary,
 {
   GtkWidget *message_dialog;
 
-  message_dialog = gtk_message_dialog_new (parent, 0,
-                                           GTK_MESSAGE_ERROR,
-                                           GTK_BUTTONS_OK,
-                                           NULL);
-  g_object_set (message_dialog,
-                "text", primary,
-                "secondary-text", secondary,
-                NULL);
-  gtk_dialog_set_default_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
+  message_dialog = adw_message_dialog_new (parent, primary, secondary);
+  adw_message_dialog_add_response (ADW_MESSAGE_DIALOG (message_dialog), "ok", _("_Ok"));
+  adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG (message_dialog), "ok");
   gtk_window_present (GTK_WINDOW (message_dialog));
-  g_signal_connect (message_dialog, "response",
-                    G_CALLBACK (gtk_window_destroy), NULL);
 }
 
 static void
