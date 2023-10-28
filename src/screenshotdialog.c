@@ -2,6 +2,7 @@
 
 #include <string.h>
 
+#include <adwaita.h>
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
@@ -11,7 +12,7 @@
 #include "xdg-desktop-portal-dbus.h"
 
 struct _ScreenshotDialog {
-  GtkWindow parent;
+  AdwWindow parent;
 
   GtkWidget *picture;
   GtkWidget *heading;
@@ -35,10 +36,6 @@ struct _ScreenshotDialog {
   gboolean skip_dialog;
 };
 
-struct _ScreenshotDialogClass {
-  GtkWindowClass parent_class;
-};
-
 enum {
   DONE,
   LAST_SIGNAL
@@ -46,7 +43,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (ScreenshotDialog, screenshot_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (ScreenshotDialog, screenshot_dialog, ADW_TYPE_WINDOW)
 
 static void
 update_border (ScreenshotDialog *dialog,
