@@ -31,18 +31,12 @@
 #include "wallpaperpreview.h"
 
 struct _WallpaperDialog {
-  GtkWindow parent;
+  AdwWindow parent;
 
   GtkWidget *stack;
   WallpaperPreview *desktop_preview;
 
   gchar *picture_uri;
-};
-
-struct _WallpaperDialogClass {
-  GtkWindowClass parent_class;
-
-  void (* response) (WallpaperDialog *dialog);
 };
 
 enum {
@@ -52,7 +46,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (WallpaperDialog, wallpaper_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (WallpaperDialog, wallpaper_dialog, ADW_TYPE_WINDOW)
 
 static void
 wallpaper_dialog_apply (WallpaperDialog *self)

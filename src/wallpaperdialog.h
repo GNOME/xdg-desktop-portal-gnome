@@ -20,15 +20,11 @@
 
 #pragma once
 
+#include <adwaita.h>
 #include <gtk/gtk.h>
 
 #define WALLPAPER_TYPE_DIALOG (wallpaper_dialog_get_type ())
-#define WALLPAPER_DIALOG(object) (G_TYPE_CHECK_INSTANCE_CAST (object, WALLPAPER_TYPE_DIALOG, WallpaperDialog))
-
-typedef struct _WallpaperDialog WallpaperDialog;
-typedef struct _WallpaperDialogClass WallpaperDialogClass;
-
-GType             wallpaper_dialog_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (WallpaperDialog, wallpaper_dialog, WALLPAPER, DIALOG, AdwWindow)
 
 WallpaperDialog * wallpaper_dialog_new (const char *picture_uri,
                                         const char *app_id);
