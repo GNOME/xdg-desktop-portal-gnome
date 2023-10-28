@@ -2,9 +2,10 @@
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
   <template class="ScreenshotDialog" parent="AdwWindow">
-    <property name="resizable">0</property>
     <property name="default-width">500</property>
     <property name="default-height">400</property>
+    <property name="width-request">360</property>
+    <property name="height-request">294</property>
     <property name="title" translatable="yes">Screenshot</property>
 
     <child>
@@ -86,19 +87,24 @@
               <object class="GtkStackPage">
                 <property name="name">screenshot</property>
                 <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="margin-start">20</property>
-                    <property name="margin-end">20</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">20</property>
-                    <property name="spacing">20</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="hscrollbar-policy">never</property>
                     <child>
-                      <object class="GtkLabel" id="heading"/>
-                    </child>
-                    <child>
-                      <object class="GtkPicture" id="picture">
-                        <property name="vexpand">1</property>
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="margin-start">20</property>
+                        <property name="margin-end">20</property>
+                        <property name="margin-top">20</property>
+                        <property name="margin-bottom">20</property>
+                        <property name="spacing">20</property>
+                        <child>
+                          <object class="GtkLabel" id="heading"/>
+                        </child>
+                        <child>
+                          <object class="GtkPicture" id="picture">
+                            <property name="vexpand">1</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -109,98 +115,103 @@
               <object class="GtkStackPage">
                 <property name="name">options</property>
                 <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="margin-start">20</property>
-                    <property name="margin-end">20</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">20</property>
-                    <property name="spacing">10</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="hscrollbar-policy">never</property>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Take Screenshot</property>
-                        <style>
-                          <class name="heading"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="grab_screen">
-                        <property name="use_underline">1</property>
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
                         <property name="margin-start">20</property>
-                        <property name="label" translatable="yes">Grab Whole Sc_reen</property>
-                        <property name="action-name">dialog.grab</property>
-                        <property name="action-target">&apos;screen&apos;</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="grab_window">
-                        <property name="use_underline">1</property>
-                        <property name="margin-start">20</property>
-                        <property name="group">grab_screen</property>
-                        <property name="label" translatable="yes">Grab Current _Window</property>
-                        <property name="action-name">dialog.grab</property>
-                        <property name="action-target">&apos;window&apos;</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="grab_area">
-                        <property name="use_underline">1</property>
-                        <property name="margin-start">20</property>
-                        <property name="group">grab_screen</property>
-                        <property name="label" translatable="yes">Select _Area to Grab</property>
-                        <property name="action-name">dialog.grab</property>
-                        <property name="action-target">&apos;area&apos;</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="delay_box">
-                        <property name="margin-start">20</property>
-                        <property name="spacing">6</property>
+                        <property name="margin-end">20</property>
+                        <property name="margin-top">20</property>
+                        <property name="margin-bottom">20</property>
+                        <property name="spacing">10</property>
                         <child>
                           <object class="GtkLabel">
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">Take Screenshot</property>
+                            <style>
+                              <class name="heading"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="grab_screen">
                             <property name="use_underline">1</property>
-                            <property name="label" translatable="yes">Grab after a _delay of</property>
-                            <property name="mnemonic_widget">delay</property>
+                            <property name="margin-start">20</property>
+                            <property name="label" translatable="yes">Grab Whole Sc_reen</property>
+                            <property name="action-name">dialog.grab</property>
+                            <property name="action-target">&apos;screen&apos;</property>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="delay">
-                            <property name="adjustment">delay_adjustment</property>
+                          <object class="GtkCheckButton" id="grab_window">
+                            <property name="use_underline">1</property>
+                            <property name="margin-start">20</property>
+                            <property name="group">grab_screen</property>
+                            <property name="label" translatable="yes">Grab Current _Window</property>
+                            <property name="action-name">dialog.grab</property>
+                            <property name="action-target">&apos;window&apos;</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="grab_area">
+                            <property name="use_underline">1</property>
+                            <property name="margin-start">20</property>
+                            <property name="group">grab_screen</property>
+                            <property name="label" translatable="yes">Select _Area to Grab</property>
+                            <property name="action-name">dialog.grab</property>
+                            <property name="action-target">&apos;area&apos;</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="delay_box">
+                            <property name="margin-start">20</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="use_underline">1</property>
+                                <property name="label" translatable="yes">Grab after a _delay of</property>
+                                <property name="mnemonic_widget">delay</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="delay">
+                                <property name="adjustment">delay_adjustment</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">seconds</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
                           <object class="GtkLabel">
-                            <property name="label" translatable="yes">seconds</property>
+                            <property name="xalign">0</property>
+                            <property name="margin-top">10</property>
+                            <property name="label" translatable="yes">Effects</property>
+                            <style>
+                              <class name="heading"/>
+                            </style>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="xalign">0</property>
-                        <property name="margin-top">10</property>
-                        <property name="label" translatable="yes">Effects</property>
-                        <style>
-                          <class name="heading"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="include_pointer">
-                        <property name="use_underline">1</property>
-                        <property name="margin-start">20</property>
-                        <property name="label" translatable="yes">Include _Pointer</property>
-                        <property name="action-name">dialog.pointer</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="include_border">
-                        <property name="use_underline">1</property>
-                        <property name="margin-start">20</property>
-                        <property name="label" translatable="yes">Include Window _Border</property>
-                        <property name="action-name">dialog.border</property>
+                        <child>
+                          <object class="GtkCheckButton" id="include_pointer">
+                            <property name="use_underline">1</property>
+                            <property name="margin-start">20</property>
+                            <property name="label" translatable="yes">Include _Pointer</property>
+                            <property name="action-name">dialog.pointer</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="include_border">
+                            <property name="use_underline">1</property>
+                            <property name="margin-start">20</property>
+                            <property name="label" translatable="yes">Include Window _Border</property>
+                            <property name="action-name">dialog.border</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
