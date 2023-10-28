@@ -6,23 +6,23 @@
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2016, 2018.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2022-2023.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-09-01 14:14+0000\n"
-"PO-Revision-Date: 2023-09-09 00:04+0200\n"
-"Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
+"POT-Creation-Date: 2023-10-28 13:32+0000\n"
+"PO-Revision-Date: 2023-10-28 19:23+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -85,20 +85,24 @@ msgstr "Name"
 msgid "Username"
 msgstr "Benutzername"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Starten von Software schlug fehl"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Wählen Sie eine Anwendung, um die Datei »%s« zu öffnen."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Wählen Sie eine Anwendung."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -106,7 +110,7 @@ msgstr ""
 "Es sind keine Anwendungen installiert, die »%s« öffnen können. Suchen Sie "
 "weitere Anwendungen in Software"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Es ist keine passende Anwendung installiert. Suchen Sie weitere Anwendungen "
