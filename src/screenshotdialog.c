@@ -414,7 +414,6 @@ screenshot_dialog_class_init (ScreenshotDialogClass *class)
 ScreenshotDialog *
 screenshot_dialog_new (const char *app_id,
                        gboolean permission_store_checked,
-                       gboolean interactive,
                        OrgGnomeShellScreenshot *shell)
 {
   g_autoptr(GtkWindowGroup) window_group = NULL;
@@ -442,12 +441,9 @@ screenshot_dialog_new (const char *app_id,
   gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
 
   dialog->shell = g_object_ref (shell);
-  dialog->skip_dialog = permission_store_checked && !interactive;
+  dialog->skip_dialog = permission_store_checked;
 
-  if (interactive)
-    show_options (dialog);
-  else
-    do_take_screenshot (dialog);
+  do_take_screenshot (dialog);
 
   return dialog;
 }

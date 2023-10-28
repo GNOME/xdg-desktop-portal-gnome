@@ -143,6 +143,51 @@ handle_close (XdpImplRequest *object,
   return FALSE;
 }
 
+static void
+interactive_screenshot_taken_cb (GObject      *object,
+                                 GAsyncResult *result,
+                                 gpointer      data)
+{
+  ScreenshotDialogHandle *handle = data;
+  g_autoptr(GError) error = NULL;
+  g_autofree char *uri = NULL;
+  gboolean success;
+
+  handle->response = 0;
+
+  org_gnome_shell_screenshot_call_interactive_screenshot_finish (shell,
+                                                                 &success,
+                                                                 &uri,
+                                                                 result,
+                                                                 &error);
+
+  if (error)
+    {
+      if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        {
+          g_warning ("InteractiveScreenshot cancelled");
+          handle->response = 1;
+        }
+      else
+        {
+          g_warning ("InteractiveScreenshot failed: %s", error->message);
+          handle->response = 2;
+        }
+    }
+  else if (!success)
+    {
+      g_warning ("InteractiveScreenshot didn't return a file");
+      handle->response = 2;
+    }
+  else
+    {
+      handle->uri = g_steal_pointer (&uri);
+      handle->response = 0;
+    }
+
+  send_response (handle);
+}
+
 static gboolean
 handle_screenshot (XdpImplScreenshot *object,
                    GDBusMethodInvocation *invocation,
@@ -154,66 +199,72 @@ handle_screenshot (XdpImplScreenshot *object,
   g_autoptr(Request) request = NULL;
   const char *sender;
   ScreenshotDialogHandle *handle;
-  gboolean permission_store_checked;
-  gboolean modal;
   gboolean interactive;
-  GtkWindow *dialog;
-  GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
-  GtkWidget *fake_parent;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
-
   request = request_new (sender, arg_app_id, arg_handle);
-
-  if (!g_variant_lookup (arg_options, "modal", "b", &modal))
-    modal = TRUE;
 
   if (!g_variant_lookup (arg_options, "interactive", "b", &interactive))
     interactive = FALSE;
-  if (!g_variant_lookup (arg_options, "permission_store_checked", "b", &permission_store_checked))
-    permission_store_checked = FALSE;
-
-  if (arg_parent_window)
-    {
-      external_parent = create_external_window_from_handle (arg_parent_window);
-      if (!external_parent)
-        g_warning ("Failed to associate portal window with parent window '%s'",
-                   arg_parent_window);
-    }
-
-  fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
-  g_object_ref_sink (fake_parent);
-
-  dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id,
-                                              permission_store_checked,
-                                              interactive,
-                                              shell));
-  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
-  gtk_window_set_modal (dialog, modal);
 
   handle = g_new0 (ScreenshotDialogHandle, 1);
   handle->impl = object;
   handle->invocation = invocation;
   handle->request = g_object_ref (request);
-  handle->dialog = g_object_ref_sink (dialog);
-  handle->external_parent = external_parent;
   handle->retval = "url";
+
+  if (interactive)
+    {
+      org_gnome_shell_screenshot_call_interactive_screenshot (shell, NULL,
+                                                              interactive_screenshot_taken_cb,
+                                                              handle);
+    }
+  else
+    {
+      ExternalWindow *external_parent = NULL;
+      GdkSurface *surface;
+      GtkWindow *dialog;
+      GtkWidget *fake_parent;
+      gboolean permission_store_checked;
+      gboolean modal;
+
+      if (!g_variant_lookup (arg_options, "modal", "b", &modal))
+        modal = TRUE;
+      if (!g_variant_lookup (arg_options, "permission_store_checked", "b", &permission_store_checked))
+        permission_store_checked = FALSE;
+
+      if (arg_parent_window)
+        {
+          external_parent = create_external_window_from_handle (arg_parent_window);
+          if (!external_parent)
+            g_warning ("Failed to associate portal window with parent window '%s'",
+                       arg_parent_window);
+        }
+
+      fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
+      g_object_ref_sink (fake_parent);
+
+      dialog = GTK_WINDOW (screenshot_dialog_new (arg_app_id,
+                                                  permission_store_checked,
+                                                  shell));
+      gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
+      gtk_window_set_modal (dialog, modal);
+
+      handle->dialog = g_object_ref_sink (dialog);
+      handle->external_parent = external_parent;
+
+      g_signal_connect (dialog, "done", G_CALLBACK (screenshot_dialog_done), handle);
+
+      gtk_widget_realize (GTK_WIDGET (dialog));
+
+      surface = gtk_native_get_surface (GTK_NATIVE (dialog));
+      if (external_parent)
+        external_window_set_parent_of (external_parent, surface);
+    }
 
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
 
-  g_signal_connect (dialog, "done", G_CALLBACK (screenshot_dialog_done), handle);
-
-  gtk_widget_realize (GTK_WIDGET (dialog));
-
-  surface = gtk_native_get_surface (GTK_NATIVE (dialog));
-  if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
-
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
-
-  if (interactive)
-    gtk_window_present (dialog);
 
   return TRUE;
 }

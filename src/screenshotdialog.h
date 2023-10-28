@@ -11,7 +11,6 @@ G_DECLARE_FINAL_TYPE (ScreenshotDialog, screenshot_dialog, SCREENSHOT, DIALOG, A
 
 ScreenshotDialog * screenshot_dialog_new (const char *app_id,
                                           gboolean permission_store_checked,
-                                          gboolean interactive,
                                           OrgGnomeShellScreenshot *shell);
 
 G_END_DECLS
