@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-05 13:16+0200\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2023-10-28 20:20+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -81,20 +81,24 @@ msgstr "Namn"
 msgid "Username"
 msgstr "Användarnamn"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Misslyckades med att starta Programvara"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Välj ett program för att öppna filen ”%s”."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Välj ett program."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -102,7 +106,7 @@ msgstr ""
 "Inga program som kan öppna ”%s” finns installerade. Du kan hitta fler "
 "program i Programvara"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Inget lämpligt program installerat. Du kan hitta fler program i Programvara."
