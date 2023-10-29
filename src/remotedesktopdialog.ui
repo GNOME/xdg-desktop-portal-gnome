@@ -69,7 +69,8 @@
                         <property name="visible">False</property>
                         <property name="active">False</property>
                         <property name="halign">center</property>
-                        <property name="label" translatable="yes">Remember This Selection</property>
+                        <property name="label" translatable="yes">_Remember This Selection</property>
+                        <property name="use-underline">True</property>
                       </object>
                     </child>
 
@@ -83,14 +84,16 @@
 
                         <child>
                           <object class="AdwSwitchRow" id="allow_remote_interaction_switch">
-                            <property name="title" translatable="yes">Allow Remote Interaction</property>
+                            <property name="title" translatable="yes">Allow Remote _Interaction</property>
+                            <property name="use-underline">True</property>
                             <signal name="notify::active" handler="on_allow_remote_interaction_switch_active_changed_cb" object="RemoteDesktopDialog" swapped="no" />
                           </object>
                         </child>
 
                         <child>
                           <object class="AdwSwitchRow" id="allow_remote_clipboard_switch">
-                            <property name="title" translatable="yes">Allow Clipboard Access</property>
+                            <property name="title" translatable="yes">Allow _Clipboard Access</property>
+                            <property name="use-underline">True</property>
                             <property name="visible">False</property>
                           </object>
                         </child>
