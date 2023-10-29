@@ -23,13 +23,15 @@
         <property name="show-title-buttons">0</property>
         <child>
           <object class="GtkButton" id="button_cancel">
-            <property name="label" translatable="yes">Cancel</property>
+            <property name="label" translatable="yes">_Cancel</property>
+            <property name="use-underline">True</property>
             <signal name="clicked" handler="wallpaper_dialog_cancel" object="WallpaperDialog" swapped="yes"/>
           </object>
         </child>
         <child type="end">
           <object class="GtkButton" id="set_wallpaper_button">
-            <property name="label" translatable="yes">Set</property>
+            <property name="label" translatable="yes">_Set</property>
+            <property name="use-underline">True</property>
             <signal name="clicked" handler="wallpaper_dialog_apply" object="WallpaperDialog" swapped="yes"/>
             <style>
               <class name="suggested-action"/>
