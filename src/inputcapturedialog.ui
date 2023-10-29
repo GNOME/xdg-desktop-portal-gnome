@@ -65,7 +65,8 @@
                     </style>
                     <child>
                       <object class="AdwActionRow">
-                        <property name="title" translatable="yes">Allow Remote Input Capturing</property>
+                        <property name="title" translatable="yes">Allow Remote _Input Capturing</property>
+                        <property name="use-underline">True</property>
                         <property name="activatable-widget">allow_input_capture_switch</property>
                         <child>
                           <object class="GtkSwitch" id="allow_input_capture_switch">
