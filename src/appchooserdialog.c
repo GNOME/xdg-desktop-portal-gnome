@@ -177,7 +177,7 @@ show_error_dialog (const gchar *primary,
   GtkWidget *message_dialog;
 
   message_dialog = adw_message_dialog_new (parent, primary, secondary);
-  adw_message_dialog_add_response (ADW_MESSAGE_DIALOG (message_dialog), "ok", _("_Ok"));
+  adw_message_dialog_add_response (ADW_MESSAGE_DIALOG (message_dialog), "ok", _("_OK"));
   adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG (message_dialog), "ok");
   gtk_window_present (GTK_WINDOW (message_dialog));
 }
