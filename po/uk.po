@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
-"issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-05 21:18+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
+"/issues\n"
+"POT-Creation-Date: 2023-10-31 16:44+0000\n"
+"PO-Revision-Date: 2023-10-31 21:13+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -80,20 +80,24 @@ msgstr "Назва"
 msgid "Username"
 msgstr "Користувач"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_Гаразд"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Не вдалося запустити «Програмні засоби»"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Виберіть програму для відкриття файла «%s»."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Виберіть програму."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -101,7 +105,7 @@ msgstr ""
 "Не встановлено жодної програми, яка придатна для відкриття «%s». Потрібні "
 "вам програми ви можете знайти за допомогою програми «Програмні засоби»."
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Не встановлено відповідної програми. Потрібні вам програми ви можете знайти "
@@ -165,7 +169,6 @@ msgid "Capture input"
 msgstr "Захоплення введення"
 
 #: src/inputcapturedialog.ui:68
-#| msgid "Allow remote interaction"
 msgid "Allow remote input capturing"
 msgstr "Дозволити віддалене захоплення введення"
 
