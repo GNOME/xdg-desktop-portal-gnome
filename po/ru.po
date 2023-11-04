@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-05 15:20+0300\n"
+"POT-Creation-Date: 2023-10-28 13:32+0000\n"
+"PO-Revision-Date: 2023-10-28 17:00+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -81,20 +81,24 @@ msgstr "Имя"
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_Ok"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Не удалось запустить Центр приложений"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Выберите приложение для открытия файла «%s»."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Выберите приложение."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -102,7 +106,7 @@ msgstr ""
 "Нет установленных приложений, способных открыть «%s». Вы можете найти больше "
 "приложений в Центре приложений"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Не найдено подходящее установленное приложение. Вы можете найти больше "
