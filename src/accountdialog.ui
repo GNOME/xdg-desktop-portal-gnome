@@ -72,13 +72,31 @@
 
                     <!-- Profile Picture -->
                     <child>
-                      <object class="GtkButton" id="button">
+                      <object class="GtkOverlay">
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <signal name="clicked" handler="image_button_clicked" swapped="yes"/>
                         <child>
                           <object class="AdwAvatar" id="image">
                             <property name="size">96</property>
+                          </object>
+                        </child>
+                        <child type="overlay">
+                          <object class="AdwBin">
+                            <style>
+                              <class name="cutout-button"/>
+                            </style>
+                            <property name="halign">end</property>
+                            <property name="valign">end</property>
+                            <child>
+                              <object class="GtkButton" id="image_button">
+                                <property name="tooltip-text" translatable="yes">Change Avatar</property>
+                                <property name="icon-name">document-edit-symbolic</property>
+                                <signal name="clicked" handler="image_button_clicked" swapped="yes"/>
+                                <style>
+                                  <class name="circular"/>
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>

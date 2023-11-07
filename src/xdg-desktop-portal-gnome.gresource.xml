@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix='/org/freedesktop/portal/desktop/gnome'>
     <file>accountdialog.ui</file>
+    <file>accountdialog.css</file>
     <file>appchooserdialog.ui</file>
     <file>appchooserrow.ui</file>
     <file>inputcapturedialog.ui</file>

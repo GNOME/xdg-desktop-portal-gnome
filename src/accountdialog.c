@@ -18,6 +18,7 @@ struct _AccountDialog {
   GtkWidget *name;
   GtkWidget *fullname;
   AdwAvatar *image;
+  GtkButton *image_button;
 
   char *icon_file;
 };
@@ -34,7 +35,17 @@ G_DEFINE_TYPE (AccountDialog, account_dialog, ADW_TYPE_WINDOW)
 static void
 account_dialog_init (AccountDialog *dialog)
 {
+  static GtkCssProvider *provider = NULL;
   gtk_widget_init_template (GTK_WIDGET (dialog));
+
+  if (provider == NULL)
+    {
+      provider = gtk_css_provider_new ();
+      gtk_css_provider_load_from_resource (provider, "/org/freedesktop/portal/desktop/gnome/accountdialog.css");
+      gtk_style_context_add_provider_for_display (gtk_widget_get_display (GTK_WIDGET (dialog->image_button)),
+                                                  GTK_STYLE_PROVIDER (provider),
+                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
 }
 
 static void
@@ -192,6 +203,7 @@ account_dialog_class_init (AccountDialogClass *class)
   gtk_widget_class_bind_template_child (widget_class, AccountDialog, name);
   gtk_widget_class_bind_template_child (widget_class, AccountDialog, fullname);
   gtk_widget_class_bind_template_child (widget_class, AccountDialog, image);
+  gtk_widget_class_bind_template_child (widget_class, AccountDialog, image_button);
 
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, image_button_clicked);
