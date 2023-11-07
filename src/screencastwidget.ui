@@ -13,7 +13,8 @@
           <object class="GtkStackPage">
             <property name="visible" bind-source="window_selection" bind-property="visible" bind-flags="sync-create"/>
             <property name="name">windows_page</property>
-            <property name="title" translatable="yes">Single Window</property>
+            <property name="title" translatable="yes">Single _Window</property>
+            <property name="use-underline">True</property>
             <property name="child">
               <object class="GtkBox" id="window_selection">
                 <property name="orientation">vertical</property>
@@ -59,7 +60,8 @@
           <object class="GtkStackPage">
             <property name="visible" bind-source="monitor_selection" bind-property="visible" bind-flags="sync-create"/>
             <property name="name">monitors_page</property>
-            <property name="title" translatable="yes">Entire Screen</property>
+            <property name="title" translatable="yes">_Entire Screen</property>
+            <property name="use-underline">True</property>
             <property name="child">
               <object class="GtkBox" id="monitor_selection">
                 <property name="visible">0</property>
