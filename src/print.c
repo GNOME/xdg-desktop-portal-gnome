@@ -436,6 +436,7 @@ handle_print (XdpImplPrint          *object,
               GVariant              *arg_fd_in,
               GVariant              *arg_options)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   g_autoptr(Request) request = NULL;
   const char *sender;
   GtkWindow *dialog;
@@ -506,6 +507,10 @@ handle_print (XdpImplPrint          *object,
                                                  GTK_PRINT_CAPABILITY_SCALE |
                                                  GTK_PRINT_CAPABILITY_NUMBER_UP
                                                  );
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, dialog);
+
   handle = g_new0 (PrintDialogHandle, 1);
   handle->impl = object;
   handle->invocation = invocation;
@@ -609,6 +614,7 @@ handle_prepare_print (XdpImplPrint          *object,
                       GVariant              *arg_page_setup,
                       GVariant              *arg_options)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   g_autoptr(Request) request = NULL;
   const char *sender;
   GtkWindow *dialog;
@@ -661,6 +667,9 @@ handle_prepare_print (XdpImplPrint          *object,
   gtk_print_unix_dialog_set_embed_page_setup (GTK_PRINT_UNIX_DIALOG (dialog), TRUE);
   gtk_print_unix_dialog_set_settings (GTK_PRINT_UNIX_DIALOG (dialog), settings);
   gtk_print_unix_dialog_set_page_setup (GTK_PRINT_UNIX_DIALOG (dialog), page_setup);
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, dialog);
 
   g_object_unref (settings);
   g_object_unref (page_setup);
