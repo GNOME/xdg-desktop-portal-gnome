@@ -417,6 +417,7 @@ screenshot_dialog_new (const char *app_id,
                        gboolean interactive,
                        OrgGnomeShellScreenshot *shell)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   ScreenshotDialog *dialog;
   g_autofree char *heading = NULL;
 
@@ -436,6 +437,9 @@ screenshot_dialog_new (const char *app_id,
     heading = g_strdup (_("Share this screenshot with the requesting app?"));
 
   gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
 
   dialog->shell = g_object_ref (shell);
   dialog->skip_dialog = permission_store_checked && !interactive;
