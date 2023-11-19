@@ -382,6 +382,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
                              const char            *session_handle,
                              unsigned int           capabilities)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   InputCaptureDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
   GdkSurface *surface;
@@ -406,6 +407,9 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   dialog = GTK_WIDGET (input_capture_dialog_new (request->app_id));
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, dialog);
 
   dialog_handle = g_new0 (InputCaptureDialogHandle, 1);
   dialog_handle->request = g_object_ref (request);
