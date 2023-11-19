@@ -280,6 +280,7 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
                               Request *request,
                               const char *parent_window)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   RemoteDesktopDialogHandle *dialog_handle;
   ExternalWindow *external_parent;
   GdkSurface *surface;
@@ -310,6 +311,9 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
                                            session->persist_mode));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, TRUE);
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, dialog);
 
   dialog_handle = g_new0 (RemoteDesktopDialogHandle, 1);
   dialog_handle->session = session;
