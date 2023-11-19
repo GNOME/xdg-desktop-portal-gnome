@@ -523,6 +523,7 @@ handle_open (XdpImplFileChooser    *object,
              const char            *arg_title,
              GVariant              *arg_options)
 {
+  g_autoptr(GtkWindowGroup) window_group = NULL;
   g_autoptr (GVariant) choices = NULL;
   g_autoptr (GVariant) current_filter = NULL;
   g_autoptr(Request) request = NULL;
@@ -600,6 +601,9 @@ handle_open (XdpImplFileChooser    *object,
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
   gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (dialog), multiple);
+
+  window_group = gtk_window_group_new ();
+  gtk_window_group_add_window (window_group, dialog);
 
   handle = g_new0 (FileDialogHandle, 1);
   handle->impl = object;
