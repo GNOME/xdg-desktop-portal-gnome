@@ -30,6 +30,7 @@
 
 #include "appchooserdialog.h"
 #include "appchooserrow.h"
+#include <adwaita.h>
 
 #define LOCATION_MAX_LENGTH 40
 #define INITIAL_LIST_SIZE 3
