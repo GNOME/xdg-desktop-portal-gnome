@@ -78,7 +78,7 @@ get_app_state (void)
       while (g_variant_iter_loop (iter, "{&s@a{sv}}", &app_id, &dict))
         {
           const char *sandboxed_app_id = NULL;
-          const char **seats = NULL;
+          g_autofree const char **seats = NULL;
           char *app;
           AppState state = BACKGROUND;
 
@@ -287,8 +287,8 @@ static gboolean
 compare_app_states (GVariant *a, GVariant *b)
 {
   GVariantIter *iter;
-  const char *app_id;
-  GVariant *value;
+  const char *app_id = NULL;
+  GVariant *value = NULL;
   gboolean changed;
 
   changed = FALSE;
@@ -310,6 +310,7 @@ compare_app_states (GVariant *a, GVariant *b)
                    app_state_to_str (v1), app_state_to_str (v2));
           changed = TRUE;
         }
+      g_clear_pointer (&value, g_variant_unref);
     }
   g_variant_iter_free (iter);
 

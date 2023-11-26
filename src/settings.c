@@ -107,7 +107,7 @@ static GVariant *
 get_theme_value (const char *key)
 {
   SettingsBundle *bundle = g_hash_table_lookup (settings, "org.gnome.desktop.a11y.interface");
-  const char *theme;
+  g_autofree char *theme = NULL;
   gboolean hc = FALSE;
 
   if (bundle && g_settings_schema_has_key (bundle->schema, "high-contrast"))
@@ -151,11 +151,18 @@ settings_handle_read_all (XdpImplSettings       *object,
         {
           if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
               strcmp (keys[i], "enable-animations") == 0)
-            g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
+	    {
+	      g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
+	    }
           else if (strcmp (key, "org.gnome.desktop.interface") == 0 && strcmp (keys[i], "gtk-theme") == 0)
-            g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
+	    {
+	      g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
+	    }
           else
-            g_variant_dict_insert_value (&dict, keys[i], g_settings_get_value (value->settings, keys[i]));
+	    {
+	      g_autoptr(GVariant) val = g_settings_get_value (value->settings, keys[i]);
+	      g_variant_dict_insert_value (&dict, keys[i], val);
+	    }
         }
 
       g_variant_builder_add (builder, "{s@a{sv}}", key, g_variant_dict_end (&dict));
