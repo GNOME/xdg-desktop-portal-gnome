@@ -1,3 +1,13 @@
+Changes in 45.1
+=================
+
+- accountdialog: Fix crash when pressing Escape
+- Send remote file URIs as local FUSE URIs
+- Various fixes to screencast and input capture
+- Expose org.gnome.desktop.calendar through the Settings portal
+- Put dialogs in separate window groups
+- Translation updates
+
 Changes in 45.0
 =================
 
