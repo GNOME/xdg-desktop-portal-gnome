@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-08 16:46+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2023-11-26 14:34+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 42.0\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -80,26 +80,31 @@ msgstr "שם"
 msgid "Username"
 msgstr "שם משתמש"
 
-#: src/appchooserdialog.c:228
-msgid "Failed to start Software"
-msgstr "הפעלת תכנה נכשלה"
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_אישור"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:220
+msgid "Failed to start Software"
+msgstr "הפעלת תוכנה נכשלה"
+
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "נא לבחור יישום לפתיחת הקובץ „%s”."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "בחירת יישום."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
-msgstr "לא מותקנים יישומים שיכולים לפתוח „%s”. ניתן למצוא יישומים נוספים בתכנה"
+msgstr ""
+"לא מותקנים יישומים שיכולים לפתוח „%s”. ניתן למצוא יישומים נוספים בתוכנה"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "לא מותקן יישום מתאים. ניתן למצוא יישומים נוספים בתכנה."
 
