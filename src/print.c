@@ -260,8 +260,7 @@ print_file (int                fd,
   int fd2;
   g_autofree char *app_desktop_fullname = NULL;
   g_autoptr (GDesktopAppInfo) app_info = NULL;
-  // ensures the app_name won't be NULL even if the app_id.desktop file doesn't exist
-  g_autofree char *app_name = g_strdup (app_id);
+  g_autofree char *app_name = NULL;
 
   if (!g_str_has_suffix (app_id, ".desktop"))
     {
@@ -276,6 +275,11 @@ print_file (int                fd,
   if (app_info)
     {
       app_name = g_desktop_app_info_get_locale_string (app_info, "Name");
+    }
+  else
+    {
+      // ensures the app_name won't be NULL even if the app_id.desktop file doesn't exist
+      app_name = g_strdup (app_id);
     }
 
   title = g_strdup_printf ("Document from %s", app_name);
@@ -589,12 +593,14 @@ handle_prepare_print_response (GtkDialog *dialog,
 
     case GTK_RESPONSE_OK:
       {
+        g_autoptr(GtkPrintSettings) settings = gtk_print_unix_dialog_get_settings (GTK_PRINT_UNIX_DIALOG (handle->dialog));
+
         handle->response = 0;
 
         handle->params = print_params_new (handle->request->app_id,
                                            preview,
                                            gtk_print_unix_dialog_get_page_setup (GTK_PRINT_UNIX_DIALOG (handle->dialog)),
-                                           gtk_print_unix_dialog_get_settings (GTK_PRINT_UNIX_DIALOG (handle->dialog)),
+                                           settings,
                                            gtk_print_unix_dialog_get_selected_printer (GTK_PRINT_UNIX_DIALOG (handle->dialog)));
       }
       break;
