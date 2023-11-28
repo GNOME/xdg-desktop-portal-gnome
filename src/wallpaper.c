@@ -217,6 +217,8 @@ handle_set_wallpaper_uri (XdpImplWallpaper *object,
                    arg_parent_window);
     }
 
+  handle->external_parent = external_parent;
+
   fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
