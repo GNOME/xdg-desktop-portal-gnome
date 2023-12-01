@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2016-2023.
+# Alex Jr <alexalencarjr@outlook.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-09-25 09:54-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2023-11-27 18:30+0000\n"
+"PO-Revision-Date: 2023-12-01 13:57-0300\n"
+"Last-Translator: Alex Jr <alexalencarjr@outlook.com>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 45.alpha0\n"
+"X-Generator: Gtranslator 45.3\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-Branch: main\n"
@@ -65,7 +66,7 @@ msgid "Share Details"
 msgstr "Compartilhar detalhes"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:258 src/filechooser.c:534
+#: src/dynamic-launcher.c:258 src/filechooser.c:583
 #: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
 #: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
@@ -85,20 +86,24 @@ msgstr "Nome"
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:202
+msgid "_Ok"
+msgstr "_Ok"
+
+#: src/appchooserdialog.c:221
 msgid "Failed to start Software"
 msgstr "Falha ao iniciar Software"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:385
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Escolha um aplicativo para abrir o arquivo “%s”."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:390
 msgid "Choose an app."
 msgstr "Escolha um aplicativo."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:407
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -106,7 +111,7 @@ msgstr ""
 "Nenhum aplicativo instalado que pode abrir “%s”. Você pode encontrar mais "
 "aplicativos no Software"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:412
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nenhum aplicativo adequado instalado. Você pode encontrar mais aplicativos "
@@ -116,7 +121,7 @@ msgstr ""
 msgid "Open With…"
 msgstr "Abrir com…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:20 src/filechooser.c:578
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -140,19 +145,19 @@ msgstr "Criar aplicativo"
 msgid "C_reate"
 msgstr "C_riar"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:578
 msgid "_Select"
 msgstr "_Selecionar"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:580
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/filechooser.c:724
+#: src/filechooser.c:776
 msgid "Open files read-only"
 msgstr "Abrir arquivos em somente leitura"
 
-#: src/filechooser.c:731
+#: src/filechooser.c:783
 msgid "Open directories read-only"
 msgstr "Abrir diretórios em somente leitura"
 
@@ -224,12 +229,12 @@ msgstr "Janela individual"
 msgid "Entire Screen"
 msgstr "Toda a tela"
 
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:436
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Compartilhar essa captura de tela com %s?"
 
-#: src/screenshotdialog.c:439
+#: src/screenshotdialog.c:440
 msgid "Share this screenshot with the requesting app?"
 msgstr "Compartilhar essa captura de tela com o aplicativo requisitante?"
 
