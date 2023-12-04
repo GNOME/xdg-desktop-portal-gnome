@@ -6,6 +6,7 @@
     <property name="resizable">0</property>
     <property name="default-width">500</property>
     <property name="default-height">300</property>
+    <property name="default-widget">accept_button</property>
 
     <child>
       <object class="GtkShortcutController">
