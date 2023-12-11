@@ -409,7 +409,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   window_group = gtk_window_group_new ();
-  gtk_window_group_add_window (window_group, dialog);
+  gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
 
   dialog_handle = g_new0 (InputCaptureDialogHandle, 1);
   dialog_handle->request = g_object_ref (request);
