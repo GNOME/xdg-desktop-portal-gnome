@@ -18,7 +18,7 @@ if systemduserunitdir == ''
   if (build_systemd_service.auto() or build_systemd_service.enabled()) and systemd.found()
     systemduserunitdir = systemd.get_variable(
       pkgconfig: 'systemduserunitdir',
-      pkgconfig_define: ['prefix', get_option('prefix')]
+      pkgconfig_define: ['prefix', prefix]
     )
   endif
 endif
