@@ -3,10 +3,10 @@ option('dbus_service_dir',
   description: 'Directory for D-Bus service files'
 )
 
-option('systemd-service',
+option('systemd',
   type: 'feature',
-  value: 'enabled',
-  description: 'Whether or not the systemd user service should be built'
+  value: 'auto',
+  description: 'Enable systemd support'
 )
 
 option('systemduserunitdir',

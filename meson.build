@@ -2,7 +2,7 @@ project(
   'xdg-desktop-portal-gnome',
   'c',
   version: '46.alpha',
-  meson_version: '>= 0.57.0',
+  meson_version: '>= 0.59.0',
   license: 'LGPLv2.1+'
 )
 
@@ -11,11 +11,11 @@ datadir = get_option('datadir')
 libdir = get_option('libdir')
 libexecdir = get_option('libexecdir')
 
-build_systemd_service = get_option('systemd-service')
+build_systemd_service = get_option('systemd')
 systemduserunitdir = get_option('systemduserunitdir')
 if systemduserunitdir == ''
   systemd = dependency('systemd', version: '>= 242', required: build_systemd_service)
-  if (build_systemd_service.auto() or build_systemd_service.enabled()) and systemd.found()
+  if build_systemd_service.allowed() and systemd.found()
     systemduserunitdir = systemd.get_variable(
       pkgconfig: 'systemduserunitdir',
       pkgconfig_define: ['prefix', prefix]
