@@ -70,7 +70,7 @@ typedef struct _InputCaptureDialogHandle
   char *session_handle;
   GDBusMethodInvocation *create_session_invocation;
 
-  GtkWidget *dialog;
+  GtkWindow *dialog;
   ExternalWindow *external_parent;
 
   unsigned int capabilities;
@@ -89,7 +89,7 @@ G_DEFINE_TYPE (InputCaptureSession, input_capture_session, session_get_type ())
 static void
 input_capture_dialog_handle_free (InputCaptureDialogHandle *dialog_handle)
 {
-  g_clear_pointer ((GtkWindow**)&dialog_handle->dialog, gtk_window_destroy);
+  g_clear_pointer (&dialog_handle->dialog, gtk_window_destroy);
   g_clear_object (&dialog_handle->external_parent);
   g_object_unref (dialog_handle->request);
   g_free (dialog_handle->session_handle);
@@ -150,8 +150,7 @@ on_request_handle_close_cb (XdpImplRequest           *object,
                             GDBusMethodInvocation    *invocation,
                             InputCaptureDialogHandle *dialog_handle)
 {
-  gtk_window_close (GTK_WINDOW (dialog_handle->dialog));
-
+  gtk_window_close (dialog_handle->dialog);
   return FALSE;
 }
 
@@ -387,7 +386,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   ExternalWindow *external_parent;
   GdkSurface *surface;
   GtkWidget *fake_parent;
-  GtkWidget *dialog;
+  GtkWindow *dialog;
 
   if (parent_window)
     {
@@ -404,9 +403,9 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WIDGET (input_capture_dialog_new (request->app_id));
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (fake_parent));
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+  dialog = GTK_WINDOW (input_capture_dialog_new (request->app_id));
+  gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
+  gtk_window_set_modal (dialog, TRUE);
 
   window_group = gtk_window_group_new ();
   gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
@@ -424,13 +423,13 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   g_signal_connect (dialog, "done",
                     G_CALLBACK (on_input_capture_dialog_done_cb), dialog_handle);
 
-  gtk_widget_realize (dialog);
+  gtk_widget_realize (GTK_WIDGET (dialog));
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
     external_window_set_parent_of (external_parent, surface);
 
-  gtk_widget_show (dialog);
+  gtk_window_present (dialog);
 }
 
 static gboolean
