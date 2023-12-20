@@ -55,7 +55,7 @@ button_clicked (GtkWidget          *button,
 {
   int response;
 
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (button == dialog->accept_button)
     response = GTK_RESPONSE_OK;
@@ -133,7 +133,7 @@ input_capture_dialog_init (InputCaptureDialog *dialog)
 static gboolean
 input_capture_dialog_close_request (GtkWindow *dialog)
 {
-  gtk_widget_hide (GTK_WIDGET (dialog));
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL);
 
