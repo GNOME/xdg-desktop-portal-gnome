@@ -2,7 +2,7 @@
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
   <template class="ScreenCastDialog" parent="AdwWindow">
-    <property name="title" translatable="yes">Screen Share</property>
+    <property name="title" translatable="yes">Share Screen</property>
     <property name="resizable">0</property>
     <property name="default-width">500</property>
     <property name="default-height">300</property>
