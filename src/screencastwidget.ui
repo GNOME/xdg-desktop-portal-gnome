@@ -23,9 +23,6 @@
                 <child>
                   <object class="GtkLabel" id="window_heading">
                     <property name="xalign">0.0</property>
-                    <style>
-                      <class name="heading"/>
-                    </style>
                   </object>
                 </child>
 
@@ -70,9 +67,6 @@
                 <child>
                   <object class="GtkLabel" id="monitor_heading">
                     <property name="xalign">0.0</property>
-                    <style>
-                      <class name="heading"/>
-                    </style>
                   </object>
                 </child>
                 <child>
