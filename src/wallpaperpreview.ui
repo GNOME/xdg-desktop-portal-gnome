@@ -44,8 +44,8 @@
                     <child>
                       <object class="GtkBox">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Activities</property>
+                          <object class="GtkPicture">
+                            <property name="paintable">resource:///org/freedesktop/portal/desktop/gnome/assets/gnome-shell-workspace-indicator.svg</property>
                           </object>
                         </child>
                         <child type="center">
@@ -55,26 +55,10 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkBox">
-                            <property name="spacing">4</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">network-wireless-symbolic</property>
-                                <property name="pixel-size">6</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">audio-volume-high-symbolic</property>
-                                <property name="pixel-size">6</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">battery-low-symbolic</property>
-                                <property name="pixel-size">6</property>
-                              </object>
-                            </child>
+                          <object class="GtkPicture">
+                            <property name="margin-top">2</property>
+                            <property name="margin-bottom">2</property>
+                            <property name="paintable">resource:///org/freedesktop/portal/desktop/gnome/assets/gnome-shell-system.svg</property>
                           </object>
                         </child>
                       </object>
