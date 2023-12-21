@@ -113,6 +113,7 @@ sources = built_sources + files(
   'screenshot.c',
   'screenshotdialog.c',
   'screencast.c',
+  'screencastgeometrycontainer.c',
   'screencastwidget.c',
   'screencastdialog.c',
   'session.c',
