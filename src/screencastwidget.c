@@ -44,13 +44,13 @@ struct _ScreenCastWidget
 
   GtkWidget             *source_type_switcher;
   GtkWidget             *source_type;
-  GtkWidget             *monitor_selection_page;
+
+  GtkWidget             *heading;
+
   GtkWidget             *window_selection_page;
+  GtkWidget             *monitor_selection_page;
 
-  GtkWidget             *monitor_heading;
   GtkWidget             *monitor_container;
-
-  GtkWidget             *window_heading;
   GtkWidget             *window_list;
 
   GtkCheckButton        *persist_check;
@@ -393,14 +393,6 @@ on_stack_switch (ScreenCastWidget *self,
                  GParamSpec *pspec,
                  AdwViewStack   *stack)
 {
-  AdwViewStackPage *selected_page;
-  bool monitor_page_selected;
-
-  selected_page = adw_view_stack_pages_get_selected_page (
-          ADW_VIEW_STACK_PAGES (adw_view_stack_get_pages (ADW_VIEW_STACK (self->source_type))));
-  monitor_page_selected = selected_page == ADW_VIEW_STACK_PAGE (self->monitor_selection_page);
-  gtk_widget_set_visible (self->monitor_heading, monitor_page_selected);
-  gtk_widget_set_visible (self->window_heading, !monitor_page_selected);
   reset_selection (self);
 }
 
@@ -555,9 +547,8 @@ screen_cast_widget_class_init (ScreenCastWidgetClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, source_type);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_selection_page);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_selection_page);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_heading);
+  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, monitor_container);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_heading);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastWidget, window_list);
 
   quark_monitor_widget_data = g_quark_from_static_string ("-monitor-widget-connector-quark");
@@ -638,8 +629,7 @@ void
 screen_cast_widget_set_app_id (ScreenCastWidget *widget,
                                const char       *app_id)
 {
-  g_autofree char *monitor_heading = NULL;
-  g_autofree char *window_heading = NULL;
+  g_autofree char *heading = NULL;
 
   if (app_id && strcmp (app_id, "") != 0)
     {
@@ -653,19 +643,15 @@ screen_cast_widget_set_app_id (ScreenCastWidget *widget,
         display_name = g_app_info_get_display_name (info);
       else
         display_name = app_id;
-      monitor_heading = g_strdup_printf (_("Select a screen to share with %s"),
-                                         display_name);
-      window_heading = g_strdup_printf (_("Select a window to share with %s"),
-                                        display_name);
+      heading = g_strdup_printf (_("%s wants to share your screen. Choose what you'd like to share."),
+                                 display_name);
     }
   else
     {
-      monitor_heading = g_strdup (_("Select a screen to share with the requesting app"));
-      window_heading = g_strdup (_("Select a window to share with the requesting app"));
+      heading = g_strdup (_("An app wants to share your screen. Choose what you'd like to share."));
     }
 
-  gtk_label_set_label (GTK_LABEL (widget->monitor_heading), monitor_heading);
-  gtk_label_set_label (GTK_LABEL (widget->window_heading), window_heading);
+  gtk_label_set_label (GTK_LABEL (widget->heading), heading);
 }
 
 void

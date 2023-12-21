@@ -5,10 +5,7 @@
     <property name="orientation">vertical</property>
     <property name="spacing">17</property>
     <child>
-      <object class="GtkLabel" id="window_heading"></object>
-    </child>
-    <child>
-      <object class="GtkLabel" id="monitor_heading"></object>
+      <object class="GtkLabel" id="heading"></object>
     </child>
 
     <!-- Persist permission -->
