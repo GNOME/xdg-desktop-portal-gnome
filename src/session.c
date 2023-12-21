@@ -77,11 +77,7 @@ void
 session_close (Session *session, gboolean notify)
 {
   if (notify)
-    {
-      GVariantBuilder details_builder;
-      g_variant_builder_init (&details_builder, G_VARIANT_TYPE_VARDICT);
-      g_signal_emit_by_name (session, "closed", g_variant_builder_end (&details_builder));
-    }
+    g_signal_emit_by_name (session, "closed");
 
   if (session->exported)
     session_unexport (session);
