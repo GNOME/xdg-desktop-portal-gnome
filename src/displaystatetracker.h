@@ -18,28 +18,43 @@
 
 #pragma once
 
+#include <gtk/gtk.h>
 #include <glib-object.h>
 
 typedef struct _Monitor Monitor;
 typedef struct _LogicalMonitor LogicalMonitor;
 
+typedef struct
+{
+  char *label;
+  gboolean primary;
+  graphene_rect_t rect;
+} MonitorIllustration;
+
+
+#define DISPLAY_TYPE_STATE_TRACKER display_state_tracker_get_type ()
+
 G_DECLARE_FINAL_TYPE (DisplayStateTracker, display_state_tracker,
                       DISPLAY, STATE_TRACKER, GObject)
 
-void monitor_free (Monitor *monitor);
+void                       monitor_free (Monitor *monitor);
 
-Monitor * monitor_dup (Monitor *monitor);
+Monitor                   *monitor_dup (Monitor *monitor);
 
-const char * monitor_get_connector (Monitor *monitor);
+const char                *monitor_get_connector      (Monitor *monitor);
 
-const char * monitor_get_match_string (Monitor *monitor);
+const char                *monitor_get_match_string   (Monitor *monitor);
 
-const char * monitor_get_display_name (Monitor *monitor);
+const char                *monitor_get_display_name   (Monitor *monitor);
 
-GList * logical_monitor_get_monitors (LogicalMonitor *logical_monitor);
+int                        monitor_get_number (Monitor *monitor);
 
-gboolean logical_monitor_is_primary (LogicalMonitor *logical_monitor);
+GList                     *logical_monitor_get_monitors (LogicalMonitor *logical_monitor);
 
-GList * display_state_tracker_get_logical_monitors (DisplayStateTracker *tracker);
+const MonitorIllustration *logical_monitor_get_illustration (LogicalMonitor *logical_monitor);
 
-DisplayStateTracker * display_state_tracker_get (void);
+gboolean                   logical_monitor_is_primary (LogicalMonitor *logical_monitor);
+
+GList                     *display_state_tracker_get_logical_monitors (DisplayStateTracker *tracker);
+
+DisplayStateTracker       *display_state_tracker_get (void);
