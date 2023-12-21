@@ -250,6 +250,28 @@ update_windows_list (ScreenCastWidget *widget)
 }
 
 static void
+auto_select_singular_monitor (ScreenCastWidget *self)
+{
+  /* Automatically select monitor if it is the only option */
+  if (self->source_types.monitor || self->source_types.virtual_monitor)
+    {
+      AdwViewStackPage *selected_page;
+
+      selected_page = adw_view_stack_pages_get_selected_page (
+              ADW_VIEW_STACK_PAGES (adw_view_stack_get_pages (ADW_VIEW_STACK (self->source_type))));
+      if (selected_page == ADW_VIEW_STACK_PAGE (self->monitor_selection_page))
+        {
+          GtkWidget *monitor_button;
+
+          monitor_button = gtk_widget_get_first_child (self->monitor_container);
+          if (monitor_button && gtk_widget_get_next_sibling (monitor_button) == NULL)
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (monitor_button), TRUE);
+        }
+    }
+  schedule_selection_change (self);
+}
+
+static void
 update_monitor_container (ScreenCastWidget *widget)
 {
   GList *logical_monitors;
@@ -317,6 +339,8 @@ update_monitor_container (ScreenCastWidget *widget)
     gtk_widget_add_css_class (monitor_container, "singular");
   else
     gtk_widget_remove_css_class (monitor_container, "singular");
+
+  auto_select_singular_monitor (widget);
 }
 
 static gboolean
@@ -353,6 +377,8 @@ reset_selection (ScreenCastWidget *self)
 
   foreach_widget_child (self->monitor_container, (GFunc) untoggle_button, self->monitor_container);
   foreach_widget_child (self->window_list, (GFunc) unselect_row, self->window_list);
+
+  auto_select_singular_monitor (self);
 }
 
 static void
