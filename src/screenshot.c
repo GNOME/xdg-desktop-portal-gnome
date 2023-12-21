@@ -366,6 +366,8 @@ screenshot_init (GDBusConnection *bus,
   if (shell == NULL)
     return FALSE;
 
+  g_dbus_proxy_set_default_timeout (G_DBUS_PROXY (shell), G_MAXINT);
+
   g_debug ("providing %s", g_dbus_interface_skeleton_get_info (helper)->name);
 
   return TRUE;
