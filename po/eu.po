@@ -6,9 +6,9 @@
 msgid ""
 msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-06 19:22+0000\n"
-"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2023-12-24 19:22+0000\n"
+"Last-Translator: Asier Sarasua Garmendia <as-iersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -74,26 +74,30 @@ msgstr "Izena"
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_Ados"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Ezin izan da Software abiarazi"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Aukeratu aplikazio bat “%s” fitxategia irekitzeko."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Aukeratu aplikazio bat."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr "Ez dago “%s” ireki dezakeen aplikaziorik instalatuta. Aplikazio gehiago aurkitu ditzakezu Softwaren"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "Ez dago aplikazio egokirik instalatuta. Aplikazio gehiago aurkitu ditzakezu Softwaren"
 
