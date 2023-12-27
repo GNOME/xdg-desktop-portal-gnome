@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-05 15:02+0330\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2023-12-27 14:39+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -76,27 +76,31 @@ msgstr "نام"
 msgid "Username"
 msgstr "نام کاربری"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_تأیید"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "شکست در اجرای نرم‌افزار"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "گزینش کاره‌ای برای گشودن پروندهٔ «%s»."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "گزینش یک کاره."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در "
 "نرم‌افزارها بیابید"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "هیچ کارهٔ مناسبی نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در نرم‌افزارها بیابید."
 
