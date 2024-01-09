@@ -5,6 +5,7 @@ libexecdir_conf.set('libexecdir', prefix / libexecdir)
 
 # Portal
 gnome_portal_interfaces = [
+  'org.freedesktop.impl.portal.Access',
   'org.freedesktop.impl.portal.Account',
   'org.freedesktop.impl.portal.AppChooser',
   'org.freedesktop.impl.portal.Background',

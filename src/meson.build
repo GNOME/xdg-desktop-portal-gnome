@@ -88,6 +88,7 @@ deps = [
 ]
 
 sources = built_sources + files(
+  'access.c',
   'account.c',
   'accountdialog.c',
   'appchooser.c',
