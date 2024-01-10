@@ -228,7 +228,7 @@ settings_handle_read (XdpImplSettings       *object,
       return TRUE;
     }
   else if (strcmp (arg_namespace, "org.gnome.desktop.interface") == 0 &&
-           (strcmp (arg_key, "gtk-theme") == 0 || strcmp (arg_key, "icon-theme") == 0))
+           strcmp (arg_key, "gtk-theme") == 0)
     {
       g_dbus_method_invocation_return_value (invocation,
                                              g_variant_new ("(v)", get_theme_value (arg_key)));
