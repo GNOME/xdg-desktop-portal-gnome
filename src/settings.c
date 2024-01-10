@@ -305,9 +305,6 @@ on_settings_changed (GSettings             *settings,
       xdp_impl_settings_emit_setting_changed (user_data->self,
                                               "org.gnome.desktop.interface", "gtk-theme",
                                               g_variant_new ("v", get_theme_value ("gtk-theme")));
-      xdp_impl_settings_emit_setting_changed (user_data->self,
-                                              "org.gnome.desktop.interface", "icon-theme",
-                                              g_variant_new ("v", get_theme_value ("icon-theme")));
     }
 }
 
