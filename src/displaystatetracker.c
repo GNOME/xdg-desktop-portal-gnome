@@ -318,6 +318,8 @@ on_display_config_name_vanished (GDBusConnection *connection,
       g_cancellable_cancel (tracker->cancellable);
       g_clear_object (&tracker->cancellable);
     }
+
+  g_clear_object (&tracker->proxy);
 }
 
 DisplayStateTracker *
