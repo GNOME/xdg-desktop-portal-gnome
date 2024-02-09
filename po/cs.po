@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2024-01-13 12:44+0000\n"
-"PO-Revision-Date: 2024-01-21 21:32+0100\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-02-09 12:57+0000\n"
+"PO-Revision-Date: 2024-02-10 00:48+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -70,14 +70,14 @@ msgstr "Sdílet detaily"
 
 #: src/accountdialog.ui:29 src/appchooserdialog.ui:16
 #: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:30
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
 #: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
 #: src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:38 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Sdílet"
@@ -194,20 +194,19 @@ msgstr "Zachytit vstup"
 msgid "Allow Remote _Input Capturing"
 msgstr "Povol_it vzdálené zachytávání vstupu"
 
-#: src/remotedesktopdialog.ui:9
+#: src/remotedesktopdialog.ui:7
 msgid "Remote Desktop"
 msgstr "Vzdálená plocha"
 
-#: src/remotedesktopdialog.ui:72 src/screencastwidget.ui:35
-#: src/screencastwidget.ui:77
+#: src/remotedesktopdialog.ui:70
 msgid "_Remember This Selection"
 msgstr "Pamatovat si tento výbě_r"
 
-#: src/remotedesktopdialog.ui:87
+#: src/remotedesktopdialog.ui:85
 msgid "Allow Remote _Interaction"
 msgstr "Povolit vzdálenou _interakci"
 
-#: src/remotedesktopdialog.ui:95
+#: src/remotedesktopdialog.ui:93
 msgid "Allow _Clipboard Access"
 msgstr "Povolit přístup ke s_chránce"
 
@@ -215,33 +214,28 @@ msgstr "Povolit přístup ke s_chránce"
 msgid "Share Screen"
 msgstr "Sdílet obrazovku"
 
-#: src/screencastwidget.c:163
-msgid "Virtual monitor"
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
 msgstr "Virtuální monitor"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:646
 #, c-format
-msgid "Select a screen to share with %s"
-msgstr "Vyberte obrazovku pro sdílení s aplikací %s"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "Aplikace %s chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
-#: src/screencastwidget.c:543
-#, c-format
-msgid "Select a window to share with %s"
-msgstr "Vyberte okno pro sdílení s aplikací %s"
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "Aplikace chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
-#: src/screencastwidget.c:548
-msgid "Select a screen to share with the requesting app"
-msgstr "Vyberte obrazovku pro sdílení s aplikací, která o to žádá"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "Pamatovat si tento výbě_r"
 
-#: src/screencastwidget.c:549
-msgid "Select a window to share with the requesting app"
-msgstr "Vyberte okno pro sdílení s aplikací, která o to žádá"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_Okno aplikace"
 
-#: src/screencastwidget.ui:16
-msgid "Single _Window"
-msgstr "Samostatné _okno"
-
-#: src/screencastwidget.ui:60
+#: src/screencastwidget.ui:66
 msgid "_Entire Screen"
 msgstr "C_elá obrazovka"
 
@@ -317,6 +311,20 @@ msgstr "Nas_tavit"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Selhalo načtení souboru obrázku"
+
+#, c-format
+#~ msgid "Select a screen to share with %s"
+#~ msgstr "Vyberte obrazovku pro sdílení s aplikací %s"
+
+#, c-format
+#~ msgid "Select a window to share with %s"
+#~ msgstr "Vyberte okno pro sdílení s aplikací %s"
+
+#~ msgid "Select a screen to share with the requesting app"
+#~ msgstr "Vyberte obrazovku pro sdílení s aplikací, která o to žádá"
+
+#~ msgid "Select a window to share with the requesting app"
+#~ msgstr "Vyberte okno pro sdílení s aplikací, která o to žádá"
 
 #~ msgid "Screen Share"
 #~ msgstr "Sdílení obrazovky"
