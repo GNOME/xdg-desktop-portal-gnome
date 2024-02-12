@@ -1,7 +1,7 @@
 project(
   'xdg-desktop-portal-gnome',
   'c',
-  version: '46.alpha',
+  version: '46.beta',
   meson_version: '>= 0.59.0',
   license: 'LGPLv2.1+'
 )

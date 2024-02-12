@@ -1,3 +1,14 @@
+Changes in 46.beta
+=================
+
+- Depend on xdg-desktop-portal 1.18.2
+- Use modern Adwaita widgets thoroughly
+- Expose the org.gnome.desktop.calendar schema through the Settings portal
+- Put all dialogs in separate window groups so they don't block each other
+- Plug several memory leaks
+- Redesign the screencast screen picker
+- Translation updates
+
 Changes in 45.0
 =================
 
