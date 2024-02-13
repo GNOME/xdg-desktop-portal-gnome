@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2024-01-13 12:44+0000\n"
-"PO-Revision-Date: 2024-02-01 19:00+0300\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-02-09 12:57+0000\n"
+"PO-Revision-Date: 2024-02-11 19:05+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -70,14 +70,14 @@ msgstr "Подробности"
 
 #: src/accountdialog.ui:29 src/appchooserdialog.ui:16
 #: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:30
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
 #: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
 #: src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Отменить"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:38 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Дать доступ"
@@ -194,20 +194,19 @@ msgstr "Перехват входного сигнала"
 msgid "Allow Remote _Input Capturing"
 msgstr "Разрешить удалённый перехват в_ходного сигнала"
 
-#: src/remotedesktopdialog.ui:9
+#: src/remotedesktopdialog.ui:7
 msgid "Remote Desktop"
 msgstr "Удалённый рабочий стол"
 
-#: src/remotedesktopdialog.ui:72 src/screencastwidget.ui:35
-#: src/screencastwidget.ui:77
+#: src/remotedesktopdialog.ui:70
 msgid "_Remember This Selection"
 msgstr "_Запомнить этот выбор"
 
-#: src/remotedesktopdialog.ui:87
+#: src/remotedesktopdialog.ui:85
 msgid "Allow Remote _Interaction"
 msgstr "Разрешить удалённое вза_имодействие"
 
-#: src/remotedesktopdialog.ui:95
+#: src/remotedesktopdialog.ui:93
 msgid "Allow _Clipboard Access"
 msgstr "Разрешить доступ к _буферу обмена"
 
@@ -215,33 +214,28 @@ msgstr "Разрешить доступ к _буферу обмена"
 msgid "Share Screen"
 msgstr "Общий доступ к экрану"
 
-#: src/screencastwidget.c:163
-msgid "Virtual monitor"
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
 msgstr "Виртуальный монитор"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:646
 #, c-format
-msgid "Select a screen to share with %s"
-msgstr "Выберите экран, который сможет записывать «%s»"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "Приложение «%s» хочет предоставить доступ к вашему экрану. Выберите, чем вы хотите поделиться."
 
-#: src/screencastwidget.c:543
-#, c-format
-msgid "Select a window to share with %s"
-msgstr "Выберите окно, которое сможет записывать «%s»"
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "Приложение хочет предоставить доступ к вашему экрану. Выберите, чем вы хотите поделиться."
 
-#: src/screencastwidget.c:548
-msgid "Select a screen to share with the requesting app"
-msgstr "Выберите экран, который сможет записывать запрашивающее приложение"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "_Запомнить этот выбор"
 
-#: src/screencastwidget.c:549
-msgid "Select a window to share with the requesting app"
-msgstr "Выберите окно, которое сможет записывать запрашивающее приложение"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_Окно приложения"
 
-#: src/screencastwidget.ui:16
-msgid "Single _Window"
-msgstr "Одно _окно"
-
-#: src/screencastwidget.ui:60
+#: src/screencastwidget.ui:66
 msgid "_Entire Screen"
 msgstr "_Весь экран"
 
@@ -318,6 +312,20 @@ msgstr "_Установить"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Не удалось загрузить файл изображения"
+
+#, c-format
+#~ msgid "Select a screen to share with %s"
+#~ msgstr "Выберите экран, который сможет записывать «%s»"
+
+#, c-format
+#~ msgid "Select a window to share with %s"
+#~ msgstr "Выберите окно, которое сможет записывать «%s»"
+
+#~ msgid "Select a screen to share with the requesting app"
+#~ msgstr "Выберите экран, который сможет записывать запрашивающее приложение"
+
+#~ msgid "Select a window to share with the requesting app"
+#~ msgstr "Выберите окно, которое сможет записывать запрашивающее приложение"
 
 #~ msgid "Screen Share"
 #~ msgstr "Доступ к экрану"
