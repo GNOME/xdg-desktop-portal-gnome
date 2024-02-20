@@ -2,15 +2,15 @@
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Matej Urbančič <mateju@src.gnome.org>, 2021–2023.
+# Matej Urbančič <mateju@src.gnome.org>, 2021–2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2023-09-11 19:15+0000\n"
-"PO-Revision-Date: 2023-09-12 23:26+0200\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-02-15 02:19+0000\n"
+"PO-Revision-Date: 2024-02-20 20:31+0100\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
 "com>\n"
@@ -21,38 +21,46 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portal"
 
-#: src/accountdialog.c:152
+#: src/access.c:203
+msgid "Deny"
+msgstr "Zavrni"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Dovoli"
+
+#: src/accountdialog.c:159
 msgid "Select an Image"
 msgstr "Izbor slike"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+#: src/accountdialog.c:162
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:163
 msgid "Select"
 msgstr "Izbor"
 
-#: src/accountdialog.c:157
+#: src/accountdialog.c:164
 msgid "Clear"
 msgstr "Počisti"
 
-#: src/accountdialog.c:164
+#: src/accountdialog.c:171
 msgid "Images"
 msgstr "Slike"
 
-#: src/accountdialog.c:225
+#: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Ali želite objaviti osebne podatke za %1$s? %2$s"
 
-#: src/accountdialog.c:231
+#: src/accountdialog.c:239
 #, c-format
 msgid "Share your personal information with the requesting app? %s"
 msgstr "Ali želite objaviti osebne podatke s programom? %s"
@@ -61,41 +69,50 @@ msgstr "Ali želite objaviti osebne podatke s programom? %s"
 msgid "Share Details"
 msgstr "Objavi podrobnosti"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
-#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/filechooser.c:583
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
+#: src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Prekliči"
 
-#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
-#: src/screenshotdialog.ui:49
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Objavi"
 
-#: src/accountdialog.ui:83
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Spremeni sliko podobe"
+
+#: src/accountdialog.ui:112
 msgid "Name"
 msgstr "Ime"
 
-#: src/accountdialog.ui:95
+#: src/accountdialog.ui:118
 msgid "Username"
 msgstr "Uporabniško ime"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "_V redu"
+
+#: src/appchooserdialog.c:199
 msgid "Failed to start Software"
 msgstr "Zagon programske opreme GNOME spodletelo"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:354
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Izbor programa za odpiranje datoteke vrste »%s«."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:359
 msgid "Choose an app."
 msgstr "Izbor programa."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:376
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -103,7 +120,7 @@ msgstr ""
 "Ni nameščenega programa, ki odpira predmete »%s«. Program lahko poiščete "
 "tudi v brskalniku programske opreme."
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:381
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Ni nameščenega ustreznega programa. Poiščete ga lahko v brskalniku "
@@ -113,15 +130,23 @@ msgstr ""
 msgid "Open With…"
 msgstr "Odpri s programom …"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:24 src/filechooser.c:578
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
 msgstr "Ni razpoložljivih programov"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:86
+msgid ""
+"No apps installed that are able to open file.extension. You can find more "
+"apps in Software."
+msgstr ""
+"Ni nameščenega programa, ki odpira to vrsto pripone datoteke. Ustrezen "
+"program lahko poiščete v brskalniku programske opreme."
+
+#: src/appchooserdialog.ui:107
 msgid "_Find More in Software"
 msgstr "_Najdi več programov"
 
@@ -137,19 +162,19 @@ msgstr "Ustvari program"
 msgid "C_reate"
 msgstr "_Ustvari"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:578
 msgid "_Select"
 msgstr "_Izbor"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:580
 msgid "_Save"
 msgstr "_Shrani"
 
-#: src/filechooser.c:724
+#: src/filechooser.c:776
 msgid "Open files read-only"
 msgstr "Odpri datoteke le za branje"
 
-#: src/filechooser.c:731
+#: src/filechooser.c:783
 msgid "Open directories read-only"
 msgstr "Odpri datoteke le za branje"
 
@@ -163,122 +188,119 @@ msgid "An application wants to capture input events"
 msgstr "Program poskuša zajemati vhodne dogodke"
 
 #: src/inputcapturedialog.ui:7
-msgid "Capture input"
+msgid "Capture Input"
 msgstr "Zajemi dovod"
 
 #: src/inputcapturedialog.ui:68
-msgid "Allow remote input capturing"
-msgstr "Dovoli zajemanje na daljavo"
+msgid "Allow Remote _Input Capturing"
+msgstr "Dovoli _zajemanje dovoda na daljavo"
 
 #: src/remotedesktopdialog.ui:7
-msgid "Remote desktop"
+msgid "Remote Desktop"
 msgstr "Oddaljeno namizje"
 
-#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
-#: src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Zapomni si izbiro"
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "_Zapomni si izbiro"
 
-#: src/remotedesktopdialog.ui:87
-msgid "Allow remote interaction"
-msgstr "Dovoli upravljanje na daljavo"
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Dovoli _upravljanje na daljavo"
 
-#: src/remotedesktopdialog.ui:100
-msgid "Allow clipboard access"
-msgstr "Dovoli dostop do odložišča"
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Dovoli _dostop do odložišča"
 
 #: src/screencastdialog.ui:5
-msgid "Screen Share"
+msgid "Share Screen"
 msgstr "Souporaba zaslona"
 
-#: src/screencastwidget.c:163
-msgid "Virtual monitor"
-msgstr "Navidezni monitor"
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
+msgstr "Navidezni zaslon"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:646
 #, c-format
-msgid "Select monitor to share with %s"
-msgstr "Izbor zaslona za souporabo z %s"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Program %s poskuša omogočiti souporabo zaslona. Izberite, kaj želite "
+"omogočiti."
 
-#: src/screencastwidget.c:543
-#, c-format
-msgid "Select window to share with %s"
-msgstr "Izbor okna za souporabo z %s"
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Program poskuša omogočiti souporabo zaslona. Izberite, kaj želite omogočiti."
 
-#: src/screencastwidget.c:548
-msgid "Select monitor to share with the requesting app"
-msgstr "Izberite zaslon za souporabo z zahtevanim programom"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "_Zapomni si izbiro"
 
-#: src/screencastwidget.c:549
-msgid "Select window to share with the requesting app"
-msgstr "Izberite okno za souporabo z zahtevanim programom"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_Okno programa"
 
-#: src/screencastwidget.ui:16
-msgid "Single Window"
-msgstr "Eno okno"
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "_Celoten zaslon"
 
-#: src/screencastwidget.ui:64
-msgid "Entire Screen"
-msgstr "Celoten zaslon"
-
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Ali želite omogočiti pogled zaslonske slike z %s?"
 
-#: src/screenshotdialog.c:439
+#: src/screenshotdialog.c:436
 msgid "Share this screenshot with the requesting app?"
 msgstr "Ali želite uporabiti zaslonsko sliko z zahtevanim programom?"
 
-#: src/screenshotdialog.ui:8
+#: src/screenshotdialog.ui:9
 msgid "Screenshot"
 msgstr "Zaslonska slika"
 
-#: src/screenshotdialog.ui:42
+#: src/screenshotdialog.ui:45
 msgid "_Options…"
 msgstr "_Možnosti …"
 
-#: src/screenshotdialog.ui:67
+#: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
 msgstr "Zajemi zaslonsko _sliko"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
 msgstr "Zajemi zaslonsko sliko"
 
-#: src/screenshotdialog.ui:130
-msgid "Grab the whole sc_reen"
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
 msgstr "Zajemi celoten _zaslon"
 
-#: src/screenshotdialog.ui:140
-msgid "Grab the current _window"
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
 msgstr "Zajemi trenutno _okno"
 
-#: src/screenshotdialog.ui:150
-msgid "Select _area to grab"
-msgstr "Zajemi izbrano _območje"
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
+msgstr "Izbor _območja za zajem"
 
-#: src/screenshotdialog.ui:162
+#: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
 msgstr "Zajemi _po zamiku"
 
-#: src/screenshotdialog.ui:173
+#: src/screenshotdialog.ui:184
 msgid "seconds"
 msgstr "sekunde"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:193
 msgid "Effects"
 msgstr "Učinki"
 
-#: src/screenshotdialog.ui:192
-msgid "Include _pointer"
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
 msgstr "Vključi _kazalko"
 
-#: src/screenshotdialog.ui:200
-msgid "Include the window _border"
-msgstr "Vključi tudi _robove okna"
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
+msgstr "Vključi tudi _rob okna"
 
-#: src/settings.c:246
+#: src/settings.c:281
 msgid "Requested setting not found"
 msgstr "Zahtevane nastavitve ni mogoče najti"
 
@@ -286,17 +308,39 @@ msgstr "Zahtevane nastavitve ni mogoče najti"
 msgid "Set Background"
 msgstr "Nastavi ozadje"
 
-#: src/wallpaperdialog.ui:32
-msgid "Set"
-msgstr "Nastavi"
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "_Nastavi"
 
-#: src/wallpaperdialog.ui:63
+#: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Nalaganje datoteke odtisa je spodletelo"
 
-#: src/wallpaperpreview.ui:48
-msgid "Activities"
-msgstr "Dejavnosti"
+#~ msgid "Screen Share"
+#~ msgstr "Souporaba zaslona"
+
+#, c-format
+#~ msgid "Select monitor to share with %s"
+#~ msgstr "Izbor zaslona za souporabo z %s"
+
+#, c-format
+#~ msgid "Select window to share with %s"
+#~ msgstr "Izbor okna za souporabo z %s"
+
+#~ msgid "Select monitor to share with the requesting app"
+#~ msgstr "Izberite zaslon za souporabo z zahtevanim programom"
+
+#~ msgid "Select window to share with the requesting app"
+#~ msgstr "Izberite okno za souporabo z zahtevanim programom"
+
+#~ msgid "Single Window"
+#~ msgstr "Eno okno"
+
+#~ msgid "Set"
+#~ msgstr "Nastavi"
+
+#~ msgid "Activities"
+#~ msgstr "Dejavnosti"
 
 #, c-format
 #~ msgid "“%s” is running in the background"
@@ -315,9 +359,6 @@ msgstr "Dejavnosti"
 
 #~ msgid "Force quit"
 #~ msgstr "Vsili končanje"
-
-#~ msgid "Allow"
-#~ msgstr "Dovoli"
 
 #~ msgid "Background activity"
 #~ msgstr "Ozadnja dejavnost"
