@@ -1,16 +1,16 @@
 # Hungarian translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2016, 2017, 2018, 2019, 2021, 2022, 2023 Free Software Foundation, Inc.
+# Copyright (C) 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xdg-sesktop-portal-gtk package.
 #
-# Balázs Úr <ur.balazs at fsf dot hu>, 2016, 2017, 2018, 2019, 2022, 2023.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2016, 2017, 2018, 2019, 2022, 2023, 2024.
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-09-05 21:27+0200\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2024-02-22 00:43+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -79,20 +79,24 @@ msgstr "Név"
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Nem sikerült elindítani a Szoftvereket"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Válasszon egy alkalmazást a(z) „%s” fájl megnyitásához."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Válasszon egy alkalmazást."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -100,7 +104,7 @@ msgstr ""
 "Nincsenek olyan alkalmazások telepítve, amelyek meg tudják nyitni a(z) „%s” "
 "fájlt. További alkalmazásokat találhat a Szoftverben."
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nincs megfelelő alkalmazás telepítve. További alkalmazásokat találhat a "
@@ -164,7 +168,6 @@ msgid "Capture input"
 msgstr "Bemenet elfogása"
 
 #: src/inputcapturedialog.ui:68
-#| msgid "Allow remote interaction"
 msgid "Allow remote input capturing"
 msgstr "Távoli bemenet elfogásának engedélyezése"
 
