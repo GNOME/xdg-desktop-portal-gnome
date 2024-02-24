@@ -7,47 +7,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2023-08-05 10:30+0000\n"
-"PO-Revision-Date: 2023-08-19 13:53+0600\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-02-09 12:57+0000\n"
+"PO-Revision-Date: 2024-02-24 20:40+0600\n"
 "Last-Translator: \n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Портал"
 
-#: src/accountdialog.c:152
+#: src/access.c:203
+msgid "Deny"
+msgstr "Тыйым салу"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Рұқсат ету"
+
+#: src/accountdialog.c:159
 msgid "Select an Image"
 msgstr "Суретті таңдау"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+#: src/accountdialog.c:162
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:163
 msgid "Select"
 msgstr "Таңдау"
 
-#: src/accountdialog.c:157
+#: src/accountdialog.c:164
 msgid "Clear"
 msgstr "Тазарту"
 
-#: src/accountdialog.c:164
+#: src/accountdialog.c:171
 msgid "Images"
 msgstr "Суреттер"
 
-#: src/accountdialog.c:225
+#: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Жеке ақпаратыңызды %1$s үшін бөлісу керек пе? %2$s"
 
-#: src/accountdialog.c:231
+#: src/accountdialog.c:239
 #, c-format
 msgid "Share your personal information with the requesting app? %s"
 msgstr "Жеке ақпаратыңызбен сұраған қолданбамен бөлісу керек пе? %s"
@@ -56,41 +64,50 @@ msgstr "Жеке ақпаратыңызбен сұраған қолданбам�
 msgid "Share Details"
 msgstr "Бөлісу ақпараты"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
-#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/filechooser.c:583
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
+#: src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "Ба_с тарту"
 
-#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
-#: src/screenshotdialog.ui:49
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "Бөлі_су"
 
-#: src/accountdialog.ui:83
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Аватарды өзгерту"
+
+#: src/accountdialog.ui:112
 msgid "Name"
 msgstr "Аты"
 
-#: src/accountdialog.ui:95
+#: src/accountdialog.ui:118
 msgid "Username"
 msgstr "Пайдаланушы аты"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "_ОК"
+
+#: src/appchooserdialog.c:199
 msgid "Failed to start Software"
 msgstr "БҚ қолданбасын іске қосу сәтсіз аяқталды"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:354
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "\"%s\" файлын ашу үшін қолданбаны таңдаңыз."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:359
 msgid "Choose an app."
 msgstr "Қолданбаны таңдау."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:376
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -98,7 +115,7 @@ msgstr ""
 "\"%s\" аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды БҚ "
 "қолданбасынан табуға болады"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:381
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Ешбір сай келетін қолданба орнатылмаған. Қосымша қолданбаларды БҚ "
@@ -108,15 +125,23 @@ msgstr ""
 msgid "Open With…"
 msgstr "Көмегімен ашу…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:24 src/filechooser.c:578
 msgid "_Open"
 msgstr "_Ашу"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
 msgstr "Қолжетімді қолданбалар жоқ"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:86
+msgid ""
+"No apps installed that are able to open file.extension. You can find more "
+"apps in Software."
+msgstr ""
+"file.extension аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды "
+"БҚ қолданбасынан табуға болады."
+
+#: src/appchooserdialog.ui:107
 msgid "_Find More in Software"
 msgstr "БҚ қолданбасынан көбірек т_абу"
 
@@ -132,19 +157,19 @@ msgstr "Қолданбаны жасау"
 msgid "C_reate"
 msgstr "Ж_асау"
 
-#: src/filechooser.c:529
+#: src/filechooser.c:578
 msgid "_Select"
 msgstr "_Таңдау"
 
-#: src/filechooser.c:531
+#: src/filechooser.c:580
 msgid "_Save"
 msgstr "_сақтау"
 
-#: src/filechooser.c:724
+#: src/filechooser.c:776
 msgid "Open files read-only"
 msgstr "Файлдарды тек оқу үшін ашу"
 
-#: src/filechooser.c:731
+#: src/filechooser.c:783
 msgid "Open directories read-only"
 msgstr "Бумаларды тек оқу үшін ашу"
 
@@ -158,122 +183,117 @@ msgid "An application wants to capture input events"
 msgstr "Қолданба кіріс оқиғаларын жазғысы келеді"
 
 #: src/inputcapturedialog.ui:7
-msgid "Capture input"
+msgid "Capture Input"
 msgstr "Кіріс оқиғаларды жазу"
 
 #: src/inputcapturedialog.ui:68
-msgid "Allow remote input capturing"
-msgstr "Қашықтан әрекеттесуге рұқсат беру"
+msgid "Allow Remote _Input Capturing"
+msgstr "Қашықтан _кіріс оқиғаларды жазуды рұқсат ету"
 
 #: src/remotedesktopdialog.ui:7
-msgid "Remote desktop"
+msgid "Remote Desktop"
 msgstr "Қашықтағы жұмыс үстелі"
 
-#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
-#: src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Бұл таңдауды есте сақтау"
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "Бұл таңдауды ес_те сақтау"
 
-#: src/remotedesktopdialog.ui:87
-msgid "Allow remote interaction"
-msgstr "Қашықтан әрекеттесуге рұқсат беру"
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Қашықтан әр_екеттесуге рұқсат беру"
 
-#: src/remotedesktopdialog.ui:100
-msgid "Allow clipboard access"
-msgstr "Алмасу буферіне қатынауды рұқсат ету"
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Алмасу _буферіне қатынауды рұқсат ету"
 
 #: src/screencastdialog.ui:5
-msgid "Screen Share"
+msgid "Share Screen"
 msgstr "Экранмен бөлісу"
 
-#: src/screencastwidget.c:163
-msgid "Virtual monitor"
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
 msgstr "Виртуалды монитор"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:646
 #, c-format
-msgid "Select monitor to share with %s"
-msgstr "%s үшін бөлісу үшін мониторды таңдау"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s сіздің экраныңызбен бөліскісі келеді. Немен бөлісуді таңдаңыз."
 
-#: src/screencastwidget.c:543
-#, c-format
-msgid "Select window to share with %s"
-msgstr "%s үшін бөлісу үшін терезені таңдау"
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Қолданба сіздің экраныңызбен бөліскісі келеді. Немен бөлісуді таңдаңыз."
 
-#: src/screencastwidget.c:548
-msgid "Select monitor to share with the requesting app"
-msgstr "Сұраған қолданбамен бөлісу үшін мониторды таңдау"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "Бұл таңдауды ес_те сақтау"
 
-#: src/screencastwidget.c:549
-msgid "Select window to share with the requesting app"
-msgstr "Сұраған қолданбамен бөлісу үшін терезені таңдау"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "Қолданба _терезесі"
 
-#: src/screencastwidget.ui:16
-msgid "Single Window"
-msgstr "Дара терезе"
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "_Бүкіл экран"
 
-#: src/screencastwidget.ui:64
-msgid "Entire Screen"
-msgstr "Бүкіл экран"
-
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Бұл скриншотпен %s үшін бөлісу керек пе?"
 
-#: src/screenshotdialog.c:439
+#: src/screenshotdialog.c:436
 msgid "Share this screenshot with the requesting app?"
 msgstr "Бұл скриншотпен сұраған қолданбамен бөлісу керек пе?"
 
-#: src/screenshotdialog.ui:8
+#: src/screenshotdialog.ui:9
 msgid "Screenshot"
 msgstr "Скриншот"
 
-#: src/screenshotdialog.ui:42
+#: src/screenshotdialog.ui:45
 msgid "_Options…"
 msgstr "_Опциялар…"
 
-#: src/screenshotdialog.ui:67
+#: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
 msgstr "_Скриншотты түсіру"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
 msgstr "Скриншотты түсіру"
 
-#: src/screenshotdialog.ui:130
-msgid "Grab the whole sc_reen"
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
 msgstr "Толық эк_ранды түсіру"
 
-#: src/screenshotdialog.ui:140
-msgid "Grab the current _window"
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
 msgstr "Ағымдағы тере_зені түсіру"
 
-#: src/screenshotdialog.ui:150
-msgid "Select _area to grab"
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
 msgstr "Түсіру үшін _аймақты таңдау"
 
-#: src/screenshotdialog.ui:162
+#: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
 msgstr "Көрсетілген кі_дірістен кейін түсіру"
 
-#: src/screenshotdialog.ui:173
+#: src/screenshotdialog.ui:184
 msgid "seconds"
 msgstr "секунд"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:193
 msgid "Effects"
 msgstr "Эффектілер"
 
-#: src/screenshotdialog.ui:192
-msgid "Include _pointer"
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
 msgstr "К_урсорды қоса түсіру"
 
-#: src/screenshotdialog.ui:200
-msgid "Include the window _border"
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
 msgstr "Терезе жақ_тауын қоса түсіру"
 
-#: src/settings.c:246
+#: src/settings.c:253
 msgid "Requested setting not found"
 msgstr "Сұралған баптау табылмады"
 
@@ -281,17 +301,39 @@ msgstr "Сұралған баптау табылмады"
 msgid "Set Background"
 msgstr "Фонды орнату"
 
-#: src/wallpaperdialog.ui:32
-msgid "Set"
-msgstr "Орнату"
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "О_рнату"
 
-#: src/wallpaperdialog.ui:63
+#: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Сурет файлын жүктеу сәтсіз аяқталды"
 
-#: src/wallpaperpreview.ui:48
-msgid "Activities"
-msgstr "Белсенділіктер"
+#~ msgid "Screen Share"
+#~ msgstr "Экранмен бөлісу"
+
+#, c-format
+#~ msgid "Select monitor to share with %s"
+#~ msgstr "%s үшін бөлісу үшін мониторды таңдау"
+
+#, c-format
+#~ msgid "Select window to share with %s"
+#~ msgstr "%s үшін бөлісу үшін терезені таңдау"
+
+#~ msgid "Select monitor to share with the requesting app"
+#~ msgstr "Сұраған қолданбамен бөлісу үшін мониторды таңдау"
+
+#~ msgid "Select window to share with the requesting app"
+#~ msgstr "Сұраған қолданбамен бөлісу үшін терезені таңдау"
+
+#~ msgid "Single Window"
+#~ msgstr "Дара терезе"
+
+#~ msgid "Set"
+#~ msgstr "Орнату"
+
+#~ msgid "Activities"
+#~ msgstr "Белсенділіктер"
 
 #, c-format
 #~ msgid "“%s” is running in the background"
@@ -311,9 +353,6 @@ msgstr "Белсенділіктер"
 
 #~ msgid "Force quit"
 #~ msgstr "Мәжбүрлі шығу"
-
-#~ msgid "Allow"
-#~ msgstr "Рұқсат ету"
 
 #~ msgid "Background activity"
 #~ msgstr "Фондық әрекет"
