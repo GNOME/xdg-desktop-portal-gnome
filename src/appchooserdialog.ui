@@ -83,7 +83,7 @@
                   <object class="AdwStatusPage" id="empty_box">
                     <property name="icon-name">org.gnome.Software-symbolic</property>
                     <property name="title" translatable="yes">No Apps Available</property>
-                    <property name="description" translatable="yes">No apps installed that are able to open file.extension. You can find more apps in Software.</property>
+                    <property name="description">No apps installed that are able to open file.extension. You can find more apps in Software.</property>
                     <property name="child">
                       <object class="GtkButton" id="find_software_button">
                         <property name="halign">center</property>
