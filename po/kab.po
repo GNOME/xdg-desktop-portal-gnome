@@ -1,0 +1,308 @@
+# Kabyle translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2024 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-03-09 15:07+0000\n"
+"PO-Revision-Date: 2024-03-12 12:11+0100\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"Language-Team: Kabyle <>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Team: kab\n"
+"X-DL-Module: xdg-desktop-portal-gnome\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+msgid "Portal"
+msgstr "Awwur"
+
+#: src/access.c:203
+msgid "Deny"
+msgstr "Aggi"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Sireg"
+
+#: src/accountdialog.c:159
+msgid "Select an Image"
+msgstr "Fren tugna"
+
+#: src/accountdialog.c:162
+msgid "Cancel"
+msgstr "Sefsex"
+
+#: src/accountdialog.c:163
+msgid "Select"
+msgstr "Fren"
+
+#: src/accountdialog.c:164
+msgid "Clear"
+msgstr "Sfeḍ"
+
+#: src/accountdialog.c:171
+msgid "Images"
+msgstr "Tugniwin"
+
+#: src/accountdialog.c:233
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr ""
+
+#: src/accountdialog.c:239
+#, c-format
+msgid "Share your personal information with the requesting app? %s"
+msgstr ""
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Bḍu ttfaṣil"
+
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/filechooser.c:583
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
+#: src/wallpaperdialog.ui:28
+msgid "_Cancel"
+msgstr "Sefsex (_C)"
+
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/screenshotdialog.ui:52
+msgid "_Share"
+msgstr "Bḍu (_S)"
+
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr ""
+
+#: src/accountdialog.ui:112
+msgid "Name"
+msgstr "Isem"
+
+#: src/accountdialog.ui:118
+msgid "Username"
+msgstr "Isem n umseqdac"
+
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "IH (_O)"
+
+#: src/appchooserdialog.c:199
+msgid "Failed to start Software"
+msgstr "Ur yessaweḍ ara ad d-yesslḥu Aseɣẓan"
+
+#: src/appchooserdialog.c:354
+#, c-format
+msgid "Choose an app to open the file “%s”."
+msgstr "Fren asnas akken ad teldiḍ afaylu “%s”."
+
+#: src/appchooserdialog.c:359
+msgid "Choose an app."
+msgstr "Fren asnas."
+
+#: src/appchooserdialog.c:376
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"Ulac isnasen i yettwasbedden i izemren ad ldin \"%s\". Tzemreḍ ad tafeḍ ugar "
+"n yisnasen deg useɣẓan"
+
+#: src/appchooserdialog.c:381
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr ""
+"Ulac asnas iwatan yettwasbedden. Tzemreḍ ad tafeḍ ugar n yisnasen deg "
+"Useɣẓan."
+
+#: src/appchooserdialog.ui:5
+msgid "Open With…"
+msgstr "Ldi s…"
+
+#: src/appchooserdialog.ui:24 src/filechooser.c:578
+msgid "_Open"
+msgstr "Ldi (_O)"
+
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
+msgstr "Ulac isnasen i yellan"
+
+#: src/appchooserdialog.ui:107
+msgid "_Find More in Software"
+msgstr "Nadi ugar deg useɣẓan (_F)"
+
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Snulfu-d asnas Web"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Snulfu-d asnas"
+
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "Snulfu-d (_R)"
+
+#: src/filechooser.c:578
+msgid "_Select"
+msgstr "Fren (_S)"
+
+#: src/filechooser.c:580
+msgid "_Save"
+msgstr "_Sekles"
+
+#: src/filechooser.c:776
+msgid "Open files read-only"
+msgstr "Ldi-d ifuyla s tɣuri kan"
+
+#: src/filechooser.c:783
+msgid "Open directories read-only"
+msgstr "Ldi-d ikaramen s tɣuri kan"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr ""
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr ""
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr ""
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr ""
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote Desktop"
+msgstr ""
+
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr ""
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr ""
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr ""
+
+#: src/screencastdialog.ui:5
+msgid "Share Screen"
+msgstr "Beṭṭu n ugdil"
+
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
+msgstr ""
+
+#: src/screencastwidget.c:646
+#, c-format
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr ""
+
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr ""
+
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr ""
+
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "Agdil akk"
+
+#: src/screenshotdialog.c:432
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr ""
+
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
+msgstr ""
+
+#: src/screenshotdialog.ui:9
+msgid "Screenshot"
+msgstr "Tuṭṭfa n ugdil"
+
+#: src/screenshotdialog.ui:45
+msgid "_Options…"
+msgstr "Tinefrunin (_O)"
+
+#: src/screenshotdialog.ui:70
+msgid "Take _Screenshot"
+msgstr "Ṭṭef-d agdil (_S)"
+
+#: src/screenshotdialog.ui:131
+msgid "Take Screenshot"
+msgstr "Ṭṭef-d agdil"
+
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
+msgstr ""
+
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
+msgstr ""
+
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
+msgstr ""
+
+#: src/screenshotdialog.ui:173
+msgid "Grab after a _delay of"
+msgstr ""
+
+#: src/screenshotdialog.ui:184
+msgid "seconds"
+msgstr "tasinin"
+
+#: src/screenshotdialog.ui:193
+msgid "Effects"
+msgstr "Isemda"
+
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
+msgstr ""
+
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
+msgstr ""
+
+#: src/settings.c:281
+msgid "Requested setting not found"
+msgstr "Aɣewwaṛ-nni yettwasutren ulac-it"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "Sbadu agilal"
+
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "_Sbadu"
+
+#: src/wallpaperdialog.ui:67
+msgid "Failed to load image file"
+msgstr "Asali n ufaylu n tugna ur yeddi ara"
