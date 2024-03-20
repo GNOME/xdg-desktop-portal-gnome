@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-09 12:57+0000\n"
-"PO-Revision-Date: 2024-02-12 18:38+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2024-02-29 12:54+0000\n"
+"PO-Revision-Date: 2024-03-16 08:40+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
-msgstr "Portal"
+msgstr "Kapı"
 
 #: src/access.c:203
 msgid "Deny"
@@ -136,14 +136,6 @@ msgstr "_Aç"
 msgid "No Apps Available"
 msgstr "Kullanılabilir Uygulama Yok"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"dosya.uzantısını açabilen uygulama kurulmadı. Daha çok uygulamayı "
-"Yazılımlar’da bulabilirsiniz"
-
 #: src/appchooserdialog.ui:107
 msgid "_Find More in Software"
 msgstr "Yazılımlar’da Daha Çoğunu _Bul"
@@ -225,8 +217,7 @@ msgstr "%s ekranınızı paylaşmak istiyor. Neyi paylaşmak istediğinizi seçi
 #: src/screencastwidget.c:651
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"Bir uygulama ekranınızı paylaşmak istiyor. Neyi paylaşmak istediğinizi "
-"seçin."
+"Bir uygulama ekranınızı paylaşmak istiyor. Neyi paylaşmak istediğinizi seçin."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
@@ -297,7 +288,7 @@ msgstr "İ_mleçi İçer"
 msgid "Include Window _Border"
 msgstr "Pencere _Kenarlığını İçer"
 
-#: src/settings.c:253
+#: src/settings.c:281
 msgid "Requested setting not found"
 msgstr "İstenen ayar bulunamadı"
 
@@ -312,6 +303,13 @@ msgstr "_Ayarla"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Resim dosyası yüklenemedi"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "dosya.uzantısını açabilen uygulama kurulmadı. Daha çok uygulamayı "
+#~ "Yazılımlar’da bulabilirsiniz"
 
 #~ msgid "Select a screen to share with %s"
 #~ msgstr "%s ile paylaşılacak ekranı seç"
