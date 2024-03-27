@@ -428,7 +428,7 @@ get_current_state_cb (GObject *source_object,
     }
 
   if (!g_variant_lookup (properties, "layout-mode", "u", &tracker->layout_mode))
-    tracker->layout_mode = META_LOGICAL_MONITOR_LAYOUT_MODE_PHYSICAL;
+    tracker->layout_mode = META_LOGICAL_MONITOR_LAYOUT_MODE_LOGICAL;
 
   display_state_tracker_clear_logical_monitors (tracker);
   g_hash_table_remove_all (tracker->monitors);
