@@ -620,8 +620,10 @@ handle_prepare_print (XdpImplPrint          *object,
                       GVariant              *arg_page_setup,
                       GVariant              *arg_options)
 {
+  g_auto(GStrv) supported_output_file_formats = NULL;
   g_autoptr(GtkWindowGroup) window_group = NULL;
   g_autoptr(Request) request = NULL;
+  GtkPrintCapabilities capabilities;
   const char *sender;
   GtkWindow *dialog;
   PrintDialogHandle *handle;
@@ -660,16 +662,40 @@ handle_prepare_print (XdpImplPrint          *object,
       gtk_button_set_label (GTK_BUTTON (button), accept_label);
     }
 
+  capabilities = can_preview () ? GTK_PRINT_CAPABILITY_PREVIEW : 0 |
+                 GTK_PRINT_CAPABILITY_PAGE_SET |
+                 GTK_PRINT_CAPABILITY_COPIES |
+                 GTK_PRINT_CAPABILITY_COLLATE |
+                 GTK_PRINT_CAPABILITY_REVERSE |
+                 GTK_PRINT_CAPABILITY_SCALE |
+                 GTK_PRINT_CAPABILITY_NUMBER_UP;
+
+  if (g_variant_lookup (arg_options, "supported_output_file_formats", "^as", &supported_output_file_formats))
+    {
+      g_autoptr(GHashTable) formats = NULL;
+
+      g_assert (supported_output_file_formats && supported_output_file_formats[0] != NULL);
+
+      formats = g_hash_table_new (g_str_hash, g_str_equal);
+
+      for (size_t i = 0; supported_output_file_formats[i]; i++)
+        g_hash_table_add (formats, (gpointer) supported_output_file_formats[i]);
+
+      /* This is a limitation of GtkPrintCapability - it doesn't have an enum
+       * for SVG files.
+       */
+      if (!g_hash_table_contains (formats, "svg"))
+        {
+          if (g_hash_table_contains (formats, "pdf"))
+            capabilities |= GTK_PRINT_CAPABILITY_GENERATE_PDF;
+          if (g_hash_table_contains (formats, "ps"))
+            capabilities |= GTK_PRINT_CAPABILITY_GENERATE_PS;
+        }
+    }
+
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, modal);
-  gtk_print_unix_dialog_set_manual_capabilities (GTK_PRINT_UNIX_DIALOG (dialog),
-                                                 can_preview () ? GTK_PRINT_CAPABILITY_PREVIEW : 0 |
-                                                 GTK_PRINT_CAPABILITY_PAGE_SET |
-                                                 GTK_PRINT_CAPABILITY_COPIES |
-                                                 GTK_PRINT_CAPABILITY_COLLATE |
-                                                 GTK_PRINT_CAPABILITY_REVERSE |
-                                                 GTK_PRINT_CAPABILITY_SCALE |
-                                                 GTK_PRINT_CAPABILITY_NUMBER_UP);
+  gtk_print_unix_dialog_set_manual_capabilities (GTK_PRINT_UNIX_DIALOG (dialog), capabilities);
   gtk_print_unix_dialog_set_embed_page_setup (GTK_PRINT_UNIX_DIALOG (dialog), TRUE);
   gtk_print_unix_dialog_set_settings (GTK_PRINT_UNIX_DIALOG (dialog), settings);
   gtk_print_unix_dialog_set_page_setup (GTK_PRINT_UNIX_DIALOG (dialog), page_setup);
