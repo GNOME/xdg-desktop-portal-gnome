@@ -347,7 +347,7 @@ handle_access_dialog (XdpImplAccess         *object,
                                              arg_options),
                               NULL,
                               G_DBUS_CALL_FLAGS_NONE,
-                              -1,
+                              G_MAXINT,
                               NULL,
                               shell_access_dialog_ready_cb,
                               invocation);
