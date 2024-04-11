@@ -570,8 +570,6 @@ adjust_to_color_scheme (ScreenCastWidget *self, gpointer user_data)
 static void
 screen_cast_widget_init (ScreenCastWidget *widget)
 {
-  int i;
-
   widget->selection_changed_timeout_id = 0;
 
   gtk_widget_init_template (GTK_WIDGET (widget));
@@ -604,25 +602,21 @@ screen_cast_widget_init (ScreenCastWidget *widget)
                       widget);
   shell_introspect_ref_listeners (widget->shell_introspect);
 
-  const struct {
-    gpointer instance;
-    const gchar *detailed_signal;
-    GCallback c_handler;
-  } cons[] = {
-    {widget->source_type, "notify::visible-child", G_CALLBACK (on_stack_switch)},
-    {widget->window_list, "row-activated", G_CALLBACK (on_row_activated)},
-    {widget->window_list, "selected-rows-changed", G_CALLBACK (on_selected_rows_changed)},
-    {adw_style_manager_get_default (), "notify::dark", G_CALLBACK (adjust_to_color_scheme)},
-    {NULL, NULL, NULL}
-  };
+  g_object_connect (widget->window_list,
+                    "swapped-signal::row-activated", G_CALLBACK (on_row_activated), widget,
+                    "swapped-signal::selected-rows-changed", G_CALLBACK (on_selected_rows_changed), widget,
+                    NULL);
 
-  for (i = 0; cons[i].instance != NULL; i++)
-    {
-      g_signal_connect_swapped (cons[i].instance,
-                                cons[i].detailed_signal,
-                                cons[i].c_handler,
-                                widget);
-    }
+  g_signal_connect_swapped (widget->source_type,
+                            "notify::visible-child",
+                            G_CALLBACK (on_stack_switch),
+                            widget);
+
+  g_signal_connect_object (adw_style_manager_get_default (),
+                           "notify::dark",
+                           G_CALLBACK (adjust_to_color_scheme),
+                           widget,
+                           G_CONNECT_SWAPPED);
 }
 
 void
