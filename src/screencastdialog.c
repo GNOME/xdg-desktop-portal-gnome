@@ -31,7 +31,6 @@ struct _ScreenCastDialog
 
   GtkWidget *accept_button;
   GtkWidget *screen_cast_widget;
-  GtkHeaderBar *titlebar;
 
   gboolean multiple;
 };
@@ -129,7 +128,6 @@ screen_cast_dialog_class_init (ScreenCastDialogClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/screencastdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, screen_cast_widget);
-  gtk_widget_class_bind_template_child (widget_class, ScreenCastDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, on_button_clicked_cb);
 }
 
