@@ -87,29 +87,18 @@
                     <property name="child">
                       <object class="GtkButton" id="find_software_button">
                         <property name="halign">center</property>
+                        <property name="child">
+                          <object class="AdwButtonContent">
+                            <property name="icon-name">org.gnome.Software-symbolic</property>
+                            <property name="label" translatable="yes">_Find More in Software</property>
+                            <property name="use-underline">True</property>
+                          </object>
+                        </property>
                         <style>
                           <class name="suggested-action"/>
                           <class name="pill"/>
                         </style>
                         <signal name="clicked" handler="find_in_software"/>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="spacing">6</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">org.gnome.Software-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="label" translatable="yes">_Find More in Software</property>
-                                <property name="use-underline">1</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
                       </object>
                     </property>
                   </object>
