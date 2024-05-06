@@ -130,9 +130,9 @@ check-merge-request:
       dnf builddep gtk4 -y
 
       ./.gitlab-ci/install-meson-project.sh \
-        https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        https://github.com/hfiguiere/xdg-desktop-portal.git \
+        usb-portal .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
@@ -168,9 +168,9 @@ check-merge-request:
       sed -i '/deb-src/s/^# //' /etc/apt/sources.list &&
 
       ./.gitlab-ci/install-meson-project.sh \
-        https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        https://github.com/hfiguiere/xdg-desktop-portal.git \
+        usb-portal .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
