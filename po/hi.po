@@ -3,255 +3,288 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Translators: 
 # Hemish <hemish04082005@gmail.com>, 2022-2023.
+# Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-01-28 02:46+0530\n"
-"Last-Translator: Hemish <hemish04082005@gmail.com>\n"
-"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net https://indlinux."
-"org/hindi>\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-02-29 12:54+0000\n"
+"PO-Revision-Date: 2024-04-14 21:07+0530\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 46.0\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "पोर्टल"
 
-#: src/accountdialog.c:152
+#: src/access.c:203
+msgid "Deny"
+msgstr "अस्वीकार करें"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "अनुमति दें"
+
+#: src/accountdialog.c:159
 msgid "Select an Image"
 msgstr "एक छवि चुनें"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+#: src/accountdialog.c:162
 msgid "Cancel"
 msgstr "रद्द"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:163
 msgid "Select"
 msgstr "चुनें"
 
-#: src/accountdialog.c:157
+#: src/accountdialog.c:164
 msgid "Clear"
 msgstr "खाली करें"
 
-#: src/accountdialog.c:164
+#: src/accountdialog.c:171
 msgid "Images"
 msgstr "छवियाँ"
 
-#: src/accountdialog.c:225
+#: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "अपनी व्यक्तिगत जानकारी %1$s के साथ साझा करें? %2$s"
 
-#: src/accountdialog.c:231
+#: src/accountdialog.c:239
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "अनुरोध करने वाले एप्लिकेशन के साथ अपनी व्यक्तिगत जानकारी साझा करें? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "जानकारी साझा करें"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/filechooser.c:583
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
+#: src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "रद्द (_C)"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "साझा करें (_S)"
 
-#: src/accountdialog.ui:83
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "अवतार बदलें"
+
+#: src/accountdialog.ui:112
 msgid "Name"
 msgstr "नाम"
 
-#: src/accountdialog.ui:95
+#: src/accountdialog.ui:118
 msgid "Username"
 msgstr "उपयोक्ता नाम"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "ठीक है (_O)"
+
+#: src/appchooserdialog.c:199
 msgid "Failed to start Software"
 msgstr "सॉफ़्टवेयर को प्रारंभ करने में विफल"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:354
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "फ़ाइल “%s” को खोलने के लिए एक एप्लिकेशन चुनें।"
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:359
+msgid "Choose an app."
 msgstr "एक एप्लिकेशन चुनें।"
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:376
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"\"%s\" को खोल सकने वाले कोई ऐप इंस्टॉल नहीं हैं। आप सॉफ़्टवेयर में और एप्लिकेशन पा सकते हैं।"
+"“%s” को खोल सकने वाले कोई ऐप इंस्टॉल नहीं हैं। आप सॉफ़्टवेयर में और एप्लिकेशन पा सकते हैं।"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:381
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr "कोई उपयुक्त ऐप इंस्टॉल नहीं है। आप सॉफ़्टवेयर में और एप्लिकेशन पा सकते हैं।"
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "इससे खोलें…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:24 src/filechooser.c:578
 msgid "_Open"
 msgstr "खोलें (_O)"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
 msgstr "कोई ऐप उपलब्ध नहीं है"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:107
 msgid "_Find More in Software"
 msgstr "सॉफ्टवेयर में अधिक पाएँ (_F)"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
 msgstr "वेब एप्लिकेशन बनाएँ"
 
-#: src/dynamic-launcher.c:260
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+msgid "Create App"
 msgstr "एप्लिकेशन बनाएँ"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "बनाएँ (_r)"
 
-#: src/filechooser.c:530
+#: src/filechooser.c:578
 msgid "_Select"
 msgstr "चुनें (_S)"
 
-#: src/filechooser.c:532
+#: src/filechooser.c:580
 msgid "_Save"
 msgstr "सहेजें (_S)"
 
-#: src/filechooser.c:714
+#: src/filechooser.c:776
 msgid "Open files read-only"
 msgstr "फ़ाइलें केवल पढ़ने के लिए खोलें"
 
-#: src/filechooser.c:721
+#: src/filechooser.c:783
 msgid "Open directories read-only"
 msgstr "डायरेक्टरीज़ केवल पढ़ने के लिए खोलें"
 
-#: src/remotedesktopdialog.ui:7
-msgid "Remote desktop"
-msgstr "दूरस्थित डेस्कटॉप"
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "एप्लिकेशन %s इनपुट इवेंट कैप्चर करना चाहता है"
 
-#: src/remotedesktopdialog.ui:76
-msgid "Allow remote interaction"
-msgstr "दूरस्थित यंत्रों को इंटरेक्ट करने की अनुमति दें"
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "एक एप्लिकेशन इनपुट ईवेंट कैप्चर करना चाहता है"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "इनपुट कैप्चर करें"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr "रिमोट इनपुट कैप्चरिंग की अनुमति दें (_I)"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote Desktop"
+msgstr "दूरस्थ डेस्कटॉप"
+
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "यह चयन याद रखें (_R)"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "दूरस्थ इंटरैक्शन की अनुमति दें (_I)"
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "क्लिपबोर्ड पहुंच की अनुमति दें (_C)"
 
 #: src/screencastdialog.ui:5
-msgid "Screen Share"
-msgstr "स्क्रीन शेयर करें"
+msgid "Share Screen"
+msgstr "स्क्रीन साझा करें"
 
-#: src/screencastwidget.c:159
-msgid "Virtual monitor"
+#: src/screencastwidget.c:322
+msgid "Virtual Monitor"
 msgstr "कृत्रिम मॉनिटर"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:646
 #, c-format
-msgid "Select monitor to share with %s"
-msgstr "%s के साथ साझा करने के लिए मॉनिटर चुनें"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s आपकी स्क्रीन साझा करना चाहता है। चुनें कि आप क्या साझा करना चाहते हैं।"
 
-#: src/screencastwidget.c:542
-#, c-format
-msgid "Select window to share with %s"
-msgstr "%s के साथ साझा करने के लिए विंडो चुनें"
+#: src/screencastwidget.c:651
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "एक ऐप आपकी स्क्रीन साझा करना चाहता है। चुनें कि आप क्या साझा करना चाहते हैं।"
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए मॉनिटर चुनें"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "यह चयन याद रखें (_R)"
 
-#: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए विंडो चुनें"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "अनुप्रयोग विंडो (_W)"
 
-#: src/screencastwidget.ui:16
-msgid "Single Window"
-msgstr "अकेली विंडो"
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "पूरी स्क्रीन (_E)"
 
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "यह चयन याद रखें"
-
-#: src/screencastwidget.ui:64
-msgid "Entire Screen"
-msgstr "पूरी स्क्रीन"
-
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "इस स्क्रीनशॉट को %s के साथ साझा करें?"
 
-#: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
 msgstr "अनुरोध करने वाली ऐप्लिकेशन के साथ यह स्क्रीनशॉट साझा करें?"
 
-#: src/screenshotdialog.ui:8
+#: src/screenshotdialog.ui:9
 msgid "Screenshot"
 msgstr "स्क्रीनशॉट"
 
-#: src/screenshotdialog.ui:42
+#: src/screenshotdialog.ui:45
 msgid "_Options…"
 msgstr "विकल्प… (_O)"
 
-#: src/screenshotdialog.ui:67
+#: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
 msgstr "स्क्रीनशॉट लें (_S)"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
 msgstr "स्क्रीनशॉट लें"
 
-#: src/screenshotdialog.ui:130
-msgid "Grab the whole sc_reen"
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
 msgstr "पूरी स्क्रीन को ग्रहण करें (_r)"
 
-#: src/screenshotdialog.ui:140
-msgid "Grab the current _window"
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
 msgstr "वर्तमान विंडो को ग्रहण करें (_w)"
 
-#: src/screenshotdialog.ui:150
-msgid "Select _area to grab"
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
 msgstr "ग्रहण करने के लिए क्षेत्र चुनें (_a)"
 
-#: src/screenshotdialog.ui:162
+#: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
 msgstr "इतनी देरी के बाद पकड़ो (_d)"
 
-#: src/screenshotdialog.ui:173
+#: src/screenshotdialog.ui:184
 msgid "seconds"
 msgstr "सेकेंड"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:193
 msgid "Effects"
 msgstr "इफ़ेक्ट"
 
-#: src/screenshotdialog.ui:192
-msgid "Include _pointer"
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
 msgstr "माउस पॉइंटर शामिल करें (_p)"
 
-#: src/screenshotdialog.ui:200
-msgid "Include the window _border"
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
 msgstr "विंडो की बॉर्डर सीमा शामिल करें (_b)"
 
-#: src/settings.c:246
+#: src/settings.c:281
 msgid "Requested setting not found"
 msgstr "अनुरोधित सेटिंग नहीं मिली"
 
@@ -259,14 +292,36 @@ msgstr "अनुरोधित सेटिंग नहीं मिली"
 msgid "Set Background"
 msgstr "बैकग्राउंड सेट करें"
 
-#: src/wallpaperdialog.ui:32
-msgid "Set"
-msgstr "सेट करें"
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "निर्धारित (_S)"
 
-#: src/wallpaperdialog.ui:63
+#: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "चित्र फ़ाइल लोड करने में विफल"
 
-#: src/wallpaperpreview.ui:48
-msgid "Activities"
-msgstr "क्रियाएँ"
+#~ msgid "Screen Share"
+#~ msgstr "स्क्रीन शेयर करें"
+
+#, c-format
+#~ msgid "Select monitor to share with %s"
+#~ msgstr "%s के साथ साझा करने के लिए मॉनिटर चुनें"
+
+#, c-format
+#~ msgid "Select window to share with %s"
+#~ msgstr "%s के साथ साझा करने के लिए विंडो चुनें"
+
+#~ msgid "Select monitor to share with the requesting application"
+#~ msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए मॉनिटर चुनें"
+
+#~ msgid "Select window to share with the requesting application"
+#~ msgstr "अनुरोध करने वाली एप्लिकेशन के साथ साझा करने के लिए विंडो चुनें"
+
+#~ msgid "Single Window"
+#~ msgstr "अकेली विंडो"
+
+#~ msgid "Set"
+#~ msgstr "सेट करें"
+
+#~ msgid "Activities"
+#~ msgstr "क्रियाएँ"
