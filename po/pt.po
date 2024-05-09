@@ -1,23 +1,23 @@
 # Portuguese translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021, 2022, 2023.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021, 2022, 2023, 2023, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
+"Project-Id-Version: xdg-desktop-portal-gnome gnome-45\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues\n"
-"POT-Creation-Date: 2023-07-18 21:47+0000\n"
-"PO-Revision-Date: 2023-08-04 18:12+0100\n"
+"POT-Creation-Date: 2023-10-28 13:26+0000\n"
+"PO-Revision-Date: 2024-05-09 17:07+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
-"Language-Team: Portuguese <pt@li.org>\n"
+"Language-Team: Portuguese <hugokarvalho@hotmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -59,13 +59,14 @@ msgstr "Partilhar detalhes"
 
 #: src/accountdialog.ui:23 src/appchooserdialog.ui:12
 #: src/dynamic-launcher.c:258 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:25
+#: src/screencastdialog.ui:26 src/screenshotdialog.ui:26
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:30 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:33 src/screencastdialog.ui:34
+#: src/screenshotdialog.ui:49
 msgid "_Share"
 msgstr "_Partilhar"
 
@@ -77,20 +78,24 @@ msgstr "Nome"
 msgid "Username"
 msgstr "Nome de utilizador"
 
-#: src/appchooserdialog.c:228
+#: src/appchooserdialog.c:201
+msgid "_Ok"
+msgstr "_Aceitar"
+
+#: src/appchooserdialog.c:220
 msgid "Failed to start Software"
 msgstr "Falha ao iniciar o Aplicações"
 
-#: src/appchooserdialog.c:392
+#: src/appchooserdialog.c:384
 #, c-format
 msgid "Choose an app to open the file “%s”."
 msgstr "Escolha uma aplicação para abrir o ficheiro \"%s\"."
 
-#: src/appchooserdialog.c:397
+#: src/appchooserdialog.c:389
 msgid "Choose an app."
 msgstr "Escolha uma aplicação."
 
-#: src/appchooserdialog.c:414
+#: src/appchooserdialog.c:406
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -98,7 +103,7 @@ msgstr ""
 "Nenhuma aplicação instalada que possa abrir \"%s\". Pode encontrar mais "
 "aplicações em Software"
 
-#: src/appchooserdialog.c:419
+#: src/appchooserdialog.c:411
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nenhuma aplicação adequada instalada. Pode encontrar mais aplicações em "
@@ -148,15 +153,37 @@ msgstr "Abrir ficheiros de apenas-leitura"
 msgid "Open directories read-only"
 msgstr "Abrir diretórios de apenas-leitura"
 
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "A aplicação %s pretende capturar eventos de entrada"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Uma aplicação pretende capturar eventos de entrada"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture input"
+msgstr "Capturar eventos de entrada"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow remote input capturing"
+msgstr "Permitir _interação remota"
+
 #: src/remotedesktopdialog.ui:7
 msgid "Remote desktop"
 msgstr "Área de trabalho remota"
 
-#: src/remotedesktopdialog.ui:77
+#: src/remotedesktopdialog.ui:62 src/screencastwidget.ui:40
+#: src/screencastwidget.ui:86
+msgid "Remember this selection"
+msgstr "Lembrar esta selecção"
+
+#: src/remotedesktopdialog.ui:87
 msgid "Allow remote interaction"
 msgstr "Permitir interação remota"
 
-#: src/remotedesktopdialog.ui:90
+#: src/remotedesktopdialog.ui:100
 msgid "Allow clipboard access"
 msgstr "Permitir o acesso à área de transferência"
 
@@ -189,10 +216,6 @@ msgstr "Selecionar a janela a partilhar com a aplicação requerente"
 #: src/screencastwidget.ui:16
 msgid "Single Window"
 msgstr "Janela individual"
-
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Lembrar esta selecção"
 
 #: src/screencastwidget.ui:64
 msgid "Entire Screen"
