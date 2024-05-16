@@ -207,29 +207,14 @@ shell_window_dup (ShellWindow *window)
 }
 
 static void
-get_windows_cb (GObject *source_object,
-                GAsyncResult *res,
-                gpointer user_data)
+update_window_list (ShellIntrospect *shell_introspect,
+                    GVariant        *windows_variant)
 {
-  ShellIntrospect *shell_introspect = user_data;
   g_autoptr(GPtrArray) windows = NULL;
-  g_autoptr(GVariant) windows_variant = NULL;
   g_autoptr(GError) error = NULL;
   GVariantIter iter;
   uint64_t id;
   GVariant *params = NULL;
-
-  g_clear_object (&shell_introspect->cancellable);
-
-  if (!org_gnome_shell_introspect_call_get_windows_finish (shell_introspect->proxy,
-                                                           &windows_variant,
-                                                           res,
-                                                           &error))
-    {
-      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
-        g_warning ("Failed to get window list: %s", error->message);
-      return;
-    }
 
   g_variant_iter_init (&iter, windows_variant);
 
@@ -262,16 +247,28 @@ get_windows_cb (GObject *source_object,
 static void
 sync_state (ShellIntrospect *shell_introspect)
 {
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GVariant) windows_variant = NULL;
+
   g_list_store_remove_all (shell_introspect->windows);
 
   g_cancellable_cancel (shell_introspect->cancellable);
   g_clear_object (&shell_introspect->cancellable);
   shell_introspect->cancellable = g_cancellable_new ();
 
-  org_gnome_shell_introspect_call_get_windows (shell_introspect->proxy,
-                                               shell_introspect->cancellable,
-                                               get_windows_cb,
-                                               shell_introspect);
+  if (!org_gnome_shell_introspect_call_get_windows_sync (shell_introspect->proxy,
+                                                         &windows_variant,
+                                                         shell_introspect->cancellable,
+                                                         &error))
+    {
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        g_warning ("Failed to get window list: %s", error->message);
+      return;
+    }
+
+  g_clear_object (&shell_introspect->cancellable);
+
+  update_window_list (shell_introspect, windows_variant);
 }
 
 static void
@@ -423,8 +420,6 @@ shell_introspect_get (void)
 GListModel *
 shell_introspect_get_windows (ShellIntrospect *shell_introspect)
 {
-  g_return_val_if_fail (shell_introspect->initialized, NULL);
-
   return G_LIST_MODEL (shell_introspect->windows);
 }
 

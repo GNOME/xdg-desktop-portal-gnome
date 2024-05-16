@@ -449,8 +449,6 @@ screen_cast_widget_finalize (GObject *object)
 
   g_clear_object (&widget->filter_model);
 
-  shell_introspect_unref_listeners (widget->shell_introspect);
-
   g_clear_object (&widget->colors_provider);
 
   G_OBJECT_CLASS (screen_cast_widget_parent_class)->finalize (object);
