@@ -101,6 +101,7 @@ create_window_widget (ShellWindow *window)
   row = adw_action_row_new ();
   adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
   adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
+  gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (row), TRUE);
 
   g_object_bind_property (window, "title", row, "title", G_BINDING_SYNC_CREATE);
 
