@@ -206,15 +206,53 @@ shell_window_dup (ShellWindow *window)
   return shell_window_new (window->id, window->title, window->app_id);
 }
 
+static ShellWindow *
+find_window_from_id (ShellIntrospect *shell_introspect,
+                     uint64_t         id,
+                     unsigned int    *index)
+{
+  GListModel *window_list = G_LIST_MODEL (shell_introspect->windows);
+
+  for (unsigned int i = 0; i < g_list_model_get_n_items (window_list); i++)
+    {
+      ShellWindow *window =
+        SHELL_WINDOW (g_list_model_get_item (window_list, i));
+
+      if (id == shell_window_get_id (window))
+        {
+          if (index)
+            *index = i;
+          return window;
+        }
+    }
+
+  return NULL;
+}
+
 static void
 update_window_list (ShellIntrospect *shell_introspect,
                     GVariant        *windows_variant)
 {
+  GListModel *window_list = G_LIST_MODEL (shell_introspect->windows);
   g_autoptr(GPtrArray) windows = NULL;
   g_autoptr(GError) error = NULL;
   GVariantIter iter;
   uint64_t id;
   GVariant *params = NULL;
+  unsigned int i;
+  g_autoptr(GHashTable) old_ids = NULL;
+  gpointer key;
+  GHashTableIter old_ids_iter;
+
+  old_ids = g_hash_table_new_full (g_int64_hash, g_int64_equal, g_free, NULL);
+  for (i = 0; i < g_list_model_get_n_items (window_list); i++)
+    {
+      ShellWindow *window =
+        SHELL_WINDOW (g_list_model_get_item (window_list, i));
+      uint64_t id = shell_window_get_id (window);
+
+      g_hash_table_add (old_ids, g_memdup2 (&id, sizeof (id)));
+    }
 
   g_variant_iter_init (&iter, windows_variant);
 
@@ -232,10 +270,29 @@ update_window_list (ShellIntrospect *shell_introspect,
       g_variant_lookup (params, "title", "s", &title);
       g_variant_lookup (params, "time-since-user-time", "u", &time_since_user_time);
 
-      window = shell_window_new (id, title, app_id);
-      g_ptr_array_add (windows, window);
+      window = find_window_from_id (shell_introspect, id, NULL);
+      if (window)
+        {
+          g_hash_table_remove (old_ids, &id);
+          shell_window_set_title (window, title);
+        }
+      else
+        {
+          window = shell_window_new (id, title, app_id);
+          g_ptr_array_add (windows, window);
+        }
 
       g_clear_pointer (&params, g_variant_unref);
+    }
+
+  g_hash_table_iter_init (&old_ids_iter, old_ids);
+  while (g_hash_table_iter_next (&old_ids_iter, &key, NULL))
+    {
+      uint64_t old_id = *(uint64_t *) key;
+      unsigned int index;
+
+      if (find_window_from_id (shell_introspect, old_id, &index))
+        g_list_store_remove (shell_introspect->windows, index);
     }
 
   g_list_store_splice (shell_introspect->windows, 0, 0, windows->pdata, windows->len);
@@ -249,8 +306,6 @@ sync_state (ShellIntrospect *shell_introspect)
 {
   g_autoptr(GError) error = NULL;
   g_autoptr(GVariant) windows_variant = NULL;
-
-  g_list_store_remove_all (shell_introspect->windows);
 
   g_cancellable_cancel (shell_introspect->cancellable);
   g_clear_object (&shell_introspect->cancellable);
@@ -439,7 +494,7 @@ shell_introspect_unref_listeners (ShellIntrospect *shell_introspect)
 
   shell_introspect->num_listeners--;
   if (shell_introspect->num_listeners == 0)
-    g_clear_object (&shell_introspect->windows);
+    g_list_store_remove_all (shell_introspect->windows);
 }
 
 const char *
