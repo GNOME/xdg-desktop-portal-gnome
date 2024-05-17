@@ -74,6 +74,8 @@ static GQuark quark_monitor_widget_data;
 
 G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
 
+static void schedule_selection_change (ScreenCastWidget *widget);
+
 /*
  * Auxiliary methods
  */
@@ -141,8 +143,6 @@ monitor_container_get_selected_buttons (GtkWidget *monitor_container)
   return selected_monitor_buttons;
 }
 
-static void
-schedule_selection_change (ScreenCastWidget *widget);
 static void
 on_monitor_button_toggled_cb (GtkToggleButton *monitor_button, ScreenCastWidget *self)
 {
