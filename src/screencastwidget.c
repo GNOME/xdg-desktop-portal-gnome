@@ -104,6 +104,7 @@ create_window_widget (ShellWindow *window)
   adw_action_row_add_prefix (ADW_ACTION_ROW (row), window_image);
   adw_action_row_add_suffix (ADW_ACTION_ROW (row), check_image);
   gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (row), TRUE);
+  gtk_list_box_row_set_selectable (GTK_LIST_BOX_ROW (row), FALSE);
 
   g_object_bind_property (window, "title", row, "title", G_BINDING_SYNC_CREATE);
 
@@ -319,18 +320,35 @@ is_row_selected (GtkListBoxRow *row)
 }
 
 static void
-set_row_is_selected (GtkListBoxRow *row,
-                     gboolean is_selected)
+set_row_is_selected (ScreenCastWidget *widget,
+                     GtkListBoxRow    *row,
+                     gboolean          is_selected)
 {
   GtkWidget *check_image = g_object_get_data (G_OBJECT (row), "check");
   gtk_widget_set_visible (check_image, is_selected);
+  if (is_selected)
+    {
+      gtk_widget_add_css_class (GTK_WIDGET (row), "window-selected");
+      gtk_accessible_update_state (GTK_ACCESSIBLE (row),
+                                   GTK_ACCESSIBLE_STATE_SELECTED, TRUE,
+                                   -1);
+    }
+  else
+    {
+      gtk_widget_remove_css_class (GTK_WIDGET (row), "window-selected");
+      gtk_accessible_reset_state (GTK_ACCESSIBLE (row),
+                                  GTK_ACCESSIBLE_STATE_SELECTED);
+    }
+  g_object_set_data (G_OBJECT (row), "window-selected",
+                     GINT_TO_POINTER (is_selected));
+  schedule_selection_change (widget);
 }
 
 static void
-unselect_row (GtkListBoxRow *row, GtkListBox *listbox)
+unselect_row (GtkListBoxRow    *row,
+              ScreenCastWidget *widget)
 {
-  set_row_is_selected (row, FALSE);
-  gtk_list_box_unselect_row (listbox, row);
+  set_row_is_selected (widget, row, FALSE);
 }
 
 static void
@@ -344,7 +362,7 @@ reset_selection (ScreenCastWidget *self)
 {
 
   foreach_widget_child (self->monitor_container, (GFunc) untoggle_button, self->monitor_container);
-  foreach_widget_child (self->window_list, (GFunc) unselect_row, self->window_list);
+  foreach_widget_child (self->window_list, (GFunc) unselect_row, self);
 
   auto_select_singular_monitor (self);
 }
@@ -366,36 +384,42 @@ on_row_activated (ScreenCastWidget *self,
     return;
 
   if (is_row_selected (row))
-    {
-      set_row_is_selected (row, FALSE);
-      gtk_list_box_unselect_row (box, row);
-    }
+    set_row_is_selected (self, row, FALSE);
   else
-    {
-      set_row_is_selected (row, TRUE);
-      gtk_list_box_select_row (box, row);
-    }
+    set_row_is_selected (self, row, TRUE);
 }
 
-static void
-update_selected_row (GtkListBoxRow *row, gpointer user_data)
+GList *
+get_selected_windows (ScreenCastWidget *widget)
 {
-  set_row_is_selected (row, gtk_list_box_row_is_selected (row));
+  unsigned int i;
+  GList *windows = NULL;
+
+  for (i = 0; i < g_list_model_get_n_items (widget->filter_model); i++)
+    {
+      GtkListBoxRow *row =
+        gtk_list_box_get_row_at_index (GTK_LIST_BOX (widget->window_list), i);
+
+      if (g_object_get_data (G_OBJECT (row), "window-selected"))
+        {
+          windows = g_list_append (windows,
+                                   g_list_model_get_item (widget->filter_model, i));
+        }
+    }
+
+  return windows;
 }
 
 static gboolean
 emit_selection_change_in_idle_cb (ScreenCastWidget *widget)
 {
   g_autoptr(GList) selected_monitor_buttons = NULL;
-  g_autoptr(GList) selected_window_rows = NULL;
-
-  /* Update the selected rows */
-  foreach_widget_child (widget->window_list, (GFunc) update_selected_row, NULL);
+  g_autolist(ShellWindow) selected_windows = NULL;
 
   selected_monitor_buttons = monitor_container_get_selected_buttons (widget->monitor_container);
-  selected_window_rows = gtk_list_box_get_selected_rows (GTK_LIST_BOX (widget->window_list));
+  selected_windows = get_selected_windows (widget);
   g_signal_emit (widget, signals[HAS_SELECTION_CHANGED], 0,
-                 !!selected_monitor_buttons || !!selected_window_rows);
+                 !!selected_monitor_buttons || !!selected_windows);
 
   widget->selection_changed_timeout_id = 0;
   return G_SOURCE_REMOVE;
@@ -409,14 +433,6 @@ schedule_selection_change (ScreenCastWidget *widget)
 
   widget->selection_changed_timeout_id =
     g_idle_add (G_SOURCE_FUNC (emit_selection_change_in_idle_cb), widget);
-}
-
-static void
-on_selected_rows_changed (ScreenCastWidget *widget, GtkListBox *box)
-{
-  /* GtkListBox activates rows after selecting them, which prevents
-   * us from emitting the HAS_SELECTION_CHANGED signal here */
-  schedule_selection_change (widget);
 }
 
 static void
@@ -578,7 +594,6 @@ screen_cast_widget_init (ScreenCastWidget *widget)
 
   g_object_connect (widget->window_list,
                     "swapped-signal::row-activated", G_CALLBACK (on_row_activated), widget,
-                    "swapped-signal::selected-rows-changed", G_CALLBACK (on_selected_rows_changed), widget,
                     NULL);
 
   g_signal_connect_swapped (widget->source_type,
@@ -669,7 +684,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   ScreenCastStreamInfo *info;
   g_autoptr(GPtrArray) streams = NULL;
   g_autoptr(GList) selected_monitor_buttons = NULL;
-  g_autoptr(GList) selected_window_rows = NULL;
+  g_autolist(ShellWindow) selected_windows = NULL;
   uint32_t id = 0;
   GList *l;
 
@@ -678,10 +693,9 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
 
   selected_monitor_buttons = monitor_container_get_selected_buttons (self->monitor_container);
 
-  selected_window_rows =
-    gtk_list_box_get_selected_rows (GTK_LIST_BOX (self->window_list));
+  selected_windows = get_selected_windows (self);
 
-  if (!selected_monitor_buttons && !selected_window_rows)
+  if (!selected_monitor_buttons && !selected_windows)
     return g_steal_pointer (&streams);
 
   for (l = selected_monitor_buttons; l; l = l->next)
@@ -708,16 +722,13 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
         }
     }
 
-  for (l = selected_window_rows; l; l = l->next)
+  for (l = selected_windows; l; l = l->next)
     {
-      int row_index = gtk_list_box_row_get_index (l->data);
-      g_autoptr (ShellWindow) window = NULL;
-
-      window = g_list_model_get_item (self->filter_model, row_index);
+      ShellWindow *window = l->data;
 
       info = g_new0 (ScreenCastStreamInfo, 1);
       info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
-      info->data.window = g_steal_pointer (&window);
+      info->data.window = g_object_ref (window);
       info->id = id++;
       g_ptr_array_add (streams, info);
     }
