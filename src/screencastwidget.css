@@ -42,3 +42,7 @@ geometry-container.singular {
 .monitor:active > .text {
   background-color: @monitor_button_active_bg;
 }
+
+.window-selected {
+  background-color: alpha(@accent_color, 0.25);
+}
