@@ -211,9 +211,12 @@ on_request_handle_close_cb (XdpImplRequest         *object,
                             GDBusMethodInvocation  *invocation,
                             ScreenCastDialogHandle *dialog_handle)
 {
-  cancel_start_session (dialog_handle->session, 2);
+  ScreenCastSession *screen_cast_session = dialog_handle->session;
 
-  screen_cast_dialog_handle_close (dialog_handle);
+  cancel_start_session (screen_cast_session, 2);
+
+  g_clear_pointer (&screen_cast_session->dialog_handle,
+                   screen_cast_dialog_handle_close);
 
   return FALSE;
 }
