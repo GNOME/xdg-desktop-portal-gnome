@@ -37,6 +37,9 @@ shell_dbus_interfaces = files(
   top_srcdir / 'data' / 'org.gnome.Shell.Introspect.xml',
   top_srcdir / 'data' / 'org.gnome.Shell.Screenshot.xml',
   top_srcdir / 'data' / 'org.gtk.Notifications.xml',
+  top_srcdir / 'data' / 'org.gnome.Shell.xml',
+  top_srcdir / 'data' / 'org.gnome.GlobalShortcutsProvider.xml',
+  top_srcdir / 'data' / 'org.gnome.GlobalShortcutsRebind.xml',
 )
 
 built_sources += gnome.gdbus_codegen(
@@ -104,6 +107,7 @@ sources = built_sources + files(
   'filechooser.c',
   'inputcapture.c',
   'inputcapturedialog.c',
+  'globalshortcuts.c',
   'gnomeinputcapture.c',
   'gnomescreencast.c',
   'lockdown.c',
