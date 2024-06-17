@@ -61,6 +61,7 @@
 #include "wallpaper.h"
 #include "dynamic-launcher.h"
 #include "notification.h"
+#include "globalshortcuts.h"
 
 
 static GMainLoop *loop = NULL;
@@ -207,6 +208,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!notification_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!global_shortcuts_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);

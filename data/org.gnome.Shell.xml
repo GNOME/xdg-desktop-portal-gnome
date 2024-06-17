@@ -1,0 +1,159 @@
+<node>
+  <interface name="org.gnome.Shell">
+    <method name="Eval">
+      <arg type="s" direction="in" name="script"/>
+      <arg type="b" direction="out" name="success"/>
+      <arg type="s" direction="out" name="result"/>
+    </method>
+    <method name="FocusSearch"/>
+    <method name="ShowOSD">
+      <arg type="a{sv}" direction="in" name="params"/>
+    </method>
+    <method name="ShowMonitorLabels">
+      <arg type="a{sv}" direction="in" name="params"/>
+    </method>
+    <method name="HideMonitorLabels"/>
+    <method name="FocusApp">
+      <arg type="s" direction="in" name="id"/>
+    </method>
+    <method name="ShowApplications"/>
+
+    <!--
+        START SHORTCUTS
+
+        These methods are designed to handle shortcuts for the global shortcuts
+        portal. `group_id` identifies a group of shortcuts meant to be modified
+        together.
+    -->
+
+    <!--
+        BindShortcuts:
+        @group_id: Identifier for a group of shortcuts
+        @shortcuts: Shortcuts to bind
+        @results: Shortcuts that was bound
+        @changed: non-zero if registered shortcuts changed
+
+        Bind a set of shortcuts associated with a group identifier. Bound
+        shortcuts will trigger Activated and Deactivated signal emissions when
+        the shortcut is triggered.
+
+        The described shortcuts replaces all shortcuts previously associated
+        with @group_id.
+
+	@shortcuts is an array of tuples constisting of a shortcut ID and a
+	vardict with the following keys:
+
+        * ``description`` (``s``)
+
+          User-readable text describing what the shortcut does. Optional.
+
+        * ``shortcuts`` (``as``)
+
+	  Array of shortcuts to bind in the form ``<modifier>Key``, e.g.
+	  ``['<alt>C']``.
+
+	@results is an array of the shortcuts that is now in effect. It is the
+	content as would be returned by ListShortcuts().
+    -->
+    <method name="BindShortcuts">
+      <arg type="s" name="group_id" direction="in"/>
+      <arg type="a(sa{sv})" name="shortcuts" direction="in"/>
+      <arg type="a{sv}" name="results" direction="out"/>
+      <arg type="u" name="changed" direction="out"/>
+    </method>
+
+    <!--
+        UnbindShortcuts:
+        @group_id: Identifier for a group of shortcuts
+
+	Unbind all shortcuts associated with @group_id.
+    -->
+    <method name="UnbindShortcuts">
+      <arg type="s" name="group_id" direction="in"/>
+    </method>
+
+    <!--
+        ListShortcuts:
+        @group_id: Identifier for a group of shortcuts
+
+	Lists all shortcuts of the group, together with their triggers.
+	If the group never bound shortcuts, this returns an error.
+
+        The @results array contains shortcuts associated with @group_id
+        currently bound. Each element is a tuple consisting of a shortcut ID
+        and a vardict with the following keys:
+
+        * ``description`` (``s``)
+
+          User-readable text describing what the shortcut does. Optional.
+
+        * ``trigger_description`` (``as``)
+
+	  An array of free-form user-readable text describing the active shortcut
+	  triggers for the associated shortcut ID.
+    -->
+    <method name="ListShortcuts">
+      <arg type="s" name="group_id" direction="in"/>
+      <arg type="a{sv}" name="results" direction="out"/>
+    </method>
+
+    <!--
+        Activated:
+        @group_id: Identifier for a group of shortcuts
+        @shortcut_id: Identifier for the activated shortcut
+        @timestamp: Timestamp in millisecond granularity.
+
+	Shortcut activated. Sent to the client that bound it.
+    -->
+    <signal name="Activated">
+      <arg type="s" name="group_id" direction="out"/>
+      <arg type="s" name="shortcut_id" direction="out"/>
+      <arg type="t" name="timestamp" direction="out"/>
+    </signal>
+
+    <!--
+        Deactivated:
+        @group_id: Identifier for a group of shortcuts
+        @shortcut_id: Identifier for the deactivated shortcut
+        @timestamp: Timestamp in millisecond granularity.
+
+	Shortcut deactivated. Sent to the client that bound it.
+    -->
+    <signal name="Deactivated">
+      <arg type="s" name="group_id" direction="out"/>
+      <arg type="s" name="shortcut_id" direction="out"/>
+      <arg type="t" name="timestamp" direction="out"/>
+    </signal>
+
+    <!-- END SHORTCUTS -->
+
+    <method name="GrabAccelerator">
+      <arg type="s" direction="in" name="accelerator"/>
+      <!-- Shell.ActionMode -->
+      <arg type="u" direction="in" name="modeFlags"/>
+      <!-- Meta.KeyBindingFlags -->
+      <arg type="u" direction="in" name="grabFlags"/>
+      <arg type="u" direction="out" name="action"/>
+    </method>
+    <method name="GrabAccelerators">
+      <arg type="a(suu)" direction="in" name="accelerators"/>
+      <arg type="au" direction="out" name="actions"/>
+    </method>
+    <method name="UngrabAccelerator">
+      <arg type="u" direction="in" name="action"/>
+      <arg type="b" direction="out" name="success"/>
+    </method>
+    <method name="UngrabAccelerators">
+      <arg type="au" direction="in" name="action"/>
+      <arg type="b" direction="out" name="success"/>
+    </method>
+    <method name="ScreenTransition"/>
+    <signal name="AcceleratorActivated">
+      <arg name="action" type="u"/>
+      <arg name="parameters" type="a{sv}"/>
+    </signal>
+    <property name="Mode" type="s" access="read"/>
+    <property name="OverviewActive" type="b" access="readwrite"/>
+    <property name="ShellVersion" type="s" access="read"/>
+  </interface>
+</node>

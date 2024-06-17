@@ -69,7 +69,7 @@ handle_add_notification (XdpImplNotification *object,
                                                notification_added,
                                                NULL);
 
-  xdp_impl_notification_complete_add_notification (object, invocation);
+  xdp_impl_notification_complete_add_notification (object, invocation, NULL);
 
   return TRUE;
 }
