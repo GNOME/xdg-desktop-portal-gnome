@@ -94,7 +94,7 @@ check-merge-request:
 
 .container-common:
   variables:
-    FDO_DISTRIBUTION_TAG: '2023-06-19.1'
+    FDO_DISTRIBUTION_TAG: '2023-06-19.2'
 
 .fedora-container:
   extends:
@@ -124,8 +124,11 @@ check-merge-request:
       wayland-devel
       xdg-desktop-portal
       xkeyboard-config-devel
+      'dnf-command(builddep)'
 
     FDO_DISTRIBUTION_EXEC: |
+      dnf builddep gtk4 -y
+
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
         1.18.2 .
@@ -133,6 +136,10 @@ check-merge-request:
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
+      
+      ./.gitlab-ci/install-meson-project.sh \
+        https://gitlab.gnome.org/GNOME/libadwaita.git \
+        main . 6e0207eee4f5cf0b2d3dd51d915e5c84a2ddfc90
 
 .ubuntu-container:
   extends:
@@ -167,6 +174,10 @@ check-merge-request:
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
+
+      ./.gitlab-ci/install-meson-project.sh \
+        https://gitlab.gnome.org/GNOME/libadwaita.git \
+        main . 6e0207eee4f5cf0b2d3dd51d915e5c84a2ddfc90
 
 prepare-fedora:
   extends:
