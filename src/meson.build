@@ -80,7 +80,7 @@ deps = [
   dependency('gio-unix-2.0'),
   dependency('gtk4', version: '>= 4.0'),
   dependency('gtk4-unix-print', version: '>= 4.0'),
-  dependency('gsettings-desktop-schemas'),
+  dependency('gsettings-desktop-schemas', version: '>= 47.alpha'),
   dependency('gnome-desktop-4'),
   dependency('gnome-bg-4'),
   libadwaita_dep,
