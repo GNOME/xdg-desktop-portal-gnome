@@ -46,6 +46,12 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Session, g_object_unref)
 
 Session *lookup_session (const char *id);
 
+typedef gboolean (* SessionFunc) (Session       *session,
+                                  gconstpointer  data);
+
+Session *find_session (SessionFunc   func,
+                       gconstpointer data);
+
 Session *session_new (const char *id);
 
 void session_close (Session *session, gboolean notify);
