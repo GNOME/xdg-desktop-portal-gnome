@@ -36,6 +36,24 @@ notification_added (GObject      *source,
     g_warning ("Error from gnome-shell: %s", error->message);
 }
 
+static char *
+app_path_for_id (const gchar *app_id)
+{
+  char *path;
+  gint i;
+
+  path = g_strconcat ("/", app_id, NULL);
+  for (i = 0; path[i]; i++)
+    {
+      if (path[i] == '.')
+        path[i] = '/';
+      if (path[i] == '-')
+        path[i] = '_';
+    }
+
+  return path;
+}
+
 static gboolean
 handle_add_notification (XdpImplNotification *object,
                          GDBusMethodInvocation *invocation,
@@ -75,6 +93,59 @@ handle_remove_notification (XdpImplNotification *object,
   return TRUE;
 }
 
+static void
+handle_action_invoked (OrgGtkNotifications *object,
+                       const gchar         *arg_app_id,
+                       const gchar         *arg_notification_id,
+                       const gchar         *arg_name,
+                       GVariant            *arg_parameter,
+                       GVariant            *arg_platform_data)
+{
+  GDBusConnection *connection = NULL;
+  g_autofree char *object_path = NULL;
+  g_autoptr(GVariant) activation_token = NULL;
+  GVariantBuilder pdata;
+
+  connection = g_dbus_proxy_get_connection (G_DBUS_PROXY (object));
+  object_path = app_path_for_id (arg_app_id);
+  g_variant_builder_init (&pdata, G_VARIANT_TYPE_VARDICT);
+
+  activation_token = g_variant_lookup_value (arg_platform_data, "activation-token", G_VARIANT_TYPE_STRING);
+
+  if (activation_token)
+    {
+      /* Used by `GTK` < 4.10 */
+      g_variant_builder_add (&pdata, "{sv}",
+                             "desktop-startup-id", activation_token);
+      /* Used by `GTK` and `QT` */
+      g_variant_builder_add (&pdata, "{sv}",
+                             "activation-token", activation_token);
+    }
+
+  g_dbus_connection_call (connection,
+                          arg_app_id,
+                          object_path,
+                          "org.freedesktop.Application",
+                          "Activate",
+                          g_variant_new ("(@a{sv})",
+                                         g_variant_builder_end (&pdata)),
+                          NULL,
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1, NULL, NULL, NULL);
+
+  g_dbus_connection_emit_signal (connection,
+                                 NULL,
+                                 "/org/freedesktop/portal/desktop",
+                                 "org.freedesktop.impl.portal.Notification",
+                                 "ActionInvoked",
+                                 g_variant_new ("(sss@av)",
+                                                arg_app_id,
+                                                arg_notification_id,
+                                                arg_name,
+                                                arg_parameter),
+                                 NULL);
+}
+
 gboolean
 notification_init (GDBusConnection *bus,
                    GError **error)
@@ -87,6 +158,8 @@ notification_init (GDBusConnection *bus,
                                                             "/org/gtk/Notifications",
                                                             NULL,
                                                             NULL);
+
+  g_signal_connect (gtk_notifications, "action-invoked", G_CALLBACK (handle_action_invoked), NULL);
 
   helper = G_DBUS_INTERFACE_SKELETON (xdp_impl_notification_skeleton_new ());
 
