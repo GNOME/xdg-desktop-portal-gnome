@@ -48,6 +48,27 @@ lookup_session (const char *id)
   return g_hash_table_lookup (sessions, id);
 }
 
+Session *
+find_session (SessionFunc   func,
+              gconstpointer data)
+{
+  GHashTableIter iter;
+  const char *id;
+  Session *session;
+
+  if (sessions)
+    {
+      g_hash_table_iter_init (&iter, sessions);
+      while (g_hash_table_iter_next (&iter, (gpointer *)&id, (gpointer *)&session))
+        {
+          if (func (session, data))
+            return session;
+        }
+    }
+
+  return NULL;
+}
+
 gboolean
 session_export (Session *session,
                 GDBusConnection *connection,
