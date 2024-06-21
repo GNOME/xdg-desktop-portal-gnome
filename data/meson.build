@@ -14,6 +14,7 @@ gnome_portal_interfaces = [
   'org.freedesktop.impl.portal.FileChooser',
   'org.freedesktop.impl.portal.InputCapture',
   'org.freedesktop.impl.portal.Lockdown',
+  'org.freedesktop.impl.portal.Notification',
   'org.freedesktop.impl.portal.Print',
   'org.freedesktop.impl.portal.RemoteDesktop',
   'org.freedesktop.impl.portal.ScreenCast',

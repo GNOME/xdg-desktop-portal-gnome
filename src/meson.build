@@ -36,6 +36,7 @@ shell_dbus_interfaces = files(
   top_srcdir / 'data' / 'org.gnome.Mutter.ServiceChannel.xml',
   top_srcdir / 'data' / 'org.gnome.Shell.Introspect.xml',
   top_srcdir / 'data' / 'org.gnome.Shell.Screenshot.xml',
+  top_srcdir / 'data' / 'org.gtk.Notifications.xml',
 )
 
 built_sources += gnome.gdbus_codegen(
@@ -106,6 +107,7 @@ sources = built_sources + files(
   'gnomeinputcapture.c',
   'gnomescreencast.c',
   'lockdown.c',
+  'notification.c',
   'print.c',
   'remotedesktop.c',
   'remotedesktopdialog.c',
