@@ -61,7 +61,6 @@ struct _ScreenCastWidget
 
   ShellIntrospect       *shell_introspect;
   GListModel            *filter_model;
-  ulong                  windows_changed_handler_id;
 
   uint                   selection_changed_timeout_id;
   bool                   allow_multiple;
@@ -460,9 +459,6 @@ screen_cast_widget_finalize (GObject *object)
   g_signal_handler_disconnect (widget->display_state_tracker,
                                widget->monitors_changed_handler_id);
 
-  /* Disconnect windows changed listener */
-  g_clear_signal_handler (&widget->windows_changed_handler_id,
-                          widget->shell_introspect);
   shell_introspect_unref_listeners (widget->shell_introspect);
 
   if (widget->selection_changed_timeout_id > 0)
@@ -597,7 +593,7 @@ screen_cast_widget_init (ScreenCastWidget *widget)
   gtk_list_box_bind_model (GTK_LIST_BOX (widget->window_list),
                            widget->filter_model,
                            (GtkListBoxCreateWidgetFunc) create_window_widget,
-                           widget, NULL);
+                           NULL, NULL);
 
   g_object_connect (widget->window_list,
                     "swapped-signal::row-activated", G_CALLBACK (on_row_activated), widget,
