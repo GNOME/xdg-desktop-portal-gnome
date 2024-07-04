@@ -1,3 +1,14 @@
+Changes in 47.alpha
+=================
+
+- Expose the new accent colors setting
+- Various cleanups to the screencast widget
+- Add support for the "supported_output_file_formats" option in the Print
+  portal
+- Fix default layout mode of the ScreenCast/Remote Desktop portal
+- Translation updates
+
+
 Changes in 46.0
 =================
 
