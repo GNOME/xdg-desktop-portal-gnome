@@ -386,7 +386,12 @@ on_row_activated (ScreenCastWidget *self,
   if (is_row_selected (row))
     set_row_is_selected (self, row, FALSE);
   else
-    set_row_is_selected (self, row, TRUE);
+    {
+      if (!self->allow_multiple)
+        foreach_widget_child (GTK_WIDGET (box), (GFunc) unselect_row, self);
+
+      set_row_is_selected (self, row, TRUE);
+    }
 }
 
 GList *
