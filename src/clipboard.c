@@ -44,6 +44,7 @@ on_selection_owner_changed (Session  *session,
 {
   g_autoptr (GVariant) session_is_owner = NULL;
   g_autoptr (GVariant) mime_types = NULL;
+  g_autoptr (GVariant) mutter_mime_types = NULL;
   GVariantBuilder options_builder;
   GVariant *options;
 
@@ -52,7 +53,20 @@ on_selection_owner_changed (Session  *session,
   /* Translating mime-types and session-is-owner for portal's interface
    * specification.
    */
-  mime_types = g_variant_lookup_value (arg_options, "mime-types", G_VARIANT_TYPE ("(as)"));
+  mutter_mime_types = g_variant_lookup_value (arg_options, "mime-types", NULL);
+  if (mutter_mime_types)
+    {
+      if (g_variant_is_of_type (mutter_mime_types,
+                                G_VARIANT_TYPE_STRING_ARRAY))
+        {
+          mime_types = g_steal_pointer (&mutter_mime_types);
+        }
+      else if (g_variant_is_of_type (mutter_mime_types,
+                                     G_VARIANT_TYPE ("(as)")))
+        {
+          mime_types = g_variant_get_child_value (mutter_mime_types, 0);
+        }
+    }
   if (mime_types)
     {
       g_variant_builder_add (&options_builder,
