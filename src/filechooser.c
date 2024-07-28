@@ -703,10 +703,6 @@ handle_open (XdpImplFileChooser    *object,
     }
   else if (strcmp (method_name, "SaveFile") == 0)
     {
-      /* TODO: is this useful ?
-       * In a sandboxed situation, the current folder and current file
-       * are likely in the fuse filesystem
-       */
       if (g_variant_lookup (arg_options, "current_file", "^&ay", &path))
         {
           g_autoptr(GFile) file = g_file_new_for_path (path);
@@ -739,10 +735,6 @@ handle_open (XdpImplFileChooser    *object,
     }
   else if (strcmp (method_name, "SaveFiles") == 0)
     {
-      /* TODO: is this useful ?
-       * In a sandboxed situation, the current folder and current file
-       * are likely in the fuse filesystem
-       */
       if (g_variant_lookup (arg_options, "current_folder", "^&ay", &path))
         {
           g_autoptr(GFile) file = g_file_new_for_path (path);
