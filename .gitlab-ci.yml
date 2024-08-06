@@ -94,7 +94,7 @@ check-merge-request:
 
 .container-common:
   variables:
-    FDO_DISTRIBUTION_TAG: '2023-06-19.2'
+    FDO_DISTRIBUTION_TAG: '2024-08-06.1'
 
 .fedora-container:
   extends:
@@ -139,7 +139,7 @@ check-merge-request:
       
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/libadwaita.git \
-        main . 6e0207eee4f5cf0b2d3dd51d915e5c84a2ddfc90
+        main . 3747fd7e46986698f4dff6af2193b365582ac3c4
 
 .ubuntu-container:
   extends:
