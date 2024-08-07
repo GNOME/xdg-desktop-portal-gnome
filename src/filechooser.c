@@ -353,19 +353,19 @@ handle_open (XdpImplFileChooser    *object,
   if (strcmp (method_name, "OpenFile") == 0)
     {
       xdp_impl_file_chooser_call_open_file (delegate,
-                                            arg_handle, arg_app_id, arg_parent_window, arg_title, arg_options,
+                                            arg_handle, arg_app_id, arg_parent_window, arg_title, delegated_options,
                                             NULL, delegate_response, handle);
     }
   else if (strcmp (method_name, "SaveFile") == 0)
     {
       xdp_impl_file_chooser_call_save_file (delegate,
-                                            arg_handle, arg_app_id, arg_parent_window, arg_title, arg_options,
+                                            arg_handle, arg_app_id, arg_parent_window, arg_title, delegated_options,
                                             NULL, delegate_response, handle);
     }
   else if (strcmp (method_name, "SaveFiles") == 0)
     {
       xdp_impl_file_chooser_call_save_files (delegate,
-                                             arg_handle, arg_app_id, arg_parent_window, arg_title, arg_options,
+                                             arg_handle, arg_app_id, arg_parent_window, arg_title, delegated_options,
                                              NULL, delegate_response, handle);
     }
 
