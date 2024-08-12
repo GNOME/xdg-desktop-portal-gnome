@@ -345,7 +345,7 @@ handle_open (XdpImplFileChooser    *object,
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
 
   if (!g_variant_lookup (delegated_options, "current_folder", "^&ay", &path) &&
-      !g_variant_lookup (delegated_options, "current_folder", "^&ay", &path))
+      !g_variant_lookup (delegated_options, "current_file", "^&ay", &path))
     {
       restore_last_folder (handle, &delegated_options);
     }
