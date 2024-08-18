@@ -1,105 +1,122 @@
 # Interlingue translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2022 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Olga Smirnova <mistresssilvara@hotmail.com>, 2022.
+# Olga Smirnova <mistresssilvara@hotmail.com>, 2022-24.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-43\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2022-11-12 19:07+0000\n"
-"PO-Revision-Date: 2022-12-13 17:21+0700\n"
-"Language-Team: Interlingue <ie@li.org>\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-08-06 13:35+0000\n"
+"PO-Revision-Date: 2024-08-18 07:20+0700\n"
+"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
+"Language-Team: Interlingue\n"
 "Language: ie\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Gtranslator 46.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
 msgstr "Portale"
 
-#: src/accountdialog.c:152
+#: src/access.c:203
+msgid "Deny"
+msgstr "Refusar"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Permisser"
+
+#: src/accountdialog.c:159
 msgid "Select an Image"
 msgstr "Selecter un image"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+#: src/accountdialog.c:162
 msgid "Cancel"
 msgstr "Anullar"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:163
 msgid "Select"
 msgstr "Selecter"
 
-#: src/accountdialog.c:157
+#: src/accountdialog.c:164
 msgid "Clear"
 msgstr "Vacuar"
 
-#: src/accountdialog.c:164
+#: src/accountdialog.c:171
 msgid "Images"
 msgstr "Images"
 
-#: src/accountdialog.c:225
+#: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Partir vor personal information con %1$s? %2$s"
 
-#: src/accountdialog.c:231
+#: src/accountdialog.c:239
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
-msgstr "Partir vor personal information con li demandant application? %s"
+msgid "Share your personal information with the requesting app? %s"
+msgstr "Esque partir vor personal information con li demandant application? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "Detallies de partite"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:265 src/filechooser.c:534
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Anullar"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Partir"
 
-#: src/accountdialog.ui:83
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Cambiar li avatar"
+
+#: src/accountdialog.ui:112
 msgid "Name"
 msgstr "Nómine"
 
-#: src/accountdialog.ui:95
+#: src/accountdialog.ui:118
 msgid "Username"
 msgstr "Nómine de usator"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:199
 msgid "Failed to start Software"
 msgstr "Ne successat lansar li Programmarium"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:354
 #, c-format
-msgid "Choose an application to open the file “%s”."
+msgid "Choose an app to open the file “%s”."
 msgstr "Selecte un application por aperter li file «%s»."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:359
+msgid "Choose an app."
 msgstr "Selecte un application."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:376
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Null installat applicationes posse aperter «%s». On posse trovar additional "
 "applicationes in li Programmarium"
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:381
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Null convenent applicationes es installat. On posse trovar additional "
 "applicationes in li Programmarium."
@@ -108,178 +125,151 @@ msgstr ""
 msgid "Open With…"
 msgstr "Aperter per…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:529
+#: src/appchooserdialog.ui:24
 msgid "_Open"
 msgstr "_Aperter"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
 msgstr "Null applicationes disponibil"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:93
 msgid "_Find More in Software"
 msgstr "_Trovar plu in li Programmarium"
 
-#: src/background.c:214 src/background.c:305
-#, c-format
-msgid "“%s” is running in the background"
-msgstr "«%s» execute in li funde"
-
-#: src/background.c:216
-msgid ""
-"This might be for a legitimate reason, but the application has not provided "
-"one.\n"
-"\n"
-"Note that forcing an application to quit might cause data loss."
-msgstr ""
-"To posse haver un legitim cause, ma li application ne providet it.\n"
-"\n"
-"Marca que termination de application posse causar perde de data."
-
-#: src/background.c:219
-msgid "Force quit"
-msgstr "Terminar"
-
-#: src/background.c:220
-msgid "Allow"
-msgstr "Permisser"
-
-#: src/background.c:303
-msgid "Background activity"
-msgstr "Activitá in funde"
-
-#: src/background.c:311
-msgid "Find out more"
-msgstr "Plu information"
-
-#: src/dynamic-launcher.c:257
-msgid "Create Web Application"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
 msgstr "Crear un application web"
 
-#: src/dynamic-launcher.c:259
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+msgid "Create App"
 msgstr "Crear un application"
 
-#: src/dynamic-launcher.c:267
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "C_rear"
 
-#: src/filechooser.c:529
-msgid "_Select"
-msgstr "_Selecter"
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Li application %s desira capturar evenimentes de intrada"
 
-#: src/filechooser.c:531
-msgid "_Save"
-msgstr "_Gardar"
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Un application desira capturar evenimentes de intrada"
 
-#: src/filechooser.c:713
-msgid "Open files read-only"
-msgstr "Aperter files solmen por letion"
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "Capturar li intrada"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr "Permisser lontan captura de _intrada"
 
 #: src/remotedesktopdialog.ui:7
-msgid "Remote desktop"
+msgid "Remote Desktop"
 msgstr "Lontan pupitre"
 
-#: src/remotedesktopdialog.ui:76
-msgid "Allow remote interaction"
-msgstr "Permisser lontan interaction"
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "_Memorar ti selection"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Permisser lontan _interaction"
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Permisser a_cesse al Paperiere"
 
 #: src/screencastdialog.ui:5
-msgid "Screen Share"
+msgid "Share Screen"
 msgstr "Partir li ecran"
 
-#: src/screencastwidget.c:159
-msgid "Virtual monitor"
+#: src/screencastwidget.c:291
+msgid "Virtual Monitor"
 msgstr "Virtual monitor"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:629
 #, c-format
-msgid "Select monitor to share with %s"
-msgstr "Selecte un monitor por partir con %s"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s desira partir vor ecran. Ples selecter quo vu vole partir."
 
-#: src/screencastwidget.c:542
-#, c-format
-msgid "Select window to share with %s"
-msgstr "Selecte un fenestre por partir con %s"
+#: src/screencastwidget.c:634
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Un application desira partir vor ecran. Ples selecter quo vu vole partir."
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "Selecte un monitor por partir con li demandant application"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "_Memorar ti selection"
 
-#: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "Selecte un fenestre por partir con li demandant application"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_Fenestre del application"
 
-#: src/screencastwidget.ui:16
-msgid "Single Window"
-msgstr "Singul fenestre"
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "Li tot _ecran"
 
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Memorar ti selection"
-
-#: src/screencastwidget.ui:64
-msgid "Entire Screen"
-msgstr "Li tot ecran"
-
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Partir ti-ci captura con %s?"
 
-#: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
 msgstr "Partir ti-ci captura con li demandant application?"
 
-#: src/screenshotdialog.ui:8
+#: src/screenshotdialog.ui:9
 msgid "Screenshot"
 msgstr "Captura de ecran"
 
-#: src/screenshotdialog.ui:42
+#: src/screenshotdialog.ui:45
 msgid "_Options…"
 msgstr "_Parametres…"
 
-#: src/screenshotdialog.ui:67
+#: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
 msgstr "_Capter li ecran"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
 msgstr "Capter li ecran"
 
-#: src/screenshotdialog.ui:130
-msgid "Grab the whole sc_reen"
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
 msgstr "Capter li tot ec_ran"
 
-#: src/screenshotdialog.ui:140
-msgid "Grab the current _window"
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
 msgstr "Capter li actual fe_nestre"
 
-#: src/screenshotdialog.ui:150
-msgid "Select _area to grab"
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
 msgstr "Selecter un _area por capter"
 
-#: src/screenshotdialog.ui:162
+#: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
 msgstr "Capter pos un retar_de de"
 
-#: src/screenshotdialog.ui:173
+#: src/screenshotdialog.ui:184
 msgid "seconds"
 msgstr "secondes"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:193
 msgid "Effects"
 msgstr "Efectes"
 
-#: src/screenshotdialog.ui:192
-msgid "Include _pointer"
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
 msgstr "Includer li a_puntator"
 
-#: src/screenshotdialog.ui:200
-msgid "Include the window _border"
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
 msgstr "Includer li _borde de fenestre"
 
-#: src/settings.c:246
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Un besonat parametre ne esset trovat"
 
@@ -287,14 +277,11 @@ msgstr "Un besonat parametre ne esset trovat"
 msgid "Set Background"
 msgstr "Assignar quam li funde"
 
-#: src/wallpaperdialog.ui:32
-msgid "Set"
-msgstr "Assignar"
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "A_ssignar"
 
-#: src/wallpaperdialog.ui:63
+#: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Ne successat cargar li file de image"
 
-#: src/wallpaperpreview.ui:48
-msgid "Activities"
-msgstr "Activitás"
