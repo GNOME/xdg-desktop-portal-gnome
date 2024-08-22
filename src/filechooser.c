@@ -393,6 +393,7 @@ file_chooser_init (GDBusConnection *bus,
     return FALSE;
 
   delegate = xdp_impl_file_chooser_proxy_new_sync (bus,
+                                                   G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
                                                    G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START_AT_CONSTRUCTION,
                                                    "org.gnome.Nautilus",
                                                    "/org/freedesktop/portal/desktop",
