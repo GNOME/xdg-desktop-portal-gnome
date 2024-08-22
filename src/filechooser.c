@@ -158,21 +158,9 @@ add_recent_entry (const char *app_id,
                   const char *uri)
 {
   GtkRecentManager *recent;
-  GtkRecentData data;
-
-  /* These fields are ignored by everybody, so it is not worth
-   * spending effort on filling them out. Just use defaults.
-   */
-  data.display_name = NULL;
-  data.description = NULL;
-  data.mime_type = "application/octet-stream";
-  data.app_name = (char *)app_id;
-  data.app_exec = "gio open %u";
-  data.groups = NULL;
-  data.is_private = FALSE;
 
   recent = gtk_recent_manager_get_default ();
-  gtk_recent_manager_add_full (recent, uri, &data);
+  gtk_recent_manager_add_item (recent, uri);
 }
 
 static void
