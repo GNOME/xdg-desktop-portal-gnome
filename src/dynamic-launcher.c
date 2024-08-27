@@ -145,11 +145,11 @@ handle_prepare_install_response (GtkDialog *dialog,
     {
     default:
       g_warning ("Unexpected response: %d", response);
-      G_GNUC_FALLTHROUGH;
-
-    case GTK_RESPONSE_DELETE_EVENT:
       handle->response = 2;
       break;
+
+    case GTK_RESPONSE_DELETE_EVENT:
+       G_GNUC_FALLTHROUGH;
 
     case GTK_RESPONSE_CANCEL:
       handle->response = 1;
