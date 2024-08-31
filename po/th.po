@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2024-01-22 12:42+0000\n"
-"PO-Revision-Date: 2024-02-02 07:39+0700\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-08-06 13:35+0000\n"
+"PO-Revision-Date: 2024-08-31 18:27+0700\n"
 "Last-Translator: \n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -24,7 +24,7 @@ msgstr "พอร์ทัล"
 
 #: src/access.c:203
 msgid "Deny"
-msgstr ""
+msgstr "ปฏิเสธ"
 
 #: src/access.c:206
 msgid "Allow"
@@ -53,34 +53,33 @@ msgstr "รูปภาพ"
 #: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
-msgstr ""
+msgstr "จะแบ่งปันข้อมูลส่วนบุคคลของคุณกับ %1$s หรือไม่? %2$s"
 
 #: src/accountdialog.c:239
 #, c-format
 msgid "Share your personal information with the requesting app? %s"
-msgstr ""
+msgstr "จะแบ่งปันข้อมูลส่วนบุคคลของคุณกับแอปที่ร้องขอหรือไม่? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
-msgstr "แบ่งปันรายละเอียด"
+msgstr "รายละเอียดการแบ่งปัน"
 
 #: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:30
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_ยกเลิก"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:38 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "แ_บ่งปัน"
 
 #: src/accountdialog.ui:89
 msgid "Change Avatar"
-msgstr ""
+msgstr "เปลี่ยนรูปประจำตัว"
 
 #: src/accountdialog.ui:112
 msgid "Name"
@@ -92,218 +91,191 @@ msgstr "ชื่อผู้ใช้"
 
 #: src/appchooserdialog.c:180
 msgid "_OK"
-msgstr ""
+msgstr "_ตกลง"
 
 #: src/appchooserdialog.c:199
 msgid "Failed to start Software"
-msgstr ""
+msgstr "เริ่มต้น “ซอฟต์แวร์” ไม่สำเร็จ"
 
 #: src/appchooserdialog.c:354
 #, c-format
 msgid "Choose an app to open the file “%s”."
-msgstr ""
+msgstr "เลือกแอปเพื่อเปิดแฟ้ม “%s”"
 
 #: src/appchooserdialog.c:359
 msgid "Choose an app."
-msgstr ""
+msgstr "เลือกแอป"
 
 #: src/appchooserdialog.c:376
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
+"ไม่มีแอปใดที่ติดตั้งอยู่ซึ่งสามารถเปิด “%s” ได้ คุณสามารถหาแอปเพิ่มเติมได้ใน “ซอฟต์แวร์”"
 
 #: src/appchooserdialog.c:381
 msgid "No suitable app installed. You can find more apps in Software."
-msgstr ""
+msgstr "ไม่ได้ติดตั้งแอปที่เหมาะสมไว้ คุณสามารถหาแอปเพิ่มเติมได้ใน “ซอฟต์แวร์”"
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
-msgstr ""
+msgstr "เปิดด้วย…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:24
 msgid "_Open"
-msgstr ""
+msgstr "เ_ปิด"
 
 #: src/appchooserdialog.ui:85
 msgid "No Apps Available"
-msgstr ""
+msgstr "ไม่มีแอปที่ใช้ได้"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:93
 msgid "_Find More in Software"
-msgstr ""
+msgstr "_หาเพิ่มใน “ซอฟต์แวร์”"
 
 #: src/dynamic-launcher.c:250
 msgid "Create Web App"
-msgstr ""
+msgstr "สร้างเว็บแอป"
 
 #: src/dynamic-launcher.c:252
 msgid "Create App"
-msgstr ""
+msgstr "สร้างแอป"
 
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
-msgstr ""
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr ""
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr ""
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr ""
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr ""
+msgstr "_สร้าง"
 
 #: src/inputcapturedialog.c:105
 #, c-format
 msgid "The application %s wants to capture input events"
-msgstr ""
+msgstr "แอปพลิเคชัน %s ต้องการตรวจจับการกระทำของผู้ใช้"
 
 #: src/inputcapturedialog.c:110
 msgid "An application wants to capture input events"
-msgstr ""
+msgstr "แอปพลิเคชันต้องการตรวจจับการกระทำของผู้ใช้"
 
 #: src/inputcapturedialog.ui:7
 msgid "Capture Input"
-msgstr ""
+msgstr "ตรวจจับการกระทำ"
 
 #: src/inputcapturedialog.ui:68
 msgid "Allow Remote _Input Capturing"
-msgstr ""
+msgstr "อนุญาตให้_ตรวจจับการกระทำจากระยะไกล"
 
-#: src/remotedesktopdialog.ui:9
+#: src/remotedesktopdialog.ui:7
 msgid "Remote Desktop"
-msgstr ""
+msgstr "เดสก์ท็อประยะไกล"
 
-#: src/remotedesktopdialog.ui:72 src/screencastwidget.ui:35
-#: src/screencastwidget.ui:77
+#: src/remotedesktopdialog.ui:70
 msgid "_Remember This Selection"
-msgstr ""
+msgstr "จำ_ตัวเลือกนี้ไว้"
 
-#: src/remotedesktopdialog.ui:87
+#: src/remotedesktopdialog.ui:85
 msgid "Allow Remote _Interaction"
-msgstr ""
+msgstr "อนุญาตการ_โต้ตอบจากระยะไกล"
 
-#: src/remotedesktopdialog.ui:95
+#: src/remotedesktopdialog.ui:93
 msgid "Allow _Clipboard Access"
-msgstr ""
+msgstr "อนุญาตการเข้าถึง_คลิปบอร์ด"
 
 #: src/screencastdialog.ui:5
 msgid "Share Screen"
-msgstr ""
+msgstr "แบ่งปันหน้าจอ"
 
-#: src/screencastwidget.c:163
-msgid "Virtual monitor"
-msgstr ""
+#: src/screencastwidget.c:291
+msgid "Virtual Monitor"
+msgstr "จอภาพเสมือน"
 
-#: src/screencastwidget.c:541
+#: src/screencastwidget.c:629
 #, c-format
-msgid "Select a screen to share with %s"
-msgstr ""
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s ต้องการแบ่งปันหน้าจอของคุณ โปรดเลือกสิ่งที่คุณต้องการจะแบ่งปัน"
 
-#: src/screencastwidget.c:543
-#, c-format
-msgid "Select a window to share with %s"
-msgstr ""
+#: src/screencastwidget.c:634
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "มีแอปหนึ่งต้องการแบ่งปันหน้าจอของคุณ โปรดเลือกสิ่งที่คุณต้องการจะแบ่งปัน"
 
-#: src/screencastwidget.c:548
-msgid "Select a screen to share with the requesting app"
-msgstr ""
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "จำ_ตัวเลือกนี้ไว้"
 
-#: src/screencastwidget.c:549
-msgid "Select a window to share with the requesting app"
-msgstr ""
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_หน้าต่างแอปพลิเคชัน"
 
-#: src/screencastwidget.ui:16
-msgid "Single _Window"
-msgstr ""
-
-#: src/screencastwidget.ui:60
+#: src/screencastwidget.ui:66
 msgid "_Entire Screen"
-msgstr ""
+msgstr "_ทั้งหน้าจอ"
 
 #: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
-msgstr ""
+msgstr "จะแบ่งปันภาพหน้าจอนี้กับ %s หรือไม่?"
 
 #: src/screenshotdialog.c:436
 msgid "Share this screenshot with the requesting app?"
-msgstr ""
+msgstr "จะแบ่งปันภาพหน้าจอนี้กับแอปที่ร้องขอหรือไม่?"
 
 #: src/screenshotdialog.ui:9
 msgid "Screenshot"
-msgstr ""
+msgstr "ภาพหน้าจอ"
 
 #: src/screenshotdialog.ui:45
 msgid "_Options…"
-msgstr ""
+msgstr "_ตัวเลือก…"
 
 #: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
-msgstr ""
+msgstr "เก็บ_ภาพหน้าจอ"
 
 #: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
-msgstr ""
+msgstr "เก็บภาพหน้าจอ"
 
 #: src/screenshotdialog.ui:141
 msgid "Grab Whole Sc_reen"
-msgstr ""
+msgstr "เก็บภาพทั้งหน้า_จอ"
 
 #: src/screenshotdialog.ui:151
 msgid "Grab Current _Window"
-msgstr ""
+msgstr "เก็บภาพห_น้าต่างปัจจุบัน"
 
 #: src/screenshotdialog.ui:161
 msgid "Select _Area to Grab"
-msgstr ""
+msgstr "เลือก_พื้นที่ที่ต้องการเก็บภาพ"
 
 #: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
-msgstr ""
+msgstr "เก็บภาพหลังจากหน่_วงเวลา"
 
 #: src/screenshotdialog.ui:184
 msgid "seconds"
-msgstr ""
+msgstr "วินาที"
 
 #: src/screenshotdialog.ui:193
 msgid "Effects"
-msgstr ""
+msgstr "ลูกเล่น"
 
 #: src/screenshotdialog.ui:203
 msgid "Include _Pointer"
-msgstr ""
+msgstr "เก็บภาพ_ตัวชี้เมาส์ด้วย"
 
 #: src/screenshotdialog.ui:211
 msgid "Include Window _Border"
-msgstr ""
+msgstr "เก็บภาพ_ขอบหน้าต่างด้วย"
 
-#: src/settings.c:253
+#: src/settings.c:335
 msgid "Requested setting not found"
-msgstr ""
+msgstr "ไม่พบการตั้งค่าที่ร้องขอ"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
-msgstr ""
+msgstr "ตั้งภาพพื้นหลัง"
 
 #: src/wallpaperdialog.ui:35
 msgid "_Set"
-msgstr ""
+msgstr "_ตั้ง"
 
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
-msgstr ""
+msgstr "โหลดแฟ้มภาพไม่สำเร็จ"
