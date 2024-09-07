@@ -1,14 +1,14 @@
 # This is the Bulgarian translation of xdg-desktop-portal-gnome po-file.
-# Copyright (C) 2022, 2023 Alexander Shopov.
-# Alexander Shopov <ash@kambanaria.org>, 2022, 2023.
+# Copyright (C) 2022, 2023, 2024 Alexander Shopov.
+# Alexander Shopov <ash@kambanaria.org>, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues\n"
-"POT-Creation-Date: 2023-01-25 22:32+0000\n"
-"PO-Revision-Date: 2023-03-05 09:27+0200\n"
+"gnome/issues/\n"
+"POT-Creation-Date: 2024-09-05 03:10+0000\n"
+"PO-Revision-Date: 2024-09-07 21:31+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -21,234 +21,250 @@ msgstr ""
 msgid "Portal"
 msgstr "Портал"
 
-#: src/accountdialog.c:152
+#: src/access.c:203
+msgid "Deny"
+msgstr "Отказ"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Позволяване"
+
+#: src/accountdialog.c:159
 msgid "Select an Image"
 msgstr "Избор на изображение"
 
-#: src/accountdialog.c:155 src/wallpaperdialog.ui:26
+#: src/accountdialog.c:162
 msgid "Cancel"
 msgstr "Отказ"
 
-#: src/accountdialog.c:156
+#: src/accountdialog.c:163
 msgid "Select"
 msgstr "Избор"
 
-#: src/accountdialog.c:157
+#: src/accountdialog.c:164
 msgid "Clear"
 msgstr "Изчистване"
 
-#: src/accountdialog.c:164
+#: src/accountdialog.c:171
 msgid "Images"
 msgstr "Изображения"
 
-#: src/accountdialog.c:225
+#: src/accountdialog.c:233
 #, c-format
 msgid "Share your personal information with %1$s? %2$s"
 msgstr "Да се сподели ли личната ви информация с %1$s? %2$s"
 
-#: src/accountdialog.c:231
+#: src/accountdialog.c:239
 #, c-format
-msgid "Share your personal information with the requesting application? %s"
+msgid "Share your personal information with the requesting app? %s"
 msgstr "Да се сподели ли личната ви информация с искащата това програма? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "Споделяне на детайли"
 
-#: src/accountdialog.ui:23 src/appchooserdialog.ui:12
-#: src/dynamic-launcher.c:266 src/filechooser.c:535
-#: src/remotedesktopdialog.ui:25 src/screencastdialog.ui:26
-#: src/screenshotdialog.ui:26
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Отказ"
 
-#: src/accountdialog.ui:30 src/remotedesktopdialog.ui:33
-#: src/screencastdialog.ui:34 src/screenshotdialog.ui:49
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Споделяне"
 
-#: src/accountdialog.ui:83
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Смяна на аватар"
+
+#: src/accountdialog.ui:112
 msgid "Name"
 msgstr "Име"
 
-#: src/accountdialog.ui:95
+#: src/accountdialog.ui:118
 msgid "Username"
 msgstr "Име на потребител"
 
-#: src/appchooserdialog.c:229
+#: src/appchooserdialog.c:180
+msgid "_OK"
+msgstr "_Добре"
+
+#: src/appchooserdialog.c:199
 msgid "Failed to start Software"
 msgstr "Приложението „Програми“ не може да се стартира"
 
-#: src/appchooserdialog.c:393
+#: src/appchooserdialog.c:354
 #, c-format
-msgid "Choose an application to open the file “%s”."
-msgstr "Избор на програма за отваряне на „%s“."
+msgid "Choose an app to open the file “%s”."
+msgstr "Избор на програма за отваряне на файла „%s“."
 
-#: src/appchooserdialog.c:398
-msgid "Choose an application."
+#: src/appchooserdialog.c:359
+msgid "Choose an app."
 msgstr "Избор на програма."
 
-#: src/appchooserdialog.c:415
+#: src/appchooserdialog.c:376
 #, c-format
 msgid ""
-"No apps installed that can open “%s”. You can find more applications in "
-"Software"
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "Липсват програми за отварянето на „%s“. Може да потърсите приложение в "
 "„Програми“."
 
-#: src/appchooserdialog.c:420
-msgid "No suitable app installed. You can find more applications in Software."
+#: src/appchooserdialog.c:381
+msgid "No suitable app installed. You can find more apps in Software."
 msgstr "Липсва подходяща програма. Може да потърсите приложение в „Програми“."
 
 #: src/appchooserdialog.ui:5
 msgid "Open With…"
 msgstr "Отваряне с…"
 
-#: src/appchooserdialog.ui:20 src/filechooser.c:530
+#: src/appchooserdialog.ui:24
 msgid "_Open"
 msgstr "_Отваряне"
 
-#: src/appchooserdialog.ui:104
-msgid "No Apps available"
+#: src/appchooserdialog.ui:85
+msgid "No Apps Available"
 msgstr "Липсват програми"
 
-#: src/appchooserdialog.ui:144
+#: src/appchooserdialog.ui:93
 msgid "_Find More in Software"
 msgstr "_Търсене на приложение в „Програми“"
 
-#: src/dynamic-launcher.c:258
-msgid "Create Web Application"
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
 msgstr "Създаване на уеб приложение"
 
-#: src/dynamic-launcher.c:260
-msgid "Create Application"
+#: src/dynamic-launcher.c:252
+msgid "Create App"
 msgstr "Създаване на приложение"
 
-#: src/dynamic-launcher.c:268
+#: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Създаване"
 
-#: src/filechooser.c:530
-msgid "_Select"
-msgstr "_Избор"
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Програмата %s иска да прихваща входните събития"
 
-#: src/filechooser.c:532
-msgid "_Save"
-msgstr "_Запазване"
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Програма иска да прихваща входните събития"
 
-#: src/filechooser.c:714
-msgid "Open files read-only"
-msgstr "Отваряне на файловете само за четене"
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "Прихващане на входа"
 
-#: src/filechooser.c:721
-msgid "Open directories read-only"
-msgstr "Отваряне на папките само за четене"
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr "Позволяване на отдалечено при_хващане на входа"
 
 #: src/remotedesktopdialog.ui:7
-msgid "Remote desktop"
+msgid "Remote Desktop"
 msgstr "Отдалечен работен плот"
 
-#: src/remotedesktopdialog.ui:76
-msgid "Allow remote interaction"
-msgstr "Позволяване на отдалечена работа"
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "_Запомняне на избора"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Позволяване на _отдалечена работа"
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Позволяване на достъп до _буфера за обмен"
 
 #: src/screencastdialog.ui:5
-msgid "Screen Share"
-msgstr "Споделяне на екрана"
+msgid "Share Screen"
+msgstr "Споделяне на екран"
 
-#: src/screencastwidget.c:159
-msgid "Virtual monitor"
+#: src/screencastwidget.c:291
+msgid "Virtual Monitor"
 msgstr "Виртуален монитор"
 
-#: src/screencastwidget.c:540
+#: src/screencastwidget.c:634
 #, c-format
-msgid "Select monitor to share with %s"
-msgstr "Избор на екран за споделяне на „%s“"
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s иска да споделите екрана си. Изберете какво да споделите."
 
-#: src/screencastwidget.c:542
-#, c-format
-msgid "Select window to share with %s"
-msgstr "Избор на прозорец за споделяне на „%s“"
+#: src/screencastwidget.c:639
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "Програма иска да споделите екрана си. Изберете какво да споделите."
 
-#: src/screencastwidget.c:547
-msgid "Select monitor to share with the requesting application"
-msgstr "Избор на екран за споделяне с искащата това програма"
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "_Запомняне на избора"
 
-#: src/screencastwidget.c:548
-msgid "Select window to share with the requesting application"
-msgstr "Избор на прозорец за споделяне с искащата това програма"
+#: src/screencastwidget.ui:46
+msgid "Application _Window"
+msgstr "_Прозорец на програма"
 
-#: src/screencastwidget.ui:16
-msgid "Single Window"
-msgstr "Отдѐлен прозорец"
+#: src/screencastwidget.ui:66
+msgid "_Entire Screen"
+msgstr "_Цял екран"
 
-#: src/screencastwidget.ui:40 src/screencastwidget.ui:86
-msgid "Remember this selection"
-msgstr "Запомняне на избора"
-
-#: src/screencastwidget.ui:64
-msgid "Entire Screen"
-msgstr "Цял екран"
-
-#: src/screenshotdialog.c:435
+#: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Споделяне на снимката на екрана с „%s“?"
 
-#: src/screenshotdialog.c:439
-msgid "Share this screenshot with the requesting application?"
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
 msgstr "Да се сподели ли снимката на екрана с искащата това програма?"
 
-#: src/screenshotdialog.ui:8
+#: src/screenshotdialog.ui:9
 msgid "Screenshot"
 msgstr "Снимка на екрана"
 
-#: src/screenshotdialog.ui:42
+#: src/screenshotdialog.ui:45
 msgid "_Options…"
 msgstr "_Настройки…"
 
-#: src/screenshotdialog.ui:67
+#: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
 msgstr "Снимане на _екрана"
 
-#: src/screenshotdialog.ui:120
+#: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
 msgstr "Снимане на екрана"
 
-#: src/screenshotdialog.ui:130
-msgid "Grab the whole sc_reen"
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
 msgstr "Снимане на _целия екран"
 
-#: src/screenshotdialog.ui:140
-msgid "Grab the current _window"
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
 msgstr "Снимане на текущия _прозорец"
 
-#: src/screenshotdialog.ui:150
-msgid "Select _area to grab"
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
 msgstr "Избор на _област за снимане"
 
-#: src/screenshotdialog.ui:162
+#: src/screenshotdialog.ui:173
 msgid "Grab after a _delay of"
 msgstr "_Изчакване преди снимката"
 
-#: src/screenshotdialog.ui:173
+#: src/screenshotdialog.ui:184
 msgid "seconds"
 msgstr "секунди"
 
-#: src/screenshotdialog.ui:182
+#: src/screenshotdialog.ui:193
 msgid "Effects"
 msgstr "Ефекти"
 
-#: src/screenshotdialog.ui:192
-msgid "Include _pointer"
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
 msgstr "Включване и на по_казалеца"
 
-#: src/screenshotdialog.ui:200
-msgid "Include the window _border"
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
 msgstr "Включване и на _рамката на прозореца"
 
-#: src/settings.c:246
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Поисканата настройка липсва"
 
@@ -256,14 +272,48 @@ msgstr "Поисканата настройка липсва"
 msgid "Set Background"
 msgstr "Задаване на фон"
 
-#: src/wallpaperdialog.ui:32
-msgid "Set"
-msgstr "Задаване"
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "За_даване"
 
-#: src/wallpaperdialog.ui:63
+#: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Неуспешно зареждане на файла с изображение"
 
-#: src/wallpaperpreview.ui:48
-msgid "Activities"
-msgstr "Дейности"
+#~ msgid "_Select"
+#~ msgstr "_Избор"
+
+#~ msgid "_Save"
+#~ msgstr "_Запазване"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Отваряне на файловете само за четене"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Отваряне на папките само за четене"
+
+#~ msgid "Screen Share"
+#~ msgstr "Споделяне на екрана"
+
+#, c-format
+#~ msgid "Select monitor to share with %s"
+#~ msgstr "Избор на екран за споделяне на „%s“"
+
+#, c-format
+#~ msgid "Select window to share with %s"
+#~ msgstr "Избор на прозорец за споделяне на „%s“"
+
+#~ msgid "Select monitor to share with the requesting application"
+#~ msgstr "Избор на екран за споделяне с искащата това програма"
+
+#~ msgid "Select window to share with the requesting application"
+#~ msgstr "Избор на прозорец за споделяне с искащата това програма"
+
+#~ msgid "Single Window"
+#~ msgstr "Отдѐлен прозорец"
+
+#~ msgid "Set"
+#~ msgstr "Задаване"
+
+#~ msgid "Activities"
+#~ msgstr "Дейности"
