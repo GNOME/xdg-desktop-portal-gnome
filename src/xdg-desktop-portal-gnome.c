@@ -61,7 +61,7 @@
 #include "wallpaper.h"
 #include "dynamic-launcher.h"
 #include "notification.h"
-
+#include "usb.h"
 
 static GMainLoop *loop = NULL;
 static GHashTable *outstanding_handles = NULL;
@@ -207,6 +207,12 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!notification_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!usb_init (connection, &error))
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
