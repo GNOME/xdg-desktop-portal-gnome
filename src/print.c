@@ -193,7 +193,7 @@ print_capabilities_from_options (GVariant *options)
   g_auto(GStrv) supported_output_file_formats = NULL;
   GtkPrintCapabilities capabilities;
 
-  capabilities = can_preview () ? GTK_PRINT_CAPABILITY_PREVIEW : 0 |
+  capabilities = (can_preview () ? GTK_PRINT_CAPABILITY_PREVIEW : 0) |
                  GTK_PRINT_CAPABILITY_PAGE_SET |
                  GTK_PRINT_CAPABILITY_COPIES |
                  GTK_PRINT_CAPABILITY_COLLATE |
