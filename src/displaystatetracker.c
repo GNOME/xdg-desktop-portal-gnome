@@ -409,13 +409,15 @@ get_current_state_cb (GObject *source_object,
                       GAsyncResult *res,
                       gpointer user_data)
 {
+  OrgGnomeMutterDisplayConfig *proxy =
+    ORG_GNOME_MUTTER_DISPLAY_CONFIG (source_object);
   DisplayStateTracker *tracker = user_data;
   g_autoptr(GVariant) monitors = NULL;
   g_autoptr(GVariant) logical_monitors = NULL;
   g_autoptr(GVariant) properties = NULL;
   g_autoptr(GError) error = NULL;
 
-  if (!org_gnome_mutter_display_config_call_get_current_state_finish (tracker->proxy,
+  if (!org_gnome_mutter_display_config_call_get_current_state_finish (proxy,
                                                                       NULL,
                                                                       &monitors,
                                                                       &logical_monitors,
@@ -423,7 +425,8 @@ get_current_state_cb (GObject *source_object,
                                                                       res,
                                                                       &error))
     {
-      g_warning ("Failed to get current display state: %s", error->message);
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        g_warning ("Failed to get current display state: %s", error->message);
       return;
     }
 
