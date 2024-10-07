@@ -86,7 +86,7 @@ create_window_widget (ShellWindow *window)
   GtkWidget *window_image;
   GtkWidget *check_image;
   GtkWidget *row;
-  GIcon *icon = NULL;
+  g_autoptr(GIcon) icon = NULL;
   g_autoptr(GDesktopAppInfo) info = NULL;
 
   info = g_desktop_app_info_new (shell_window_get_app_id (window));
