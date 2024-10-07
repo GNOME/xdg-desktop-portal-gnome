@@ -37,6 +37,7 @@
 #include <gio/gdesktopappinfo.h>
 #include <gio/gunixfdlist.h>
 
+#include <glib-unix.h>
 #include <glib/gi18n.h>
 #include <locale.h>
 
@@ -260,12 +261,21 @@ init_gtk (GError **error)
   return TRUE;
 }
 
+static gboolean
+signal_handler_cb (gpointer user_data)
+{
+  g_main_loop_quit (loop);
+  g_debug ("Terminated with signal.");
+  return G_SOURCE_REMOVE;
+}
+
 int
 main (int argc, char *argv[])
 {
   guint owner_id;
   g_autoptr(GError) error = NULL;
   GDBusConnection  *session_bus;
+  g_autoptr(GSource) signal_handler_source = NULL;
   g_autoptr(GOptionContext) context = NULL;
 
   setlocale (LC_ALL, "");
@@ -325,6 +335,13 @@ main (int argc, char *argv[])
   g_set_prgname ("xdg-desktop-portal-gnome");
 
   loop = g_main_loop_new (NULL, FALSE);
+
+  /* Setup a signal handler so that we can quit cleanly.
+   * This is useful for triggering asan.
+   */
+  signal_handler_source = g_unix_signal_source_new (SIGHUP);
+  g_source_set_callback (signal_handler_source, G_SOURCE_FUNC (signal_handler_cb), NULL, NULL);
+  g_source_attach (signal_handler_source, g_main_loop_get_context (loop));
 
   outstanding_handles = g_hash_table_new (g_str_hash, g_str_equal);
 
