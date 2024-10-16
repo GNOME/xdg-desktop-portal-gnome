@@ -5,12 +5,12 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">xdg-desktop-portal-gnome</name>
-  <description xml:lang="en">GNOME Desktop Portal</description>
-  <shortdesc xml:lang="en">
+  <shortdesc xml:lang="en">GNOME Desktop Portal</shortdesc>
+  <description xml:lang="en">
     XDG Desktop Portal implementation for GNOME. It uses GNOME-specific APIs and
     components, such as GNOME Shell, Mutter, GNOME Settings Daemon, and libadwaita,
     to provide various portal features.
-  </shortdesc>
+  </description>
   <!--
   <homepage rdf:resource="http://www.gnome.org/" />
   -->
