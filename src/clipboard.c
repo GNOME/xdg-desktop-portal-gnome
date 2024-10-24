@@ -22,9 +22,9 @@
 #include <gio/gunixfdlist.h>
 #include <glib-object.h>
 #include <stdint.h>
+#include <gxdp.h>
 
 #include "config.h"
-#include "externalwindow.h"
 #include "gnomescreencast.h"
 #include "remotedesktop.h"
 #include "request.h"

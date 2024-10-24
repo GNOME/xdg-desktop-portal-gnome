@@ -30,6 +30,7 @@
 #include <fcntl.h>
 
 #include <gtk/gtk.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -42,7 +43,6 @@
 #include "filechooser.h"
 #include "request.h"
 #include "utils.h"
-#include "externalwindow.h"
 
 #define FILECHOOSER_SETTINGS_SCHEMA "org.gnome.portal.filechooser"
 #define FILECHOOSER_SETTINGS_PATH "/org/gnome/portal/filechooser/"

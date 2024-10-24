@@ -32,6 +32,7 @@
 #include <fcntl.h>
 
 #include <adwaita.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -59,7 +60,6 @@
 #include "settings.h"
 #include "wallpaper.h"
 #include "dynamic-launcher.h"
-#include "externalwindow.h"
 #include "notification.h"
 
 
@@ -231,37 +231,6 @@ on_name_lost (GDBusConnection *connection,
 }
 
 static gboolean
-init_gtk (GError **error)
-{
-  GdkDisplay *display;
-
-  /* Avoid pointless and confusing recursion */
-  g_unsetenv ("GTK_USE_PORTAL");
-
-  if (G_UNLIKELY (!g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE)))
-    {
-      g_set_error (error, G_IO_ERROR, g_io_error_from_errno (errno),
-                   "Failed to set ADW_DISABLE_PORTAL: %s", g_strerror (errno));
-      return FALSE;
-    }
-
-  display = init_external_window_display (error);
-  if (!display)
-    return FALSE;
-
-  if (!gtk_init_check ())
-    {
-      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
-                   "Failed to initialize GTK");
-      return FALSE;
-    }
-
-  g_assert (gdk_display_get_default () == display);
-
-  return TRUE;
-}
-
-static gboolean
 signal_handler_cb (gpointer user_data)
 {
   g_main_loop_quit (loop);
@@ -318,7 +287,7 @@ main (int argc, char *argv[])
       return 0;
     }
 
-  if (!init_gtk (&error))
+  if (!gxdp_init_gtk (GXDP_SERVICE_CLIENT_TYPE_PORTAL_BACKEND, &error))
     {
       g_debug ("Failed to initialize display server connection: %s",
                error->message);

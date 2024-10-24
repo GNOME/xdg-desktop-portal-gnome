@@ -3,12 +3,12 @@
 #include <glib/gi18n.h>
 
 #include <adwaita.h>
+#include <gxdp.h>
 
 #include "xdg-desktop-portal-dbus.h"
 
 #include "request.h"
 #include "utils.h"
-#include "externalwindow.h"
 
 typedef struct {
   XdpImplAccess *impl;
@@ -16,7 +16,7 @@ typedef struct {
   Request *request;
 
   GtkWidget *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
   GHashTable *choices;
 
   int response;
@@ -180,12 +180,12 @@ add_choice (GtkWidget  *box,
 }
 
 static GtkWidget *
-create_access_dialog (ExternalWindow  *parent,
-                      const char      *title,
-                      const char      *subtitle,
-                      const char      *body,
-                      GVariant        *options,
-                      GHashTable     **choice_table)
+create_access_dialog (GxdpExternalWindow  *parent,
+                      const char          *title,
+                      const char          *subtitle,
+                      const char          *body,
+                      GVariant            *options,
+                      GHashTable         **choice_table)
 {
   g_autoptr(GtkWindowGroup) window_group = NULL;
   g_autoptr(GVariant) choices = NULL;
@@ -250,7 +250,7 @@ create_access_dialog (ExternalWindow  *parent,
 
   gtk_widget_realize (dialog);
 
-  external_window_set_parent_of (parent, gtk_native_get_surface (GTK_NATIVE (dialog)));
+  gxdp_external_window_set_parent_of (parent, gtk_native_get_surface (GTK_NATIVE (dialog)));
 
   gtk_window_present (GTK_WINDOW (dialog));
 
@@ -287,11 +287,11 @@ handle_access_dialog (XdpImplAccess         *object,
                       const char            *arg_body,
                       GVariant              *arg_options)
 {
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
 
  if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);

@@ -29,6 +29,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -39,7 +40,6 @@
 #include "xdg-desktop-portal-dbus.h"
 
 #include "appchooserdialog.h"
-#include "externalwindow.h"
 
 static GHashTable *handles;
 
@@ -48,7 +48,7 @@ typedef struct {
   GDBusMethodInvocation *invocation;
   Request *request;
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   char *chosen;
   int response;
@@ -157,7 +157,7 @@ handle_choose_application (XdpImplAppChooser *object,
   const char *location;
   gboolean modal;
   GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
@@ -176,7 +176,7 @@ handle_choose_application (XdpImplAppChooser *object,
 
   if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);
@@ -211,7 +211,7 @@ handle_choose_application (XdpImplAppChooser *object,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (GTK_WINDOW (dialog));
 

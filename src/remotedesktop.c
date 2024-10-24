@@ -21,6 +21,7 @@
 #include <gio/gio.h>
 #include <glib-object.h>
 #include <stdint.h>
+#include <gxdp.h>
 
 #include "xdg-desktop-portal-dbus.h"
 #include "shell-dbus.h"
@@ -30,7 +31,6 @@
 #include "remotedesktopdialog.h"
 #include "screencastdialog.h"
 #include "gnomescreencast.h"
-#include "externalwindow.h"
 #include "request.h"
 #include "session.h"
 #include "utils.h"
@@ -116,7 +116,7 @@ typedef struct _RemoteDesktopDialogHandle
   RemoteDesktopSession *session;
 
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   int response;
 } RemoteDesktopDialogHandle;
@@ -282,14 +282,14 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
 {
   g_autoptr(GtkWindowGroup) window_group = NULL;
   RemoteDesktopDialogHandle *dialog_handle;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
 
   if (parent_window)
     {
-      external_parent = create_external_window_from_handle (parent_window);
+      external_parent = gxdp_external_window_new_from_handle (parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    parent_window);
@@ -331,7 +331,7 @@ create_remote_desktop_dialog (RemoteDesktopSession *session,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (dialog);
 

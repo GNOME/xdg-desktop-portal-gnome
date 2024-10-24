@@ -10,6 +10,7 @@
 #include <fcntl.h>
 
 #include <gtk/gtk.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -19,7 +20,6 @@
 
 #include "screenshotdialog.h"
 #include "screenshot.h"
-#include "externalwindow.h"
 #include "request.h"
 #include "utils.h"
 
@@ -31,7 +31,7 @@ typedef struct {
   Request *request;
 
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   int response;
   char *uri;
@@ -221,7 +221,7 @@ handle_screenshot (XdpImplScreenshot *object,
     }
   else
     {
-      ExternalWindow *external_parent = NULL;
+      GxdpExternalWindow *external_parent = NULL;
       GdkSurface *surface;
       GtkWindow *dialog;
       GtkWidget *fake_parent;
@@ -235,7 +235,7 @@ handle_screenshot (XdpImplScreenshot *object,
 
       if (arg_parent_window)
         {
-          external_parent = create_external_window_from_handle (arg_parent_window);
+          external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
           if (!external_parent)
             g_warning ("Failed to associate portal window with parent window '%s'",
                        arg_parent_window);
@@ -259,7 +259,7 @@ handle_screenshot (XdpImplScreenshot *object,
 
       surface = gtk_native_get_surface (GTK_NATIVE (dialog));
       if (external_parent)
-        external_window_set_parent_of (external_parent, surface);
+        gxdp_external_window_set_parent_of (external_parent, surface);
     }
 
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);

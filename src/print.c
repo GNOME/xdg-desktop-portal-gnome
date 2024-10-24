@@ -27,6 +27,7 @@
 
 #include <gtk/gtk.h>
 #include <gtk/gtkunixprint.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
@@ -39,7 +40,6 @@
 #include "print.h"
 #include "request.h"
 #include "utils.h"
-#include "externalwindow.h"
 
 typedef struct {
   char *app_id;
@@ -144,7 +144,7 @@ typedef struct {
   GDBusMethodInvocation *invocation;
   Request *request;
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   int fd;
   int response;
@@ -490,7 +490,7 @@ handle_print (XdpImplPrint          *object,
   int idx, fd;
   gboolean modal;
   GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
 
   g_variant_get (arg_fd_in, "h", &idx);
@@ -526,7 +526,7 @@ handle_print (XdpImplPrint          *object,
 
   if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);
@@ -564,7 +564,7 @@ handle_print (XdpImplPrint          *object,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
@@ -662,7 +662,7 @@ handle_prepare_print (XdpImplPrint          *object,
   GtkPageSetup *page_setup;
   gboolean modal;
   GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
   const char *accept_label;
 
@@ -672,7 +672,7 @@ handle_prepare_print (XdpImplPrint          *object,
 
   if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);
@@ -722,7 +722,7 @@ handle_prepare_print (XdpImplPrint          *object,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 

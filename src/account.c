@@ -10,6 +10,7 @@
 #include <fcntl.h>
 
 #include <gtk/gtk.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
@@ -22,7 +23,6 @@
 #include "accountdialog.h"
 #include "request.h"
 #include "utils.h"
-#include "externalwindow.h"
 
 static OrgFreedesktopAccountsUser *user;
 
@@ -32,7 +32,7 @@ typedef struct {
   Request *request;
 
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   int response;
   char *user_name;
@@ -156,7 +156,7 @@ handle_get_user_information (XdpImplAccount        *object,
   const char *icon_file;
   GtkWindow *dialog;
   GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
   const char *reason;
 
@@ -173,7 +173,7 @@ handle_get_user_information (XdpImplAccount        *object,
 
   if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);
@@ -207,7 +207,7 @@ handle_get_user_information (XdpImplAccount        *object,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (dialog);
 

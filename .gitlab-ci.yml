@@ -201,7 +201,7 @@ prepare-ubuntu:
 .build-common:
   stage: build
   script:
-    - meson setup --wrap-mode=nofallback _build .
+    - meson setup --wrap-mode=nofallback --force-fallback-for=libgxdp _build .
     - meson compile -C _build
     - meson install -C _build
 

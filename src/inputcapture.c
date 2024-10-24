@@ -18,11 +18,12 @@
 
 #include "config.h"
 
+#include <gxdp.h>
+
 #include "inputcapture.h"
 #include "inputcapturedialog.h"
 #include "session.h"
 #include "gnomeinputcapture.h"
-#include "externalwindow.h"
 #include "request.h"
 #include "utils.h"
 
@@ -71,7 +72,7 @@ typedef struct _InputCaptureDialogHandle
   GDBusMethodInvocation *create_session_invocation;
 
   GtkWindow *dialog;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
 
   unsigned int capabilities;
 
@@ -383,14 +384,14 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
 {
   g_autoptr(GtkWindowGroup) window_group = NULL;
   InputCaptureDialogHandle *dialog_handle;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
 
   if (parent_window)
     {
-      external_parent = create_external_window_from_handle (parent_window);
+      external_parent = gxdp_external_window_new_from_handle (parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    parent_window);
@@ -427,7 +428,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   gtk_window_present (dialog);
 }

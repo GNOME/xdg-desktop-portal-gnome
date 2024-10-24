@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
+#include <gxdp.h>
 
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
@@ -37,7 +38,6 @@
 #include "dynamic-launcher.h"
 #include "request.h"
 #include "utils.h"
-#include "externalwindow.h"
 
 #define DEFAULT_ICON_SIZE 192
 
@@ -54,7 +54,7 @@ typedef struct
   Request *request;
   GtkWindow *dialog;
   GtkWidget *entry;
-  ExternalWindow *external_parent;
+  GxdpExternalWindow *external_parent;
   GVariant *icon_v;
 
   int response;
@@ -180,7 +180,7 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
   g_autoptr(Request) request = NULL;
   const char *sender;
   GdkSurface *surface;
-  ExternalWindow *external_parent = NULL;
+  GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
   InstallDialogHandle *handle;
   GtkWindow *dialog;
@@ -202,7 +202,7 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
 
   if (arg_parent_window)
     {
-      external_parent = create_external_window_from_handle (arg_parent_window);
+      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
       if (!external_parent)
         g_warning ("Failed to associate portal window with parent window %s",
                    arg_parent_window);
@@ -327,7 +327,7 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
 
   surface = gtk_native_get_surface (GTK_NATIVE (dialog));
   if (external_parent)
-    external_window_set_parent_of (external_parent, surface);
+    gxdp_external_window_set_parent_of (external_parent, surface);
 
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
