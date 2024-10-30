@@ -39,12 +39,11 @@
 struct _AppChooserDialog {
   AdwWindow parent;
 
-  GtkWidget *scrolled_window;
+  GtkWidget *prefs_page;
   GtkWidget *cancel_button;
   GtkWidget *open_button;
   GtkWidget *find_software_button;
   GtkWidget *list;
-  GtkWidget *heading;
   GtkWidget *stack;
   GtkWidget *empty_box;
 
@@ -104,8 +103,6 @@ show_more (AppChooserDialog *dialog)
 {
   int i;
 
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (dialog->scrolled_window),
-                                  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   gtk_window_set_resizable (GTK_WINDOW (dialog), TRUE);
   gtk_widget_set_visible (dialog->more_row, FALSE);
 
@@ -244,12 +241,11 @@ app_chooser_dialog_class_init (AppChooserDialogClass *class)
   gtk_widget_class_add_binding (widget_class, GDK_KEY_Escape, 0, close_dialog_binding_cb, NULL);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/appchooserdialog.ui");
-  gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, scrolled_window);
+  gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, prefs_page);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, cancel_button);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, open_button);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, find_software_button);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, list);
-  gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, heading);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, stack);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, empty_box);
 
@@ -350,11 +346,11 @@ app_chooser_dialog_new (const char **choices,
       g_autofree char *heading = NULL;
 
       heading = g_strdup_printf (_("Choose an app to open the file “%s”."), short_location);
-      gtk_label_set_label (GTK_LABEL (dialog->heading), heading);
+      adw_preferences_page_set_description (ADW_PREFERENCES_PAGE (dialog->prefs_page), heading);
     }
   else
     {
-      gtk_label_set_label (GTK_LABEL (dialog->heading), _("Choose an app."));
+      adw_preferences_page_set_description (ADW_PREFERENCES_PAGE (dialog->prefs_page), _("Choose an app."));
     }
 
   ensure_default_in_initial_list (choices, default_id);
