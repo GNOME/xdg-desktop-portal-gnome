@@ -345,12 +345,12 @@ app_chooser_dialog_new (const char **choices,
     {
       g_autofree char *heading = NULL;
 
-      heading = g_strdup_printf (_("Choose an app to open the file “%s”."), short_location);
+      heading = g_strdup_printf (_("Choose an app to open the file “%s”"), short_location);
       adw_preferences_page_set_description (ADW_PREFERENCES_PAGE (dialog->prefs_page), heading);
     }
   else
     {
-      adw_preferences_page_set_description (ADW_PREFERENCES_PAGE (dialog->prefs_page), _("Choose an app."));
+      adw_preferences_page_set_description (ADW_PREFERENCES_PAGE (dialog->prefs_page), _("Choose an app"));
     }
 
   ensure_default_in_initial_list (choices, default_id);
