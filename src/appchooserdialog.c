@@ -40,7 +40,6 @@ struct _AppChooserDialog {
   AdwWindow parent;
 
   GtkWidget *scrolled_window;
-  GtkWidget *titlebar;
   GtkWidget *cancel_button;
   GtkWidget *open_button;
   GtkWidget *find_software_button;
@@ -246,7 +245,6 @@ app_chooser_dialog_class_init (AppChooserDialogClass *class)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/appchooserdialog.ui");
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, scrolled_window);
-  gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, titlebar);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, cancel_button);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, open_button);
   gtk_widget_class_bind_template_child (widget_class, AppChooserDialog, find_software_button);
