@@ -287,10 +287,15 @@ init_external_window_wayland_display (GError **error)
 
   g_setenv ("WAYLAND_SOCKET", fd_str, TRUE);
   gdk_set_allowed_backends ("wayland");
-  display = gdk_display_open (NULL);
-  g_assert (display);
+  if (gtk_init_check ())
+    {
+      display = gdk_display_get_default ();
+      g_assert (display);
 
-  init_x11_interop (display);
+      init_x11_interop (display);
 
-  return display;
+      return display;
+    }
+  else
+    return NULL;
 }
