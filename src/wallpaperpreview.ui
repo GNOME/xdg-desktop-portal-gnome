@@ -20,12 +20,9 @@
             <property name="vexpand">1</property>
 
             <child>
-              <object class="GtkSpinner">
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="spinning">True</property>
+              <object class="AdwSpinner">
                 <style>
-                  <class name="background"/>
+                  <class name="dim-label"/>
                 </style>
               </object>
             </child>
