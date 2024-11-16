@@ -94,6 +94,8 @@ create_window_widget (ShellWindow *window)
     icon = g_app_info_get_icon (G_APP_INFO (info));
   if (icon == NULL)
     icon = g_themed_icon_new ("application-x-executable");
+  else
+    icon = g_object_ref (icon);
   window_image = gtk_image_new_from_gicon (icon);
   gtk_image_set_pixel_size (GTK_IMAGE (window_image), 32);
 
