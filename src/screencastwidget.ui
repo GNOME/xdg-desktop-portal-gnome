@@ -27,11 +27,11 @@
         <property name="margin-bottom">5</property>
         <property name="spacing">17</property>
         <child>
-          <object class="AdwViewSwitcher" id="source_type_switcher">
-            <property name="policy">wide</property>
+          <object class="AdwInlineViewSwitcher" id="source_type_switcher">
+            <property name="display-mode">both</property>
+            <property name="homogeneous">True</property>
             <property name="stack">source_type</property>
             <property name="halign">center</property>
-            <property name="height-request">34</property>
           </object>
         </child>
         <child>
@@ -43,7 +43,7 @@
               <object class="AdwViewStackPage" id="window_selection_page">
                 <property name="name">windows_page</property>
                 <property name="icon-name">focus-windows-symbolic</property>
-                <property name="title" translatable="yes">Application _Window</property>
+                <property name="title" translatable="yes">_Window</property>
                 <property name="use-underline">True</property>
                 <property name="child">
                   <object class="GtkListBox" id="window_list">
@@ -63,7 +63,7 @@
               <object class="AdwViewStackPage" id="monitor_selection_page">
                 <property name="name">monitors_page</property>
                 <property name="icon-name">video-display-symbolic</property>
-                <property name="title" translatable="yes">_Entire Screen</property>
+                <property name="title" translatable="yes">_Display</property>
                 <property name="use-underline">True</property>
                 <property name="child">
                   <object class="AdwBin">
