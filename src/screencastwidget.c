@@ -595,6 +595,10 @@ screen_cast_widget_init (ScreenCastWidget *widget)
                            (GtkListBoxCreateWidgetFunc) create_window_widget,
                            NULL, NULL);
 
+  g_signal_connect_swapped (widget->filter_model,
+                            "items-changed",
+                            G_CALLBACK (schedule_selection_change),
+                            widget);
   g_object_connect (widget->window_list,
                     "swapped-signal::row-activated", G_CALLBACK (on_row_activated), widget,
                     NULL);
