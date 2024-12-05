@@ -131,12 +131,12 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        06a5e502c3359cf4751ed5250eceee20cbdaae27 .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
-      
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/libadwaita.git \
         main . 3747fd7e46986698f4dff6af2193b365582ac3c4
@@ -169,8 +169,8 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        06a5e502c3359cf4751ed5250eceee20cbdaae27 .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
