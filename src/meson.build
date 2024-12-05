@@ -120,6 +120,8 @@ sources = built_sources + files(
   'session.c',
   'settings.c',
   'shellintrospect.c',
+  'usbdialog.c',
+  'usb.c',
   'utils.c',
   'wallpaperdialog.c',
   'wallpaperpreview.c',

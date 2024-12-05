@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="xdg-desktop-portal-gnome">
+  <requires lib="gtk" version="4.0"/>
+  <template class="UsbDialog" parent="AdwWindow">
+    <property name="default-width">500</property>
+    <property name="default-height">400</property>
+    <property name="modal">True</property>
+    <property name="title" translatable="yes">Access USB Devices</property>
+
+    <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">Escape</property>
+            <property name="action">action(window.close)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwToolbarView">
+
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-start-title-buttons">False</property>
+            <property name="show-end-title-buttons">False</property>
+
+            <child>
+              <object class="GtkButton" id="deny_usb_button">
+                <property name="label" translatable="yes">_Deny</property>
+                <property name="use-underline">True</property>
+                <property name="can-shrink">True</property>
+                <signal name="clicked" handler="on_deny_usb_button_clicked_cb" object="UsbDialog" swapped="no" />
+              </object>
+            </child>
+
+            <child type="end">
+              <object class="GtkButton" id="allow_usb_button">
+                <property name="label" translatable="yes">_Allow</property>
+                <property name="use-underline">True</property>
+                <property name="can-shrink">True</property>
+                <signal name="clicked" handler="on_allow_usb_button_clicked_cb" object="UsbDialog" swapped="no" />
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+
+            <!-- USB device list -->
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">usb-devices</property>
+                <property name="child">
+                  <object class="AdwPreferencesPage">
+                    <property name="margin-top">24</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="margin-start">24</property>
+                    <property name="margin-end">24</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <child>
+                          <object class="GtkLabel" id="heading" />
+                        </child>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="AdwPreferencesGroup" id="device_list" />
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <!-- Empty state -->
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">empty-state</property>
+                <property name="child">
+                  <object class="AdwStatusPage">
+                    <property name="title" translatable="yes">Failed to display USB device</property>
+                    <property name="icon-name">drive-harddisk-usb-symbolic</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkSizeGroup">
+    <property name="mode">both</property>
+    <widgets>
+      <widget name="deny_usb_button"/>
+      <widget name="allow_usb_button"/>
+    </widgets>
+  </object>
+
+</interface>
