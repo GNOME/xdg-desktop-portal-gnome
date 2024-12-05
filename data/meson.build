@@ -20,6 +20,7 @@ gnome_portal_interfaces = [
   'org.freedesktop.impl.portal.ScreenCast',
   'org.freedesktop.impl.portal.Screenshot',
   'org.freedesktop.impl.portal.Settings',
+  'org.freedesktop.impl.portal.Usb',
   'org.freedesktop.impl.portal.Wallpaper',
 ]
 gnome_portal_conf = configuration_data()

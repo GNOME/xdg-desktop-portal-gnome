@@ -36,6 +36,12 @@ typedef enum {
 
 #define XDG_DESKTOP_PORTAL_ERROR xdg_desktop_portal_error_quark ()
 
+typedef enum {
+  XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS = 0,
+  XDG_DESKTOP_PORTAL_RESPONSE_CANCELLED,
+  XDG_DESKTOP_PORTAL_RESPONSE_OTHER,
+} XdgDesktopPortalResponseEnum;
+
 GQuark  xdg_desktop_portal_error_quark (void);
 
 glong str_distance (const char *a,
