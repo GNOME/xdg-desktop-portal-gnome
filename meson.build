@@ -11,6 +11,10 @@ datadir = get_option('datadir')
 libdir = get_option('libdir')
 libexecdir = get_option('libexecdir')
 
+subproject('libgxdp',
+  default_options: 'tests=false',
+)
+
 build_systemd_service = get_option('systemd')
 systemduserunitdir = get_option('systemduserunitdir')
 if systemduserunitdir == ''
