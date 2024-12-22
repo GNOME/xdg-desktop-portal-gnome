@@ -94,7 +94,7 @@ check-merge-request:
 
 .container-common:
   variables:
-    FDO_DISTRIBUTION_TAG: '2024-12-06.1'
+    FDO_DISTRIBUTION_TAG: '2024-12-22.2'
 
 .fedora-container:
   extends:
@@ -111,6 +111,8 @@ check-merge-request:
       glib2-devel
       gnome-desktop4-devel
       gsettings-desktop-schemas-devel
+      gstreamer1-plugins-base-devel
+      gstreamer1-plugins-good
       gtk4-devel
       json-glib-devel
       libadwaita-devel
@@ -119,10 +121,14 @@ check-merge-request:
       libxkbcommon-devel
       meson
       pipewire-devel
+      python3-pytest
+      python3-pytest-xdist
+      python3-dbusmock
+      python3-dbus
       sassc
       systemd-devel
+      umockdev-devel
       wayland-devel
-      xdg-desktop-portal
       xkeyboard-config-devel
       'dnf-command(builddep)'
 
@@ -131,8 +137,8 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        1.19.1 .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
@@ -140,7 +146,7 @@ check-merge-request:
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gtk.git \
         main . 64522536b80be4f19269474c83c959a81c450878
-      
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/libadwaita.git \
         main . 3747fd7e46986698f4dff6af2193b365582ac3c4
@@ -159,13 +165,21 @@ check-merge-request:
       libfuse3-dev
       libgtk-4-dev
       libjson-glib-dev
+      libgstreamer-plugins-base1.0-dev
+      gstreamer1.0-plugins-good
+      libgstreamer-plugins-good1.0-dev
       libpipewire-0.3-dev
       libudev-dev
+      libumockdev-dev
       libseccomp-dev
       libsystemd-dev
       libwayland-dev
       libxkbcommon-dev
       meson
+      python3-pytest
+      python3-pytest-xdist
+      python3-dbusmock
+      python3-dbus
       sassc
 
     FDO_DISTRIBUTION_EXEC: |
@@ -173,8 +187,8 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.18.2 .
-      
+        1.19.1 .
+
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
         master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
