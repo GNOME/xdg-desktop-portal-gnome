@@ -1,7 +1,7 @@
 gnome = import('gnome')
 pkg = import('pkgconfig')
 
-xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.17.0')
+xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.19.1')
 
 # Desktop Portal D-Bus interfaces
 desktop_portal_dbus_interfaces = gnome_portal_interfaces + [
