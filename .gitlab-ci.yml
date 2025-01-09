@@ -2,14 +2,21 @@ include:
   - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/fedora.yml'
   - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ubuntu.yml'
   - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ci-fairy.yml'
+  - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
+    inputs:
+      job-stage: deploy
+      dist-job-name: "dist-xdg-desktop-portal-gnome-tarball"
+      tarball-artifact-path: $TARBALL_ARTIFACT_PATH
 
 stages:
   - review
   - prepare
   - build
+  - deploy
 
 variables:
   FDO_UPSTREAM_REPO: GNOME/xdg-desktop-portal-gnome
+  TARBALL_ARTIFACT_PATH: build/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz
 
 default:
   interruptible: true
@@ -222,3 +229,44 @@ build-ubuntu:
   needs:
     - job: prepare-ubuntu
       artifacts: false
+
+dist-xdg-desktop-portal-gnome:
+  extends:
+    - .fdo.distribution-image@fedora
+    - .fedora-container
+  stage: deploy
+  needs:
+    - job: build-fedora
+      artifacts: false
+  script:
+    - meson setup --wrap-mode=nofallback build .
+    - meson dist -C build --include-subprojects
+  artifacts:
+    expire_in: 7 day
+    name: "xdg-desktop-portal-gnome-${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}"
+    when: always
+    paths:
+      - build/meson-private/dist-build/meson-logs
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "merge_request_event"'
+      when: manual
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - "**/meson.build"
+        - meson/*
+      when: on_success
+    - if: '$GITLAB_USER_LOGIN == "marge-bot"'
+      when: on_success
+    - if: '$CI_MERGE_REQUEST_ASSIGNEES == "marge-bot"'
+      when: on_success
+
+dist-xdg-desktop-portal-gnome-tarball:
+  extends: dist-xdg-desktop-portal-gnome
+  artifacts:
+    expose_as: 'Get tarball here'
+    name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}"
+    when: always
+    paths:
+      - $TARBALL_ARTIFACT_PATH
+  rules:
+    - if: '$CI_COMMIT_TAG'
