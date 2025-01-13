@@ -1,3 +1,15 @@
+Changes in 48.alpha
+=================
+
+- Outsource external window management to libgxdp
+- Fix the capabilities for the print dialog
+- Fix memory leak in screencast widget
+- Implement a signal handler to help with ASAN
+- Use Adwaita widgets in the app chooser dialog
+- Fix a memory management issue with the screencast widget
+- Depend on xdg-desktop-portal >= 1.19.1
+- Translation updates
+
 Changes in 47.0
 =================
 
