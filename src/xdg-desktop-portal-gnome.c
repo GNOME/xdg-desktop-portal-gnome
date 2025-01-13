@@ -235,7 +235,11 @@ init_gtk (GError **error)
   GdkDisplay *display;
 
   /* Avoid pointless and confusing recursion */
+#if GTK_CHECK_VERSION (4, 17, 1)
+  gtk_disable_portals ();
+#else
   g_unsetenv ("GTK_USE_PORTAL");
+#endif
 
   if (G_UNLIKELY (!g_setenv ("ADW_DISABLE_PORTAL", "1", TRUE)))
     {
