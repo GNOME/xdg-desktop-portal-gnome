@@ -8,6 +8,7 @@ src/appchooserdialog.ui
 src/background.c
 src/dynamic-launcher.c
 src/filechooser.c
+src/globalshortcuts.c
 src/inputcapturedialog.c
 src/inputcapturedialog.ui
 src/remotedesktopdialog.c

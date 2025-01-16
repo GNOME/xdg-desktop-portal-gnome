@@ -50,6 +50,7 @@
 #include "background.h"
 #include "clipboard.h"
 #include "filechooser.h"
+#include "globalshortcuts.h"
 #include "lockdown.h"
 #include "print.h"
 #include "screenshot.h"
@@ -213,6 +214,13 @@ on_bus_acquired (GDBusConnection *connection,
     }
 
   if (!usb_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!global_shortcuts_init (connection, &error))
+
     {
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
