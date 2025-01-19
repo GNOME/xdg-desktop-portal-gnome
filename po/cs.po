@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-09 12:57+0000\n"
-"PO-Revision-Date: 2024-02-10 00:48+0100\n"
+"POT-Creation-Date: 2025-01-13 05:57+0000\n"
+"PO-Revision-Date: 2025-01-19 13:46+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -68,16 +68,15 @@ msgstr "Sdílet vaše osobní informace s aplikací, která o to žádá? %s"
 msgid "Share Details"
 msgstr "Sdílet detaily"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Sdílet"
@@ -94,24 +93,24 @@ msgstr "Název"
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_Budiž"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Nepodařilo se spustit Software"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Vyberte aplikaci pro otevření souboru „%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "Vyberte aplikaci pro otevření souboru „%s”"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Vyberte aplikaci."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Vyberte aplikaci"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -119,7 +118,7 @@ msgstr ""
 "Nejsou nainstalovány žádné aplikace pro otevření „%s”. Více aplikací můžete "
 "najít v Software"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Není nainstalována žádná vhodná aplikace. Více aplikací můžete najít v "
@@ -129,23 +128,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Otevřít pomocí…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Nejsou dostupné žádné aplikace"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"Nejsou nainstalovány žádné aplikace schopné otevřít soubor.přípona. Více "
-"aplikací můžete najít v Software."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "N_ajít další v Software"
 
@@ -160,22 +151,6 @@ msgstr "Vytvoření aplikace"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Vytvořit"
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Vybrat"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Uložit"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Otevřít soubory pouze ke čtení"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Otevřít složky pouze ke čtení"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -214,16 +189,16 @@ msgstr "Povolit přístup ke s_chránce"
 msgid "Share Screen"
 msgstr "Sdílet obrazovku"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Virtuální monitor"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:632
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "Aplikace %s chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:637
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "Aplikace chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
@@ -296,7 +271,7 @@ msgstr "Zahrnout _kurzor myši"
 msgid "Include Window _Border"
 msgstr "Zahrnout _rámeček okna"
 
-#: src/settings.c:253
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Požadované nastavení nebylo nalezeno"
 
@@ -311,6 +286,25 @@ msgstr "Nas_tavit"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Selhalo načtení souboru obrázku"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "Nejsou nainstalovány žádné aplikace schopné otevřít soubor.přípona. Více "
+#~ "aplikací můžete najít v Software."
+
+#~ msgid "_Select"
+#~ msgstr "_Vybrat"
+
+#~ msgid "_Save"
+#~ msgstr "_Uložit"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Otevřít soubory pouze ke čtení"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Otevřít složky pouze ke čtení"
 
 #, c-format
 #~ msgid "Select a screen to share with %s"
