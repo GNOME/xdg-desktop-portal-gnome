@@ -1,3 +1,10 @@
+Changes in 47.2
+=================
+
+- More resilience against GNOME Shell errors
+- Fix memory leak in screencast widget
+- Avoid a GTK portal recursion, and a 25 second delay in startup
+
 Changes in 47.1
 =================
 
