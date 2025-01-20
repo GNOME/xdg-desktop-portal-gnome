@@ -152,7 +152,7 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gtk.git \
-        main . 64522536b80be4f19269474c83c959a81c450878
+        4.17.3 .
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/libadwaita.git \
