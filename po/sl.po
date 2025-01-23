@@ -3,22 +3,24 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
 # Matej Urbančič <mateju@src.gnome.org>, 2021–2024.
+# Martin Srebotnjak <miles@filmsi.net>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-11-04 15:08+0000\n"
-"PO-Revision-Date: 2024-11-04 18:36+0100\n"
+"POT-Creation-Date: 2025-01-20 14:18+0000\n"
+"PO-Revision-Date: 2025-01-23 08:48+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
-"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
+"com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 2.2.1\n"
 
@@ -189,18 +191,18 @@ msgstr "Dovoli _dostop do odložišča"
 msgid "Share Screen"
 msgstr "Souporaba zaslona"
 
-#: src/screencastwidget.c:290
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Navidezni zaslon"
 
-#: src/screencastwidget.c:630
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Program %s poskuša omogočiti souporabo zaslona. Izberite, kaj želite "
 "omogočiti."
 
-#: src/screencastwidget.c:635
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Program poskuša omogočiti souporabo zaslona. Izberite, kaj želite omogočiti."
@@ -210,12 +212,12 @@ msgid "_Remember this selection"
 msgstr "_Zapomni si izbiro"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Okno programa"
+msgid "_Window"
+msgstr "_Okno"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Celoten zaslon"
+msgid "_Display"
+msgstr "_Zaslon"
 
 #: src/screenshotdialog.c:432
 #, c-format
