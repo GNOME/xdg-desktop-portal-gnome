@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-11-04 15:08+0000\n"
-"PO-Revision-Date: 2024-11-08 14:41+0300\n"
+"POT-Creation-Date: 2025-01-20 14:18+0000\n"
+"PO-Revision-Date: 2025-01-23 13:51+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -189,18 +189,18 @@ msgstr "Разрешить доступ к _буферу обмена"
 msgid "Share Screen"
 msgstr "Общий доступ к экрану"
 
-#: src/screencastwidget.c:290
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Виртуальный монитор"
 
-#: src/screencastwidget.c:630
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Приложение «%s» хочет предоставить доступ к вашему экрану. Выберите, чем вы "
 "хотите поделиться."
 
-#: src/screencastwidget.c:635
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Приложение хочет предоставить доступ к вашему экрану. Выберите, чем вы "
@@ -211,12 +211,12 @@ msgid "_Remember this selection"
 msgstr "_Запомнить этот выбор"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Окно приложения"
+msgid "_Window"
+msgstr "_Окно"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Весь экран"
+msgid "_Display"
+msgstr "_Экран"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -291,6 +291,12 @@ msgstr "_Установить"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Не удалось загрузить файл изображения"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Окно приложения"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Весь экран"
 
 #~ msgid ""
 #~ "No apps installed that are able to open file.extension. You can find more "
