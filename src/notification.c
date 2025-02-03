@@ -57,6 +57,9 @@ app_path_for_id (const gchar *app_id)
 static gboolean
 handle_add_notification (XdpImplNotification *object,
                          GDBusMethodInvocation *invocation,
+#ifdef HAVE_XDP_1_19_1
+                         GUnixFDList *fds,
+#endif
                          const gchar *arg_app_id,
                          const gchar *arg_id,
                          GVariant *arg_notification)
