@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-01-20 14:18+0000\n"
-"PO-Revision-Date: 2025-01-23 08:48+0100\n"
+"POT-Creation-Date: 2025-02-03 17:59+0000\n"
+"PO-Revision-Date: 2025-02-05 19:28+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups."
 "com>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -117,8 +117,8 @@ msgstr "Izberite program"
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"Ni nameščenega programa, ki odpira predmete »%s«. Program lahko poiščete "
-"tudi v brskalniku programske opreme."
+"Ni nameščenega programa, s katerim bi lahko odprli »%s«. Program lahko "
+"poiščete tudi v brskalniku programske opreme."
 
 #: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
@@ -279,6 +279,43 @@ msgstr "Vključi tudi _rob okna"
 #: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Zahtevane nastavitve ni mogoče najti"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serijska številka"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s želi dostopati do naslednjih naprav USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Program želi dostopati do teh naprav USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Neznana naprava"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Neznani izdelovalec"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Dostop do naprave"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Zavrni"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Dovoli"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Prikaz naprave USB ni uspel"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
