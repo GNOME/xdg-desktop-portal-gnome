@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-01-13 05:57+0000\n"
-"PO-Revision-Date: 2025-01-19 13:46+0100\n"
+"POT-Creation-Date: 2025-02-03 17:59+0000\n"
+"PO-Revision-Date: 2025-02-10 14:56+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -193,12 +193,12 @@ msgstr "Sdílet obrazovku"
 msgid "Virtual Monitor"
 msgstr "Virtuální monitor"
 
-#: src/screencastwidget.c:632
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "Aplikace %s chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
-#: src/screencastwidget.c:637
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "Aplikace chce sdílet vaši obrazovku. Vyberte, co chcete sdílet."
 
@@ -207,12 +207,12 @@ msgid "_Remember this selection"
 msgstr "Pamatovat si tento výbě_r"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Okno aplikace"
+msgid "_Window"
+msgstr "_Okno"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "C_elá obrazovka"
+msgid "_Display"
+msgstr "_Displej"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -275,6 +275,43 @@ msgstr "Zahrnout _rámeček okna"
 msgid "Requested setting not found"
 msgstr "Požadované nastavení nebylo nalezeno"
 
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Sériové číslo"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "Aplikace %s chce přistupovat k následujícím zařízením USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Aplikace chce přistupovat k následujícím zařízením USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Neznámé zařízení"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Neznámý výrobce"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Přístup k zařízení"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Zamítnout"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Povolit"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Selhalo zobrazení zařízení USB"
+
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Nastavit pozadí"
@@ -286,6 +323,12 @@ msgstr "Nas_tavit"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Selhalo načtení souboru obrázku"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Okno aplikace"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "C_elá obrazovka"
 
 #~ msgid ""
 #~ "No apps installed that are able to open file.extension. You can find more "
