@@ -1,18 +1,18 @@
 # Turkish translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2017-2023 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2017-2025 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
 # Muhammet Kara <muhammetk@gnome.org>, 2017, 2018.
-# Sabri Ünal <libreajans@gmail.com>, 2019, 2020, 2023.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2020, 2022, 2023, 2024.
+# Sabri Ünal <yakushabb@gmail.com>, 2019, 2020, 2023, 2025.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2020, 2022-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-11-25 08:31+0000\n"
-"PO-Revision-Date: 2024-12-01 00:23+0300\n"
+"POT-Creation-Date: 2025-02-03 17:59+0000\n"
+"PO-Revision-Date: 2025-02-09 16:24+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -192,12 +192,12 @@ msgstr "Ekran Paylaşımı"
 msgid "Virtual Monitor"
 msgstr "Sanal Monitör"
 
-#: src/screencastwidget.c:632
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s ekranınızı paylaşmak istiyor. Neyi paylaşmak istediğinizi seçin."
 
-#: src/screencastwidget.c:637
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Bir uygulama ekranınızı paylaşmak istiyor. Neyi paylaşmak istediğinizi seçin."
@@ -207,12 +207,12 @@ msgid "_Remember this selection"
 msgstr "Bu seçimi _anımsa"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "Uygulama _Penceresi"
+msgid "_Window"
+msgstr "_Pencere"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Tüm Ekran"
+msgid "_Display"
+msgstr "_Göster"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -275,6 +275,43 @@ msgstr "Pencere _Kenarlığını İçer"
 msgid "Requested setting not found"
 msgstr "İstenen ayar bulunamadı"
 
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Seri Numarası"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s aşağıdaki USB aygıtlarına erişmek istiyor"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Bir uygulama aşağıdaki USB aygıtlarına erişmek istiyor"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Bilinmeyen aygıt"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Bilinmeyen üretici"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Aygıt Erişimi"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Reddet"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "İzin _Ver"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "USB aygıtı görüntülenemedi"
+
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Arka Plan Belirle"
@@ -286,49 +323,3 @@ msgstr "_Ayarla"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Resim dosyası yüklenemedi"
-
-#~ msgid "_Select"
-#~ msgstr "_Seç"
-
-#~ msgid "_Save"
-#~ msgstr "_Kaydet"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Dosyaları salt okunur aç"
-
-#~ msgid "Open directories read-only"
-#~ msgstr "Dizinleri salt okunur aç"
-
-#~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more "
-#~ "apps in Software."
-#~ msgstr ""
-#~ "dosya.uzantısını açabilen uygulama kurulmadı. Daha çok uygulamayı "
-#~ "Yazılımlar’da bulabilirsiniz"
-
-#~ msgid "Select a screen to share with %s"
-#~ msgstr "%s ile paylaşılacak ekranı seç"
-
-#~ msgid "Select a window to share with %s"
-#~ msgstr "%s ile paylaşılacak pencereyi seç"
-
-#~ msgid "Select a screen to share with the requesting app"
-#~ msgstr "İstekte bulunan uygulama ile paylaşılacak ekranı seç"
-
-#~ msgid "Select a window to share with the requesting app"
-#~ msgstr "İstekte bulunan uygulama ile paylaşılacak pencereyi seç"
-
-#~ msgid "Screen Share"
-#~ msgstr "Ekran Paylaşımı"
-
-#~ msgid "Select monitor to share with %s"
-#~ msgstr "%s ile paylaşılacak monitörü seç"
-
-#~ msgid "Select monitor to share with the requesting app"
-#~ msgstr "İstekte bulunan uygulama ile paylaşılacak monitörü seç"
-
-#~ msgid "Set"
-#~ msgstr "Belirle"
-
-#~ msgid "Activities"
-#~ msgstr "Etkinlikler"
