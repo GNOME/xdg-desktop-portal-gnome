@@ -1,25 +1,25 @@
 # Brazilian Portuguese translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2023 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2025 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2016-2023.
 # Alex Jr <alexalencarjr@outlook.com>, 2023.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2016-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-03-12 21:49+0000\n"
-"PO-Revision-Date: 2023-12-01 13:57-0300\n"
-"Last-Translator: Alex Jr <alexalencarjr@outlook.com>\n"
+"POT-Creation-Date: 2025-02-13 06:07+0000\n"
+"PO-Revision-Date: 2025-02-15 00:44-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 45.3\n"
+"X-Generator: Gtranslator 47.1\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-Branch: main\n"
@@ -73,16 +73,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Compartilhar detalhes"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Compartilhar"
@@ -99,24 +98,24 @@ msgstr "Nome"
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_Ok"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Falha ao iniciar Software"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Escolha um aplicativo para abrir o arquivo “%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "Escolha um aplicativo para abrir o arquivo “%s”"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Escolha um aplicativo."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Escolha um aplicativo"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -124,7 +123,7 @@ msgstr ""
 "Nenhum aplicativo instalado que pode abrir “%s”. Você pode encontrar mais "
 "aplicativos no Software"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nenhum aplicativo adequado instalado. Você pode encontrar mais aplicativos "
@@ -134,15 +133,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Abrir com…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Nenhum aplicativo disponível"
 
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_Encontrar mais no Programas"
 
@@ -157,22 +156,6 @@ msgstr "Criar aplicativo"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "C_riar"
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Selecionar"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Salvar"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Abrir arquivos em somente leitura"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Abrir diretórios em somente leitura"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -211,16 +194,16 @@ msgstr "Permitir acesso à área de _transferência"
 msgid "Share Screen"
 msgstr "Compartilhar Tela"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Monitor virtual"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s quer compartilhar sua tela. Escolha o que você quer compartilhar."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Um aplicativo quer compartilhar sua tela. Escolha o que você quer "
@@ -231,12 +214,12 @@ msgid "_Remember this selection"
 msgstr "_Lembrar desta seleção"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Janela do Aplicativo"
+msgid "_Window"
+msgstr "_Janela"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Toda a tela"
+msgid "_Display"
+msgstr "_Tela"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -295,9 +278,46 @@ msgstr "Incluir cu_rsor"
 msgid "Include Window _Border"
 msgstr "Incluir a _borda da janela"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Configuração solicitada não foi encontrada"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Número de série"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s deseja acessar os seguintes dispositivos USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Um aplicativo deseja acessar os seguintes dispositivos USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Dispositivo desconhecido"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Fornecedor desconhecido"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Acesso ao dispositivo"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Negar"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Permitir"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Falha ao exibir o dispositivo USB"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -310,6 +330,24 @@ msgstr "_Definir"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Falha ao carregar o arquivo de imagem"
+
+#~ msgid "_Select"
+#~ msgstr "_Selecionar"
+
+#~ msgid "_Save"
+#~ msgstr "_Salvar"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Abrir arquivos em somente leitura"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Abrir diretórios em somente leitura"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Janela do Aplicativo"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Toda a tela"
 
 #~ msgid "Screen Share"
 #~ msgstr "Compartilhamento de tela"
@@ -327,9 +365,6 @@ msgstr "Falha ao carregar o arquivo de imagem"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Selecione a janela para compartilhar com aplicativo requisitante"
-
-#~ msgid "Single Window"
-#~ msgstr "Janela individual"
 
 #~ msgid "Set"
 #~ msgstr "Definir"
