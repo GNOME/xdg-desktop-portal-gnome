@@ -58,6 +58,11 @@ config_h.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_h.set_quoted('LOCALEDIR', prefix / get_option('localedir'))
 config_h.set_quoted('PACKAGE_NAME', meson.project_name())
 config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), meson.project_version()))
+
+if xdg_desktop_portal_dep.version().version_compare('>= 1.19.1')
+  config_h.set('HAVE_XDP_1_19_1', 1)
+endif
+
 built_sources += configure_file(output: 'config.h', configuration: config_h)
 
 # Sources

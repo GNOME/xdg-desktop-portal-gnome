@@ -69,7 +69,11 @@ handle_add_notification (XdpImplNotification *object,
                                                notification_added,
                                                NULL);
 
+#ifdef HAVE_XDP_1_19_1
+  xdp_impl_notification_complete_add_notification (object, invocation, NULL);
+#else
   xdp_impl_notification_complete_add_notification (object, invocation);
+#endif
 
   return TRUE;
 }
