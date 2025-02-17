@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-01-20 14:18+0000\n"
-"PO-Revision-Date: 2025-01-23 13:51+0300\n"
+"POT-Creation-Date: 2025-02-03 17:59+0000\n"
+"PO-Revision-Date: 2025-02-04 19:44+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -278,6 +278,43 @@ msgstr "Показать _границу окна"
 #: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Запрашиваемая настройка не найдена"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Серийный номер"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "Приложение «%s» хочет получить доступ к следующим устройствам USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Приложение хочет получить доступ к следующим устройствам USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Неизвестное устройство"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Неизвестный производитель"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Доступ к устройству"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Отказать"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Разрешить"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Не удалось отобразить устройство USB"
 
 # В текущей версии диалога ширина по умолчанию достаточно маленькая, поэтому длинная фраза не влезает без многоточия.
 #: src/wallpaperdialog.ui:8
