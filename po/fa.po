@@ -1,22 +1,22 @@
 # Persian translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2021-2024.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2021-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues/\n"
-"POT-Creation-Date: 2024-02-09 12:57+0000\n"
-"PO-Revision-Date: 2024-02-12 19:21+0330\n"
+"POT-Creation-Date: 2025-02-13 06:07+0000\n"
+"PO-Revision-Date: 2025-02-23 19:41+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -64,14 +64,14 @@ msgstr "هم‌رسانی اطّلاعات شخصیتان با کارهٔ درخ
 msgid "Share Details"
 msgstr "هم‌رسانی جزییات"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16 src/dynamic-launcher.c:258
-#: src/filechooser.c:583 src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17 src/dynamic-launcher.c:258
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:31 src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_لغو"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_هم‌رسانی"
@@ -88,31 +88,31 @@ msgstr "نام"
 msgid "Username"
 msgstr "نام کاربری"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_تأیید"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "شکست در اجرای نرم‌افزار"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "گزینش کاره‌ای برای گشودن پروندهٔ «%s»."
+msgid "Choose an app to open the file “%s”"
+msgstr "گزینش کاره‌ای برای گشودن پروندهٔ «%s»"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "گزینش یک کاره."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "گزینش کاره"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "هیچ کاره‌ای که بتواند «%s» را بگشاید، نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در "
 "نرم‌افزارها بیابید"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "هیچ کارهٔ مناسبی نصب نشده. می‌توانید کاره‌هایی بیش‌تر را در نرم‌افزارها بیابید."
 
@@ -120,23 +120,15 @@ msgstr "هیچ کارهٔ مناسبی نصب نشده. می‌توانید کا
 msgid "Open With…"
 msgstr "گشودن با…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_گشودن"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "هیچ کاره‌ای موجود نیست"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more apps "
-"in Software."
-msgstr ""
-"هیچ کاره‌ای که بتواند ‪file.extension‬ را بگشاید نصب نشده. می‌توانید کاره‌هایی بیش‌تر "
-"را در نرم‌افزارها بیابید."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_یافتن بیش‌تر در نرم‌افزارها"
 
@@ -151,22 +143,6 @@ msgstr "ایجاد کاره"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_ایجاد"
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_گزینش"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_ذخیره"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "گشودن فقط‌خواندنی پرونده‌ها"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "گشودن فقط‌خواندنی شاخه‌ها"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -205,16 +181,16 @@ msgstr "اجازهٔ دسترسی به _تخته‌گیره"
 msgid "Share Screen"
 msgstr "هم‌رسانی صفحه"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "نمایشگر مجازی"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s می‌خواهد صفحه‌تان را هم‌رسانی کند. آن‌چه می‌خواهید هم‌رسانی کنید را برگزینید."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "کاره‌ای می‌خواهد صفحه‌تان را هم‌رسانی کند. آن‌چه می‌خواهید هم‌رسانی کنید را برگزینید."
@@ -224,12 +200,12 @@ msgid "_Remember this selection"
 msgstr "_به یاد سپاری این گزینش"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_پنجرهٔ برنامه"
+msgid "_Window"
+msgstr "_پنجره"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_کل صفحه"
+msgid "_Display"
+msgstr "_نمایشگر"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -288,9 +264,46 @@ msgstr "شامل _اشاره‌گر"
 msgid "Include Window _Border"
 msgstr "شامل _حاشیهٔ پنجره"
 
-#: src/settings.c:253
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "تنظیمات درخواستی پیدا نشد"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "شمارهٔ سریال"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s می‌خواهد به افزاره‌های یواس‌بی زیر دسترسی پیدا کند"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "کاره‌ای می‌خواهد به افزاره‌های یواس‌بی زیر دسترسی پیدا کند"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "افزارهٔ ناشناخته"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "سازندهٔ ناشناخته"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "دسترسی ‌افزاره"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_رد"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_اجازه"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "شکست در نمایش افزارهٔ یواسبی"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -303,6 +316,31 @@ msgstr "_تنظیم"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "شکست در بار کردن پروندهٔ تصویر"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more apps "
+#~ "in Software."
+#~ msgstr ""
+#~ "هیچ کاره‌ای که بتواند ‪file.extension‬ را بگشاید نصب نشده. می‌توانید کاره‌هایی "
+#~ "بیش‌تر را در نرم‌افزارها بیابید."
+
+#~ msgid "_Select"
+#~ msgstr "_گزینش"
+
+#~ msgid "_Save"
+#~ msgstr "_ذخیره"
+
+#~ msgid "Open files read-only"
+#~ msgstr "گشودن فقط‌خواندنی پرونده‌ها"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "گشودن فقط‌خواندنی شاخه‌ها"
+
+#~ msgid "Application _Window"
+#~ msgstr "_پنجرهٔ برنامه"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_کل صفحه"
 
 #, c-format
 #~ msgid "Select a screen to share with %s"
@@ -346,8 +384,8 @@ msgstr "شکست در بار کردن پروندهٔ تصویر"
 #~ msgstr ""
 #~ "ممکن است برای دلیل معقولی باشد، ولی برنامه هیچ دلیلی نیاورده است.\n"
 #~ "\n"
-#~ "به خاطر داشته باشید که اجبار یک برنامه به خروج، ممکن است موجب از دست رفتن "
-#~ "داده شود."
+#~ "به خاطر داشته باشید که اجبار یک برنامه به خروج، ممکن است موجب از دست رفتن داده "
+#~ "شود."
 
 #~ msgid "Force quit"
 #~ msgstr "خروج اجباری"
