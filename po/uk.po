@@ -2,23 +2,23 @@
 # Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
 "/issues/\n"
-"POT-Creation-Date: 2024-02-09 12:57+0000\n"
-"PO-Revision-Date: 2024-02-12 23:31+0200\n"
+"POT-Creation-Date: 2025-02-13 06:07+0000\n"
+"PO-Revision-Date: 2025-02-24 11:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -67,16 +67,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Оприлюднити подробиці"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Скасувати"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Оприлюднити"
@@ -93,24 +92,26 @@ msgstr "Назва"
 msgid "Username"
 msgstr "Користувач"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_Гаразд"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Не вдалося запустити «Програмні засоби»"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Виберіть програму для відкриття файла «%s»."
+#| msgid "Choose an app to open the file “%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "Виберіть програму для відкриття файла «%s»"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Виберіть програму."
+#: src/appchooserdialog.c:353
+#| msgid "Choose an app."
+msgid "Choose an app"
+msgstr "Виберіть програму"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -118,7 +119,7 @@ msgstr ""
 "Не встановлено жодної програми, яка придатна для відкриття «%s». Потрібні "
 "вам програми ви можете знайти за допомогою програми «Програмні засоби»."
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Не встановлено відповідної програми. Потрібні вам програми ви можете знайти "
@@ -128,24 +129,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Відкрити за допомогою…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Немає доступних програм"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"Не встановлено жодної програми, яка придатна для відкриття файлів з цим "
-"суфіксом назви. Потрібні вам програми ви можете знайти за допомогою програми "
-"«Програмні засоби»."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "З_найти інші у програмі «Програмні засоби»"
 
@@ -161,22 +153,6 @@ msgstr "Створити програму"
 msgid "C_reate"
 msgstr "С_творити"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Вибрати"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Зберегти"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Відкрити файли лише для читання"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Відкрити каталоги лише для читання"
-
 #: src/inputcapturedialog.c:105
 #, c-format
 msgid "The application %s wants to capture input events"
@@ -187,71 +163,62 @@ msgid "An application wants to capture input events"
 msgstr "Програма хоче захоплювати події з введення даних"
 
 #: src/inputcapturedialog.ui:7
-#| msgid "Capture input"
 msgid "Capture Input"
 msgstr "Захоплення введення"
 
 #: src/inputcapturedialog.ui:68
-#| msgid "Allow remote input capturing"
 msgid "Allow Remote _Input Capturing"
 msgstr "Дозволити віддалене за_хоплення введення"
 
 #: src/remotedesktopdialog.ui:7
-#| msgid "Remote desktop"
 msgid "Remote Desktop"
 msgstr "Віддалена стільниця"
 
 #: src/remotedesktopdialog.ui:70
-#| msgid "Remember this selection"
 msgid "_Remember This Selection"
 msgstr "З_апам'ятати цей вибір"
 
 #: src/remotedesktopdialog.ui:85
-#| msgid "Allow remote interaction"
 msgid "Allow Remote _Interaction"
 msgstr "Дозволити віддалену вза_ємодію"
 
 #: src/remotedesktopdialog.ui:93
-#| msgid "Allow clipboard access"
 msgid "Allow _Clipboard Access"
 msgstr "Дозволити доступ до _буфера обміну"
 
 #: src/screencastdialog.ui:5
-#| msgid "Entire Screen"
 msgid "Share Screen"
 msgstr "Оприлюднити екран"
 
-#: src/screencastwidget.c:322
-#| msgid "Virtual monitor"
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Віртуальний монітор"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"%s має намір оприлюднити зображення з вашого екрана. Виберіть те, що ви"
-" хочете оприлюднити."
+"%s має намір оприлюднити зображення з вашого екрана. Виберіть те, що ви "
+"хочете оприлюднити."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"Програма має намір оприлюднити зображення з вашого екрана. Виберіть те, що"
-" ви хочете оприлюднити."
+"Програма має намір оприлюднити зображення з вашого екрана. Виберіть те, що "
+"ви хочете оприлюднити."
 
 #: src/screencastwidget.ui:17
-#| msgid "Remember this selection"
 msgid "_Remember this selection"
 msgstr "З_апам'ятати цей вибір"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Вікно програми"
+#| msgid "Single Window"
+msgid "_Window"
+msgstr "_Вікно"
 
 #: src/screencastwidget.ui:66
-#| msgid "Entire Screen"
-msgid "_Entire Screen"
-msgstr "_Увесь екран"
+msgid "_Display"
+msgstr "Д_исплей"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -279,17 +246,14 @@ msgid "Take Screenshot"
 msgstr "Зробити знімок екрана"
 
 #: src/screenshotdialog.ui:141
-#| msgid "Grab the whole sc_reen"
 msgid "Grab Whole Sc_reen"
 msgstr "Захопити увесь е_кран"
 
 #: src/screenshotdialog.ui:151
-#| msgid "Grab the current _window"
 msgid "Grab Current _Window"
 msgstr "Захопити поточне _вікно"
 
 #: src/screenshotdialog.ui:161
-#| msgid "Select _area to grab"
 msgid "Select _Area to Grab"
 msgstr "Вибрати _область для захоплення"
 
@@ -306,18 +270,57 @@ msgid "Effects"
 msgstr "Ефекти"
 
 #: src/screenshotdialog.ui:203
-#| msgid "Include _pointer"
 msgid "Include _Pointer"
 msgstr "Разом із в_казівником"
 
 #: src/screenshotdialog.ui:211
-#| msgid "Include the window _border"
 msgid "Include Window _Border"
 msgstr "Включити _рамку вікна"
 
-#: src/settings.c:253
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Потрібного вам параметра не знайдено"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Серійний номер"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s потрібен доступу до таких пристроїв USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Програмі потрібен доступ до таких пристроїв USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Невідомий пристрій"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Невідомий виробник"
+
+#: src/usbdialog.ui:8
+#| msgid "Deny Access"
+msgid "Device Access"
+msgstr "Доступ до пристроїв"
+
+#: src/usbdialog.ui:31
+#| msgid "Deny"
+msgid "_Deny"
+msgstr "Від_мовити"
+
+#: src/usbdialog.ui:40
+#| msgid "Allow"
+msgid "_Allow"
+msgstr "Д_озволити"
+
+#: src/usbdialog.ui:90
+#| msgid "Failed to load image file"
+msgid "Failed to display USB device"
+msgstr "Не вдалося показати пристрій USB"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -330,6 +333,33 @@ msgstr "_Встановити"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Не вдалося завантажити файл зображення"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "Не встановлено жодної програми, яка придатна для відкриття файлів з цим "
+#~ "суфіксом назви. Потрібні вам програми ви можете знайти за допомогою "
+#~ "програми «Програмні засоби»."
+
+#~ msgid "_Select"
+#~ msgstr "_Вибрати"
+
+#~ msgid "_Save"
+#~ msgstr "_Зберегти"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Відкрити файли лише для читання"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Відкрити каталоги лише для читання"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Вікно програми"
+
+#~| msgid "Entire Screen"
+#~ msgid "_Entire Screen"
+#~ msgstr "_Увесь екран"
 
 #~ msgid "Screen Share"
 #~ msgstr "Оприлюднення екрана"
@@ -351,9 +381,6 @@ msgstr "Не вдалося завантажити файл зображення
 #~ msgstr ""
 #~ "Виберіть вікно, дані з якого слід оприлюднити за допомогою відповідної "
 #~ "програми"
-
-#~ msgid "Single Window"
-#~ msgstr "Окреме вікно"
 
 #~ msgid "Set"
 #~ msgstr "Встановити"
@@ -421,9 +448,6 @@ msgstr "Не вдалося завантажити файл зображення
 #~ "\n"
 #~ "                              Створити віртуальний монітор?\n"
 #~ "                            "
-
-#~ msgid "Deny Access"
-#~ msgstr "Заборонити доступ"
 
 #~ msgid "Grant Access"
 #~ msgstr "Надати доступ"
