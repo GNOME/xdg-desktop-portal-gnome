@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Mingye Wang <arthur2e5@aosc.xyz>, 2016.
 # 王滋涵 Zephyr Waitzman <i@wi24rd.ml>, 2019.
-# lumingzh <lumingzh@qq.com>, 2021-2024.
+# lumingzh <lumingzh@qq.com>, 2021-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-21 23:52+0000\n"
-"PO-Revision-Date: 2024-02-22 19:44+0800\n"
+"POT-Creation-Date: 2025-02-13 06:07+0000\n"
+"PO-Revision-Date: 2025-02-25 08:58+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
-"Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 45.3\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 47.1\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -67,16 +67,15 @@ msgstr "与请求应用共享您的个人信息吗？%s"
 msgid "Share Details"
 msgstr "分享详情"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "取消(_C)"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "分享(_S)"
@@ -93,30 +92,30 @@ msgstr "名字"
 msgid "Username"
 msgstr "用户名"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "确定(_O)"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "无法启动软件"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "选择用来打开文件“%s”的应用。"
+msgid "Choose an app to open the file “%s”"
+msgstr "选择用来打开文件“%s”的应用"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "选择应用。"
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "选择应用"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr "未安装可以打开“%s”的应用。您可以在“软件”中寻找更多应用"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "未安装适合的应用。您可以在“软件”中寻找更多应用。"
 
@@ -124,21 +123,15 @@ msgstr "未安装适合的应用。您可以在“软件”中寻找更多应用
 msgid "Open With…"
 msgstr "打开方式…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "无可用应用"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr "未安装可以打开 file.extension 的应用。您可以在“软件”中寻找更多应用"
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "在“软件”中了解更多(_F)"
 
@@ -153,22 +146,6 @@ msgstr "创建应用"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "创建(_R)"
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "选择(_S)"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "保存(_S)"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "以只读方式打开文件"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "以只读方式打开目录"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -207,16 +184,16 @@ msgstr "允许访问剪贴板(_C)"
 msgid "Share Screen"
 msgstr "共享屏幕"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "虚拟监视器"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s 想共享您的屏幕。选择您想要共享的内容。"
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "有应用想共享您的屏幕。选择您想要共享的内容。"
 
@@ -225,12 +202,12 @@ msgid "_Remember this selection"
 msgstr "记住该选择(_R)"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "应用窗口(_W)"
+msgid "_Window"
+msgstr "窗口(_W)"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "整个屏幕(_E)"
+msgid "_Display"
+msgstr "显示器(_D)"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -289,9 +266,46 @@ msgstr "包含指针(_P)"
 msgid "Include Window _Border"
 msgstr "包含窗口边框(_B)"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "未找到请求的设置"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "序列号"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s 想要访问以下 USB 设备"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "有应用想要访问以下 USB 设备"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "未知设备"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "未知厂商"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "设备访问"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "拒绝(_D)"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "允许(_A)"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "显示 USB 设备失败"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -304,6 +318,29 @@ msgstr "设置(_S)"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "无法加载图像文件"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr "未安装可以打开 file.extension 的应用。您可以在“软件”中寻找更多应用"
+
+#~ msgid "_Select"
+#~ msgstr "选择(_S)"
+
+#~ msgid "_Save"
+#~ msgstr "保存(_S)"
+
+#~ msgid "Open files read-only"
+#~ msgstr "以只读方式打开文件"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "以只读方式打开目录"
+
+#~ msgid "Application _Window"
+#~ msgstr "应用窗口(_W)"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "整个屏幕(_E)"
 
 #~ msgid "Screen Share"
 #~ msgstr "屏幕共享"
@@ -321,9 +358,6 @@ msgstr "无法加载图像文件"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "选择与请求应用共享的窗口"
-
-#~ msgid "Single Window"
-#~ msgstr "单个窗口"
 
 #~ msgid "Set"
 #~ msgstr "设置"
@@ -387,9 +421,6 @@ msgstr "无法加载图像文件"
 #~ "\n"
 #~ "                              创建虚拟监视器吗？\n"
 #~ "                            "
-
-#~ msgid "Deny Access"
-#~ msgstr "拒绝访问"
 
 #~ msgid "Grant Access"
 #~ msgstr "授权访问"
