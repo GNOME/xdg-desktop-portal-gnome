@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-24 18:04+0000\n"
-"PO-Revision-Date: 2024-02-24 20:17+0100\n"
+"POT-Creation-Date: 2025-02-13 06:07+0000\n"
+"PO-Revision-Date: 2025-02-24 22:04+0100\n"
 "Last-Translator: Vincent Chatelain <vinchatl_gnome@proton.me>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 45.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -67,16 +67,15 @@ msgstr ""
 msgid "Share Details"
 msgstr "Partager les détails"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "A_nnuler"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Partager"
@@ -93,24 +92,24 @@ msgstr "Nom"
 msgid "Username"
 msgstr "Nom d’utilisateur"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_Valider"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
-msgstr "Échec de lancement de Logiciels"
+msgstr "Échec du lancement de Logiciels"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Choisir une application pour ouvrir le fichier « %s »."
+msgid "Choose an app to open the file “%s”"
+msgstr "Choisir une application pour ouvrir le fichier « %s »"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Choisir une application."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Choisir une application"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -118,7 +117,7 @@ msgstr ""
 "Aucune application installée capable d’ouvrir « %s ». Vous pouvez trouver "
 "plus d’applications dans Logiciels"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Aucune application adaptée n’est installée. Vous pouvez trouver plus "
@@ -128,23 +127,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Ouvrir avec…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Ouvrir"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Aucune application disponible"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"Aucune application installée n’est capable d’ouvrir fichier.extension. Vous pouvez "
-"trouver plus d’applications dans Logiciels"
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "En _trouver plus dans Logiciels"
 
@@ -159,22 +150,6 @@ msgstr "Créer une application"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "C_réer"
-
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Choisir"
-
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Enregistrer"
-
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Ouvrir les fichiers en lecture seule"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Ouvrir les répertoires en lecture seule"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -214,33 +189,33 @@ msgstr "Autoriser l’accès au _presse-papiers"
 msgid "Share Screen"
 msgstr "Partager l’écran"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Écran virtuel"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "%s souhaite partager votre écran. Choisissez ce que vous souhaitez partager."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"Une application souhaite partager votre écran. Choisissez ce que vous souhaitez "
-"partager."
+"Une application souhaite partager votre écran. Choisissez ce que vous "
+"souhaitez partager."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
 msgstr "Se _souvenir de ce choix"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Fenêtre de l’application"
+msgid "_Window"
+msgstr "_Fenêtre"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "Écran _entier"
+msgid "_Display"
+msgstr "_Écran"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -299,9 +274,46 @@ msgstr "Inclure le _pointeur"
 msgid "Include Window _Border"
 msgstr "Inclure la _bordure de la fenêtre"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Le réglage demandé n’a pas été trouvé"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s souhaite accéder aux périphériques USB suivants"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Une application souhaite accéder aux périphériques USB suivants"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Périphérique inconnu"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Vendeur inconnu"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Accès au périphérique"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Interdire"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Autoriser"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Échec de l’affichage du périphérique USB"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -314,6 +326,31 @@ msgstr "_Définir"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Échec de chargement du fichier image"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "Aucune application installée n’est capable d’ouvrir fichier.extension. "
+#~ "Vous pouvez trouver plus d’applications dans Logiciels"
+
+#~ msgid "_Select"
+#~ msgstr "_Choisir"
+
+#~ msgid "_Save"
+#~ msgstr "_Enregistrer"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Ouvrir les fichiers en lecture seule"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Ouvrir les répertoires en lecture seule"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Fenêtre de l’application"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "Écran _entier"
 
 #~ msgid "Screen Share"
 #~ msgstr "Partage d’écran"
@@ -331,9 +368,6 @@ msgstr "Échec de chargement du fichier image"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Choisir la fenêtre à partager avec l’application qui le demande"
-
-#~ msgid "Single Window"
-#~ msgstr "Fenêtre seule"
 
 #~ msgid "Set"
 #~ msgstr "Définir"
