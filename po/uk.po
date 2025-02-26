@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
 "/issues/\n"
-"POT-Creation-Date: 2025-02-13 06:07+0000\n"
-"PO-Revision-Date: 2025-02-24 11:47+0200\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-02-26 20:05+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -102,12 +102,10 @@ msgstr "Не вдалося запустити «Програмні засоби
 
 #: src/appchooserdialog.c:348
 #, c-format
-#| msgid "Choose an app to open the file “%s”."
 msgid "Choose an app to open the file “%s”"
 msgstr "Виберіть програму для відкриття файла «%s»"
 
 #: src/appchooserdialog.c:353
-#| msgid "Choose an app."
 msgid "Choose an app"
 msgstr "Виберіть програму"
 
@@ -152,6 +150,22 @@ msgstr "Створити програму"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "С_творити"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Натисніть %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Натисніть %s або %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Недокументоване скорочення"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -212,7 +226,6 @@ msgid "_Remember this selection"
 msgstr "З_апам'ятати цей вибір"
 
 #: src/screencastwidget.ui:46
-#| msgid "Single Window"
 msgid "_Window"
 msgstr "_Вікно"
 
@@ -303,22 +316,18 @@ msgid "Unknown vendor"
 msgstr "Невідомий виробник"
 
 #: src/usbdialog.ui:8
-#| msgid "Deny Access"
 msgid "Device Access"
 msgstr "Доступ до пристроїв"
 
 #: src/usbdialog.ui:31
-#| msgid "Deny"
 msgid "_Deny"
 msgstr "Від_мовити"
 
 #: src/usbdialog.ui:40
-#| msgid "Allow"
 msgid "_Allow"
 msgstr "Д_озволити"
 
 #: src/usbdialog.ui:90
-#| msgid "Failed to load image file"
 msgid "Failed to display USB device"
 msgstr "Не вдалося показати пристрій USB"
 
