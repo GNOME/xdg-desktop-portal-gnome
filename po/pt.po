@@ -1,16 +1,16 @@
 # Portuguese translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2025 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021, 2022, 2023, 2024.
-# João Carvalhinho <joao.carvalhinho@gmail.com>, 2024.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021, 2022, 2023, 2024, 2025.
+# João Carvalhinho <joao.carvalhinho@gmail.com>, 2024, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
+"Project-Id-Version: xdg-desktop-portal-gnome gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-04-30 06:27+0000\n"
-"PO-Revision-Date: 2024-05-04 23:36+0100\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-02-27 00:51+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -30,7 +30,7 @@ msgstr "Negar"
 
 #: src/access.c:206
 msgid "Allow"
-msgstr "Autorizar"
+msgstr "Permitir"
 
 #: src/accountdialog.c:159
 msgid "Select an Image"
@@ -66,16 +66,15 @@ msgstr "Partilhar as suas informações pessoais com a aplicação requerente? %
 msgid "Share Details"
 msgstr "Partilhar detalhes"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Partilhar"
@@ -92,24 +91,24 @@ msgstr "Nome"
 msgid "Username"
 msgstr "Nome de utilizador"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_OK"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Falha ao iniciar o Aplicações"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Escolha uma aplicação para abrir o ficheiro \"%s\"."
+msgid "Choose an app to open the file “%s”"
+msgstr "Escolha uma aplicação para abrir o ficheiro \"%s\""
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Escolha uma aplicação."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Escolha uma aplicação"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -117,7 +116,7 @@ msgstr ""
 "Nenhuma aplicação instalada que possa abrir \"%s\". Pode encontrar mais "
 "aplicações em Software"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Nenhuma aplicação adequada instalada. Pode encontrar mais aplicações em "
@@ -127,15 +126,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Abrir com…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Sem aplicações disponíveis"
 
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "Encontrar mais em Aplicações"
 
@@ -151,21 +150,21 @@ msgstr "Criar aplicação"
 msgid "C_reate"
 msgstr "C_riar"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Selecionar"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Premir %s"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Guardar"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Premir %s ou %s"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Abrir ficheiros de apenas-leitura"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Abrir diretórios de apenas-leitura"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Atalho não documentado"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -204,16 +203,16 @@ msgstr "Permitir o a_cesso à área de transferência"
 msgid "Share Screen"
 msgstr "Partilhar ecrã"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Monitor virtual"
 
-#: src/screencastwidget.c:640
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s pretende partilhar o seu ecrã. Escolha o que pretende partilhar."
 
-#: src/screencastwidget.c:645
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Uma aplicação pretende partilhar o seu ecrã. Escolha o que pretende "
@@ -224,12 +223,12 @@ msgid "_Remember this selection"
 msgstr "Lembra_r esta selecção"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "Janela da _Aplicação"
+msgid "_Window"
+msgstr "Janela"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Ecrã inteiro"
+msgid "_Display"
+msgstr "_Ecrã"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -288,9 +287,46 @@ msgstr "Incluir o _cursor do rato"
 msgid "Include Window _Border"
 msgstr "Incluir a _margem da janela"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Definição solicitada não encontrada"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Número de Série"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s quer aceder aos seguintes dispositivos USB"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Uma aplicação pretende aceder aos seguintes dispositivos USB"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Dispositivo desconhecido"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Fabricante desconhecido"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Acesso a dispositivo"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "Negar"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Autorizar"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Falha ao exibir o dispositivo USB"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -303,6 +339,24 @@ msgstr "_Definir"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Falha ao carregar o ficheiro de imagem"
+
+#~ msgid "_Select"
+#~ msgstr "_Selecionar"
+
+#~ msgid "_Save"
+#~ msgstr "_Guardar"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Abrir ficheiros de apenas-leitura"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Abrir diretórios de apenas-leitura"
+
+#~ msgid "Application _Window"
+#~ msgstr "Janela da _Aplicação"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Ecrã inteiro"
 
 #~ msgid "Screen Share"
 #~ msgstr "Partilha de ecrã"
@@ -320,9 +374,6 @@ msgstr "Falha ao carregar o ficheiro de imagem"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Selecionar a janela a partilhar com a aplicação requerente"
-
-#~ msgid "Single Window"
-#~ msgstr "Janela individual"
 
 #~ msgid "Set"
 #~ msgstr "Definir"
