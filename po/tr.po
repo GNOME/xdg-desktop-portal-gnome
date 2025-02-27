@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-03 17:59+0000\n"
-"PO-Revision-Date: 2025-02-09 16:24+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-02-27 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -150,6 +150,22 @@ msgstr "Uygulama Oluştur"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Oluştur"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Bas: %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Bas: %s ya da %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Belgelenmemiş kısayol"
 
 #: src/inputcapturedialog.c:105
 #, c-format
