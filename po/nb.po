@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-13 14:20+0000\n"
-"PO-Revision-Date: 2024-02-17 23:51+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-03-01 18:33+0100\n"
+"Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -65,16 +65,15 @@ msgstr "Dele dine personopplysninger med appen? %s"
 msgid "Share Details"
 msgstr "Del informasjon"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Avbryt"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Del"
@@ -91,24 +90,24 @@ msgstr "Navn"
 msgid "Username"
 msgstr "Brukernavn"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_OK"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Åpning av Appsenter mislyktes"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Velg en app å åpne “%s” med."
+msgid "Choose an app to open the file “%s”"
+msgstr "Velg en app å åpne «%s» med"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Velg en app."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Velg en app"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -116,7 +115,7 @@ msgstr ""
 "Fant ingen installerte apper som kan åpne “%s”. Du kan finne flere apper i "
 "Appsenter"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Fant ingen passende installerte apper. Du kan finne flere apper i Appsenter."
@@ -125,23 +124,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Åpne med…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Åpne"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Ingen tilgjengelige apper"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"Fant ingen installerte apper som kan åpne file.extension. Du kan finne "
-"flere apper i Appsenter."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_Finn mer i Appsenter"
 
@@ -157,21 +148,21 @@ msgstr "Opprett app"
 msgid "C_reate"
 msgstr "_Opprett"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Velg"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Trykk på %s"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Lagre"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Trykk på %s eller %s"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Åpne filer som skrivebeskyttet"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Åpne mapper som skrivebeskyttet"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Ukjent snarvei"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -200,7 +191,7 @@ msgstr "_Husk dette valget"
 
 #: src/remotedesktopdialog.ui:85
 msgid "Allow Remote _Interaction"
-msgstr "Tillat fjernbruk"
+msgstr "Tillat fjernstyring"
 
 #: src/remotedesktopdialog.ui:93
 msgid "Allow _Clipboard Access"
@@ -210,16 +201,16 @@ msgstr "Gi tilgang til utklippstavle"
 msgid "Share Screen"
 msgstr "Del skjerm"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Virtuell skjerm"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s ønsker å dele skjermen. Velg hva du ønsker å dele."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "En app ønsker å dele skjermen. Velg hva du ønsker å dele."
 
@@ -228,12 +219,12 @@ msgid "_Remember this selection"
 msgstr "_Husk dette valget"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
+msgid "_Window"
 msgstr "_Vindu"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Hele skjermen"
+msgid "_Display"
+msgstr "_Skjerm"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -292,9 +283,46 @@ msgstr "Inkluder _peker"
 msgid "Include Window _Border"
 msgstr "Inkluder vindus_ramme"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Fant ikke innstilling"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serienummer"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s ønsker å bruke følgende USB-enheter"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "En app ønsker å bruke følgende USB-enheter"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Ukjent enhet"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Ukjent produsent"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Enhetstilgang"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Avslå"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Tillat"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Visning av USB-enhet mislyktes"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -307,6 +335,31 @@ msgstr "_Bruk"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Innlasting av bilde mislyktes"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "Fant ingen installerte apper som kan åpne file.extension. Du kan finne "
+#~ "flere apper i Appsenter."
+
+#~ msgid "_Select"
+#~ msgstr "_Velg"
+
+#~ msgid "_Save"
+#~ msgstr "_Lagre"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Åpne filer som skrivebeskyttet"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Åpne mapper som skrivebeskyttet"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Vindu"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Hele skjermen"
 
 #~ msgid "Screen Share"
 #~ msgstr "Skjermdeling"
@@ -324,9 +377,6 @@ msgstr "Innlasting av bilde mislyktes"
 
 #~ msgid "Select window to share with the requesting application"
 #~ msgstr "Velg vindu du vil dele med den spørrende applikasjonen"
-
-#~ msgid "Single Window"
-#~ msgstr "Enkeltvindu"
 
 #~ msgid "Set"
 #~ msgstr "Velg"
