@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
-"POT-Creation-Date: 2025-02-23 16:12+0000\n"
-"PO-Revision-Date: 2025-02-23 19:43+0330\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
+"issues/\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-03-03 18:47+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -64,13 +65,14 @@ msgid "Share Details"
 msgstr "هم‌رسانی جزییات"
 
 #: src/accountdialog.ui:29 src/appchooserdialog.ui:17 src/dynamic-launcher.c:258
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
-#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
+#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:31 src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21 src/remotedesktopdialog.ui:36
-#: src/screencastdialog.ui:39 src/screenshotdialog.ui:52
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_هم‌رسانی"
 
@@ -142,6 +144,22 @@ msgstr "ایجاد کاره"
 msgid "C_reate"
 msgstr "_ایجاد"
 
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "زدن %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "زدن %s یا %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "میان‌بر مستند نشده"
+
 #: src/inputcapturedialog.c:105
 #, c-format
 msgid "The application %s wants to capture input events"
@@ -190,7 +208,8 @@ msgstr "%s می‌خواهد صفحه‌تان را هم‌رسانی کند. آ
 
 #: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
-msgstr "کاره‌ای می‌خواهد صفحه‌تان را هم‌رسانی کند. آن‌چه می‌خواهید هم‌رسانی کنید را برگزینید."
+msgstr ""
+"کاره‌ای می‌خواهد صفحه‌تان را هم‌رسانی کند. آن‌چه می‌خواهید هم‌رسانی کنید را برگزینید."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
@@ -315,11 +334,11 @@ msgid "Failed to load image file"
 msgstr "شکست در بار کردن پروندهٔ تصویر"
 
 #~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more apps in "
-#~ "Software."
+#~ "No apps installed that are able to open file.extension. You can find more apps "
+#~ "in Software."
 #~ msgstr ""
-#~ "هیچ کاره‌ای که بتواند ‪file.extension‬ را بگشاید نصب نشده. می‌توانید کاره‌هایی بیش‌تر را "
-#~ "در نرم‌افزارها بیابید."
+#~ "هیچ کاره‌ای که بتواند ‪file.extension‬ را بگشاید نصب نشده. می‌توانید کاره‌هایی "
+#~ "بیش‌تر را در نرم‌افزارها بیابید."
 
 #~ msgid "_Select"
 #~ msgstr "_گزینش"
@@ -374,13 +393,15 @@ msgstr "شکست در بار کردن پروندهٔ تصویر"
 #~ msgstr "«%s» در حال اجرا در پس‌زمینه است"
 
 #~ msgid ""
-#~ "This might be for a legitimate reason, but the application has not provided one.\n"
+#~ "This might be for a legitimate reason, but the application has not provided "
+#~ "one.\n"
 #~ "\n"
 #~ "Note that forcing an application to quit might cause data loss."
 #~ msgstr ""
 #~ "ممکن است برای دلیل معقولی باشد، ولی برنامه هیچ دلیلی نیاورده است.\n"
 #~ "\n"
-#~ "به خاطر داشته باشید که اجبار یک برنامه به خروج، ممکن است موجب از دست رفتن داده شود."
+#~ "به خاطر داشته باشید که اجبار یک برنامه به خروج، ممکن است موجب از دست رفتن داده "
+#~ "شود."
 
 #~ msgid "Force quit"
 #~ msgstr "خروج اجباری"
