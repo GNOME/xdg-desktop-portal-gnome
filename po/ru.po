@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-03 17:59+0000\n"
-"PO-Revision-Date: 2025-02-04 19:44+0300\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-02-26 18:21+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -151,6 +151,22 @@ msgstr "Создать приложение"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "С_оздать"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Нажмите %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Нажмите %s или %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Незадокументированная комбинация клавиш"
 
 #: src/inputcapturedialog.c:105
 #, c-format
