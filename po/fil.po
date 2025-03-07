@@ -1,0 +1,341 @@
+# Filipino translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2025 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# Iverson Briones <ivercoder@proton.me>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues/\n"
+"POT-Creation-Date: 2025-03-06 16:55+0000\n"
+"PO-Revision-Date: 2025-03-07 15:49+0800\n"
+"Last-Translator: \n"
+"Language-Team: Filipino <fil@li.org>\n"
+"Language: fil\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+msgid "Portal"
+msgstr "Portal"
+
+#: src/access.c:203
+msgid "Deny"
+msgstr "Tanggihan"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Payagan"
+
+#: src/accountdialog.c:159
+msgid "Select an Image"
+msgstr "Pumili ng Larawan"
+
+#: src/accountdialog.c:162
+msgid "Cancel"
+msgstr "Kanselahin"
+
+#: src/accountdialog.c:163
+msgid "Select"
+msgstr "Pumili"
+
+#: src/accountdialog.c:164
+msgid "Clear"
+msgstr "Tanggalin"
+
+#: src/accountdialog.c:171
+msgid "Images"
+msgstr "Mga Larawan"
+
+#: src/accountdialog.c:233
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Ibahagi ang personal mong impormasyon sa %1$s? %2$s"
+
+#: src/accountdialog.c:239
+#, c-format
+msgid "Share your personal information with the requesting app? %s"
+msgstr "Ibahagi ang personal mong impormasyon sa humihiling na app? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Ibahagi ang mga Detalye"
+
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
+msgid "_Cancel"
+msgstr "_Kanselahin"
+
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
+msgid "_Share"
+msgstr "I_bahagi"
+
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Baguhin ang Avatar"
+
+#: src/accountdialog.ui:112
+msgid "Name"
+msgstr "Pangalan"
+
+#: src/accountdialog.ui:118
+msgid "Username"
+msgstr "Username"
+
+#: src/appchooserdialog.c:176
+msgid "_OK"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:195
+msgid "Failed to start Software"
+msgstr "Hindi masimulan ang Software"
+
+#: src/appchooserdialog.c:348
+#, c-format
+msgid "Choose an app to open the file “%s”"
+msgstr "Pumili ng app para buksan ang file na “%s”"
+
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Pumili ng app"
+
+#: src/appchooserdialog.c:370
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"Walang naka-install na app na makakapagbukas ng “%s”. Makakahanap ka ng "
+"iba pang mga app sa Software"
+
+#: src/appchooserdialog.c:375
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr ""
+"Walang angkop na app na naka-install. Makakahanap ka ng iba pang mga app "
+"sa Software."
+
+#: src/appchooserdialog.ui:5
+msgid "Open With…"
+msgstr "Buksan Gamit ang…"
+
+#: src/appchooserdialog.ui:25
+msgid "_Open"
+msgstr "_Buksan"
+
+#: src/appchooserdialog.ui:68
+msgid "No Apps Available"
+msgstr "Walang Available na App"
+
+#: src/appchooserdialog.ui:76
+msgid "_Find More in Software"
+msgstr "Mag_hanap pa sa Software"
+
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Gumawa ng Web App"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Gumawa ng App"
+
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "_Gumawa"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Pindutin ang %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Pindutin ang %s o %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Hindi nakadokumentong shortcut"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Gustong masagap ng %s ang mga input event"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Gustong masagap ng isang app ang mga input event"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "Sagapin ang Input"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr "Payagan ang Remote na Pagsagap sa _Input"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote Desktop"
+msgstr "Remote Desktop"
+
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "_Alalahanin ang Pagpipiling Ito"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Payagan ang Remote na _Interaksyon"
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Payagan ang Access sa _Clipboard"
+
+#: src/screencastdialog.ui:5
+msgid "Share Screen"
+msgstr "Ibahagi ang Screen"
+
+#: src/screencastwidget.c:292
+msgid "Virtual Monitor"
+msgstr "Virtual na Monitor"
+
+#: src/screencastwidget.c:636
+#, c-format
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Gustong ibahagi ng %s ang screen mo. Piliin kung ano'ng gusto mong "
+"ibahagi."
+
+#: src/screencastwidget.c:641
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Gustong ibahagi ng isang app ang screen mo. Piliin kung ano'ng gusto "
+"mong ibahagi."
+
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "_Alalahanin ang pagpipiling ito"
+
+#: src/screencastwidget.ui:46
+msgid "_Window"
+msgstr "_Window"
+
+#: src/screencastwidget.ui:66
+msgid "_Display"
+msgstr "_Display"
+
+#: src/screenshotdialog.c:432
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "Ibahagi ang screenshot na ito sa %s?"
+
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
+msgstr "Ibahagi ang screenshot na ito sa humihiling na app?"
+
+#: src/screenshotdialog.ui:9
+msgid "Screenshot"
+msgstr "Screenshot"
+
+#: src/screenshotdialog.ui:45
+msgid "_Options…"
+msgstr "Mga _Opsyon…"
+
+#: src/screenshotdialog.ui:70
+msgid "Take _Screenshot"
+msgstr "Kumuha ng _Screenshot"
+
+#: src/screenshotdialog.ui:131
+msgid "Take Screenshot"
+msgstr "Kumuha ng Screenshot"
+
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
+msgstr "Kuhanan ang Buong Sc_reen"
+
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
+msgstr "Kuhanan ang Kasalukuyang _Window"
+
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
+msgstr "Pumili ng Kukuhanang _Lugar"
+
+#: src/screenshotdialog.ui:173
+msgid "Grab after a _delay of"
+msgstr "Kuhanan pagkatapos mag_hintay nang"
+
+#: src/screenshotdialog.ui:184
+msgid "seconds"
+msgstr "segundo"
+
+#: src/screenshotdialog.ui:193
+msgid "Effects"
+msgstr "Mga Epekto"
+
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
+msgstr "Isama ang _Pointer"
+
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
+msgstr "Isama ang _Border ng Window"
+
+#: src/settings.c:335
+msgid "Requested setting not found"
+msgstr "Hindi nahanap ang hiniling na setting"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "Gustong ma-access ng %s ang mga sumusunod na device"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Gustong ma-access ng isang app ang mga sumusunod na device"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Hindi kilalang device"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Hindi kilalang vendor"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Access sa Device"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Tanggihan"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Payagan"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Hindi ma-display ang mga USB device"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "Gawing Background"
+
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "I_takda"
+
+#: src/wallpaperdialog.ui:67
+msgid "Failed to load image file"
+msgstr "Hindi mabuksan ang file ng larawan"
