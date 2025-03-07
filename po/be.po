@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-08-13 17:40+0000\n"
-"PO-Revision-Date: 2024-08-17 03:10+0300\n"
-"Last-Translator: Yuras Shumovich <<shumovichy@gmail.com>>\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-03-07 22:30+0300\n"
+"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -66,7 +66,7 @@ msgstr "Даць доступ да персанальнай інфармацыі
 msgid "Share Details"
 msgstr "Падрабязнасці"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
 #: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
 #: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
 #: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
@@ -91,24 +91,24 @@ msgstr "Імя"
 msgid "Username"
 msgstr "Імя карыстальніка"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "Д_обра"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Не ўдалося запусціць кіраўнік праграмнага забеспячэнне"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Выберыце праграму, каб адкрыць файл «%s»."
+msgid "Choose an app to open the file “%s”"
+msgstr "Выберыце праграму, каб адкрыць файл «%s»"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Выберыце праграму."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Выберыце праграму"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -116,7 +116,7 @@ msgstr ""
 "Не ўсталявана праграмы, якая можа адкрываць «%s». Больш праграм можна "
 "знайсці ў кіраўніку праграмнага забеспячэння"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Не ўсталявана адпаведнай праграмы. Больш праграм можна знайсці ў кіраўніку "
@@ -126,15 +126,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Адкрыць праз…"
 
-#: src/appchooserdialog.ui:24
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Адкрыць"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Няма даступных праграм"
 
-#: src/appchooserdialog.ui:93
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_Шукаць у кіраўніку праграмнага забеспячэнне"
 
@@ -149,6 +149,22 @@ msgstr "Стварыць праграму"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "С_тварыць"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Націсніце %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Націсніце %s або %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Недакументаванае спалучэнне клавіш"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -187,18 +203,18 @@ msgstr "Дазволіць доступ да _буфера абмену"
 msgid "Share Screen"
 msgstr "Супольны доступ да экрана"
 
-#: src/screencastwidget.c:291
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Віртуальны манітор"
 
-#: src/screencastwidget.c:634
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Праграма %s хоча даць доступ да вашага экрана. Выберыце, што б вы хацелі "
 "абагуліць."
 
-#: src/screencastwidget.c:639
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Праграма хоча даць доступ да вашага экрана. Выберыце, што б вы хацелі "
@@ -209,12 +225,12 @@ msgid "_Remember this selection"
 msgstr "_Запомніць гэты выбар"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Акно праграмы"
+msgid "_Window"
+msgstr "_Акно"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Увесь экран"
+msgid "_Display"
+msgstr "_Экран"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -277,6 +293,43 @@ msgstr "Улучыць _мяжу акна"
 msgid "Requested setting not found"
 msgstr "Запытаная налада не знойдзена"
 
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Серыйны нумар"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "Праграма «%s» хоча атрымаць да наступных USB-прылад"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Праграма хоча атрымаць да наступных USB-прылад"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Невядомая прылада"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Невядомы вытворца"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Доступ да прылад"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Забараніць"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Дазволіць"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Не ўдалося вывесці USB-прыладу"
+
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
 msgstr "Задаць як фон"
@@ -288,6 +341,12 @@ msgstr "_Задаць"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Не ўдалося загрузіць выяву"
+
+#~ msgid "Application _Window"
+#~ msgstr "_Акно праграмы"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Увесь экран"
 
 #~ msgid "_Select"
 #~ msgstr "_Выбраць"
@@ -324,9 +383,6 @@ msgstr "Не ўдалося загрузіць выяву"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Выберыце акно, да якога будзе доступ у праграмы"
-
-#~ msgid "Single Window"
-#~ msgstr "Асобнае акно"
 
 #~ msgid "Activities"
 #~ msgstr "Дзейнасць"
