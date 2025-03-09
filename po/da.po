@@ -1,16 +1,16 @@
 # Danish translation for xdg-desktop-portal-gnome
-# Copyright (C) 2023-2024 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2023-2025 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # scootergrisen, 2018-2019.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022-2024.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022-2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-29 12:54+0000\n"
-"PO-Revision-Date: 2024-03-12 22:47+0100\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-03-08 14:35+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -66,16 +66,15 @@ msgstr "Del dine personlige informationer med det anmodende program? %s"
 msgid "Share Details"
 msgstr "Delingsdetaljer"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Annuller"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Del"
@@ -92,24 +91,24 @@ msgstr "Navn"
 msgid "Username"
 msgstr "Brugernavn"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_OK"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Kunne ikke starte Software"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Vælg et program for at åbne filen “%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "Vælg et program for at åbne filen “%s”"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Vælg et program."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Vælg et program"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -117,7 +116,7 @@ msgstr ""
 "Der er ikke installeret nogen programmer, der kan åbne “%s”. Du kan finde "
 "flere programmer i Software"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Der er ikke installeret et passende program. Du kan finde andre programmer i "
@@ -127,15 +126,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Åbn med …"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Åbn"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Ingen tilgængelige programmer"
 
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_Find flere i Software"
 
@@ -152,21 +151,21 @@ msgstr "Opret program"
 msgid "C_reate"
 msgstr "_Opret"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Vælg"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Tryk %s"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Gem"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Tryk %s eller %s"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Åbn filer som skrivebeskyttede"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Åbn mapper som skrivebeskyttede"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Udokumenteret genvej"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -205,16 +204,16 @@ msgstr "Tillad adgang til _udklipsholderen"
 msgid "Share Screen"
 msgstr "Del skærmen"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Virtuel skærm"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s vil dele din skærm. Vælg, hvad du vil dele."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "Et program ønsker at dele din skærm. Vælg, hvad du vil dele."
 
@@ -223,12 +222,24 @@ msgid "_Remember this selection"
 msgstr "_Husk dette valg"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "Program_vindue"
+msgid "_Window"
+msgstr "_Vindue"
 
+# Kontekst i kilden er:
+#
+#             <!-- Entire Screen selection page -->
+#             <child>
+#               <object class="AdwViewStackPage" id="monitor_selection_page">
+#                 <property name="name">monitors_page</property>
+#                 <property name="icon-name">video-display-symbolic</property>
+#                 <property name="title" translatable="yes">_Display</property>
+#                 <property name="use-underline">True</property>
+#                 <property name="child">
+#
+# Jeg fortolker Display som substantiv
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Hele skærmen"
+msgid "_Display"
+msgstr "_Visning"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -287,9 +298,46 @@ msgstr "Medtag _markør"
 msgid "Include Window _Border"
 msgstr "Medtag vinduets _kant"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Den forespurgte indstilling blev ikke fundet"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serienummer"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s ønsker at tilgå følgende USB-enheder"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Et program ønsker at tilgå følgende USB-enheder"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Ukendt enhed"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Ukendt leverandør"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Adgang til enhed"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Nægt"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Tillad"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Kunne ikke vise USB-enhed"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -302,6 +350,24 @@ msgstr "_Angiv"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Kunne ikke indlæse billedfil"
+
+#~ msgid "_Select"
+#~ msgstr "_Vælg"
+
+#~ msgid "_Save"
+#~ msgstr "_Gem"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Åbn filer som skrivebeskyttede"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Åbn mapper som skrivebeskyttede"
+
+#~ msgid "Application _Window"
+#~ msgstr "Program_vindue"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Hele skærmen"
 
 #~ msgid "Screen Share"
 #~ msgstr "Skærmdeling"
@@ -319,9 +385,6 @@ msgstr "Kunne ikke indlæse billedfil"
 
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Vælg vindue, som skal deles med det anmodende program"
-
-#~ msgid "Single Window"
-#~ msgstr "Enkelt vindue"
 
 #~ msgid "Set"
 #~ msgstr "Vælg"
@@ -367,9 +430,6 @@ msgstr "Kunne ikke indlæse billedfil"
 
 #~ msgid "Select devices to share with %s"
 #~ msgstr "Vælg enheder som skal deles med %s"
-
-#~ msgid "Deny Access"
-#~ msgstr "Nægt adgang"
 
 #~ msgid "Grant Access"
 #~ msgstr "Giv adgang"
