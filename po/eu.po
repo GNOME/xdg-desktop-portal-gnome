@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
-"POT-Creation-Date: 2025-02-13 06:07+0000\n"
-"PO-Revision-Date: 2025-02-27 19:22+0000\n"
+"POT-Creation-Date: 2025-02-27 19:06+0000\n"
+"PO-Revision-Date: 2025-03-09 19:22+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <as-iersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -131,7 +131,7 @@ msgstr "Au_rkitu gehiago Softwaren"
 
 #: src/dynamic-launcher.c:250
 msgid "Create Web App"
-msgstr "Sortu web aplikazioa"
+msgstr "Sortu web-aplikazioa"
 
 #: src/dynamic-launcher.c:252
 msgid "Create App"
@@ -140,6 +140,22 @@ msgstr "Sortu aplikazioa"
 #: src/dynamic-launcher.c:260
 msgid "C_reate"
 msgstr "_Sortu"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Sakatu %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Sakatu %s edo %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Dokumentatu gabeko lasterbidea"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -226,7 +242,7 @@ msgstr "Egin _pantaila-argazkia"
 
 #: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
-msgstr "Egin pantaila-argazkia"
+msgstr "Atera pantaila-argazkia"
 
 #: src/screenshotdialog.ui:141
 msgid "Grab Whole Sc_reen"
@@ -307,7 +323,7 @@ msgstr "Ezarri atzeko planoa"
 
 #: src/wallpaperdialog.ui:35
 msgid "_Set"
-msgstr "_Ezarri"
+msgstr "E_zarri"
 
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
