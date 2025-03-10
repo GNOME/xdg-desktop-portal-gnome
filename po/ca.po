@@ -211,7 +211,7 @@ msgstr "Monitor virtual"
 #: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
-msgstr "%s vol compartir la vostra pantalla. Treu el que voleu compartir."
+msgstr "%s vol compartir la vostra pantalla. Trieu el que voleu compartir."
 
 #: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
