@@ -2,21 +2,22 @@
 # Copyright (C) 2017 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2024.
+# Andika Triwidada <andika@gmail.com>, 2024, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gnome master\n"
+"Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-09 12:57+0000\n"
-"PO-Revision-Date: 2024-02-22 21:05+0700\n"
-"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"POT-Creation-Date: 2025-03-11 03:41+0000\n"
+"PO-Revision-Date: 2025-03-11 19:55+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -64,16 +65,15 @@ msgstr "Bagikan informasi pribadi Anda dengan aplikasi yang meminta? %s"
 msgid "Share Details"
 msgstr "Bagikan Detail"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "Ba_tal"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Bagikan"
@@ -90,24 +90,24 @@ msgstr "Nama"
 msgid "Username"
 msgstr "Nama pengguna"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_Ok"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Gagal memulai Perangkat Lunak"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Pilih aplikasi untuk membuka berkas \"%s\"."
+msgid "Choose an app to open the file “%s”"
+msgstr "Pilih aplikasi untuk membuka berkas \"%s\""
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Pilih aplikasi."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Pilih aplikasi"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
@@ -115,7 +115,7 @@ msgstr ""
 "Tidak ada aplikasi yang dipasang yang dapat membuka \"%s\". Anda dapat "
 "menemukan lebih banyak aplikasi di Perangkat Lunak"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
 "Tidak ada aplikasi yang cocok dipasang. Anda dapat menemukan lebih banyak "
@@ -125,23 +125,15 @@ msgstr ""
 msgid "Open With…"
 msgstr "Buka Dengan…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "B_uka"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "Tidak Ada Aplikasi yang Tersedia"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"Tidak ada aplikasi yang dipasang yang dapat membuka berkas.ekstensi. Anda "
-"dapat menemukan lebih banyak aplikasi di Perangkat Lunak."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "T_emukan Lebih Banyak dalam Perangkat Lunak"
 
@@ -157,21 +149,21 @@ msgstr "Buat Aplikasi"
 msgid "C_reate"
 msgstr "_Buat"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Pilih"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Tekan %s"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Simpan"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Tekan %s atau %s"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Buka berkas hanya-baca"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Buka direktori hanya-baca"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Pintasan yang tak terdokumentasi"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -210,16 +202,16 @@ msgstr "Izinkan Akses Papan _Klip"
 msgid "Share Screen"
 msgstr "Berbagi Layar"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Monitor Virtual"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s ingin membagikan layar Anda. Pilih apa yang ingin Anda bagikan."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Sebuah aplikasi ingin membagikan layar Anda. Pilih apa yang ingin Anda "
@@ -230,12 +222,12 @@ msgid "_Remember this selection"
 msgstr "Inga_t Pilihan Ini"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "_Jendela Aplikasi"
+msgid "_Window"
+msgstr "_Jendela"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "K_eseluruhan Layar"
+msgid "_Display"
+msgstr "_Tampilan"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -294,9 +286,46 @@ msgstr "Sertakan _Penunjuk"
 msgid "Include Window _Border"
 msgstr "Sertakan _Bingkai Jendela"
 
-#: src/settings.c:253
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Pengaturan yang diminta tidak ditemukan"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Nomor Seri"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s ingin mengakses perangkat USB berikut"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "Suatu aplikasi ingin mengakses perangkat USB berikut"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Perangkat tak dikenal"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Vendor tak dikenal"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Akses Perangkat"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Tolak"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "Izink_an"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Gagal menampilkan perangkat USB"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -309,118 +338,3 @@ msgstr "A_tur"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Gagal memuat berkas gambar"
-
-#~ msgid "Screen Share"
-#~ msgstr "Berbagi Layar"
-
-#, c-format
-#~ msgid "Select monitor to share with %s"
-#~ msgstr "Pilih monitor untuk berbagi dengan %s"
-
-#, c-format
-#~ msgid "Select window to share with %s"
-#~ msgstr "Pilih jendela untuk dibagikan dengan %s"
-
-#~ msgid "Select monitor to share with the requesting app"
-#~ msgstr "Pilih monitor untuk berbagi dengan aplikasi yang meminta"
-
-#~ msgid "Select window to share with the requesting app"
-#~ msgstr "Pilih jendela untuk dibagikan dengan aplikasi yang meminta"
-
-#~ msgid "Single Window"
-#~ msgstr "Jendela Tunggal"
-
-#~ msgid "Set"
-#~ msgstr "Atur"
-
-#~ msgid "Activities"
-#~ msgstr "Aktivitas"
-
-#~ msgid "“%s” is running in the background"
-#~ msgstr "\"%s\" sedang berjalan di latar belakang"
-
-#~ msgid ""
-#~ "This might be for a legitimate reason, but the application has not "
-#~ "provided one.\n"
-#~ "\n"
-#~ "Note that forcing an application to quit might cause data loss."
-#~ msgstr ""
-#~ "Ini mungkin karena alasan yang sah, tetapi aplikasi belum "
-#~ "menyediakannya.\n"
-#~ "\n"
-#~ "Perhatikan bahwa memaksa aplikasi untuk berhenti dapat menyebabkan "
-#~ "kehilangan data."
-
-#~ msgid "Force quit"
-#~ msgstr "Keluar paksa"
-
-#~ msgid "Background activity"
-#~ msgstr "Aktivitas latar belakang"
-
-#~ msgid "Find out more"
-#~ msgstr "Temukan lebih banyak lagi"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
-
-#~ msgid "Pointer"
-#~ msgstr "Penunjuk"
-
-#~ msgid "Keyboard"
-#~ msgstr "Papan Tik"
-
-#~ msgid "Touch screen"
-#~ msgstr "Layar sentuh"
-
-#~ msgid "Select devices to share with %s"
-#~ msgstr "Pilih perangkat yang akan dibagikan dengan %s"
-
-#~ msgid "Select devices to share with the requesting application"
-#~ msgstr "Pilih perangkat yang akan dibagikan dengan aplikasi yang meminta"
-
-#~ msgid "Deny Access"
-#~ msgstr "Tolak Akses"
-
-#~ msgid "Grant Access"
-#~ msgstr "Beri Akses"
-
-#~ msgid "Make changes before sharing the information"
-#~ msgstr "Buat perubahan sebelum membagikan informasi"
-
-#~ msgid "%s is running in the background."
-#~ msgstr "%s sedang berjalan di latar belakang."
-
-#~ msgid "Set Lock Screen"
-#~ msgstr "Atur Layar Kunci"
-
-#~ msgid "Set Background & Lock Screen"
-#~ msgstr "Atur Latar Belakang dan Layar Kunci"
-
-#~ msgid ""
-#~ "Select an application to open “%s”. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Pilih aplikasi untuk membuka “%s”. Aplikasi lainnya tersedia di <a "
-#~ "href='software'>Perangkat Lunak.</a>"
-
-#~ msgid ""
-#~ "Select an application. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Pilih sebuah aplikasi. Aplikasi lainnya tersedia di <a "
-#~ "href='software'>Perangkat Lunak.</a>"
-
-#~ msgid "Unable to find a suitable application."
-#~ msgstr "Tidak dapat menemukan aplikasi yang sesuai."
-
-#~ msgid "Find Compatible Applications in Software"
-#~ msgstr "Temukan Aplikasi yang Kompatibel di Perangkat Lunak"
-
-#~ msgid "Forbid"
-#~ msgstr "Melarang"
-
-#~ msgid "Ignore"
-#~ msgstr "Abaikan"
-
-#~ msgid "Screen casting"
-#~ msgstr "Screen casting"
