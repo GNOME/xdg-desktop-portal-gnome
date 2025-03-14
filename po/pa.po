@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
 # Aman Alam <apreet.alam@gmail.com>, 2021.
-# SPDX-FileCopyrightText: 2021, 2023, 2024 A S Alam <aalam@satluj.org>
+# SPDX-FileCopyrightText: 2021, 2023, 2024, 2025 A S Alam <aalam@satluj.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/"
 "issues/\n"
-"POT-Creation-Date: 2024-02-29 12:54+0000\n"
-"PO-Revision-Date: 2024-03-17 18:33-0500\n"
+"POT-Creation-Date: 2025-03-11 03:41+0000\n"
+"PO-Revision-Date: 2025-03-14 16:07-0500\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <punjab-translation@googlegroups.com>\n"
 "Language: pa\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.12.3\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:4
 msgid "Portal"
@@ -66,16 +66,15 @@ msgstr "ਤੁਹਾਡੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਮੰਗ ਕ�
 msgid "Share Details"
 msgstr "ਵੇਰਵੇ ਸਾਂਝੇ ਕਰੋ"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "ਰੱਦ ਕਰੋ(_C)"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "ਸਾਂਝੇ ਕਰੋ(_S)"
@@ -92,32 +91,34 @@ msgstr "ਨਾਂ"
 msgid "Username"
 msgstr "ਵਰਤੋਂਕਾਰ-ਨਾਂ"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "ਠੀਕ ਹੈ(_O)"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "ਸਾਫਟਵੇਅਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਅਸਫ਼ਲ"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "“%s” ਫਾਇਲ ਖੋਲ੍ਹਣ ਲਈ ਐਪ ਚੁਣੋ।"
+#| msgid "Choose an app to open the file “%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "“%s” ਫਾਇਲ ਨੂੰ ਖੋਲ੍ਹਣ ਲਈ ਐਪ ਚੁਣੋ"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "ਐਪ ਚੁਣੋ।"
+#: src/appchooserdialog.c:353
+#| msgid "Choose an app."
+msgid "Choose an app"
+msgstr "ਕੋਈ ਐਪ ਨੂੰ ਚੁਣੋ"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"“%s” ਨੂੰ ਖੋਲ੍ਹਣ ਵਾਲੀ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ ਹੋਰ ਐਪ ਸਾਫਟਵੇਅਰ ਵਿੱਚ ਲੱਭ"
-" ਸਕਦੇ ਹੋ।"
+"“%s” ਨੂੰ ਖੋਲ੍ਹਣ ਵਾਲੀ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ ਹੋਰ ਐਪ ਸਾਫਟਵੇਅਰ ਵਿੱਚ ਲੱਭ ਸਕਦ"
+"ੇ ਹੋ।"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "ਕੋਈ ਢੁੱਕਵੀਂ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ ਹੋਰ ਐਪ ਸਾਫਟਵੇਅਰ ਵਿੱਚ ਲੱਭ ਸਕਦੇ ਹੋ।"
 
@@ -125,16 +126,15 @@ msgstr "ਕੋਈ ਢੁੱਕਵੀਂ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ �
 msgid "Open With…"
 msgstr "…ਨਾਲ ਖੋਲ੍ਹੋ"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "ਖੋਲ੍ਹੋ(_O)"
 
-#: src/appchooserdialog.ui:85
-#| msgid "No Apps available"
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "ਕੋਈ ਐਪ ਮੌਜੂਦ ਨਹੀਂ ਹੈ"
 
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "ਸਾਫਟਵੇਅਰ ਵਿੱਚ ਹੋਰ ਲੱਭੋ(_F)"
 
@@ -150,21 +150,21 @@ msgstr "ਐਪ ਬਣਾਓ"
 msgid "C_reate"
 msgstr "ਬਣਾਓ(_r)"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "ਚੁਣੋ(_S)"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "%s ਨੂੰ ਦਬਾਓ"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "ਸੰਭਾਲੋ(_S)"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "%s ਜਾਂ %s ਨੂੰ ਦਬਾਓ"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "ਫਾਇਲ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੋ"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "ਡਾਇਰੈਕਟਰੀ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੋ"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "ਨਾ-ਨਿਰਧਾਰਿਤ ਸ਼ਾਰਟਕੱਟ"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -176,71 +176,62 @@ msgid "An application wants to capture input events"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਇਨਪੁਟ ਘਟਨਾਵਾਂ ਨੂੰ ਕੈਪਚਰ ਕਰਨਾ ਚਾਹੁੰਦੀ ਹੈ"
 
 #: src/inputcapturedialog.ui:7
-#| msgid "Capture input"
 msgid "Capture Input"
 msgstr "ਇਨਪੁਟ ਕੈਪਚਰ"
 
 #: src/inputcapturedialog.ui:68
-#| msgid "Allow remote input capturing"
 msgid "Allow Remote _Input Capturing"
 msgstr "ਰਿਮੋਟ ਇਨਪੁੱਟ ਕੈਪਚਰ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿਓ(_I)"
 
 #: src/remotedesktopdialog.ui:7
-#| msgid "Remote desktop"
 msgid "Remote Desktop"
 msgstr "ਰਿਮੋਟ ਡੈਸਕਟਾਪ"
 
 #: src/remotedesktopdialog.ui:70
-#| msgid "Remember this selection"
 msgid "_Remember This Selection"
 msgstr "ਇਹ ਚੋਣ ਨੂੰ ਯਾਦ ਰੱਖੋ(_R)"
 
 #: src/remotedesktopdialog.ui:85
-#| msgid "Allow remote interaction"
 msgid "Allow Remote _Interaction"
 msgstr "ਰਿਮੋਟ ਤਾਲਮੇਲ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿਓ(_I)"
 
 #: src/remotedesktopdialog.ui:93
-#| msgid "Allow clipboard access"
 msgid "Allow _Clipboard Access"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਪਹੁੰਚ ਦੀ ਮਨਜ਼ੂਰੀ(_C)"
 
 #: src/screencastdialog.ui:5
-#| msgid "Entire Screen"
 msgid "Share Screen"
 msgstr "ਸਕਰੀਨ ਸਾਂਝੀ ਕਰੋ"
 
-#: src/screencastwidget.c:322
-#| msgid "Virtual monitor"
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "ਵਰਚੁਅਲ ਮਾਨੀਟਰ"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"%s ਤੁਹਾਡੇ ਸਕਰੀਨ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੀ ਹੈ। ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸਾਂਝਾ ਕਰਨਾ"
-" ਚਾਹੁੰਦੇ ਹੋ।"
+"%s ਤੁਹਾਡੇ ਸਕਰੀਨ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੀ ਹੈ। ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੇ"
+" ਹੋ।"
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
-"ਐਪ ਤੁਹਾਡੇ ਸਕਰੀਨ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੀ ਹੈ। ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸਾਂਝਾ ਕਰਨਾ"
-" ਚਾਹੁੰਦੇ ਹੋ।"
+"ਐਪ ਤੁਹਾਡੇ ਸਕਰੀਨ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੀ ਹੈ। ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੇ"
+" ਹੋ।"
 
 #: src/screencastwidget.ui:17
-#| msgid "Remember this selection"
 msgid "_Remember this selection"
 msgstr "ਇਹ ਚੋਣ ਯਾਦ ਰੱਖੋ(_R)"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਿੰਡੋ(_W)"
+#| msgid "Single Window"
+msgid "_Window"
+msgstr "ਵਿੰਡੋ(_W)"
 
 #: src/screencastwidget.ui:66
-#| msgid "Entire Screen"
-msgid "_Entire Screen"
-msgstr "ਪੂਰੀ ਸਕਰੀਨ(_E)"
+msgid "_Display"
+msgstr "ਡਿਸਪਲੇਅ(_D)"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -268,17 +259,14 @@ msgid "Take Screenshot"
 msgstr "ਸਕਰੀਨਸ਼ਾਟ ਖਿੱਚੋ"
 
 #: src/screenshotdialog.ui:141
-#| msgid "Grab the whole sc_reen"
 msgid "Grab Whole Sc_reen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਲਈ ਖਿੱਚੋ(_r)"
 
 #: src/screenshotdialog.ui:151
-#| msgid "Grab the current _window"
 msgid "Grab Current _Window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਲਈ ਲਵੋ(_W)"
 
 #: src/screenshotdialog.ui:161
-#| msgid "Select _area to grab"
 msgid "Select _Area to Grab"
 msgstr "ਖਿੱਚਣ ਲਈ ਖੇਤਰ ਚੁਣੋ(_A)"
 
@@ -295,18 +283,56 @@ msgid "Effects"
 msgstr "ਪਰਭਾਵ"
 
 #: src/screenshotdialog.ui:203
-#| msgid "Include _pointer"
 msgid "Include _Pointer"
 msgstr "ਪੁਆਇੰਟਰ ਸਮੇਤ(_P)"
 
 #: src/screenshotdialog.ui:211
-#| msgid "Include the window _border"
 msgid "Include Window _Border"
 msgstr "ਵਿੰਡੋ ਹਾਸ਼ੀਏ ਸਮੇਤ(_B)"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "ਮੰਗੀ ਸੈਟਿੰਗ ਨਹੀਂ ਲੱਭੀ"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "ਲੜੀ ਨੰਬਰ"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s ਅੱਗੇ ਦਿੱਤੇ USB ਡਿਵਾਈਸਾਂ ਨੂੰ ਵਰਤਣਾ ਚਾਹੁੰਦੀ ਹੈ"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "ਐਪ ਅੱਗੇ ਦਿੱਤੇ USB ਡਿਵਾਈਸਾਂ ਨੂੰ ਵਰਤਣਾ ਚਾਹੁੰਦੀ ਹੈ"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "ਅਣਪਛਾਤਾ ਡਿਵਾਈਸ"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "ਅਣਪਛਾਤਾ ਵੇਂਡਰ"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "ਡਿਵਾਈਸ ਲਈ ਪਹੁੰਚ"
+
+#: src/usbdialog.ui:31
+#| msgid "Deny"
+msgid "_Deny"
+msgstr "ਇਨਕਾਰ(_D)"
+
+#: src/usbdialog.ui:40
+#| msgid "Allow"
+msgid "_Allow"
+msgstr "ਮਨਜ਼ੂਰ(_A)"
+
+#: src/usbdialog.ui:90
+#| msgid "Failed to load image file"
+msgid "Failed to display USB device"
+msgstr "USB ਡਿਵਾਈਸ ਨੂੰ ਦਿਖਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -319,6 +345,25 @@ msgstr "ਸੈੱਟ(_S)"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "ਚਿੱਤਰ ਫਾਇਲ ਲੋਡ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#~ msgid "_Select"
+#~ msgstr "ਚੁਣੋ(_S)"
+
+#~ msgid "_Save"
+#~ msgstr "ਸੰਭਾਲੋ(_S)"
+
+#~ msgid "Open files read-only"
+#~ msgstr "ਫਾਇਲ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੋ"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "ਡਾਇਰੈਕਟਰੀ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੋ"
+
+#~ msgid "Application _Window"
+#~ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਿੰਡੋ(_W)"
+
+#~| msgid "Entire Screen"
+#~ msgid "_Entire Screen"
+#~ msgstr "ਪੂਰੀ ਸਕਰੀਨ(_E)"
 
 #~ msgid "Screen Share"
 #~ msgstr "ਸਕਰੀਨ ਸਾਂਝੀ ਕਰੋ"
@@ -338,9 +383,6 @@ msgstr "ਚਿੱਤਰ ਫਾਇਲ ਲੋਡ ਕਰਨ ਲਈ ਅਸਫ਼ਲ 
 #~| msgid "Select window to share with the requesting application"
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "ਮੰਗ ਕਰ ਰਹੀ ਐਪ ਦੇ ਨਾਲ ਸਾਂਝਾ ਕਰਨ ਲਈ ਵਿੰਡੋ ਚੁਣੋ"
-
-#~ msgid "Single Window"
-#~ msgstr "ਇਕੱਲੀ ਵਿੰਡੋ"
 
 #~ msgid "Set"
 #~ msgstr "ਲਾਓ"
@@ -363,4 +405,3 @@ msgstr "ਚਿੱਤਰ ਫਾਇਲ ਲੋਡ ਕਰਨ ਲਈ ਅਸਫ਼ਲ 
 
 #~ msgid "Find out more"
 #~ msgstr "ਹੋਰ ਲੱਭੋ"
-
