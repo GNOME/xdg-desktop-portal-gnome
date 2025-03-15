@@ -2,24 +2,24 @@
 # Copyright (C) 2019 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Zander Brown <zbrown@gnome.org>, 2019.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2023.
-# Andi Chandler <andi@gowling.com>, 2024.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2025.
+# Andi Chandler <andi@gowling.com>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2024-02-22 15:22+0000\n"
-"PO-Revision-Date: 2024-02-23 13:44+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"POT-Creation-Date: 2025-02-26 12:32+0000\n"
+"PO-Revision-Date: 2025-03-15 19:55+0000\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: English - United Kingdom <en@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-DL-Team: en_GB\n"
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-Branch: gnome-42\n"
@@ -72,16 +72,15 @@ msgstr "Share your personal information with the requesting app? %s"
 msgid "Share Details"
 msgstr "Share Details"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:16
-#: src/dynamic-launcher.c:258 src/filechooser.c:583
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28
-#: src/screencastdialog.ui:30 src/screenshotdialog.ui:29
-#: src/wallpaperdialog.ui:28
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Cancel"
 
 #: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:38
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
 #: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Share"
@@ -98,31 +97,31 @@ msgstr "Name"
 msgid "Username"
 msgstr "Username"
 
-#: src/appchooserdialog.c:180
+#: src/appchooserdialog.c:176
 msgid "_OK"
 msgstr "_OK"
 
-#: src/appchooserdialog.c:199
+#: src/appchooserdialog.c:195
 msgid "Failed to start Software"
 msgstr "Failed to start Software"
 
-#: src/appchooserdialog.c:354
+#: src/appchooserdialog.c:348
 #, c-format
-msgid "Choose an app to open the file “%s”."
-msgstr "Choose an app to open the file “%s”."
+msgid "Choose an app to open the file “%s”"
+msgstr "Choose an app to open the file “%s”"
 
-#: src/appchooserdialog.c:359
-msgid "Choose an app."
-msgstr "Choose an app."
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Choose an app"
 
-#: src/appchooserdialog.c:376
+#: src/appchooserdialog.c:370
 #, c-format
 msgid ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
 "No apps installed that can open “%s”. You can find more apps in Software"
 
-#: src/appchooserdialog.c:381
+#: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "No suitable app installed. You can find more apps in Software."
 
@@ -130,23 +129,15 @@ msgstr "No suitable app installed. You can find more apps in Software."
 msgid "Open With…"
 msgstr "Open With…"
 
-#: src/appchooserdialog.ui:24 src/filechooser.c:578
+#: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "_Open"
 
-#: src/appchooserdialog.ui:85
+#: src/appchooserdialog.ui:68
 msgid "No Apps Available"
 msgstr "No Apps Available"
 
-#: src/appchooserdialog.ui:86
-msgid ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-msgstr ""
-"No apps installed that are able to open file.extension. You can find more "
-"apps in Software."
-
-#: src/appchooserdialog.ui:107
+#: src/appchooserdialog.ui:76
 msgid "_Find More in Software"
 msgstr "_Find More in Software"
 
@@ -162,21 +153,21 @@ msgstr "Create App"
 msgid "C_reate"
 msgstr "C_reate"
 
-#: src/filechooser.c:578
-msgid "_Select"
-msgstr "_Select"
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Press %s"
 
-#: src/filechooser.c:580
-msgid "_Save"
-msgstr "_Save"
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Press %s or %s"
 
-#: src/filechooser.c:776
-msgid "Open files read-only"
-msgstr "Open files read-only"
-
-#: src/filechooser.c:783
-msgid "Open directories read-only"
-msgstr "Open directories read-only"
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Undocumented shortcut"
 
 #: src/inputcapturedialog.c:105
 #, c-format
@@ -215,16 +206,16 @@ msgstr "Allow _Clipboard Access"
 msgid "Share Screen"
 msgstr "Share Screen"
 
-#: src/screencastwidget.c:322
+#: src/screencastwidget.c:292
 msgid "Virtual Monitor"
 msgstr "Virtual Monitor"
 
-#: src/screencastwidget.c:646
+#: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s wants to share your screen. Choose what you'd like to share."
 
-#: src/screencastwidget.c:651
+#: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "An app wants to share your screen. Choose what you'd like to share."
 
@@ -233,12 +224,12 @@ msgid "_Remember this selection"
 msgstr "_Remember this selection"
 
 #: src/screencastwidget.ui:46
-msgid "Application _Window"
-msgstr "Application _Window"
+msgid "_Window"
+msgstr "_Window"
 
 #: src/screencastwidget.ui:66
-msgid "_Entire Screen"
-msgstr "_Entire Screen"
+msgid "_Display"
+msgstr "_Display"
 
 #: src/screenshotdialog.c:432
 #, c-format
@@ -297,9 +288,46 @@ msgstr "Include _Pointer"
 msgid "Include Window _Border"
 msgstr "Include Window _Border"
 
-#: src/settings.c:281
+#: src/settings.c:335
 msgid "Requested setting not found"
 msgstr "Requested setting not found"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#: src/usbdialog.c:210
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s wants to access the following USB devices"
+
+#: src/usbdialog.c:215
+msgid "An app wants to access the following USB devices"
+msgstr "An app wants to access the following USB devices"
+
+#: src/usbdialog.c:275
+msgid "Unknown device"
+msgstr "Unknown device"
+
+#: src/usbdialog.c:276
+msgid "Unknown vendor"
+msgstr "Unknown vendor"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Device Access"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Deny"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Allow"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Failed to display USB device"
 
 #: src/wallpaperdialog.ui:8
 msgid "Set Background"
@@ -312,6 +340,31 @@ msgstr "_Set"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Failed to load image file"
+
+#~ msgid ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+#~ msgstr ""
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
+
+#~ msgid "_Select"
+#~ msgstr "_Select"
+
+#~ msgid "_Save"
+#~ msgstr "_Save"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Open files read-only"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Open directories read-only"
+
+#~ msgid "Application _Window"
+#~ msgstr "Application _Window"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "_Entire Screen"
 
 #~ msgid "Screen Share"
 #~ msgstr "Screen Share"
@@ -331,9 +384,6 @@ msgstr "Failed to load image file"
 #~| msgid "Select window to share with the requesting application"
 #~ msgid "Select window to share with the requesting app"
 #~ msgstr "Select window to share with the requesting app"
-
-#~ msgid "Single Window"
-#~ msgstr "Single Window"
 
 #~ msgid "Set"
 #~ msgstr "Set"
@@ -382,9 +432,6 @@ msgstr "Failed to load image file"
 
 #~ msgid "Select devices to share with the requesting application"
 #~ msgstr "Select devices to share with the requesting application"
-
-#~ msgid "Deny Access"
-#~ msgstr "Deny Access"
 
 #~ msgid "Grant Access"
 #~ msgstr "Grant Access"
