@@ -1,7 +1,7 @@
 include:
-  - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/fedora.yml'
-  - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ubuntu.yml'
-  - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/145b1bc7ef1702d2bd71584010d7113c6786a506/templates/ci-fairy.yml'
+  - remote: 'https://gitlab.gnome.org/alatiera/freedesktop-ci-templates/-/raw/alatiera/cbuild-hardcoded/templates/fedora.yml'
+  - remote: 'https://gitlab.gnome.org/alatiera/freedesktop-ci-templates/-/raw/alatiera/cbuild-hardcoded/templates/ubuntu.yml'
+  - remote: 'https://gitlab.gnome.org/alatiera/freedesktop-ci-templates/-/raw/alatiera/cbuild-hardcoded/templates/ci-fairy.yml'
   - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
     inputs:
       job-stage: deploy
