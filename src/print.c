@@ -228,6 +228,24 @@ print_capabilities_from_options (GVariant *options)
 }
 
 static gboolean
+has_flatpak (const char *app_id)
+{
+  int status;
+
+  if (!g_spawn_sync (NULL,
+                     (char **)(const char *[]) { "/usr/bin/flatpak", "info", app_id, NULL },
+                     NULL,
+                     G_SPAWN_DEFAULT,
+                     NULL, NULL,
+                     NULL, NULL,
+                     &status,
+                     NULL))
+    return FALSE;
+
+  return g_spawn_check_wait_status (status, NULL);
+}
+
+static gboolean
 launch_preview (const char        *filename,
                 const char        *title,
                 GtkPrintSettings  *settings,
@@ -262,7 +280,12 @@ launch_preview (const char        *filename,
   if (data)
     g_file_set_contents (settings_filename, data, data_len, NULL);
 
-  cmd = g_strdup_printf ("evince-previewer --unlink-tempfile --print-settings %s %s", settings_filename, filename);
+  if (has_flatpak ("org.gnome.Papers"))
+    cmd = g_strdup_printf ("flatpak run --command=papers-previewer --file-forwarding org.gnome.Papers --print-settings @@ %s %s @@", settings_filename, filename);
+  else if (g_file_test ("/usr/bin/papers-previewer", G_FILE_TEST_IS_EXECUTABLE))
+    cmd = g_strdup_printf ("papers-previewer --unlink-tempfile --print-settings %s %s", settings_filename, filename);
+  else
+    cmd = g_strdup_printf ("evince-previewer --unlink-tempfile --print-settings %s %s", settings_filename, filename);
 
   g_debug ("launching %s", cmd);
 
