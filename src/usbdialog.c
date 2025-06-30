@@ -131,7 +131,8 @@ on_allow_usb_button_clicked_cb (GtkButton *button,
 }
 
 static void
-on_deny_usb_button_clicked_cb (UsbDialog *self)
+on_deny_usb_button_clicked_cb (GtkButton *button,
+                               UsbDialog *self)
 {
   g_assert (USB_IS_DIALOG (self));
 
