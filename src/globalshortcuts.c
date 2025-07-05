@@ -533,6 +533,8 @@ shell_grab_accelerators_done (GObject      *source,
                                                         g_variant_ref (shortcuts));
     }
 
+  response = 0;
+
  out:
   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
 
@@ -606,7 +608,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
   Session *session;
   GlobalShortcutsSession *shortcuts_session;
   GVariantBuilder results_builder;
-  int response;
   g_autoptr(GVariant) settings_shortcuts = NULL;
   g_autoptr(BindShortcutsHandle) handle = NULL;
 
@@ -616,14 +617,12 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
   if (!session)
     {
       g_warning ("Tried to bind shortcuts on non-existing %s", arg_session_handle);
-      response = 2;
       goto out;
     }
 
   if (!is_global_shortcuts_session (session))
     {
       g_warning ("Tried to bind shortcuts on the wrong session type");
-      response = 2;
       goto out;
     }
 
@@ -632,7 +631,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
   if (shortcuts_session->bound)
     {
       g_warning ("Session already has bound shortcuts");
-      response = 2;
       goto out;
     }
 
@@ -655,8 +653,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
 
   settings_shortcuts = portal_shortcuts_to_settings (arg_shortcuts);
 
-  response = 0;
-
   org_gnome_settings_global_shortcuts_provider_call_bind_shortcuts (settings,
                                                                     shortcuts_session->app_id,
                                                                     arg_parent_window,
@@ -670,7 +666,7 @@ out:
   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
   xdp_impl_global_shortcuts_complete_bind_shortcuts (object,
                                                      invocation,
-                                                     response,
+                                                     2,
                                                      g_variant_builder_end (&results_builder));
   return TRUE;
 }
