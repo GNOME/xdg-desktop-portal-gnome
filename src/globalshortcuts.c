@@ -722,11 +722,26 @@ shell_grab_accelerators_rebind_done (GObject      *object,
   BindShortcutsHandle *handle = data;
   g_autoptr(GError) error = NULL;
   g_autoptr(GVariant) response = NULL, shortcuts = NULL;
+  GVariantIter iter;
+  guint accel_id;
+  guint i = 0;
 
   if (!org_gnome_shell_call_grab_accelerators_finish (shell, &response, result, &error))
     g_debug ("Error during RebindShortcuts: %s", error->message);
 
   shortcuts_session = (GlobalShortcutsSession *) handle->session;
+
+  g_variant_iter_init (&iter, response);
+
+  while (g_variant_iter_next (&iter, "u", &accel_id))
+    {
+      Accelerator *accel;
+
+      accel = g_ptr_array_index (handle->mapped_accelerators, i);
+      accel->accelerator_id = accel_id;
+      i++;
+    }
+
   shortcuts = shortcuts_to_response_variant (shortcuts_session->shortcuts);
 
   if (shortcuts)
