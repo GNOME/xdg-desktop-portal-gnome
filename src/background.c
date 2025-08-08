@@ -254,10 +254,31 @@ handle_enable_autostart (XdpImplBackground *object,
                             G_KEY_FILE_DESKTOP_GROUP,
                             G_KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE,
                             TRUE);
-  g_key_file_set_string (keyfile,
-                         G_KEY_FILE_DESKTOP_GROUP,
-                         "X-Flatpak",
-                         arg_app_id);
+
+  if (app_info && g_desktop_app_info_has_key (app_info, "X-SnapInstanceName"))
+    {
+      g_autofree char *instance = NULL;
+      g_autofree char *app = NULL;
+
+      instance = g_desktop_app_info_get_string (app_info, "X-SnapInstanceName");
+      g_key_file_set_string (keyfile,
+                             G_KEY_FILE_DESKTOP_GROUP,
+                             "X-SnapInstanceName",
+                             instance);
+
+      app = g_desktop_app_info_get_string (app_info, "X-SnapAppName");
+      g_key_file_set_string (keyfile,
+                             G_KEY_FILE_DESKTOP_GROUP,
+                             "X-SnapAppName",
+                             app);
+    }
+  else
+    {
+      g_key_file_set_string (keyfile,
+                             G_KEY_FILE_DESKTOP_GROUP,
+                             "X-Flatpak",
+                             arg_app_id);
+    }
 
   if (!g_key_file_save_to_file (keyfile, path, &error))
     {
