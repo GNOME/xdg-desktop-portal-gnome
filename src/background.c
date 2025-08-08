@@ -27,18 +27,6 @@ typedef enum { BACKGROUND, RUNNING, ACTIVE } AppState;
 
 static GVariant *app_state;
 
-static char *
-get_actual_app_id (const char *app_id)
-{
-  g_autoptr(GDesktopAppInfo) info = g_desktop_app_info_new (app_id);
-  char *app = NULL;
-
-  if (info)
-    app = g_desktop_app_info_get_string (info, "X-Flatpak");
-
-  return app;
-}
-
 static const char *
 app_state_to_str (AppState state)
 {
@@ -86,13 +74,10 @@ get_app_state (void)
           g_variant_lookup (dict, "active-on-seats", "^a&s", &seats);
 
           /* See https://gitlab.gnome.org/GNOME/gnome-shell/issues/1289 */
-          if (sandboxed_app_id)
-            app = g_strdup (sandboxed_app_id);
-          else
-            app = get_actual_app_id (app_id);
-          if (app == NULL)
+          if (sandboxed_app_id == NULL)
             continue;
 
+          app = g_strdup (sandboxed_app_id);
           state = GPOINTER_TO_INT (g_hash_table_lookup (app_states, app));
           state = MAX (state, RUNNING);
           if (seats != NULL)
