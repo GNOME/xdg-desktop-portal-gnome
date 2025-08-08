@@ -201,17 +201,19 @@ handle_enable_autostart (XdpImplBackground *object,
 {
   gboolean result = FALSE;
   g_autofree char *dir = NULL;
-  g_autofree char *file = NULL;
+  g_autofree char *desktop_id = NULL;
   g_autofree char *path = NULL;
   g_autoptr(GError) error = NULL;
   g_autofree char *commandline = NULL;
   g_autoptr(GKeyFile) keyfile = NULL;
+  g_autoptr(GDesktopAppInfo) app_info = NULL;
+  const char *name;
 
   g_debug ("background: handle EnableAutostart");
 
-  file = g_strconcat (arg_app_id, ".desktop", NULL);
+  desktop_id = g_strconcat (arg_app_id, ".desktop", NULL);
   dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-  path = g_build_filename (dir, file, NULL);
+  path = g_build_filename (dir, desktop_id, NULL);
 
   if (!arg_enable)
     {
@@ -226,7 +228,12 @@ handle_enable_autostart (XdpImplBackground *object,
       goto out;
     }
 
+  name = arg_app_id;
+  app_info = g_desktop_app_info_new (desktop_id);
   commandline = flatpak_quote_argv ((const char **)arg_commandline, -1);
+
+  if (app_info)
+    name = g_app_info_get_name (G_APP_INFO (app_info));
 
   keyfile = g_key_file_new ();
 
@@ -237,7 +244,7 @@ handle_enable_autostart (XdpImplBackground *object,
   g_key_file_set_string (keyfile,
                          G_KEY_FILE_DESKTOP_GROUP,
                          G_KEY_FILE_DESKTOP_KEY_NAME,
-                         arg_app_id); // FIXME
+                         name);
   g_key_file_set_string (keyfile,
                          G_KEY_FILE_DESKTOP_GROUP,
                          G_KEY_FILE_DESKTOP_KEY_EXEC,
