@@ -280,6 +280,11 @@ handle_enable_autostart (XdpImplBackground *object,
                              arg_app_id);
     }
 
+  g_key_file_set_string (keyfile,
+                         G_KEY_FILE_DESKTOP_GROUP,
+                         "X-XDPG-Autostart",
+                         arg_app_id);
+
   if (!g_key_file_save_to_file (keyfile, path, &error))
     {
       g_warning ("Failed to save %s: %s", path, error->message);
