@@ -1,6 +1,10 @@
 Changes in 49.beta
 =================
-
+- Improve detection of apps' metadata
+- Improvements to the Global Shortcuts portal
+- Add support for Papers as a print previewer
+- Fix a wrong function signature in the USB portal
+- Translation updates
 
 Changes in 49.alpha
 =================
