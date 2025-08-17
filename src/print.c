@@ -527,6 +527,8 @@ handle_print (XdpImplPrint          *object,
   GdkSurface *surface;
   GxdpExternalWindow *external_parent = NULL;
   GtkWidget *fake_parent;
+  gboolean has_current_page;
+  gboolean has_selected_pages;
 
   g_variant_get (arg_fd_in, "h", &idx);
   fd = g_unix_fd_list_get (fd_list, idx, NULL);
@@ -574,11 +576,21 @@ handle_print (XdpImplPrint          *object,
   if (!g_variant_lookup (arg_options, "modal", "b", &modal))
     modal = TRUE;
 
+  if (!g_variant_lookup (arg_options, "has_current_page", "b", &has_current_page))
+    has_current_page = FALSE;
+
+  if (!g_variant_lookup (arg_options, "has_selected_pages", "b", &has_selected_pages))
+    has_selected_pages = FALSE;
+
   dialog = GTK_WINDOW (gtk_print_unix_dialog_new (arg_title, NULL));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, modal);
   gtk_print_unix_dialog_set_manual_capabilities (GTK_PRINT_UNIX_DIALOG (dialog),
                                                  print_capabilities_from_options (arg_options));
+
+  gtk_print_unix_dialog_set_current_page (GTK_PRINT_UNIX_DIALOG (dialog), has_current_page ? 0 : -1);
+  gtk_print_unix_dialog_set_support_selection (GTK_PRINT_UNIX_DIALOG (dialog), has_selected_pages);
+  gtk_print_unix_dialog_set_has_selection (GTK_PRINT_UNIX_DIALOG (dialog), has_selected_pages);
 
   window_group = gtk_window_group_new ();
   gtk_window_group_add_window (window_group, dialog);
