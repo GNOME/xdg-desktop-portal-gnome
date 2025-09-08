@@ -217,18 +217,18 @@ settings_handle_read_all (XdpImplSettings       *object,
         {
           if (strcmp (key, "org.gnome.desktop.interface") == 0 &&
               strcmp (keys[i], "enable-animations") == 0)
-	    {
-	      g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
-	    }
+            {
+              g_variant_dict_insert_value (&dict, keys[i], g_variant_new_boolean (enable_animations));
+            }
           else if (strcmp (key, "org.gnome.desktop.interface") == 0 && strcmp (keys[i], "gtk-theme") == 0)
-	    {
-	      g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
-	    }
+            {
+              g_variant_dict_insert_value (&dict, keys[i], get_theme_value (keys[i]));
+            }
           else
-	    {
-	      g_autoptr(GVariant) val = g_settings_get_value (value->settings, keys[i]);
-	      g_variant_dict_insert_value (&dict, keys[i], val);
-	    }
+            {
+              g_autoptr(GVariant) val = g_settings_get_value (value->settings, keys[i]);
+              g_variant_dict_insert_value (&dict, keys[i], val);
+            }
         }
 
       g_variant_builder_add (builder, "{s@a{sv}}", key, g_variant_dict_end (&dict));
@@ -285,16 +285,16 @@ settings_handle_read (XdpImplSettings       *object,
     {
       if (strcmp (arg_key, "color-scheme") == 0)
         {
-	  g_dbus_method_invocation_return_value (invocation,
-						 g_variant_new ("(v)", get_color_scheme ()));
-	  return TRUE;
-	}
+          g_dbus_method_invocation_return_value (invocation,
+                                                 g_variant_new ("(v)", get_color_scheme ()));
+          return TRUE;
+        }
       else if (strcmp (arg_key, "contrast") == 0)
         {
-	  g_dbus_method_invocation_return_value (invocation,
-						 g_variant_new ("(v)", get_contrast_value ()));
-	  return TRUE;
-	}
+          g_dbus_method_invocation_return_value (invocation,
+                                                 g_variant_new ("(v)", get_contrast_value ()));
+          return TRUE;
+        }
       else if (strcmp (arg_key, "accent-color") == 0)
         {
           g_dbus_method_invocation_return_value (invocation,
@@ -394,13 +394,13 @@ on_settings_changed (GSettings             *settings,
                                               "org.gnome.desktop.interface", "gtk-theme",
                                               g_variant_new ("v", get_theme_value ("gtk-theme")));
       if (g_variant_is_of_type (new_value, G_VARIANT_TYPE_BOOLEAN))
-	{
-	  gboolean hc = g_variant_get_boolean (new_value);
-	  xdp_impl_settings_emit_setting_changed (user_data->self,
-						  "org.freedesktop.appearance",
-						  "contrast",
-						  g_variant_new ("v", g_variant_new_uint32 (hc ? 1 : 0)));
-	}
+        {
+          gboolean hc = g_variant_get_boolean (new_value);
+          xdp_impl_settings_emit_setting_changed (user_data->self,
+                                                  "org.freedesktop.appearance",
+                                                  "contrast",
+                                                  g_variant_new ("v", g_variant_new_uint32 (hc ? 1 : 0)));
+        }
     }
 }
 
