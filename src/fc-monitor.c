@@ -235,7 +235,7 @@ stuff_changed (GFileMonitor *monitor G_GNUC_UNUSED,
                 break;
         }
 
-	g_free (path);
+        g_free (path);
 }
 
 static void
