@@ -932,8 +932,10 @@ on_shell_activated (OrgGnomeShell *shell,
   GlobalShortcutsSession *shortcuts_session;
   const char *shortcut_id = NULL;
   Session *session;
-  GVariantBuilder options_builder;
-  g_autoptr(GVariant) val = NULL;
+  g_auto(GVariantBuilder) options_builder =
+    G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE_VARDICT);
+  g_autoptr(GVariant) val_timestamp = NULL;
+  g_autoptr(GVariant) val_activation_token = NULL;
   uint32_t timestamp = 0;
 
   shortcuts_session = find_session_and_shortcut_id (action, &shortcut_id);
@@ -942,14 +944,22 @@ on_shell_activated (OrgGnomeShell *shell,
 
   session = (Session *) shortcuts_session;
 
-  val = g_variant_lookup_value (parameters, "timestamp", G_VARIANT_TYPE_UINT32);
-  if (val)
-    timestamp = g_variant_get_uint32 (val);
+  val_timestamp = g_variant_lookup_value (parameters, "timestamp",
+                                          G_VARIANT_TYPE_UINT32);
+  if (val_timestamp)
+    timestamp = g_variant_get_uint32 (val_timestamp);
+
+  val_activation_token = g_variant_lookup_value (parameters, "activation-token",
+                                                 G_VARIANT_TYPE_STRING);
+  if (val_activation_token)
+    {
+      g_variant_builder_add (&options_builder, "{sv}",
+                             "activation_token", val_activation_token);
+    }
 
   g_debug ("Propagating Activated for shortcut %s in group %s at %u",
            shortcut_id, shortcuts_session->app_id, timestamp);
 
-  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
   xdp_impl_global_shortcuts_emit_activated (global_shortcuts,
                                             session_get_id (session),
                                             shortcut_id,
@@ -966,8 +976,10 @@ on_shell_deactivated (OrgGnomeShell *shell,
   GlobalShortcutsSession *shortcuts_session;
   const char *shortcut_id = NULL;
   Session *session;
-  GVariantBuilder options_builder;
-  g_autoptr(GVariant) val = NULL;
+  g_auto(GVariantBuilder) options_builder =
+    G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE_VARDICT);
+  g_autoptr(GVariant) val_timestamp = NULL;
+  g_autoptr(GVariant) val_activation_token = NULL;
   uint32_t timestamp = 0;
 
   shortcuts_session = find_session_and_shortcut_id (action, &shortcut_id);
@@ -976,14 +988,22 @@ on_shell_deactivated (OrgGnomeShell *shell,
 
   session = (Session *) shortcuts_session;
 
-  val = g_variant_lookup_value (parameters, "timestamp", G_VARIANT_TYPE_UINT32);
-  if (val)
-    timestamp = g_variant_get_uint32 (val);
+  val_timestamp = g_variant_lookup_value (parameters, "timestamp",
+                                          G_VARIANT_TYPE_UINT32);
+  if (val_timestamp)
+    timestamp = g_variant_get_uint32 (val_timestamp);
+
+  val_activation_token = g_variant_lookup_value (parameters, "activation-token",
+                                                 G_VARIANT_TYPE_STRING);
+  if (val_activation_token)
+    {
+      g_variant_builder_add (&options_builder, "{sv}",
+                             "activation_token", val_activation_token);
+    }
 
   g_debug ("Propagating Deactivated for shortcut %s in group %s at %u",
            shortcut_id, shortcuts_session->app_id, timestamp);
 
-  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
   xdp_impl_global_shortcuts_emit_deactivated (global_shortcuts,
                                               session_get_id (session),
                                               shortcut_id,
