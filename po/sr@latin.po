@@ -1,0 +1,430 @@
+# Serbian translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# MirosNik <miroslavnikolic@rocketmail.com>, 2016.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2016.
+# aceydot <aceydot@tuta.io>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues/\n"
+"POT-Creation-Date: 2025-10-11 04:09+0000\n"
+"PO-Revision-Date: 2025-10-13 21:47+0200\n"
+"Last-Translator: aceydot <aceydot@tuta.io>\n"
+"Language-Team: srpski <gnome-sr@googlegroups.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
+msgid "Portal"
+msgstr "Portal"
+
+#: src/access.c:203
+msgid "Deny"
+msgstr "Odbij"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "Dozvoli"
+
+#: src/accountdialog.c:159
+msgid "Select an Image"
+msgstr "Izaberi sliku"
+
+#: src/accountdialog.c:162
+msgid "Cancel"
+msgstr "Otkaži"
+
+#: src/accountdialog.c:163
+msgid "Select"
+msgstr "Izaberi"
+
+#: src/accountdialog.c:164
+msgid "Clear"
+msgstr "Očisti"
+
+#: src/accountdialog.c:171
+msgid "Images"
+msgstr "Slike"
+
+#: src/accountdialog.c:233
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Da li želite podeliti vaše lične podatke sa %1$s? %2$s"
+
+#: src/accountdialog.c:239
+#, c-format
+msgid "Share your personal information with the requesting app? %s"
+msgstr "Da li želite podeliti vaše lične podatke sa ovim programom? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Podeli pojedinosti"
+
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
+msgid "_Cancel"
+msgstr "Ot_kaži"
+
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
+msgid "_Share"
+msgstr "_Deli"
+
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Izmeni avatar"
+
+#: src/accountdialog.ui:112
+msgid "Name"
+msgstr "Ime"
+
+#: src/accountdialog.ui:118
+msgid "Username"
+msgstr "Korisničko ime"
+
+#: src/appchooserdialog.c:176
+msgid "_OK"
+msgstr "U _redu"
+
+#: src/appchooserdialog.c:195
+msgid "Failed to start Software"
+msgstr "Nisam uspeo da pokrenem Programe"
+
+#: src/appchooserdialog.c:348
+#, c-format
+msgid "Choose an app to open the file “%s”"
+msgstr "Izaberite program za otvaranje datoteke „%s“"
+
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Izaberite program"
+
+#: src/appchooserdialog.c:370
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"Nema instaliranih programa koji mogu otvoriti „%s“. Možete naći više "
+"programa u Programima"
+
+#: src/appchooserdialog.c:375
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr ""
+"Nijedan odgovarajući program nije instaliran. Možete naći više programa u "
+"Programima."
+
+#: src/appchooserdialog.ui:5
+msgid "Open With…"
+msgstr "Otvori pomoću…"
+
+#: src/appchooserdialog.ui:25
+msgid "_Open"
+msgstr "Ot_vori"
+
+#: src/appchooserdialog.ui:68
+msgid "No Apps Available"
+msgstr "Nema dostupnih programa"
+
+#: src/appchooserdialog.ui:76
+msgid "_Find More in Software"
+msgstr "_Nađi više u Programima"
+
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Napravi veb program"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Napravi program"
+
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "_Napravi"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:352
+#, c-format
+msgid "Press %s"
+msgstr "Pritisnite %s"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:361
+#, c-format
+msgid "Press %s or %s"
+msgstr "Pritisnite %s ili %s"
+
+#: src/globalshortcuts.c:468
+msgid "Undocumented shortcut"
+msgstr "Nedokumentovana prečica"
+
+#: src/inputcapturedialog.c:105
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "Program %s želi hvatati ulazne događaje"
+
+#: src/inputcapturedialog.c:110
+msgid "An application wants to capture input events"
+msgstr "Program želi pregled ulaznih događaja"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "Hvataj ulaz"
+
+#: src/inputcapturedialog.ui:68
+msgid "Allow Remote _Input Capturing"
+msgstr "Dozvol_i udaljeno hvatanje ulaza"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote Desktop"
+msgstr "Udaljena radna površ"
+
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "Zapamti ovaj izbo_r"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Dozvol_i udaljeno upravljanje"
+
+#: src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "Dozvoli pristup o_stavi"
+
+#: src/screencastdialog.ui:5
+msgid "Share Screen"
+msgstr "Podeli ekran"
+
+#: src/screencastwidget.c:292
+msgid "Virtual Monitor"
+msgstr "Virtuelni ekran"
+
+#: src/screencastwidget.c:636
+#, c-format
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "Program „%s“ želi podeliti vaš ekran. Izaberite šta želite podeliti."
+
+#: src/screencastwidget.c:641
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr "Program želi podeliti vaš ekran. Izaberite šta želite podeliti."
+
+#: src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "Zapamti ovaj izbo_r"
+
+#: src/screencastwidget.ui:46
+msgid "_Window"
+msgstr "_Prozor"
+
+#: src/screencastwidget.ui:66
+msgid "_Display"
+msgstr "_Prikaz"
+
+#: src/screenshotdialog.c:432
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "Da podelim ovaj snimak ekrana sa „%s“?"
+
+#: src/screenshotdialog.c:436
+msgid "Share this screenshot with the requesting app?"
+msgstr "Podeliti ovaj snimak ekrana sa programom koji to zahteva?"
+
+#: src/screenshotdialog.ui:9
+msgid "Screenshot"
+msgstr "Snimak ekrana"
+
+#: src/screenshotdialog.ui:45
+msgid "_Options…"
+msgstr "_Opcije…"
+
+#: src/screenshotdialog.ui:70
+msgid "Take _Screenshot"
+msgstr "_Snimi ekran"
+
+#: src/screenshotdialog.ui:131
+msgid "Take Screenshot"
+msgstr "Napravi snimak ekrana"
+
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
+msgstr "Snimi celu _radnu površ"
+
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
+msgstr "Snimi _trenutni prozor"
+
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
+msgstr "Iz_aberi oblast snimanja"
+
+#: src/screenshotdialog.ui:173
+msgid "Grab after a _delay of"
+msgstr "Snimi nakon _zastoja od"
+
+#: src/screenshotdialog.ui:184
+msgid "seconds"
+msgstr "sekunde"
+
+#: src/screenshotdialog.ui:193
+msgid "Effects"
+msgstr "Efekti"
+
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
+msgstr "Uključi _pokazivač"
+
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
+msgstr "Uključi ivicu prozor_a"
+
+#: src/settings.c:335
+msgid "Requested setting not found"
+msgstr "Zatraženo podešavanje nije nađeno"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Serijski broj"
+
+#: src/usbdialog.c:211
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s želi da pristupi sledećim USB uređajima"
+
+#: src/usbdialog.c:216
+msgid "An app wants to access the following USB devices"
+msgstr "Program želi da pristupi sledećim USB uređajima"
+
+#: src/usbdialog.c:276
+msgid "Unknown device"
+msgstr "Nepoznati uređaj"
+
+#: src/usbdialog.c:277
+msgid "Unknown vendor"
+msgstr "Nepoznati proizvođač"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Pristup uređaju"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_Odbij"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_Dozvoli"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "Nisam uspeo da prikažem USB uređaj"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "Podesi pozadinu"
+
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "Po_stavi"
+
+#: src/wallpaperdialog.ui:67
+msgid "Failed to load image file"
+msgstr "Nisam uspeo da učitam datoteku sa slikom"
+
+#~ msgid "Application _Window"
+#~ msgstr "Pro_zor programa"
+
+#~ msgid "_Entire Screen"
+#~ msgstr "C_eo ekran"
+
+#~ msgid "_Select"
+#~ msgstr "_Izaberi"
+
+#~ msgid "_Save"
+#~ msgstr "_Sačuvaj"
+
+#~ msgid "Open files read-only"
+#~ msgstr "Otvori datoteke samo za čitanje"
+
+#~ msgid "Open directories read-only"
+#~ msgstr "Otvori fascikle samo za čitanje"
+
+#~ msgid "Screen Share"
+#~ msgstr "Deljenje ekrana"
+
+#, c-format
+#~ msgid "Select monitor to share with %s"
+#~ msgstr "Izaberite ekran za deljenje sa programom %s"
+
+#, c-format
+#~ msgid "Select window to share with %s"
+#~ msgstr "Izaberite prozor za deljenje sa programom %s"
+
+#~ msgid "Select monitor to share with the requesting app"
+#~ msgstr "Izaberite ekran koji treba podeliti sa programom"
+
+#~ msgid "Select window to share with the requesting app"
+#~ msgstr "Izaberite prozor koji treba podeliti sa programom"
+
+#~ msgid "Set"
+#~ msgstr "Postavi"
+
+#~ msgid "Activities"
+#~ msgstr "Aktivnosti"
+
+#, c-format
+#~ msgid "“%s” is running in the background"
+#~ msgstr "Program „%s“ radi u pozadini"
+
+#~ msgid ""
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
+#~ "\n"
+#~ "Note that forcing an application to quit might cause data loss."
+#~ msgstr ""
+#~ "Ovo se možda događa iz ispravnog razloga, ali program nije rekao zašto.\n"
+#~ "\n"
+#~ "Znajte da nasilno zatvaranje programa može uzrokovati gubitak podataka."
+
+#~ msgid "Force quit"
+#~ msgstr "Nasilno zatvori"
+
+#~ msgid "Background activity"
+#~ msgstr "Pozadinska aktivnost"
+
+#~ msgid "Find out more"
+#~ msgstr "Saznajte više"
+
+#~ msgid "applications-system-symbolic"
+#~ msgstr "applications-system-symbolic"
+
+#~ msgid "Pointer"
+#~ msgstr "Pokazivač"
+
+#~ msgid "Keyboard"
+#~ msgstr "Tastatura"
+
+#~ msgid "Touch screen"
+#~ msgstr "Ekran na dodir"
+
+#~ msgid "Select devices to share with %s"
+#~ msgstr "Izaberite uređaje za deljenje sa programom %s"
+
+#~ msgid "Select devices to share with the requesting application"
+#~ msgstr "Izaberite koje uređaje treba podeliti sa programom"
+
+#~ msgid "Grant Access"
+#~ msgstr "Dozvoli pristup"
+
+#, fuzzy
+#~ msgid "Screen casting"
+#~ msgstr "Snimak ekrana"
