@@ -128,6 +128,26 @@ get_contrast_value (void)
 }
 
 static GVariant *
+get_reduced_motion_value (void)
+{
+  SettingsBundle *bundle = g_hash_table_lookup (settings, "org.gnome.desktop.a11y.interface");
+  int value = 0;
+
+  if (bundle && g_settings_schema_has_key (bundle->schema, "reduced-motion"))
+    value = g_settings_get_enum (bundle->settings, "reduced-motion");
+
+  switch (value)
+    {
+    case G_DESKTOP_REDUCED_MOTION_REDUCE:
+      return g_variant_new_uint32 (1);
+
+    case G_DESKTOP_REDUCED_MOTION_NO_PREFERENCE:
+    default:
+      return g_variant_new_uint32 (0);
+    }
+}
+
+static GVariant *
 get_theme_value (const char *key)
 {
   SettingsBundle *bundle = NULL;
@@ -252,6 +272,7 @@ settings_handle_read_all (XdpImplSettings       *object,
       g_variant_dict_insert_value (&dict, "color-scheme", get_color_scheme ());
       g_variant_dict_insert_value (&dict, "contrast", get_contrast_value ());
       g_variant_dict_insert_value (&dict, "accent-color", get_accent_color ());
+      g_variant_dict_insert_value (&dict, "reduced-motion", get_reduced_motion_value ());
 
       g_variant_builder_add (builder, "{s@a{sv}}", "org.freedesktop.appearance", g_variant_dict_end (&dict));
     }
@@ -299,6 +320,12 @@ settings_handle_read (XdpImplSettings       *object,
         {
           g_dbus_method_invocation_return_value (invocation,
                                                  g_variant_new ("(v)", get_accent_color ()));
+          return TRUE;
+        }
+      else if (strcmp (arg_key, "reduced-motion") == 0)
+        {
+          g_dbus_method_invocation_return_value (invocation,
+                                                 g_variant_new ("(v)", get_reduced_motion_value ()));
           return TRUE;
         }
     }
@@ -402,6 +429,12 @@ on_settings_changed (GSettings             *settings,
                                                   g_variant_new ("v", g_variant_new_uint32 (hc ? 1 : 0)));
         }
     }
+
+   if (strcmp (user_data->namespace, "org.gnome.desktop.a11y.interface") == 0 &&
+       strcmp (key, "reduced-motion") == 0)
+     xdp_impl_settings_emit_setting_changed (user_data->self,
+                                             "org.freedesktop.appearance", key,
+                                             g_variant_new ("v", get_reduced_motion_value ()));
 }
 
 static void
