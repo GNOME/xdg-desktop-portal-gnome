@@ -10,6 +10,12 @@ include:
   - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@1.0
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
+  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@25.7"
+    inputs:
+      job-stage: build
+      # There are no tests atm
+      run-tests: "no"
+      meson-options: "$MESON_OPTIONS"
 
 stages:
   - review
@@ -20,6 +26,7 @@ stages:
 variables:
   FDO_UPSTREAM_REPO: GNOME/xdg-desktop-portal-gnome
   TARBALL_ARTIFACT_PATH: build/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz
+  MESON_OPTIONS: "--wrap-mode=nofallback --force-fallback-for=libgxdp"
 
 .skip-git-clone:
   variables:
@@ -193,7 +200,7 @@ prepare-ubuntu:
 .build-common:
   stage: build
   script:
-    - meson setup --wrap-mode=nofallback --force-fallback-for=libgxdp _build .
+    - meson setup $MESON_OPTIONS _build .
     - meson compile -C _build
     - meson install -C _build
 
