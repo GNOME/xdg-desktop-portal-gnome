@@ -8,6 +8,8 @@ include:
       dist-job-name: "dist-xdg-desktop-portal-gnome-tarball"
       tarball-artifact-path: $TARBALL_ARTIFACT_PATH
   - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@1.0
+  - project: "GNOME/citemplates"
+    file: "templates/default-rules.yml"
 
 stages:
   - review
@@ -18,22 +20,6 @@ stages:
 variables:
   FDO_UPSTREAM_REPO: GNOME/xdg-desktop-portal-gnome
   TARBALL_ARTIFACT_PATH: build/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz
-
-default:
-  interruptible: true
-
-workflow:
-  rules:
-    # Allow to switch from branch pipelines to MR pipelines seamlessly
-    # https://docs.gitlab.com/ee/ci/jobs/job_control.html#avoid-duplicate-pipelines
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    # Don't trigger a branch pipeline if there is an open MR
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
-      when: never
-    - if: '$CI_COMMIT_BRANCH'
-    - if: '$CI_COMMIT_TAG'
 
 .skip-git-clone:
   variables:
