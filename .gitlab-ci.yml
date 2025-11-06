@@ -102,13 +102,13 @@ check-merge-request:
 
 .container-common:
   variables:
-    FDO_DISTRIBUTION_TAG: '2025-01-20.1'
+    FDO_DISTRIBUTION_TAG: '2025-11-06.0'
 
 .fedora-container:
   extends:
     - .container-common
   variables:
-    FDO_DISTRIBUTION_VERSION: 40
+    FDO_DISTRIBUTION_VERSION: 42
     FDO_DISTRIBUTION_PACKAGES:
       bubblewrap
       fontconfig-devel
@@ -145,15 +145,11 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.19.1 .
+        main . 005f8fc73ce672fbc152de91cb2f9a81e35e5e5f
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
-        master . 8df894aecbf6908c48c3da62434061bfa8dc46ea
-
-      ./.gitlab-ci/install-meson-project.sh \
-        https://gitlab.gnome.org/GNOME/gtk.git \
-        4.17.3 .
+        master . 02dd2486a189d8dbd1fd5d9945853269265c1079
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/libadwaita.git \
@@ -163,7 +159,7 @@ check-merge-request:
   extends:
     - .container-common
   variables:
-    FDO_DISTRIBUTION_VERSION: '23.10'
+    FDO_DISTRIBUTION_VERSION: '24.10'
     FDO_DISTRIBUTION_PACKAGES:
       bubblewrap
       ca-certificates
@@ -195,7 +191,7 @@ check-merge-request:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        1.19.1 .
+        main . 005f8fc73ce672fbc152de91cb2f9a81e35e5e5f
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
