@@ -1,6 +1,6 @@
 # Demo
 
-Build and run [ashpd-demo](https://github.com/bilelmoussaoui/ashph) to try out local changes:
+Build and run [ashpd-demo](https://github.com/bilelmoussaoui/ashpd) to try out local changes:
 ```shell
 ./build-and-run.sh ashpd-demo
 ```
