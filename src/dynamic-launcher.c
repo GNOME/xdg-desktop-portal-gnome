@@ -272,8 +272,8 @@ handle_prepare_install (XdpImplDynamicLauncher *object,
   gtk_box_append (GTK_BOX (content_area), box);
 
   image = gtk_image_new ();
+  gtk_image_set_pixel_size (GTK_IMAGE (image), DEFAULT_ICON_SIZE);
   gtk_widget_set_vexpand (image, TRUE);
-  gtk_widget_set_size_request (image, DEFAULT_ICON_SIZE, DEFAULT_ICON_SIZE);
   gtk_widget_set_margin_bottom (image, 10);
   gtk_box_append (GTK_BOX (box), image);
 
