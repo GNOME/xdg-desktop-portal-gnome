@@ -69,3 +69,5 @@ gboolean gnome_input_capture_connect_to_eis (GnomeInputCaptureSession  *gnome_in
                                              GUnixFDList              **fd_list,
                                              GVariant                 **fd_variant,
                                              GError                   **error);
+
+const char * gnome_input_capture_get_path (GnomeInputCaptureSession *gnome_input_capture_session);

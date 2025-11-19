@@ -543,3 +543,9 @@ gnome_input_capture_connect_to_eis (GnomeInputCaptureSession  *gnome_input_captu
 
   return TRUE;
 }
+
+const char *
+gnome_input_capture_get_path (GnomeInputCaptureSession *gnome_input_capture_session)
+{
+  return gnome_input_capture_session->path;
+}
