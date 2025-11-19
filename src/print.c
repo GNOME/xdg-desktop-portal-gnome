@@ -605,6 +605,8 @@ handle_print (XdpImplPrint          *object,
 
   gtk_window_present (GTK_WINDOW (dialog));
 
+  g_object_unref (dialog);
+
   return TRUE;
 }
 
@@ -762,6 +764,8 @@ handle_prepare_print (XdpImplPrint          *object,
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
   gtk_window_present (dialog);
+
+  g_object_unref (dialog);
 
   return TRUE;
 }
