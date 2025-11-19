@@ -568,35 +568,35 @@ start_done (RemoteDesktopSession *remote_desktop_session)
                          "devices", g_variant_new_uint32 (shared_device_types));
 
   if (remote_desktop_session->clipboard.clipboard_requested)
-  {
-    g_autoptr (GError) error = NULL;
-    GVariantBuilder options_builder;
-    GVariant *options;
-
-    remote_desktop_session->clipboard.selection_owner_changed_handler_id =
-      g_signal_connect (remote_desktop_session->mutter_session_proxy,
-                        "selection-owner-changed",
-                        G_CALLBACK (on_selection_owner_changed),
-                        remote_desktop_session);
-    remote_desktop_session->clipboard.selection_transfer_handler_id =
-      g_signal_connect (remote_desktop_session->mutter_session_proxy,
-                        "selection-transfer",
-                        G_CALLBACK (on_selection_transfer),
-                        remote_desktop_session);
-
-    g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
-    options = g_variant_builder_end (&options_builder);
-
-    if (!org_gnome_mutter_remote_desktop_session_call_enable_clipboard_sync (
-      remote_desktop_session->mutter_session_proxy, options, NULL, &error))
-      {
-        g_warning ("Failed to enable clipboard: %s", error->message);
-      }
-
-    clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
-    g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
-                           g_variant_new_boolean (clipboard_enabled));
-  }
+    {
+      g_autoptr (GError) error = NULL;
+      GVariantBuilder options_builder;
+      GVariant *options;
+  
+      remote_desktop_session->clipboard.selection_owner_changed_handler_id =
+        g_signal_connect (remote_desktop_session->mutter_session_proxy,
+                          "selection-owner-changed",
+                          G_CALLBACK (on_selection_owner_changed),
+                          remote_desktop_session);
+      remote_desktop_session->clipboard.selection_transfer_handler_id =
+        g_signal_connect (remote_desktop_session->mutter_session_proxy,
+                          "selection-transfer",
+                          G_CALLBACK (on_selection_transfer),
+                          remote_desktop_session);
+  
+      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+      options = g_variant_builder_end (&options_builder);
+  
+      if (!org_gnome_mutter_remote_desktop_session_call_enable_clipboard_sync (
+        remote_desktop_session->mutter_session_proxy, options, NULL, &error))
+        {
+          g_warning ("Failed to enable clipboard: %s", error->message);
+        }
+  
+      clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
+      g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
+                             g_variant_new_boolean (clipboard_enabled));
+    }
 
   gnome_screen_cast_session = remote_desktop_session->gnome_screen_cast_session;
   if (gnome_screen_cast_session)
