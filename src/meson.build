@@ -29,6 +29,7 @@ top_srcdir = meson.project_source_root()
 shell_dbus_interfaces = files(
   top_srcdir / 'data' / 'org.freedesktop.Accounts.User.xml',
   top_srcdir / 'data' / 'org.freedesktop.Accounts.xml',
+  top_srcdir / 'data' / 'org.gnome.Mutter.Clipboard.xml',
   top_srcdir / 'data' / 'org.gnome.Mutter.DisplayConfig.xml',
   top_srcdir / 'data' / 'org.gnome.Mutter.InputCapture.xml',
   top_srcdir / 'data' / 'org.gnome.Mutter.RemoteDesktop.xml',

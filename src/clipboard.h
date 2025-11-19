@@ -21,4 +21,25 @@
 #include <gio/gio.h>
 #include <glib.h>
 
+#include "shell-dbus.h"
+
+#include "session.h"
+
+G_DECLARE_INTERFACE (ClipboardSession, clipboard_session,
+                     CLIPBOARD, SESSION, GObject)
+
+struct _ClipboardSessionInterface
+{
+  GTypeInterface parent_iface;
+
+  void (* request_clipboard) (ClipboardSession *clipboard_session);
+  OrgGnomeMutterClipboard * (* get_clipboard_proxy) (ClipboardSession *clipboard_session);
+};
+
+gboolean is_clipboard_session (Session *session);
+
 gboolean clipboard_init (GDBusConnection *connection, GError **error);
+
+void clipboard_add_session (ClipboardSession *clipboard_session);
+
+void clipboard_remove_session (ClipboardSession *clipboard_session);

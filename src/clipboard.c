@@ -33,15 +33,44 @@
 #include "utils.h"
 #include "xdg-desktop-portal-dbus.h"
 
+G_DEFINE_INTERFACE (ClipboardSession, clipboard_session, G_TYPE_OBJECT)
+
 static GDBusConnection *impl_connection;
-static guint remote_desktop_name_watch;
 static GDBusInterfaceSkeleton *impl;
-static OrgGnomeMutterRemoteDesktop *remote_desktop;
+
+gboolean
+is_clipboard_session (Session *session)
+{
+  return CLIPBOARD_IS_SESSION (session);
+}
 
 static void
-on_selection_owner_changed (Session  *session,
-                            GVariant *arg_options)
+clipboard_session_default_init (ClipboardSessionInterface *iface)
 {
+}
+
+static void
+clipboard_session_request_clipboard (ClipboardSession *clipboard_session)
+{
+  ClipboardSessionInterface *iface = CLIPBOARD_SESSION_GET_IFACE (clipboard_session);
+
+  iface->request_clipboard (clipboard_session);
+}
+
+static OrgGnomeMutterClipboard *
+clipboard_session_get_clipboard_proxy (ClipboardSession *clipboard_session)
+{
+  ClipboardSessionInterface *iface = CLIPBOARD_SESSION_GET_IFACE (clipboard_session);
+
+  return iface->get_clipboard_proxy (clipboard_session);
+}
+
+static void
+on_selection_owner_changed (OrgGnomeMutterClipboard *clipboard_proxy,
+                            GVariant                *arg_options,
+                            ClipboardSession        *clipboard_session)
+{
+  Session *session = (Session *) clipboard_session;
   g_autoptr (GVariant) session_is_owner = NULL;
   g_autoptr (GVariant) mime_types = NULL;
   g_autoptr (GVariant) mutter_mime_types = NULL;
@@ -93,10 +122,13 @@ on_selection_owner_changed (Session  *session,
 }
 
 static void
-on_selection_transfer (Session    *session,
-                       const char *arg_mime_type,
-                       uint32_t    arg_serial)
+on_selection_transfer (OrgGnomeMutterClipboard *clipboard_proxy,
+                       const char              *arg_mime_type,
+                       uint32_t                 arg_serial,
+                       ClipboardSession        *clipboard_session)
 {
+  Session *session = (Session *) clipboard_session;
+
   xdp_impl_clipboard_emit_selection_transfer (XDP_IMPL_CLIPBOARD (impl),
                                               session->id,
                                               arg_mime_type,
@@ -108,7 +140,6 @@ handle_request_clipboard (XdpImplClipboard      *object,
                           GDBusMethodInvocation *invocation,
                           const char            *arg_session_handle)
 {
-  RemoteDesktopSession *remote_desktop_session;
   Session *session;
 
   session = lookup_session (arg_session_handle);
@@ -123,7 +154,7 @@ handle_request_clipboard (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  if (!is_remote_desktop_session (session))
+  if (!is_clipboard_session (session))
     {
       g_warning ("Tried to enable clipboard on invalid session type");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -133,15 +164,7 @@ handle_request_clipboard (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  remote_desktop_session = (RemoteDesktopSession *)session;
-
-  g_signal_connect (remote_desktop_session,
-                    "clipboard-selection-owner-changed",
-                    G_CALLBACK (on_selection_owner_changed), NULL);
-  g_signal_connect (remote_desktop_session, "clipboard-selection-transfer",
-                    G_CALLBACK (on_selection_transfer), NULL);
-
-  remote_desktop_session_request_clipboard (remote_desktop_session);
+  clipboard_session_request_clipboard (CLIPBOARD_SESSION (session));
 
   xdp_impl_clipboard_complete_request_clipboard (object,
                                                  g_steal_pointer (&invocation));
@@ -154,8 +177,7 @@ handle_set_selection (XdpImplClipboard      *object,
                       const char            *arg_session_handle,
                       GVariant              *arg_options)
 {
-  OrgGnomeMutterRemoteDesktopSession *session_proxy;
-  RemoteDesktopSession *remote_desktop_session;
+  OrgGnomeMutterClipboard *clipboard_proxy;
   g_autoptr (GVariant) value = NULL;
   g_autoptr (GError) error = NULL;
   g_auto(GVariantBuilder) options_builder =
@@ -175,9 +197,9 @@ handle_set_selection (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  if (!is_remote_desktop_session (session))
+  if (!is_clipboard_session (session))
     {
-      g_warning ("Tried to set selection on invalid session type");
+      g_warning ("Tried to set selection on invalid session");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
                                              XDG_DESKTOP_PORTAL_ERROR,
                                              XDG_DESKTOP_PORTAL_ERROR_FAILED,
@@ -185,8 +207,9 @@ handle_set_selection (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  remote_desktop_session = (RemoteDesktopSession *)session;
-  if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
+  clipboard_proxy =
+    clipboard_session_get_clipboard_proxy (CLIPBOARD_SESSION (session));
+  if (!clipboard_proxy)
     {
       g_warning ("Tried to set selection with clipboard disabled");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -195,9 +218,6 @@ handle_set_selection (XdpImplClipboard      *object,
                                              "Clipboard disabled");
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
-
-  session_proxy =
-    remote_desktop_session_mutter_session_proxy (remote_desktop_session);
 
   g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
 
@@ -217,10 +237,10 @@ handle_set_selection (XdpImplClipboard      *object,
 
   options = g_variant_ref_sink (g_variant_builder_end (&options_builder));
 
-  if (!org_gnome_mutter_remote_desktop_session_call_set_selection_sync (session_proxy,
-                                                                        options,
-                                                                        NULL,
-                                                                        &error))
+  if (!org_gnome_mutter_clipboard_call_set_selection_sync (clipboard_proxy,
+                                                           options,
+                                                           NULL,
+                                                           &error))
     {
       g_warning ("Failed to set selection: %s", error->message);
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -242,8 +262,7 @@ handle_selection_write (XdpImplClipboard      *object,
                         const char            *arg_session_handle,
                         uint32_t               arg_serial)
 {
-  OrgGnomeMutterRemoteDesktopSession *session_proxy;
-  RemoteDesktopSession *remote_desktop_session;
+  OrgGnomeMutterClipboard *clipboard_proxy;
   g_autoptr (GUnixFDList) out_fd_list = NULL;
   g_autoptr (GUnixFDList) fd_list = NULL;
   g_autoptr (GError) error = NULL;
@@ -265,7 +284,7 @@ handle_selection_write (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  if (!is_remote_desktop_session (session))
+  if (!is_clipboard_session (session))
     {
       g_warning ("Tried to write selection on invalid session type");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -275,8 +294,9 @@ handle_selection_write (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  remote_desktop_session = (RemoteDesktopSession *)session;
-  if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
+  clipboard_proxy =
+    clipboard_session_get_clipboard_proxy (CLIPBOARD_SESSION (session));
+  if (!clipboard_proxy)
     {
       g_warning ("Tried to write selection with clipboard disabled");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -286,18 +306,15 @@ handle_selection_write (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  session_proxy =
-    remote_desktop_session_mutter_session_proxy (remote_desktop_session);
-
   out_fd_list = g_unix_fd_list_new ();
 
-  if (!org_gnome_mutter_remote_desktop_session_call_selection_write_sync (session_proxy,
-                                                                          arg_serial,
-                                                                          NULL,
-                                                                          &fd_handle,
-                                                                          &fd_list,
-                                                                          NULL,
-                                                                          &error))
+  if (!org_gnome_mutter_clipboard_call_selection_write_sync (clipboard_proxy,
+                                                             arg_serial,
+                                                             NULL,
+                                                             &fd_handle,
+                                                             &fd_list,
+                                                             NULL,
+                                                             &error))
     {
       g_warning ("Failed to selection write: %s", error->message);
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -326,9 +343,8 @@ handle_selection_write_done (XdpImplClipboard      *object,
                              uint32_t               arg_serial,
                              gboolean               arg_success)
 {
-  OrgGnomeMutterRemoteDesktopSession *session_proxy;
+  OrgGnomeMutterClipboard *clipboard_proxy;
   g_autoptr (GUnixFDList) out_fd_list = NULL;
-  RemoteDesktopSession *remote_desktop_session;
   g_autoptr (GError) error = NULL;
   Session *session;
 
@@ -344,9 +360,9 @@ handle_selection_write_done (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  if (!is_remote_desktop_session (session))
+  if (!is_clipboard_session (session))
     {
-      g_warning ("Tried to write selection on invalid session type");
+      g_warning ("Tried to complete write selection on invalid session");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
                                              XDG_DESKTOP_PORTAL_ERROR,
                                              XDG_DESKTOP_PORTAL_ERROR_FAILED,
@@ -354,10 +370,11 @@ handle_selection_write_done (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  remote_desktop_session = (RemoteDesktopSession *)session;
-  if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
+  clipboard_proxy =
+    clipboard_session_get_clipboard_proxy (CLIPBOARD_SESSION (session));
+  if (!clipboard_proxy)
     {
-      g_warning ("Tried to write selection with clipboard disabled");
+      g_warning ("Tried to complete write selection with clipboard disabled");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
                                              XDG_DESKTOP_PORTAL_ERROR,
                                              XDG_DESKTOP_PORTAL_ERROR_FAILED,
@@ -365,14 +382,11 @@ handle_selection_write_done (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  session_proxy =
-    remote_desktop_session_mutter_session_proxy (remote_desktop_session);
-
-  if (!org_gnome_mutter_remote_desktop_session_call_selection_write_done_sync (session_proxy,
-                                                                               arg_serial,
-                                                                               arg_success,
-                                                                               NULL,
-                                                                               &error))
+  if (!org_gnome_mutter_clipboard_call_selection_write_done_sync (clipboard_proxy,
+                                                                  arg_serial,
+                                                                  arg_success,
+                                                                  NULL,
+                                                                  &error))
     {
       g_warning ("Failed to selection write: %s", error->message);
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -394,9 +408,8 @@ handle_selection_read (XdpImplClipboard      *object,
                        const char            *arg_session_handle,
                        const char            *arg_mime_type)
 {
-  OrgGnomeMutterRemoteDesktopSession *session_proxy;
+  OrgGnomeMutterClipboard *clipboard_proxy;
   g_autoptr (GUnixFDList) out_fd_list = NULL;
-  RemoteDesktopSession *remote_desktop_session;
   g_autoptr (GError) error = NULL;
   Session *session;
   g_autoptr (GVariant) fd = NULL;
@@ -413,9 +426,9 @@ handle_selection_read (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  if (!is_remote_desktop_session (session))
+  if (!is_clipboard_session (session))
     {
-      g_warning ("Tried to read selection on invalid session type");
+      g_warning ("Tried to read selection on invalid session");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
                                              XDG_DESKTOP_PORTAL_ERROR,
                                              XDG_DESKTOP_PORTAL_ERROR_FAILED,
@@ -423,8 +436,9 @@ handle_selection_read (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  remote_desktop_session = (RemoteDesktopSession *)session;
-  if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
+  clipboard_proxy =
+    clipboard_session_get_clipboard_proxy (CLIPBOARD_SESSION (session));
+  if (!clipboard_proxy)
     {
       g_warning ("Tried to read selection with clipboard disabled");
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -434,16 +448,13 @@ handle_selection_read (XdpImplClipboard      *object,
       return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-  session_proxy =
-    remote_desktop_session_mutter_session_proxy (remote_desktop_session);
-
-  if (!org_gnome_mutter_remote_desktop_session_call_selection_read_sync (session_proxy,
-                                                                         arg_mime_type,
-                                                                         NULL,
-                                                                         &fd,
-                                                                         &out_fd_list,
-                                                                         NULL,
-                                                                         &error))
+  if (!org_gnome_mutter_clipboard_call_selection_read_sync (clipboard_proxy,
+                                                            arg_mime_type,
+                                                            NULL,
+                                                            &fd,
+                                                            &out_fd_list,
+                                                            NULL,
+                                                            &error))
     {
       g_warning ("Failed to selection read: %s", error->message);
       g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
@@ -460,27 +471,11 @@ handle_selection_read (XdpImplClipboard      *object,
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
-static void
-remote_desktop_name_appeared (GDBusConnection *connection,
-                              const char      *name,
-                              const char      *name_owner,
-                              gpointer         user_data)
+gboolean
+clipboard_init (GDBusConnection  *connection,
+                GError          **error)
 {
-  g_autoptr (GError) error = NULL;
-
-  remote_desktop =
-    org_gnome_mutter_remote_desktop_proxy_new_sync (impl_connection,
-                                                    G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
-                                                    "org.gnome.Mutter.RemoteDesktop",
-                                                    "/org/gnome/Mutter/RemoteDesktop",
-                                                    NULL,
-                                                    &error);
-  if (!remote_desktop)
-    {
-      g_warning ("Failed to acquire org.gnome.Mutter.RemoteDesktop proxy: %s",
-                 error->message);
-      return;
-    }
+  impl_connection = connection;
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_clipboard_skeleton_new ());
 
@@ -498,43 +493,75 @@ remote_desktop_name_appeared (GDBusConnection *connection,
   if (!g_dbus_interface_skeleton_export (impl,
                                          impl_connection,
                                          DESKTOP_PORTAL_OBJECT_PATH,
-                                         &error))
+                                         error))
     {
-      g_warning ("Failed to export clipboard portal implementation object: %s",
-                 error->message);
-      return;
+      g_clear_object (&impl);
+      g_prefix_error (error,
+                      "Failed to export clipboard portal implementation: ");
+      return FALSE;
     }
 
   g_debug ("providing %s", g_dbus_interface_skeleton_get_info (impl)->name);
-}
-
-static void
-remote_desktop_name_vanished (GDBusConnection *connection,
-                              const char      *name,
-                              gpointer         user_data)
-{
-  if (impl)
-    {
-      g_dbus_interface_skeleton_unexport (impl);
-      g_clear_object (&impl);
-    }
-
-  g_clear_object (&remote_desktop);
-}
-
-gboolean
-clipboard_init (GDBusConnection  *connection,
-                GError          **error)
-{
-  impl_connection = connection;
-
-  remote_desktop_name_watch = g_bus_watch_name (G_BUS_TYPE_SESSION,
-                                                "org.gnome.Mutter.RemoteDesktop",
-                                                G_BUS_NAME_WATCHER_FLAGS_NONE,
-                                                remote_desktop_name_appeared,
-                                                remote_desktop_name_vanished,
-                                                NULL,
-                                                NULL);
 
   return TRUE;
+}
+
+void
+clipboard_add_session (ClipboardSession *clipboard_session)
+{
+  OrgGnomeMutterClipboard *clipboard_proxy;
+  GVariantBuilder options_builder;
+  GVariant *options;
+  g_autoptr (GError) error = NULL;
+
+  clipboard_proxy = clipboard_session_get_clipboard_proxy (clipboard_session);
+  g_return_if_fail (clipboard_proxy);
+
+  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+  options = g_variant_builder_end (&options_builder);
+  if (!org_gnome_mutter_clipboard_call_enable_sync (clipboard_proxy,
+                                                    options,
+                                                    NULL,
+                                                    &error))
+    {
+      g_warning ("Failed to enable clipboard integration: %s", error->message);
+      return;
+    }
+
+  g_signal_connect_data (clipboard_proxy,
+                         "selection-owner-changed",
+                         G_CALLBACK (on_selection_owner_changed),
+                         clipboard_session, NULL,
+                         G_CONNECT_DEFAULT);
+  g_signal_connect_data (clipboard_proxy,
+                         "selection-transfer",
+                         G_CALLBACK (on_selection_transfer),
+                         clipboard_session, NULL,
+                         G_CONNECT_DEFAULT);
+}
+
+void
+clipboard_remove_session (ClipboardSession *clipboard_session)
+{
+  OrgGnomeMutterClipboard *clipboard_proxy;
+  g_autoptr (GError) error = NULL;
+
+  clipboard_proxy =
+    clipboard_session_get_clipboard_proxy (clipboard_session);
+  g_return_if_fail (clipboard_proxy);
+
+  if (!org_gnome_mutter_clipboard_call_disable_sync (clipboard_proxy,
+                                                     NULL,
+                                                     &error))
+    {
+      g_warning ("Failed to disable clipboard integration: %s", error->message);
+      return;
+    }
+
+  g_signal_handlers_disconnect_by_func (clipboard_proxy,
+                                        G_CALLBACK (on_selection_owner_changed),
+                                        clipboard_session);
+  g_signal_handlers_disconnect_by_func (clipboard_proxy,
+                                        G_CALLBACK (on_selection_transfer),
+                                        clipboard_session);
 }

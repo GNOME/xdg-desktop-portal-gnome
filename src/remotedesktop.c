@@ -80,8 +80,8 @@ typedef struct _RemoteDesktopSession
   {
     gboolean clipboard_enabled;
     gboolean clipboard_requested;
-    gulong selection_owner_changed_handler_id;
-    gulong selection_transfer_handler_id;
+
+    OrgGnomeMutterClipboard *clipboard_proxy;
   } clipboard;
 
   RemoteDesktopPersistMode persist_mode;
@@ -127,8 +127,13 @@ static GDBusInterfaceSkeleton *impl;
 static OrgGnomeMutterRemoteDesktop *remote_desktop;
 static GnomeScreenCast *gnome_screen_cast;
 
+static void clipboard_session_init_iface (ClipboardSessionInterface *iface);
+
 GType remote_desktop_session_get_type (void);
-G_DEFINE_TYPE (RemoteDesktopSession, remote_desktop_session, session_get_type ())
+G_DEFINE_TYPE_WITH_CODE (RemoteDesktopSession, remote_desktop_session,
+                         session_get_type (),
+                         G_IMPLEMENT_INTERFACE (clipboard_session_get_type (),
+                                                clipboard_session_init_iface))
 
 static void
 start_done (RemoteDesktopSession *session);
@@ -157,43 +162,6 @@ remote_desktop_session_sources_selected (RemoteDesktopSession *session,
 {
   session->select.screen_cast_enable = TRUE;
   session->select.screen_cast = *selection;
-}
-
-static void
-on_selection_owner_changed (OrgGnomeMutterRemoteDesktopSession *object,
-                            GVariant *arg_options,
-                            RemoteDesktopSession *session)
-{
-  g_signal_emit (session, signals[CLIPBOARD_SELECTION_OWNER_CHANGED], 0,
-                 arg_options);
-}
-
-static void
-on_selection_transfer (OrgGnomeMutterRemoteDesktopSession *object,
-                       const gchar *arg_mime_type,
-                       guint arg_serial,
-                       RemoteDesktopSession *session)
-{
-  g_signal_emit (session, signals[CLIPBOARD_SELECTION_TRANSFER], 0,
-                 arg_mime_type, arg_serial);
-}
-
-void
-remote_desktop_session_request_clipboard (RemoteDesktopSession *session)
-{
-  session->clipboard.clipboard_requested = TRUE;
-}
-
-gboolean
-remote_desktop_session_is_clipboard_enabled (RemoteDesktopSession *session)
-{
-  return session->clipboard.clipboard_enabled;
-}
-
-OrgGnomeMutterRemoteDesktopSession *
-remote_desktop_session_mutter_session_proxy (RemoteDesktopSession *session)
-{
-  return session->mutter_session_proxy;
 }
 
 static void
@@ -570,27 +538,22 @@ start_done (RemoteDesktopSession *remote_desktop_session)
   if (remote_desktop_session->clipboard.clipboard_requested)
     {
       g_autoptr (GError) error = NULL;
-      GVariantBuilder options_builder;
-      GVariant *options;
-  
-      remote_desktop_session->clipboard.selection_owner_changed_handler_id =
-        g_signal_connect (remote_desktop_session->mutter_session_proxy,
-                          "selection-owner-changed",
-                          G_CALLBACK (on_selection_owner_changed),
-                          remote_desktop_session);
-      remote_desktop_session->clipboard.selection_transfer_handler_id =
-        g_signal_connect (remote_desktop_session->mutter_session_proxy,
-                          "selection-transfer",
-                          G_CALLBACK (on_selection_transfer),
-                          remote_desktop_session);
-  
-      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
-      options = g_variant_builder_end (&options_builder);
-  
-      if (!org_gnome_mutter_remote_desktop_session_call_enable_clipboard_sync (
-        remote_desktop_session->mutter_session_proxy, options, NULL, &error))
+
+      remote_desktop_session->clipboard.clipboard_proxy =
+        org_gnome_mutter_clipboard_proxy_new_sync (impl_connection,
+                                                   G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+                                                   "org.gnome.Mutter.RemoteDesktop",
+                                                   remote_desktop_session->mutter_session_path,
+                                                   NULL,
+                                                   &error);
+      if (remote_desktop_session->clipboard.clipboard_proxy)
         {
-          g_warning ("Failed to enable clipboard: %s", error->message);
+          clipboard_add_session (CLIPBOARD_SESSION (remote_desktop_session));
+        }
+      else
+        {
+          g_warning ("Failed to create clipboard proxy: %s", error->message);
+          clipboard_enabled = FALSE;
         }
   
       clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
@@ -1270,6 +1233,31 @@ remote_desktop_init (GDBusConnection *connection,
 }
 
 static void
+remote_desktop_session_request_clipboard (ClipboardSession *clipboard_session)
+{
+  RemoteDesktopSession *remote_desktop_session =
+    (RemoteDesktopSession *) clipboard_session;
+
+  remote_desktop_session->clipboard.clipboard_requested = TRUE;
+}
+
+static OrgGnomeMutterClipboard *
+remote_desktop_session_get_clipboard_proxy (ClipboardSession *clipboard_session)
+{
+  RemoteDesktopSession *remote_desktop_session =
+    (RemoteDesktopSession *) clipboard_session;
+
+  return remote_desktop_session->clipboard.clipboard_proxy;
+}
+
+static void
+clipboard_session_init_iface (ClipboardSessionInterface *iface)
+{
+  iface->request_clipboard = remote_desktop_session_request_clipboard;
+  iface->get_clipboard_proxy = remote_desktop_session_get_clipboard_proxy;
+}
+
+static void
 remote_desktop_session_close (Session *session)
 {
   RemoteDesktopSession *remote_desktop_session = (RemoteDesktopSession *)session;
@@ -1290,14 +1278,7 @@ remote_desktop_session_close (Session *session)
                                remote_desktop_session->closed_handler_id);
 
   if (remote_desktop_session->clipboard.clipboard_enabled)
-    {
-      g_signal_handler_disconnect (
-          session_proxy, remote_desktop_session->clipboard
-                             .selection_owner_changed_handler_id);
-      g_signal_handler_disconnect (
-          session_proxy, remote_desktop_session->clipboard
-                             .selection_transfer_handler_id);
-    }
+    clipboard_remove_session (CLIPBOARD_SESSION (session));
 
   if (!org_gnome_mutter_remote_desktop_session_call_stop_sync (session_proxy,
                                                                NULL,

@@ -51,12 +51,5 @@ gboolean is_remote_desktop_session (Session *session);
 void remote_desktop_session_sources_selected (RemoteDesktopSession *session,
                                               ScreenCastSelection *select);
 
-void remote_desktop_session_request_clipboard (RemoteDesktopSession *session);
-
-gboolean remote_desktop_session_is_clipboard_enabled (RemoteDesktopSession *session);
-
-OrgGnomeMutterRemoteDesktopSession *
-remote_desktop_session_mutter_session_proxy (RemoteDesktopSession *session);
-
 gboolean remote_desktop_init (GDBusConnection *connection,
                               GError **error);
