@@ -535,7 +535,8 @@ start_done (RemoteDesktopSession *remote_desktop_session)
   g_variant_builder_add (&results_builder, "{sv}",
                          "devices", g_variant_new_uint32 (shared_device_types));
 
-  if (remote_desktop_session->clipboard.clipboard_requested)
+  clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
+  if (clipboard_enabled)
     {
       g_autoptr (GError) error = NULL;
 
@@ -555,8 +556,8 @@ start_done (RemoteDesktopSession *remote_desktop_session)
           g_warning ("Failed to create clipboard proxy: %s", error->message);
           clipboard_enabled = FALSE;
         }
-  
-      clipboard_enabled = remote_desktop_session->clipboard.clipboard_enabled;
+
+      remote_desktop_session->clipboard.clipboard_enabled = clipboard_enabled;
       g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
                              g_variant_new_boolean (clipboard_enabled));
     }
