@@ -76,6 +76,18 @@
                         </child>
                       </object>
                     </child>
+                    <child>
+                      <object class="AdwActionRow" id="allow_clipboard_row">
+                        <property name="title" translatable="yes">Allow _Clipboard Access</property>
+                        <property name="use-underline">True</property>
+                        <property name="activatable-widget">allow_clipboard_switch</property>
+                        <child>
+                          <object class="GtkSwitch" id="allow_clipboard_switch">
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </child>
 

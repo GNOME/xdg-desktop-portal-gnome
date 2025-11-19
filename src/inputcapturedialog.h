@@ -24,4 +24,5 @@
 G_DECLARE_FINAL_TYPE (InputCaptureDialog, input_capture_dialog,
                       INPUT_CAPTURE, DIALOG, GtkWindow)
 
-InputCaptureDialog * input_capture_dialog_new (const char *app_id);
+InputCaptureDialog * input_capture_dialog_new (const char *app_id,
+                                               gboolean    clipboard_requested);

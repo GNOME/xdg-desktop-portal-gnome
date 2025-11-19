@@ -29,6 +29,8 @@ struct _InputCaptureDialog
 
   GtkWidget *accept_button;
   GtkSwitch *allow_input_capture_switch;
+  GtkWidget *allow_clipboard_row;
+  GtkSwitch *allow_clipboard_switch;
   GtkLabel *allow_input_capture_heading;
   GtkHeaderBar *titlebar;
 };
@@ -53,16 +55,22 @@ static void
 button_clicked (GtkWidget          *button,
                 InputCaptureDialog *dialog)
 {
+  gboolean enable_clipboard = FALSE;
   int response;
 
   gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
   if (button == dialog->accept_button)
-    response = GTK_RESPONSE_OK;
+    {
+      response = GTK_RESPONSE_OK;
+      enable_clipboard = gtk_switch_get_active (dialog->allow_clipboard_switch);
+    }
   else
-    response = GTK_RESPONSE_CANCEL;
+    {
+      response = GTK_RESPONSE_CANCEL;
+    }
 
-  g_signal_emit (dialog, signals[DONE], 0, response);
+  g_signal_emit (dialog, signals[DONE], 0, response, enable_clipboard);
 }
 
 static void
@@ -114,12 +122,26 @@ set_app_id (InputCaptureDialog *dialog,
 }
 
 InputCaptureDialog *
-input_capture_dialog_new (const char *app_id)
+input_capture_dialog_new (const char *app_id,
+                          gboolean    clipboard_requested)
 {
   InputCaptureDialog *dialog;
 
   dialog = g_object_new (INPUT_CAPTURE_TYPE_DIALOG, NULL);
   set_app_id (dialog, app_id);
+
+  if (clipboard_requested)
+    {
+      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_clipboard_row),
+                              TRUE);
+      gtk_switch_set_active (dialog->allow_clipboard_switch, TRUE);
+    }
+  else
+    {
+      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_clipboard_row),
+                              FALSE);
+      gtk_switch_set_active (dialog->allow_clipboard_switch, FALSE);
+    }
 
   return dialog;
 }
@@ -154,13 +176,16 @@ input_capture_dialog_class_init (InputCaptureDialogClass *klass)
                                 0,
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 1,
-                                G_TYPE_INT);
+                                G_TYPE_NONE, 2,
+                                G_TYPE_INT,
+                                G_TYPE_BOOLEAN);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/freedesktop/portal/desktop/gnome/inputcapturedialog.ui");
   gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, accept_button);
   gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, allow_input_capture_heading);
   gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, allow_input_capture_switch);
+  gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, allow_clipboard_row);
+  gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, allow_clipboard_switch);
   gtk_widget_class_bind_template_child (widget_class, InputCaptureDialog, titlebar);
   gtk_widget_class_bind_template_callback (widget_class, button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_allow_input_capture_switch_active_changed_cb);

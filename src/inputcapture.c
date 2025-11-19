@@ -20,6 +20,9 @@
 
 #include <gxdp.h>
 
+#include "shell-dbus.h"
+
+#include "clipboard.h"
 #include "inputcapture.h"
 #include "inputcapturedialog.h"
 #include "session.h"
@@ -55,6 +58,14 @@ typedef struct _InputCaptureSession
   GnomeInputCaptureSession *gnome_input_capture_session;
   gulong session_closed_handler_id;
 
+  struct
+  {
+    gboolean clipboard_enabled;
+    gboolean clipboard_requested;
+
+    OrgGnomeMutterClipboard *clipboard_proxy;
+  } clipboard;
+
   GList *barrier_infos;
 
   InputCaptureDialogHandle *dialog_handle;
@@ -84,8 +95,13 @@ static GDBusInterfaceSkeleton *impl;
 
 static GnomeInputCapture *gnome_input_capture;
 
+static void clipboard_session_init_iface (ClipboardSessionInterface *iface);
+
 GType input_capture_session_get_type (void);
-G_DEFINE_TYPE (InputCaptureSession, input_capture_session, session_get_type ())
+G_DEFINE_TYPE_WITH_CODE (InputCaptureSession, input_capture_session,
+                         session_get_type (),
+                         G_IMPLEMENT_INTERFACE (clipboard_session_get_type (),
+                                                clipboard_session_init_iface))
 
 static void
 input_capture_dialog_handle_free (InputCaptureDialogHandle *dialog_handle)
@@ -264,6 +280,7 @@ on_session_closed (GnomeInputCaptureSession *gnome_input_capture_session,
 static void
 on_input_capture_dialog_done_cb (GtkWidget                *widget,
                                  int                       dialog_response,
+                                 gboolean                  clipboard_enabled,
                                  InputCaptureDialogHandle *dialog_handle)
 {
   GDBusMethodInvocation *invocation = dialog_handle->create_session_invocation;
@@ -313,25 +330,57 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
           goto out;
         }
 
-      session =
-        (Session *)input_capture_session_new (dialog_handle->request->app_id,
-                                              dialog_handle->session_handle,
-                                              dialog_handle->request->sender);
-
-      if (!session_export (session,
-                           g_dbus_method_invocation_get_connection (invocation),
-                           &error))
+      session = lookup_session (dialog_handle->session_handle);
+      if (!session)
         {
-          g_clear_object (&gnome_input_capture_session);
-          g_clear_object (&session);
-          g_warning ("Failed to create input capture session: %s", error->message);
-          response = 2;
-          goto out;
+          session =
+            (Session *)input_capture_session_new (dialog_handle->request->app_id,
+                                                  dialog_handle->session_handle,
+                                                  dialog_handle->request->sender);
+
+          if (!session_export (session,
+                               g_dbus_method_invocation_get_connection (invocation),
+                               &error))
+            {
+              g_clear_object (&gnome_input_capture_session);
+              g_clear_object (&session);
+              g_warning ("Failed to create input capture session: %s", error->message);
+              response = 2;
+              goto out;
+            }
         }
 
       input_capture_session = (InputCaptureSession *)session;
       input_capture_session->gnome_input_capture_session =
         gnome_input_capture_session;
+
+      if (clipboard_enabled)
+        {
+          g_autoptr (GError) error = NULL;
+          const char *mutter_session_path;
+
+          mutter_session_path = gnome_input_capture_get_path (gnome_input_capture_session);
+          input_capture_session->clipboard.clipboard_proxy =
+            org_gnome_mutter_clipboard_proxy_new_sync (impl_connection,
+                                                       G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+                                                       "org.gnome.Mutter.InputCapture",
+                                                       mutter_session_path,
+                                                       NULL,
+                                                       &error);
+          if (input_capture_session->clipboard.clipboard_proxy)
+            {
+              clipboard_add_session (CLIPBOARD_SESSION (session));
+            }
+          else
+            {
+              g_warning ("Failed to create clipboard proxy: %s", error->message);
+              clipboard_enabled = FALSE;
+            }
+
+          input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
+          g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
+                                 g_variant_new_boolean (clipboard_enabled));
+        }
 
       g_signal_connect (gnome_input_capture_session,
                         "activated",
@@ -382,12 +431,22 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
                              const char            *session_handle,
                              unsigned int           capabilities)
 {
+  Session *session;
+  gboolean clipboard_requested = FALSE;
   g_autoptr(GtkWindowGroup) window_group = NULL;
   InputCaptureDialogHandle *dialog_handle;
   GxdpExternalWindow *external_parent;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
+
+  session = lookup_session (session_handle);
+  if (session)
+    {
+      InputCaptureSession *input_capture_session = (InputCaptureSession *)session;
+
+      clipboard_requested = input_capture_session->clipboard.clipboard_requested;
+    }
 
   if (parent_window)
     {
@@ -404,7 +463,8 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
   g_object_ref_sink (fake_parent);
 
-  dialog = GTK_WINDOW (input_capture_dialog_new (request->app_id));
+  dialog = GTK_WINDOW (input_capture_dialog_new (request->app_id,
+                                                 clipboard_requested));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, TRUE);
 
@@ -458,6 +518,85 @@ handle_create_session (XdpImplInputCapture   *object,
                                arg_session_handle,
                                capabilities);
 
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
+}
+
+static gboolean
+handle_create_session2 (XdpImplInputCapture   *object,
+                        GDBusMethodInvocation *invocation,
+                        const char            *arg_session_handle,
+                        const char            *arg_app_id,
+                        GVariant              *arg_options)
+{
+  const char *sender;
+  Session *session;
+  g_autoptr(GError) error = NULL;
+  GVariantBuilder results_builder;
+
+  sender = g_dbus_method_invocation_get_sender (invocation);
+  session = (Session *) input_capture_session_new (arg_app_id,
+                                                   arg_session_handle,
+                                                   sender);
+
+  if (!session_export (session,
+                       g_dbus_method_invocation_get_connection (invocation),
+                       &error))
+    {
+      g_clear_object (&session);
+      g_warning ("Failed to create input capture session: %s", error->message);
+      g_dbus_method_invocation_return_gerror (invocation, error);
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
+    }
+
+  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
+  xdp_impl_input_capture_complete_create_session2 ((XdpImplInputCapture *) impl,
+                                                   invocation,
+                                                   g_variant_builder_end (&results_builder));
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
+}
+
+static gboolean
+handle_start (XdpImplInputCapture   *object,
+              GDBusMethodInvocation *invocation,
+              const char            *arg_handle,
+              const char            *arg_session_handle,
+              const char            *arg_app_id,
+              const char            *arg_parent_window,
+              GVariant              *arg_options)
+{
+  Session *session;
+  unsigned int capabilities;
+  const char *sender;
+  g_autoptr(Request) request = NULL;
+  int response;
+  GVariantBuilder results_builder;
+
+  session = lookup_session (arg_session_handle);
+  if (!session)
+    {
+      g_warning ("Tried to start non-existing session %s", arg_session_handle);
+      response = 2;
+      goto out;
+    }
+
+  g_variant_lookup (arg_options, "capabilities", "u", &capabilities);
+
+  sender = g_dbus_method_invocation_get_sender (invocation);
+  request = request_new (sender, arg_app_id, arg_handle);
+  request_export (request,
+                  g_dbus_method_invocation_get_connection (invocation));
+
+  create_input_capture_dialog (invocation, request,
+                               arg_parent_window,
+                               arg_session_handle,
+                               capabilities);
+
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
+
+out:
+  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
+  xdp_impl_input_capture_complete_start (object, invocation, response,
+                                         g_variant_builder_end (&results_builder));
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
@@ -819,9 +958,14 @@ on_gnome_input_capture_enabled (GnomeInputCapture *gnome_input_capture)
   uint32_t supported_capabilities;
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_input_capture_skeleton_new ());
+  xdp_impl_input_capture_set_version (XDP_IMPL_INPUT_CAPTURE (impl), 2);
 
   g_signal_connect (impl, "handle-create-session",
                     G_CALLBACK (handle_create_session), NULL);
+  g_signal_connect (impl, "handle-create-session2",
+                    G_CALLBACK (handle_create_session2), NULL);
+  g_signal_connect (impl, "handle-start",
+                    G_CALLBACK (handle_start), NULL);
   g_signal_connect (impl, "handle-disable",
                     G_CALLBACK (handle_disable), NULL);
   g_signal_connect (impl, "handle-enable",
@@ -884,6 +1028,31 @@ input_capture_init (GDBusConnection  *connection,
 }
 
 static void
+input_capture_session_request_clipboard (ClipboardSession *clipboard_session)
+{
+  InputCaptureSession *input_capture_session =
+    (InputCaptureSession *) clipboard_session;
+
+  input_capture_session->clipboard.clipboard_requested = TRUE;
+}
+
+static OrgGnomeMutterClipboard *
+input_capture_session_get_clipboard_proxy (ClipboardSession *clipboard_session)
+{
+  InputCaptureSession *input_capture_session =
+    (InputCaptureSession *) clipboard_session;
+
+  return input_capture_session->clipboard.clipboard_proxy;
+}
+
+static void
+clipboard_session_init_iface (ClipboardSessionInterface *iface)
+{
+  iface->request_clipboard = input_capture_session_request_clipboard;
+  iface->get_clipboard_proxy = input_capture_session_get_clipboard_proxy;
+}
+
+static void
 input_capture_session_close (Session *session)
 {
   InputCaptureSession *input_capture_session = (InputCaptureSession *)session;
@@ -901,6 +1070,9 @@ input_capture_session_close (Session *session)
                    error->message);
       g_clear_object (&input_capture_session->gnome_input_capture_session);
     }
+
+  if (input_capture_session->clipboard.clipboard_proxy)
+    clipboard_remove_session (CLIPBOARD_SESSION (session));
 }
 
 static void
