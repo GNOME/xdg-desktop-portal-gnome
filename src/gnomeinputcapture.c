@@ -16,6 +16,8 @@
  *
  */
 
+#include "config.h"
+
 #include "gnomeinputcapture.h"
 #include "inputcapture.h"
 #include "shell-dbus.h"
