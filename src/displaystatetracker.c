@@ -314,7 +314,18 @@ generate_monitors (DisplayStateTracker *tracker,
 
       read_current_width_and_height (modes, m);
 
-      m->match_string = g_strdup_printf ("%s:%s:%s", vendor, product, serial);
+      /* For virtual/unknown monitors (common in VMs), use connector name instead
+       * of vendor:product:serial to ensure unique identification */
+      if (g_strcmp0 (vendor, "unknown") == 0 &&
+          g_strcmp0 (product, "unknown") == 0 &&
+          g_strcmp0 (serial, "unknown") == 0)
+        {
+          m->match_string = g_strdup (m->connector);
+        }
+      else
+        {
+          m->match_string = g_strdup_printf ("%s:%s:%s", vendor, product, serial);
+        }
 
       g_hash_table_insert (tracker->monitors, m->connector, m);
 
