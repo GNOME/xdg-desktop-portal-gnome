@@ -5,12 +5,12 @@ include:
       - "templates/ci-fairy.yml"
       - "templates/ubuntu.yml"
       - "templates/fedora.yml"
-  - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
+  - component: "gitlab.gnome.org/GNOME/citemplates/release-service@25.7"
     inputs:
       job-stage: deploy
       dist-job-name: "dist-xdg-desktop-portal-gnome-tarball"
       tarball-artifact-path: $TARBALL_ARTIFACT_PATH
-  - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@1.0
+  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@25.7"
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@25.7"
