@@ -2,7 +2,7 @@
 <interface domain="xdg-desktop-portal-gnome">
   <requires lib="gtk" version="4.0"/>
   <template class="AppChooserDialog" parent="AdwWindow">
-    <property name="title" translatable="yes">Open With…</property>
+    <property name="title" translatable="yes">Open With</property>
     <property name="resizable">0</property>
 
     <property name="content">
