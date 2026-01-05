@@ -1,5 +1,10 @@
 Changes in 50.alpha
 =================
+- Fix a potential source of crashes in the ScreenCast portal code
+- Properly send the Global Shortcut activation token to the portal frontend
+- Update libgxdp to override GTK settings
+- Use a GNOME OS based CI template
+- Translation updates
 
 Changes in 49.0
 =================
