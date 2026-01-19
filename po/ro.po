@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Daniel Șerbănescu <daniel@serbanescu.dk>, 2021.
 # Daniel Batalu <dbatalu@protonmail.com>, 2022.
-# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-05-10 23:25+0000\n"
-"PO-Revision-Date: 2025-05-13 11:16+0200\n"
+"POT-Creation-Date: 2025-11-17 22:14+0000\n"
+"PO-Revision-Date: 2026-01-19 10:50+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -22,7 +22,7 @@ msgstr ""
 "20)) ? 1 : 2);\n"
 "X-Generator: Gtranslator 48.0\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -217,12 +217,11 @@ msgstr "Monitor virtual"
 #: src/screencastwidget.c:636
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
-msgstr "%s vrea să-ți distribuie ecranul. Alege ce dorești să distribui."
+msgstr "%s vrea să distribuie ecranul. Alege ce dorești să distribui."
 
 #: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
-msgstr ""
-"O aplicație vrea să-ți distribuie ecranul. Alege ce dorești să distribui."
+msgstr "O aplicație vrea să distribuie ecranul. Alege ce dorești să distribui."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
@@ -239,7 +238,7 @@ msgstr "_Ecranul"
 #: src/screenshotdialog.c:432
 #, c-format
 msgid "Share this screenshot with %s?"
-msgstr "Se împărtășește acest instantaneu cu %s?"
+msgstr "Se împărtășește acest instantaneu de ecran cu %s?"
 
 #: src/screenshotdialog.c:436
 msgid "Share this screenshot with the requesting app?"
@@ -247,7 +246,7 @@ msgstr "Se împărtășește acest instantaneu de ecran cu aplicația care-l cer
 
 #: src/screenshotdialog.ui:9
 msgid "Screenshot"
-msgstr "Instantaneu"
+msgstr "Instantaneu de ecran"
 
 #: src/screenshotdialog.ui:45
 msgid "_Options…"
@@ -255,11 +254,11 @@ msgstr "_Opțiuni…"
 
 #: src/screenshotdialog.ui:70
 msgid "Take _Screenshot"
-msgstr "Fă un in_stantaneu"
+msgstr "In_stantaneu de ecran"
 
 #: src/screenshotdialog.ui:131
 msgid "Take Screenshot"
-msgstr "Fă un instantaneu"
+msgstr "Instantaneu de ecran"
 
 #: src/screenshotdialog.ui:141
 msgid "Grab Whole Sc_reen"
@@ -293,28 +292,28 @@ msgstr "Include _cursorul"
 msgid "Include Window _Border"
 msgstr "Include _bordura ferestrei"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
-msgstr "Configurarea cerută nu a fost găsită"
+msgstr "Personalizarea cerută nu a fost găsită"
 
 #: src/usbdialog.c:102
 msgid "Serial Number"
 msgstr "Numărul seriei"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s vrea să acceseze următoarele periferice USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "O aplicație dorește să acceseze următoarele periferice USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Periferic necunoscut"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Furnizor necunoscut"
 
