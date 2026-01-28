@@ -2,14 +2,14 @@
 # Copyright (C) 2016 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Yuri Chornoivan <yurchor@ukr.net>, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
 "/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-02-26 20:05+0200\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-01-28 20:34+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 23.04.3\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Портал"
 
@@ -124,8 +124,9 @@ msgstr ""
 "за допомогою програми «Програмні засоби»."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Відкрити за допомогою…"
+#| msgid "Open With…"
+msgid "Open With"
+msgstr "Відкрити за допомогою"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -290,7 +291,7 @@ msgstr "Разом із в_казівником"
 msgid "Include Window _Border"
 msgstr "Включити _рамку вікна"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Потрібного вам параметра не знайдено"
 
@@ -298,20 +299,20 @@ msgstr "Потрібного вам параметра не знайдено"
 msgid "Serial Number"
 msgstr "Серійний номер"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s потрібен доступу до таких пристроїв USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Програмі потрібен доступ до таких пристроїв USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Невідомий пристрій"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Невідомий виробник"
 
