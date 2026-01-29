@@ -440,24 +440,15 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
                              const char            *parent_window,
                              const char            *session_handle,
                              gboolean               is_legacy_session,
-                             unsigned int           capabilities)
+                             unsigned int           capabilities,
+                             gboolean               clipboard_requested)
 {
-  Session *session;
-  gboolean clipboard_requested = FALSE;
   g_autoptr(GtkWindowGroup) window_group = NULL;
   InputCaptureDialogHandle *dialog_handle;
   GxdpExternalWindow *external_parent;
   GdkSurface *surface;
   GtkWidget *fake_parent;
   GtkWindow *dialog;
-
-  session = lookup_session (session_handle);
-  if (session)
-    {
-      InputCaptureSession *input_capture_session = (InputCaptureSession *)session;
-
-      clipboard_requested = input_capture_session->clipboard.clipboard_requested;
-    }
 
   if (parent_window)
     {
@@ -529,7 +520,8 @@ handle_create_session (XdpImplInputCapture   *object,
                                arg_parent_window,
                                arg_session_handle,
                                TRUE,
-                               capabilities);
+                               capabilities,
+                               FALSE);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
@@ -581,6 +573,7 @@ handle_start (XdpImplInputCapture   *object,
   Session *session;
   InputCaptureSession *input_capture_session;
   unsigned int capabilities;
+  gboolean clipboard_requested;
   const char *sender;
   g_autoptr(Request) request = NULL;
   int response;
@@ -609,11 +602,15 @@ handle_start (XdpImplInputCapture   *object,
   request_export (request,
                   g_dbus_method_invocation_get_connection (invocation));
 
+  input_capture_session = (InputCaptureSession *)session;
+  clipboard_requested = input_capture_session->clipboard.clipboard_requested;
+
   create_input_capture_dialog (invocation, request,
                                arg_parent_window,
                                arg_session_handle,
                                FALSE,
-                               capabilities);
+                               capabilities,
+                               clipboard_requested);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 
