@@ -428,10 +428,20 @@ out:
 
   input_capture_dialog_handle_close (dialog_handle);
 
-  xdp_impl_input_capture_complete_create_session ((XdpImplInputCapture *) impl,
-                                                  invocation,
-                                                  response,
-                                                  g_variant_builder_end (&results_builder));
+  if (dialog_handle->is_legacy_session)
+    {
+      xdp_impl_input_capture_complete_create_session ((XdpImplInputCapture *) impl,
+                                                      invocation,
+                                                      response,
+                                                      g_variant_builder_end (&results_builder));
+    }
+  else
+    {
+      xdp_impl_input_capture_complete_start ((XdpImplInputCapture *) impl,
+                                             invocation,
+                                             response,
+                                             g_variant_builder_end (&results_builder));
+    }
 }
 
 static void
