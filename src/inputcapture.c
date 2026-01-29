@@ -54,6 +54,7 @@ typedef struct
 typedef struct _InputCaptureSession
 {
   Session parent;
+  gboolean is_legacy_session;
 
   GnomeInputCaptureSession *gnome_input_capture_session;
   gulong session_closed_handler_id;
@@ -333,10 +334,11 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
       session = lookup_session (dialog_handle->session_handle);
       if (!session)
         {
-          session =
-            (Session *)input_capture_session_new (dialog_handle->request->app_id,
-                                                  dialog_handle->session_handle,
-                                                  dialog_handle->request->sender);
+          input_capture_session = input_capture_session_new (dialog_handle->request->app_id,
+                                                             dialog_handle->session_handle,
+                                                             dialog_handle->request->sender);
+          input_capture_session->is_legacy_session = TRUE;
+          session = (Session *)input_capture_session;
 
           if (!session_export (session,
                                g_dbus_method_invocation_get_connection (invocation),
@@ -529,20 +531,21 @@ handle_create_session2 (XdpImplInputCapture   *object,
                         GVariant              *arg_options)
 {
   const char *sender;
-  Session *session;
+  InputCaptureSession *input_capture_session;
   g_autoptr(GError) error = NULL;
   GVariantBuilder results_builder;
 
   sender = g_dbus_method_invocation_get_sender (invocation);
-  session = (Session *) input_capture_session_new (arg_app_id,
-                                                   arg_session_handle,
-                                                   sender);
+  input_capture_session = input_capture_session_new (arg_app_id,
+                                                     arg_session_handle,
+                                                     sender);
+  input_capture_session->is_legacy_session = FALSE;
 
-  if (!session_export (session,
+  if (!session_export ((Session *)input_capture_session,
                        g_dbus_method_invocation_get_connection (invocation),
                        &error))
     {
-      g_clear_object (&session);
+      g_clear_object (&input_capture_session);
       g_warning ("Failed to create input capture session: %s", error->message);
       g_dbus_method_invocation_return_gerror (invocation, error);
       return G_DBUS_METHOD_INVOCATION_HANDLED;
@@ -565,6 +568,7 @@ handle_start (XdpImplInputCapture   *object,
               GVariant              *arg_options)
 {
   Session *session;
+  InputCaptureSession *input_capture_session;
   unsigned int capabilities;
   const char *sender;
   g_autoptr(Request) request = NULL;
@@ -575,6 +579,14 @@ handle_start (XdpImplInputCapture   *object,
   if (!session)
     {
       g_warning ("Tried to start non-existing session %s", arg_session_handle);
+      response = 2;
+      goto out;
+    }
+
+  input_capture_session = (InputCaptureSession *)session;
+  if (input_capture_session->is_legacy_session)
+    {
+      g_warning ("Tried to start legacy session %s", arg_session_handle);
       response = 2;
       goto out;
     }
