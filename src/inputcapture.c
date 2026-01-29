@@ -280,6 +280,48 @@ on_session_closed (GnomeInputCaptureSession *gnome_input_capture_session,
   session_emit_closed (session);
 }
 
+static GnomeInputCaptureSession *
+start_gnome_input_capture_session (InputCaptureSession      *input_capture_session,
+                                   InputCaptureCapabilities  capabilities)
+{
+  g_autoptr(GError) error = NULL;
+  GnomeInputCaptureSession *gnome_input_capture_session;
+
+  gnome_input_capture_session =
+    gnome_input_capture_create_session (gnome_input_capture, capabilities, &error);
+
+  if (!gnome_input_capture_session)
+    {
+      g_warning ("Failed to create mutter input capture session: %s",
+                 error->message);
+      return NULL;
+    }
+
+  g_signal_connect (gnome_input_capture_session,
+                    "activated",
+                    G_CALLBACK (on_session_activated),
+                    input_capture_session);
+  g_signal_connect (gnome_input_capture_session,
+                    "deactivated",
+                    G_CALLBACK (on_session_deactivated),
+                    input_capture_session);
+  g_signal_connect (gnome_input_capture_session,
+                    "zones-changed",
+                    G_CALLBACK (on_session_zones_changed),
+                    input_capture_session);
+  g_signal_connect (gnome_input_capture_session,
+                    "disabled",
+                    G_CALLBACK (on_session_disabled),
+                    input_capture_session);
+  input_capture_session->session_closed_handler_id =
+    g_signal_connect (gnome_input_capture_session,
+                      "closed",
+                      G_CALLBACK (on_session_closed),
+                      input_capture_session);
+
+  return gnome_input_capture_session;
+}
+
 static void
 on_input_capture_dialog_done_cb (GtkWidget                *widget,
                                  int                       dialog_response,
@@ -318,21 +360,6 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
       Session *session;
       InputCaptureSession *input_capture_session;
 
-      capabilities =
-        dialog_handle->capabilities &
-        gnome_input_capture_get_supported_capabilities (gnome_input_capture);
-      gnome_input_capture_session =
-        gnome_input_capture_create_session (gnome_input_capture,
-                                            capabilities,
-                                            &error);
-      if (!gnome_input_capture_session)
-        {
-          g_warning ("Failed to create mutter input capture session: %s",
-                     error->message);
-          response = 2;
-          goto out;
-        }
-
       session = lookup_session (dialog_handle->session_handle);
       if (!session)
         {
@@ -360,6 +387,18 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
         }
 
       input_capture_session = (InputCaptureSession *)session;
+
+      capabilities =
+        dialog_handle->capabilities &
+        gnome_input_capture_get_supported_capabilities (gnome_input_capture);
+      gnome_input_capture_session = start_gnome_input_capture_session (input_capture_session,
+                                                                       capabilities);
+      if (!gnome_input_capture_session)
+        {
+          response = 2;
+          goto out;
+        }
+
       input_capture_session->gnome_input_capture_session =
         g_steal_pointer (&gnome_input_capture_session);
 
@@ -390,28 +429,6 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
           g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
                                  g_variant_new_boolean (clipboard_enabled));
         }
-
-      g_signal_connect (gnome_input_capture_session,
-                        "activated",
-                        G_CALLBACK (on_session_activated),
-                        session);
-      g_signal_connect (gnome_input_capture_session,
-                        "deactivated",
-                        G_CALLBACK (on_session_deactivated),
-                        session);
-      g_signal_connect (gnome_input_capture_session,
-                        "zones-changed",
-                        G_CALLBACK (on_session_zones_changed),
-                        session);
-      g_signal_connect (gnome_input_capture_session,
-                        "disabled",
-                        G_CALLBACK (on_session_disabled),
-                        session);
-      input_capture_session->session_closed_handler_id =
-        g_signal_connect (gnome_input_capture_session,
-                          "closed",
-                          G_CALLBACK (on_session_closed),
-                          session);
 
       g_variant_builder_add (&results_builder, "{sv}",
                              "capabilities",
