@@ -30,12 +30,19 @@
 #include "request.h"
 #include "utils.h"
 
+#define RESTORE_FORMAT_VERSION 1
+#define INPUT_CAPTURE_RESTORE_VARIANT_TYPE "(xxub)"
+
 typedef enum _InputCaptureCapabilities
 {
   INPUT_CAPTURE_CAPABILITY_NONE = 0,
   INPUT_CAPTURE_CAPABILITY_KEYBOARD = 1,
   INPUT_CAPTURE_CAPABILITY_POINTER = 2,
   INPUT_CAPTURE_CAPABILITY_TOUCH = 4,
+
+  INPUT_CAPTURE_CAPABILITY_ALL = (INPUT_CAPTURE_CAPABILITY_KEYBOARD |
+                                  INPUT_CAPTURE_CAPABILITY_POINTER |
+                                  INPUT_CAPTURE_CAPABILITY_TOUCH)
 } InputCaptureCapabilities;
 
 typedef struct _InputCaptureDialogHandle InputCaptureDialogHandle;
@@ -66,6 +73,13 @@ typedef struct _InputCaptureSession
 
     OrgGnomeMutterClipboard *clipboard_proxy;
   } clipboard;
+
+  guint capabilities;
+  InputCapturePersistMode persist_mode;
+  struct {
+    GVariant *data;
+    int64_t creation_time;
+  } restored;
 
   GList *barrier_infos;
 
@@ -280,16 +294,80 @@ on_session_closed (GnomeInputCaptureSession *gnome_input_capture_session,
   session_emit_closed (session);
 }
 
+static gboolean
+deserialize_session_from_restore_data (InputCaptureSession *input_capture_session,
+                                       GVariant            *restore_data)
+{
+  int64_t creation_time;
+  int64_t last_used_time;
+  uint32_t capabilities;
+  gboolean clipboard_enabled;
+
+  if (!restore_data)
+    return FALSE;
+
+  g_variant_get (restore_data,
+                 INPUT_CAPTURE_RESTORE_VARIANT_TYPE,
+                 &creation_time,
+                 &last_used_time,
+                 &capabilities,
+                 &clipboard_enabled);
+
+  if (capabilities & ~INPUT_CAPTURE_CAPABILITY_ALL)
+    {
+      g_warning ("Tried to restore bogus device type mask 0x%x",
+                 capabilities);
+      return FALSE;
+    }
+
+  input_capture_session->capabilities = capabilities;
+  input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
+
+  return TRUE;
+}
+
+static GVariant *
+serialize_session_as_restore_data (InputCaptureSession *input_capture_session,
+                                   uint32_t             capabilities,
+                                   gboolean             clipboard_enabled)
+{
+  GVariantBuilder restore_data_builder;
+  GVariantBuilder impl_builder;
+  int64_t creation_time;
+  int64_t last_used_time;
+
+  last_used_time = g_get_real_time ();
+  if (input_capture_session->restored.creation_time != -1)
+    creation_time = input_capture_session->restored.creation_time;
+  else
+    creation_time = last_used_time;
+
+  g_variant_builder_init (&impl_builder,
+                          G_VARIANT_TYPE (INPUT_CAPTURE_RESTORE_VARIANT_TYPE));
+  g_variant_builder_add (&impl_builder, "x", creation_time);
+  g_variant_builder_add (&impl_builder, "x", last_used_time);
+  g_variant_builder_add (&impl_builder, "u", capabilities);
+  g_variant_builder_add (&impl_builder, "b",
+                         input_capture_session->clipboard.clipboard_enabled);
+
+  g_variant_builder_init (&restore_data_builder, G_VARIANT_TYPE ("(suv)"));
+  g_variant_builder_add (&restore_data_builder, "s", "GNOME");
+  g_variant_builder_add (&restore_data_builder, "u", RESTORE_FORMAT_VERSION);
+  g_variant_builder_add (&restore_data_builder, "v", g_variant_builder_end (&impl_builder));
+
+  return g_variant_builder_end (&restore_data_builder);
+}
+
 static GnomeInputCaptureSession *
-start_gnome_input_capture_session (InputCaptureSession      *input_capture_session,
-                                   InputCaptureCapabilities  capabilities)
+start_gnome_input_capture_session (InputCaptureSession *input_capture_session)
 {
   g_autoptr(GError) error = NULL;
   GnomeInputCaptureSession *gnome_input_capture_session;
 
   gnome_input_capture_session =
-    gnome_input_capture_create_session (gnome_input_capture, capabilities, &error);
-
+    gnome_input_capture_create_session (gnome_input_capture,
+                                        input_capture_session->capabilities,
+                                        &error);
   if (!gnome_input_capture_session)
     {
       g_warning ("Failed to create mutter input capture session: %s",
@@ -323,22 +401,22 @@ start_gnome_input_capture_session (InputCaptureSession      *input_capture_sessi
 }
 
 static XdgDesktopPortalResponseEnum
-start_done (InputCaptureSession      *input_capture_session,
-            GVariantBuilder          *results_builder,
-            InputCaptureCapabilities  capabilities,
-            gboolean                  clipboard_enabled)
+start_done (InputCaptureSession *input_capture_session,
+            GVariantBuilder     *results_builder)
 {
+  XdgDesktopPortalResponseEnum response = XDG_DESKTOP_PORTAL_RESPONSE_OTHER;
   GnomeInputCaptureSession *gnome_input_capture_session;
+  InputCapturePersistMode persist_mode;
+  Session *session = (Session *)input_capture_session;
 
-  gnome_input_capture_session = start_gnome_input_capture_session (input_capture_session,
-                                                                   capabilities);
+  gnome_input_capture_session = start_gnome_input_capture_session (input_capture_session);
   if (!gnome_input_capture_session)
-    return XDG_DESKTOP_PORTAL_RESPONSE_OTHER;
+    goto out;
 
   input_capture_session->gnome_input_capture_session =
     gnome_input_capture_session;
 
-  if (clipboard_enabled)
+  if (input_capture_session->clipboard.clipboard_enabled)
     {
       g_autoptr (GError) error = NULL;
       const char *mutter_session_path;
@@ -353,30 +431,49 @@ start_done (InputCaptureSession      *input_capture_session,
                                                    &error);
       if (input_capture_session->clipboard.clipboard_proxy)
         {
-          clipboard_add_session (CLIPBOARD_SESSION (input_capture_session));
+          clipboard_add_session (CLIPBOARD_SESSION (session));
         }
       else
         {
           g_warning ("Failed to create clipboard proxy: %s", error->message);
-          clipboard_enabled = FALSE;
+          input_capture_session->clipboard.clipboard_enabled = FALSE;
         }
 
-      input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
       g_variant_builder_add (results_builder, "{sv}", "clipboard_enabled",
-                              g_variant_new_boolean (clipboard_enabled));
+                             g_variant_new_boolean (input_capture_session->clipboard.clipboard_enabled));
     }
 
-  g_variant_builder_add (results_builder, "{sv}",
-                          "capabilities",
-                          g_variant_new_uint32 (capabilities));
+  persist_mode = input_capture_session->persist_mode;
+  if (persist_mode != INPUT_CAPTURE_PERSIST_MODE_NONE)
+    {
+      GVariant *restore_data;
 
-  return XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS;
+      restore_data = serialize_session_as_restore_data (input_capture_session,
+                                                        input_capture_session->capabilities,
+                                                        input_capture_session->clipboard.clipboard_enabled);
+      if (restore_data)
+        {
+          g_variant_builder_add (results_builder, "{sv}", "persist_mode",
+                                 g_variant_new_uint32 (persist_mode));
+          g_variant_builder_add (results_builder, "{sv}", "restore_data",
+                                 restore_data);
+        }
+    }
+
+  g_variant_builder_add (results_builder, "{sv}", "capabilities",
+                         g_variant_new_uint32(input_capture_session->capabilities));
+
+  response = XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS;
+
+out:
+  return response;
 }
 
 static void
 on_input_capture_dialog_done_cb (GtkWidget                *widget,
                                  int                       dialog_response,
                                  gboolean                  clipboard_enabled,
+                                 gboolean                  persist_allowed,
                                  InputCaptureDialogHandle *dialog_handle)
 {
   GDBusMethodInvocation *invocation = dialog_handle->create_session_invocation;
@@ -442,11 +539,12 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
       capabilities =
         dialog_handle->capabilities &
         gnome_input_capture_get_supported_capabilities (gnome_input_capture);
+      input_capture_session->capabilities = capabilities;
+      input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
+      if (!persist_allowed)
+        input_capture_session->persist_mode = INPUT_CAPTURE_PERSIST_MODE_NONE;
 
-      response = start_done (input_capture_session,
-                             &results_builder,
-                             capabilities,
-                             clipboard_enabled);
+      response = start_done (input_capture_session, &results_builder);
       if (response != XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS)
           goto out;
 
@@ -477,13 +575,14 @@ out:
 }
 
 static void
-create_input_capture_dialog (GDBusMethodInvocation *invocation,
-                             Request               *request,
-                             const char            *parent_window,
-                             const char            *session_handle,
-                             gboolean               is_legacy_session,
-                             unsigned int           capabilities,
-                             gboolean               clipboard_requested)
+create_input_capture_dialog (GDBusMethodInvocation   *invocation,
+                             Request                 *request,
+                             const char              *parent_window,
+                             const char              *session_handle,
+                             gboolean                 is_legacy_session,
+                             unsigned int             capabilities,
+                             gboolean                 clipboard_requested,
+                             InputCapturePersistMode  persist_mode)
 {
   g_autoptr(GtkWindowGroup) window_group = NULL;
   InputCaptureDialogHandle *dialog_handle;
@@ -508,7 +607,8 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   g_object_ref_sink (fake_parent);
 
   dialog = GTK_WINDOW (input_capture_dialog_new (request->app_id,
-                                                 clipboard_requested));
+                                                 clipboard_requested,
+                                                 persist_mode));
   gtk_window_set_transient_for (dialog, GTK_WINDOW (fake_parent));
   gtk_window_set_modal (dialog, TRUE);
 
@@ -563,7 +663,8 @@ handle_create_session (XdpImplInputCapture   *object,
                                arg_session_handle,
                                TRUE,
                                capabilities,
-                               FALSE);
+                               FALSE,
+                               INPUT_CAPTURE_PERSIST_MODE_NONE);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
@@ -620,6 +721,12 @@ handle_start (XdpImplInputCapture   *object,
   g_autoptr(Request) request = NULL;
   int response;
   GVariantBuilder results_builder;
+  g_autoptr(GVariant) restore_data = NULL;
+  g_autoptr(GVariant) valid_restore_data = NULL;
+  g_autofree char *provider = NULL;
+  uint32_t version;
+
+  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
 
   session = lookup_session (arg_session_handle);
   if (!session)
@@ -638,13 +745,36 @@ handle_start (XdpImplInputCapture   *object,
     }
 
   g_variant_lookup (arg_options, "capabilities", "u", &capabilities);
+  g_variant_lookup (arg_options, "persist_mode", "u",
+                    &input_capture_session->persist_mode);
+
+  if (g_variant_lookup (arg_options, "restore_data", "(suv)",
+                        &provider, &version, &restore_data))
+    {
+      if (!g_variant_check_format_string (restore_data,
+                                          INPUT_CAPTURE_RESTORE_VARIANT_TYPE,
+                                          FALSE))
+        {
+          g_warning ("Cannot parse restore data, ignoring");
+        }
+      else if (g_strcmp0 (provider, "GNOME") == 0 &&
+               version == RESTORE_FORMAT_VERSION)
+        {
+          valid_restore_data = g_steal_pointer (&restore_data);
+        }
+    }
 
   sender = g_dbus_method_invocation_get_sender (invocation);
   request = request_new (sender, arg_app_id, arg_handle);
   request_export (request,
                   g_dbus_method_invocation_get_connection (invocation));
 
-  input_capture_session = (InputCaptureSession *)session;
+  if (deserialize_session_from_restore_data (input_capture_session, valid_restore_data))
+    {
+      response = start_done (input_capture_session, &results_builder);
+      goto out;
+    }
+
   clipboard_requested = input_capture_session->clipboard.clipboard_requested;
 
   create_input_capture_dialog (invocation, request,
@@ -652,14 +782,14 @@ handle_start (XdpImplInputCapture   *object,
                                arg_session_handle,
                                FALSE,
                                capabilities,
-                               clipboard_requested);
+                               clipboard_requested,
+                               input_capture_session->persist_mode);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 
 out:
-  g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
-  xdp_impl_input_capture_complete_start (object, invocation, response,
-                                         g_variant_builder_end (&results_builder));
+  xdp_impl_input_capture_complete_start(
+      object, invocation, response, g_variant_builder_end (&results_builder));
   return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
@@ -1021,7 +1151,7 @@ on_gnome_input_capture_enabled (GnomeInputCapture *gnome_input_capture)
   uint32_t supported_capabilities;
 
   impl = G_DBUS_INTERFACE_SKELETON (xdp_impl_input_capture_skeleton_new ());
-  xdp_impl_input_capture_set_version (XDP_IMPL_INPUT_CAPTURE (impl), 2);
+  xdp_impl_input_capture_set_version (XDP_IMPL_INPUT_CAPTURE (impl), 3);
 
   g_signal_connect (impl, "handle-create-session",
                     G_CALLBACK (handle_create_session), NULL);
@@ -1153,6 +1283,7 @@ input_capture_session_finalize (GObject *object)
 static void
 input_capture_session_init (InputCaptureSession *input_capture_session)
 {
+  input_capture_session->restored.creation_time = -1;
 }
 
 static void

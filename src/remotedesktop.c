@@ -517,6 +517,7 @@ serialize_session_as_restore_data (RemoteDesktopSession *remote_desktop_session,
   g_variant_builder_add (&restore_data_builder, "s", "GNOME");
   g_variant_builder_add (&restore_data_builder, "u", RESTORE_FORMAT_VERSION);
   g_variant_builder_add (&restore_data_builder, "v", g_variant_builder_end (&impl_builder));
+
   return g_variant_builder_end (&restore_data_builder);
 }
 

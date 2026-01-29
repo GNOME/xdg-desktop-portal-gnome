@@ -20,9 +20,12 @@
 
 #include <gtk/gtk.h>
 
+#include "inputcapture.h"
+
 #define INPUT_CAPTURE_TYPE_DIALOG (input_capture_dialog_get_type ())
 G_DECLARE_FINAL_TYPE (InputCaptureDialog, input_capture_dialog,
                       INPUT_CAPTURE, DIALOG, GtkWindow)
 
-InputCaptureDialog * input_capture_dialog_new (const char *app_id,
-                                               gboolean    clipboard_requested);
+InputCaptureDialog * input_capture_dialog_new (const char              *app_id,
+                                               gboolean                 clipboard_requested,
+                                               InputCapturePersistMode  persist_mode);

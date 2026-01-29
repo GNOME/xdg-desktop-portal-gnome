@@ -30,6 +30,13 @@ typedef struct _InputCaptureZone
   int32_t y;
 } InputCaptureZone;
 
+typedef enum _InputCapturePersistMode
+{
+  INPUT_CAPTURE_PERSIST_MODE_NONE = 0,
+  INPUT_CAPTURE_PERSIST_MODE_TRANSIENT = 1,
+  INPUT_CAPTURE_PERSIST_MODE_PERSISTENT = 2,
+} InputCapturePersistMode;
+
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (InputCaptureZone, g_free);
 
 gboolean input_capture_init (GDBusConnection  *connection,

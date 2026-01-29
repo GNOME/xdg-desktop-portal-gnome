@@ -53,6 +53,18 @@
                     </attributes>
                   </object>
                 </child>
+
+                <!-- Persist permission -->
+                <child>
+                  <object class="GtkCheckButton" id="persist_check">
+                    <property name="visible">False</property>
+                    <property name="active">True</property>
+                    <property name="halign">center</property>
+                    <property name="label" translatable="yes">_Remember this selection</property>
+                    <property name="use-underline">True</property>
+                  </object>
+                </child>
+
                 <child>
                   <object class="GtkListBox">
                     <property name="valign">start</property>
