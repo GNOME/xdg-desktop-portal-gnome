@@ -322,6 +322,57 @@ start_gnome_input_capture_session (InputCaptureSession      *input_capture_sessi
   return gnome_input_capture_session;
 }
 
+static XdgDesktopPortalResponseEnum
+start_done (InputCaptureSession      *input_capture_session,
+            GVariantBuilder          *results_builder,
+            InputCaptureCapabilities  capabilities,
+            gboolean                  clipboard_enabled)
+{
+  GnomeInputCaptureSession *gnome_input_capture_session;
+
+  gnome_input_capture_session = start_gnome_input_capture_session (input_capture_session,
+                                                                   capabilities);
+  if (!gnome_input_capture_session)
+    return XDG_DESKTOP_PORTAL_RESPONSE_OTHER;
+
+  input_capture_session->gnome_input_capture_session =
+    gnome_input_capture_session;
+
+  if (clipboard_enabled)
+    {
+      g_autoptr (GError) error = NULL;
+      const char *mutter_session_path;
+
+      mutter_session_path = gnome_input_capture_get_path (gnome_input_capture_session);
+      input_capture_session->clipboard.clipboard_proxy =
+        org_gnome_mutter_clipboard_proxy_new_sync (impl_connection,
+                                                   G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+                                                   "org.gnome.Mutter.InputCapture",
+                                                   mutter_session_path,
+                                                   NULL,
+                                                   &error);
+      if (input_capture_session->clipboard.clipboard_proxy)
+        {
+          clipboard_add_session (CLIPBOARD_SESSION (input_capture_session));
+        }
+      else
+        {
+          g_warning ("Failed to create clipboard proxy: %s", error->message);
+          clipboard_enabled = FALSE;
+        }
+
+      input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
+      g_variant_builder_add (results_builder, "{sv}", "clipboard_enabled",
+                              g_variant_new_boolean (clipboard_enabled));
+    }
+
+  g_variant_builder_add (results_builder, "{sv}",
+                          "capabilities",
+                          g_variant_new_uint32 (capabilities));
+
+  return XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS;
+}
+
 static void
 on_input_capture_dialog_done_cb (GtkWidget                *widget,
                                  int                       dialog_response,
@@ -391,50 +442,15 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
       capabilities =
         dialog_handle->capabilities &
         gnome_input_capture_get_supported_capabilities (gnome_input_capture);
-      gnome_input_capture_session = start_gnome_input_capture_session (input_capture_session,
-                                                                       capabilities);
-      if (!gnome_input_capture_session)
-        {
-          response = 2;
+
+      response = start_done (input_capture_session,
+                             &results_builder,
+                             capabilities,
+                             clipboard_enabled);
+      if (response != XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS)
           goto out;
-        }
 
-      input_capture_session->gnome_input_capture_session =
-        g_steal_pointer (&gnome_input_capture_session);
-
-      if (clipboard_enabled)
-        {
-          g_autoptr (GError) error = NULL;
-          const char *mutter_session_path;
-
-          mutter_session_path = gnome_input_capture_get_path (gnome_input_capture_session);
-          input_capture_session->clipboard.clipboard_proxy =
-            org_gnome_mutter_clipboard_proxy_new_sync (impl_connection,
-                                                       G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
-                                                       "org.gnome.Mutter.InputCapture",
-                                                       mutter_session_path,
-                                                       NULL,
-                                                       &error);
-          if (input_capture_session->clipboard.clipboard_proxy)
-            {
-              clipboard_add_session (CLIPBOARD_SESSION (session));
-            }
-          else
-            {
-              g_warning ("Failed to create clipboard proxy: %s", error->message);
-              clipboard_enabled = FALSE;
-            }
-
-          input_capture_session->clipboard.clipboard_enabled = clipboard_enabled;
-          g_variant_builder_add (&results_builder, "{sv}", "clipboard_enabled",
-                                 g_variant_new_boolean (clipboard_enabled));
-        }
-
-      g_variant_builder_add (&results_builder, "{sv}",
-                             "capabilities",
-                             g_variant_new_uint32 (capabilities));
-
-      response = 0;
+      response = XDG_DESKTOP_PORTAL_RESPONSE_SUCCESS;
     }
 
 out:
