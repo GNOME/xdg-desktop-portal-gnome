@@ -135,7 +135,7 @@ input_capture_dialog_close_request (GtkWindow *dialog)
 {
   gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
-  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL, 0, NULL);
+  g_signal_emit (dialog, signals[DONE], 0, GTK_RESPONSE_CANCEL);
 
   return TRUE;
 }
