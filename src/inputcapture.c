@@ -1112,6 +1112,7 @@ input_capture_session_finalize (GObject *object)
 
   g_clear_list (&input_capture_session->barrier_infos, g_free);
   g_clear_object (&input_capture_session->gnome_input_capture_session);
+  g_clear_object (&input_capture_session->clipboard.clipboard_proxy);
 
   G_OBJECT_CLASS (input_capture_session_parent_class)->finalize (object);
 }
