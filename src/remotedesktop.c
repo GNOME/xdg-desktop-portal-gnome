@@ -1324,6 +1324,7 @@ remote_desktop_session_finalize (GObject *object)
 static void
 remote_desktop_session_init (RemoteDesktopSession *remote_desktop_session)
 {
+  remote_desktop_session->restored.creation_time = -1;
 }
 
 static void
