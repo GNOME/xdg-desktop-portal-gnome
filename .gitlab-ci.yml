@@ -11,6 +11,12 @@ include:
       dist-job-name: "dist-xdg-desktop-portal-gnome-tarball"
       tarball-artifact-path: $TARBALL_ARTIFACT_PATH
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@25.7"
+    inputs:
+      before-script: |
+        ./.gitlab-ci/install-meson-project.sh \
+          -Dtests=disabled \
+          https://github.com/flatpak/xdg-desktop-portal.git \
+          1.21.1 .
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@25.7"
@@ -19,6 +25,11 @@ include:
       # There are no tests atm
       run-tests: "no"
       meson-options: "$MESON_OPTIONS"
+      before-script: |
+        ./.gitlab-ci/install-meson-project.sh \
+          -Dtests=disabled \
+          https://github.com/flatpak/xdg-desktop-portal.git \
+          1.21.1 .
 
 stages:
   - review
@@ -82,7 +93,7 @@ repo-sanity:
 
 .container-common:
   variables:
-    FDO_DISTRIBUTION_TAG: '2025-11-06.0'
+    FDO_DISTRIBUTION_TAG: '2026-05-20.1'
 
 .fedora-container:
   extends:
@@ -125,7 +136,7 @@ repo-sanity:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        main . 005f8fc73ce672fbc152de91cb2f9a81e35e5e5f
+        1.21.1 .
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
@@ -171,7 +182,7 @@ repo-sanity:
 
       ./.gitlab-ci/install-meson-project.sh \
         https://github.com/flatpak/xdg-desktop-portal.git \
-        main . 005f8fc73ce672fbc152de91cb2f9a81e35e5e5f
+        1.21.1 .
 
       ./.gitlab-ci/install-meson-project.sh \
         https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas.git \
