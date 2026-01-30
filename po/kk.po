@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
-"POT-Creation-Date: 2025-12-10 23:46+0000\n"
-"PO-Revision-Date: 2026-01-10 14:55+0500\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues/\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-01-30 07:06+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -63,14 +64,16 @@ msgstr "Жеке ақпаратыңызбен сұраған қолданбам�
 msgid "Share Details"
 msgstr "Бөлісу ақпараты"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:17 src/dynamic-launcher.c:258
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
 #: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "Ба_с тарту"
 
-#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21 src/remotedesktopdialog.ui:36
-#: src/screencastdialog.ui:39 src/screenshotdialog.ui:52
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "Бөлі_су"
 
@@ -105,20 +108,21 @@ msgstr "Қолданбаны таңдаңыз"
 
 #: src/appchooserdialog.c:370
 #, c-format
-msgid "No apps installed that can open “%s”. You can find more apps in Software"
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"\"%s\" аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды БҚ қолданбасынан "
-"табуға болады"
+"\"%s\" аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды БҚ "
+"қолданбасынан табуға болады"
 
 #: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
-"Ешбір сай келетін қолданба орнатылмаған. Қосымша қолданбаларды БҚ қолданбасынан табуға "
-"болады."
+"Ешбір сай келетін қолданба орнатылмаған. Қосымша қолданбаларды БҚ "
+"қолданбасынан табуға болады."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Көмегімен ашу…"
+msgid "Open With"
+msgstr "Көмегімен ашу"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -208,7 +212,8 @@ msgstr "%s сіздің экраныңызбен бөліскісі келеді
 
 #: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
-msgstr "Қолданба сіздің экраныңызбен бөліскісі келеді. Немен бөлісуді таңдаңыз."
+msgstr ""
+"Қолданба сіздің экраныңызбен бөліскісі келеді. Немен бөлісуді таңдаңыз."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
@@ -279,7 +284,7 @@ msgstr "К_урсорды қоса түсіру"
 msgid "Include Window _Border"
 msgstr "Терезе жақ_тауын қоса түсіру"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Сұралған баптау табылмады"
 
@@ -333,11 +338,11 @@ msgid "Failed to load image file"
 msgstr "Сурет файлын жүктеу сәтсіз аяқталды"
 
 #~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more apps in "
-#~ "Software."
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
 #~ msgstr ""
-#~ "file.extension аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды БҚ "
-#~ "қолданбасынан табуға болады."
+#~ "file.extension аша алатын қолданбалар орнатылмаған. Қосымша қолданбаларды "
+#~ "БҚ қолданбасынан табуға болады."
 
 #~ msgid "_Select"
 #~ msgstr "_Таңдау"
@@ -385,13 +390,16 @@ msgstr "Сурет файлын жүктеу сәтсіз аяқталды"
 #~ msgstr "\"%s\" фонда орындалуда"
 
 #~ msgid ""
-#~ "This might be for a legitimate reason, but the application has not provided one.\n"
+#~ "This might be for a legitimate reason, but the application has not "
+#~ "provided one.\n"
 #~ "\n"
 #~ "Note that forcing an application to quit might cause data loss."
 #~ msgstr ""
-#~ "Бұған маңызды себеп болуы мүмкін, бірақ қолданба ондай себепті көрсетпеді.\n"
+#~ "Бұған маңызды себеп болуы мүмкін, бірақ қолданба ондай себепті "
+#~ "көрсетпеді.\n"
 #~ "\n"
-#~ "Ескертеміз, қолданба жұмысын мәжбүрлетіп аяқтау нәтижесінде деректер жоғалуы мүмкін."
+#~ "Ескертеміз, қолданба жұмысын мәжбүрлетіп аяқтау нәтижесінде деректер "
+#~ "жоғалуы мүмкін."
 
 #~ msgid "Force quit"
 #~ msgstr "Мәжбүрлі шығу"
