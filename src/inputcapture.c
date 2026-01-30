@@ -86,6 +86,8 @@ typedef struct _InputCaptureDialogHandle
   GtkWindow *dialog;
   GxdpExternalWindow *external_parent;
 
+  gboolean is_legacy_session;
+
   unsigned int capabilities;
 
   int response;
@@ -334,6 +336,12 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
       session = lookup_session (dialog_handle->session_handle);
       if (!session)
         {
+          if (!dialog_handle->is_legacy_session)
+            {
+              response = 1; /* cancelled */
+              goto out;
+            }
+
           input_capture_session = input_capture_session_new (dialog_handle->request->app_id,
                                                              dialog_handle->session_handle,
                                                              dialog_handle->request->sender);
@@ -431,6 +439,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
                              Request               *request,
                              const char            *parent_window,
                              const char            *session_handle,
+                             gboolean               is_legacy_session,
                              unsigned int           capabilities)
 {
   Session *session;
@@ -480,6 +489,7 @@ create_input_capture_dialog (GDBusMethodInvocation *invocation,
   dialog_handle->session_handle = g_strdup (session_handle);
   dialog_handle->create_session_invocation = invocation;
   dialog_handle->capabilities = capabilities;
+  dialog_handle->is_legacy_session = is_legacy_session;
 
   g_signal_connect (request, "handle-close",
                     G_CALLBACK (on_request_handle_close_cb), dialog_handle);
@@ -518,6 +528,7 @@ handle_create_session (XdpImplInputCapture   *object,
   create_input_capture_dialog (invocation, request,
                                arg_parent_window,
                                arg_session_handle,
+                               TRUE,
                                capabilities);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
@@ -601,6 +612,7 @@ handle_start (XdpImplInputCapture   *object,
   create_input_capture_dialog (invocation, request,
                                arg_parent_window,
                                arg_session_handle,
+                               FALSE,
                                capabilities);
 
   return G_DBUS_METHOD_INVOCATION_HANDLED;
