@@ -314,7 +314,7 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
     {
       g_autoptr(GError) error = NULL;
       InputCaptureCapabilities capabilities;
-      GnomeInputCaptureSession *gnome_input_capture_session;
+      g_autoptr(GnomeInputCaptureSession) gnome_input_capture_session = NULL;
       Session *session;
       InputCaptureSession *input_capture_session;
 
@@ -352,7 +352,6 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
                                g_dbus_method_invocation_get_connection (invocation),
                                &error))
             {
-              g_clear_object (&gnome_input_capture_session);
               g_clear_object (&session);
               g_warning ("Failed to create input capture session: %s", error->message);
               response = 2;
@@ -362,7 +361,7 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
 
       input_capture_session = (InputCaptureSession *)session;
       input_capture_session->gnome_input_capture_session =
-        gnome_input_capture_session;
+        g_steal_pointer (&gnome_input_capture_session);
 
       if (clipboard_enabled)
         {

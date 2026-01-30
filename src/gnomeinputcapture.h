@@ -24,8 +24,10 @@
 
 #include "screencast.h"
 
+G_DECLARE_FINAL_TYPE (GnomeInputCaptureSession, gnome_input_capture_session,
+                      GNOME_INPUT_CAPTURE, Session, GObject)
+
 typedef struct _GnomeInputCapture GnomeInputCapture;
-typedef struct _GnomeInputCaptureSession GnomeInputCaptureSession;
 
 GnomeInputCapture *gnome_input_capture_new (GDBusConnection *connection);
 

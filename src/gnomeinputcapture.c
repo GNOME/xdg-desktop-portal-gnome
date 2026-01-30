@@ -58,11 +58,6 @@ typedef struct _GnomeInputCaptureSession
   uint32_t serial;
 } GnomeInputCaptureSession;
 
-typedef struct _GnomeInputCaptureSessionClass
-{
-  GObjectClass parent_class;
-} GnomeInputCaptureSessionClass;
-
 typedef struct _GnomeInputCapture
 {
   GObject parent;
@@ -78,7 +73,6 @@ typedef struct _GnomeInputCaptureClass
   GObjectClass parent_class;
 } GnomeInputCaptureClass;
 
-static GType gnome_input_capture_session_get_type (void);
 G_DEFINE_TYPE (GnomeInputCaptureSession, gnome_input_capture_session,
                G_TYPE_OBJECT)
 
