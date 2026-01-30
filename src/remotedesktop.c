@@ -1298,6 +1298,7 @@ remote_desktop_session_finalize (GObject *object)
   g_clear_pointer (&remote_desktop_session->streams_to_restore,
                    g_ptr_array_unref);
   g_clear_pointer (&remote_desktop_session->restored.data, g_variant_unref);
+  g_clear_object (&remote_desktop_session->clipboard.clipboard_proxy);
   g_free (remote_desktop_session->mutter_session_path);
 
   G_OBJECT_CLASS (remote_desktop_session_parent_class)->finalize (object);
