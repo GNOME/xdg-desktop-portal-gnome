@@ -130,18 +130,9 @@ input_capture_dialog_new (const char *app_id,
   dialog = g_object_new (INPUT_CAPTURE_TYPE_DIALOG, NULL);
   set_app_id (dialog, app_id);
 
-  if (clipboard_requested)
-    {
-      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_clipboard_row),
-                              TRUE);
-      gtk_switch_set_active (dialog->allow_clipboard_switch, TRUE);
-    }
-  else
-    {
-      gtk_widget_set_visible (GTK_WIDGET (dialog->allow_clipboard_row),
-                              FALSE);
-      gtk_switch_set_active (dialog->allow_clipboard_switch, FALSE);
-    }
+  gtk_widget_set_visible (GTK_WIDGET (dialog->allow_clipboard_row),
+                          clipboard_requested);
+  gtk_switch_set_active (dialog->allow_clipboard_switch, clipboard_requested);
 
   return dialog;
 }
