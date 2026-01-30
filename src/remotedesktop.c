@@ -532,7 +532,7 @@ serialize_session_as_restore_data (RemoteDesktopSession *remote_desktop_session,
   if (remote_desktop_session->restored.creation_time != -1)
     creation_time = remote_desktop_session->restored.creation_time;
   else
-    creation_time = g_get_real_time ();
+    creation_time = last_used_time;
 
   g_variant_builder_init (&impl_builder,
                           G_VARIANT_TYPE (REMOTE_DESKTOP_RESTORE_VARIANT_TYPE));
