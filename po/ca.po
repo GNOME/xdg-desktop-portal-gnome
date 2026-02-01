@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-01 22:42+0100\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-01-29 08:14+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -124,8 +124,8 @@ msgstr ""
 "Programari."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Obre amb…"
+msgid "Open With"
+msgstr "Obre amb"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -288,7 +288,7 @@ msgstr "_Inclou el punter"
 msgid "Include Window _Border"
 msgstr "In_clou la vora de la finestra"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "No s'ha trobat la configuració sol·licitada"
 
@@ -296,20 +296,20 @@ msgstr "No s'ha trobat la configuració sol·licitada"
 msgid "Serial Number"
 msgstr "Número de sèrie"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s vol accedir als següents dispositius USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Una aplicació vol accedir als següents dispositius USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Dispositiu desconegut"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Fabricant desconegut"
 
