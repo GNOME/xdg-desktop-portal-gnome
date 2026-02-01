@@ -4,29 +4,30 @@
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
 # Alex Jr <alexalencarjr@outlook.com>, 2023.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2016-2025.
+# Álvaro Burns <>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-02-26 22:10-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-02-01 08:44-0300\n"
+"Last-Translator: Álvaro Burns <>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 47.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 49.0\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -130,8 +131,8 @@ msgstr ""
 "em Programas."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Abrir com…"
+msgid "Open With"
+msgstr "Abrir com"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -294,7 +295,7 @@ msgstr "Incluir cu_rsor"
 msgid "Include Window _Border"
 msgstr "Incluir a _borda da janela"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Configuração solicitada não foi encontrada"
 
@@ -302,20 +303,20 @@ msgstr "Configuração solicitada não foi encontrada"
 msgid "Serial Number"
 msgstr "Número de série"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s deseja acessar os seguintes dispositivos USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Um aplicativo deseja acessar os seguintes dispositivos USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Dispositivo desconhecido"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Fornecedor desconhecido"
 
