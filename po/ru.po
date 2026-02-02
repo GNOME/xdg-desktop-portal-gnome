@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-02-26 18:21+0300\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-01-28 20:01+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -20,9 +20,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Портал"
 
@@ -125,8 +125,8 @@ msgstr ""
 "приложений в Центре приложений."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Открыть с помощью…"
+msgid "Open With"
+msgstr "Открыть с помощью"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -291,7 +291,7 @@ msgstr "Показать курсор _мыши"
 msgid "Include Window _Border"
 msgstr "Показать _границу окна"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Запрашиваемая настройка не найдена"
 
@@ -299,20 +299,20 @@ msgstr "Запрашиваемая настройка не найдена"
 msgid "Serial Number"
 msgstr "Серийный номер"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "Приложение «%s» хочет получить доступ к следующим устройствам USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Приложение хочет получить доступ к следующим устройствам USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Неизвестное устройство"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Неизвестный производитель"
 
