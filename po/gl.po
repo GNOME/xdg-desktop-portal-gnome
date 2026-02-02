@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-02-27 23:20+0100\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-02-02 12:13+0100\n"
 "Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
 "Language-Team: Galician <Proxecto Trasno <proxecto@trasno.gal>>\n"
 "Language: gl\n"
@@ -21,9 +21,9 @@ msgstr ""
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-State: Translating\n"
 "X-DL-Team: gl\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -63,20 +63,23 @@ msgstr "Compartir a súa información persoal con %1$s? %2$s"
 #: src/accountdialog.c:239
 #, c-format
 msgid "Share your personal information with the requesting app? %s"
-msgstr "Desexa compartir a súa información persoal coa aplicación que o solicita? %s"
+msgstr ""
+"Desexa compartir a súa información persoal coa aplicación que o solicita? %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
 msgstr "Compartir detalles"
 
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:17 src/dynamic-launcher.c:258
-#: src/inputcapturedialog.ui:13 src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
 #: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21 src/remotedesktopdialog.ui:36
-#: src/screencastdialog.ui:39 src/screenshotdialog.ui:52
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
 msgid "_Share"
 msgstr "_Compartir"
 
@@ -111,20 +114,21 @@ msgstr "Escolla unha aplicación"
 
 #: src/appchooserdialog.c:370
 #, c-format
-msgid "No apps installed that can open “%s”. You can find more apps in Software"
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
 msgstr ""
-"Non hai ningunha aplicación que poida abrir «%s». Pode atopar máis aplicacións en "
-"Software"
+"Non hai ningunha aplicación que poida abrir «%s». Pode atopar máis "
+"aplicacións en Software"
 
 #: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr ""
-"Non hai ningunha aplicación axeitada instalada. Pode atopar máis aplicacións en "
-"Software."
+"Non hai ningunha aplicación axeitada instalada. Pode atopar máis aplicacións"
+" en Software."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Abrir con…"
+msgid "Open With"
+msgstr "Abrir con"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -214,7 +218,9 @@ msgstr "%s quere compartir a súa pantalla. Escolla o que quere compartir."
 
 #: src/screencastwidget.c:641
 msgid "An app wants to share your screen. Choose what you'd like to share."
-msgstr "Unha aplicación quere compartir a súa pantalla. Escolla o que quere compartir."
+msgstr ""
+"Unha aplicación quere compartir a súa pantalla. Escolla o que quere "
+"compartir."
 
 #: src/screencastwidget.ui:17
 msgid "_Remember this selection"
@@ -235,7 +241,8 @@ msgstr "Compartir esta captura de pantalla con %s?"
 
 #: src/screenshotdialog.c:436
 msgid "Share this screenshot with the requesting app?"
-msgstr "Desexa compartir esta captura de pantalla coa aplicación que o solicita?"
+msgstr ""
+"Desexa compartir esta captura de pantalla coa aplicación que o solicita?"
 
 #: src/screenshotdialog.ui:9
 msgid "Screenshot"
@@ -285,7 +292,7 @@ msgstr "Incluír o _punteiro"
 msgid "Include Window _Border"
 msgstr "Incluír o _bordo da xanela"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "A preferencia solicitada non se atopou"
 
@@ -293,20 +300,20 @@ msgstr "A preferencia solicitada non se atopou"
 msgid "Serial Number"
 msgstr "Número de serie"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s quere acceder aos seguintes dispositivos USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Unha aplicación quere acceder aos seguintes dispositivos USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Dispositivo descoñecido"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Vendedor descoñecido"
 
@@ -339,11 +346,11 @@ msgid "Failed to load image file"
 msgstr "Produciuse un fallo ao cargar o ficheiro da imaxe"
 
 #~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more apps in "
-#~ "Software."
+#~ "No apps installed that are able to open file.extension. You can find more "
+#~ "apps in Software."
 #~ msgstr ""
-#~ "Non hai ningunha aplicación que poida abrir o ficheiro.extensión. Pode atopar máis "
-#~ "aplicacións en Software."
+#~ "Non hai ningunha aplicación que poida abrir o ficheiro.extensión. Pode "
+#~ "atopar máis aplicacións en Software."
 
 #~ msgid "_Select"
 #~ msgstr "_Seleccionar"
@@ -429,8 +436,11 @@ msgstr "Produciuse un fallo ao cargar o ficheiro da imaxe"
 #~ msgid "Select whether to create a virtual monitor for %s"
 #~ msgstr "Seleccionar se crear un monitor virtual para %s"
 
-#~ msgid "Select whether to create a virtual monitor for the requesting application"
-#~ msgstr "Seleccione se quere crear un monitor virtual para a aplicación que o solicita"
+#~ msgid ""
+#~ "Select whether to create a virtual monitor for the requesting application"
+#~ msgstr ""
+#~ "Seleccione se quere crear un monitor virtual para a aplicación que o "
+#~ "solicita"
 
 #~ msgid ""
 #~ "\n"
