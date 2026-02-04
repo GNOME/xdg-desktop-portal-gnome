@@ -429,13 +429,11 @@ start_done (InputCaptureSession *input_capture_session,
                                                    mutter_session_path,
                                                    NULL,
                                                    &error);
-      if (input_capture_session->clipboard.clipboard_proxy)
+      if (!input_capture_session->clipboard.clipboard_proxy ||
+          !clipboard_add_session (CLIPBOARD_SESSION (session)))
         {
-          clipboard_add_session (CLIPBOARD_SESSION (session));
-        }
-      else
-        {
-          g_warning ("Failed to create clipboard proxy: %s", error->message);
+          if (error)
+            g_warning ("Failed to create clipboard proxy: %s", error->message);
           input_capture_session->clipboard.clipboard_enabled = FALSE;
         }
 

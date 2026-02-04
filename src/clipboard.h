@@ -40,6 +40,6 @@ gboolean is_clipboard_session (Session *session);
 
 gboolean clipboard_init (GDBusConnection *connection, GError **error);
 
-void clipboard_add_session (ClipboardSession *clipboard_session);
+gboolean clipboard_add_session (ClipboardSession *clipboard_session);
 
 void clipboard_remove_session (ClipboardSession *clipboard_session);

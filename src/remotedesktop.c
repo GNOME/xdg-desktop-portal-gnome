@@ -548,13 +548,11 @@ start_done (RemoteDesktopSession *remote_desktop_session)
                                                    remote_desktop_session->mutter_session_path,
                                                    NULL,
                                                    &error);
-      if (remote_desktop_session->clipboard.clipboard_proxy)
+      if (!remote_desktop_session->clipboard.clipboard_proxy ||
+          !clipboard_add_session (CLIPBOARD_SESSION (remote_desktop_session)))
         {
-          clipboard_add_session (CLIPBOARD_SESSION (remote_desktop_session));
-        }
-      else
-        {
-          g_warning ("Failed to create clipboard proxy: %s", error->message);
+          if (error)
+            g_warning ("Failed to create clipboard proxy: %s", error->message);
           clipboard_enabled = FALSE;
         }
 

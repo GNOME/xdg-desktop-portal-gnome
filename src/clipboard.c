@@ -506,7 +506,7 @@ clipboard_init (GDBusConnection  *connection,
   return TRUE;
 }
 
-void
+gboolean
 clipboard_add_session (ClipboardSession *clipboard_session)
 {
   OrgGnomeMutterClipboard *clipboard_proxy;
@@ -515,7 +515,7 @@ clipboard_add_session (ClipboardSession *clipboard_session)
   g_autoptr (GError) error = NULL;
 
   clipboard_proxy = clipboard_session_get_clipboard_proxy (clipboard_session);
-  g_return_if_fail (clipboard_proxy);
+  g_return_val_if_fail (clipboard_proxy, FALSE);
 
   g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
   options = g_variant_builder_end (&options_builder);
@@ -525,7 +525,7 @@ clipboard_add_session (ClipboardSession *clipboard_session)
                                                     &error))
     {
       g_warning ("Failed to enable clipboard integration: %s", error->message);
-      return;
+      return FALSE;
     }
 
   g_signal_connect_data (clipboard_proxy,
@@ -538,6 +538,7 @@ clipboard_add_session (ClipboardSession *clipboard_session)
                          G_CALLBACK (on_selection_transfer),
                          clipboard_session, NULL,
                          G_CONNECT_DEFAULT);
+  return TRUE;
 }
 
 void
