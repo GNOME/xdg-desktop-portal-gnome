@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-02-26 15:37+0100\n"
+"POT-Creation-Date: 2026-01-28 16:04+0000\n"
+"PO-Revision-Date: 2026-02-03 12:43+0000\n"
 "Last-Translator: Vincent Chatelain <vinchatl_gnome@proton.me>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portail"
 
@@ -124,8 +124,8 @@ msgstr ""
 "d’applications dans Logiciels."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Ouvrir avec…"
+msgid "Open With"
+msgstr "Ouvrir avec"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -290,7 +290,7 @@ msgstr "Inclure le _pointeur"
 msgid "Include Window _Border"
 msgstr "Inclure la _bordure de la fenêtre"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Le réglage demandé n’a pas été trouvé"
 
@@ -298,20 +298,20 @@ msgstr "Le réglage demandé n’a pas été trouvé"
 msgid "Serial Number"
 msgstr "Numéro de série"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s souhaite accéder aux périphériques USB suivants"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Une application souhaite accéder aux périphériques USB suivants"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Périphérique inconnu"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Vendeur inconnu"
 
