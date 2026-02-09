@@ -1,3 +1,14 @@
+Changes in 50.beta
+=================
+- Update libgxdp
+- Remove ellipse from the app chooser list header
+- Fix a memory leak in the Print portal implementation
+- Fix icon size in the Dynamic Launcher portal
+- Various fixes in the Remote Desktop portal
+- Fix monitor identification in VMs
+- Fix an issue with mismatching GVariant type unwrapping
+- Translation updates
+
 Changes in 50.alpha
 =================
 - Fix a potential source of crashes in the ScreenCast portal code
