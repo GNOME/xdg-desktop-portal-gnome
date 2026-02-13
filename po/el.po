@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-10-16 07:35+0000\n"
-"PO-Revision-Date: 2022-12-25 19:18+0200\n"
-"Last-Translator: Giannis Antypas <gianni.antypas@gmail.com>\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-02-14 00:31+0200\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
@@ -58,9 +58,9 @@ msgstr "Διαμοιραστείτε τις προσωπικές σας πληρ
 
 #: src/accountdialog.c:239
 #, c-format
-#| msgid "Share your personal information with the requesting application? %s"
 msgid "Share your personal information with the requesting app? %s"
-msgstr "Να διαμοιραστούν οι προσωπικές σας πληροφορίες με την αιτούσα εφαρμογή; %s"
+msgstr ""
+"Να διαμοιραστούν οι προσωπικές σας πληροφορίες με την αιτούσα εφαρμογή; %s"
 
 #: src/accountdialog.ui:4
 msgid "Share Details"
@@ -123,15 +123,14 @@ msgstr ""
 "εφαρμογές στο Λογισμικό."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Άνοιγμα με…"
+msgid "Open With"
+msgstr "Άνοιγμα με"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
 #: src/appchooserdialog.ui:68
-#| msgid "No Apps available"
 msgid "No Apps Available"
 msgstr "Καμία Διαθέσιμη Εφαρμογή"
 
@@ -140,12 +139,10 @@ msgid "_Find More in Software"
 msgstr "_Μάθετε περισσότερα στο Λογισμικό"
 
 #: src/dynamic-launcher.c:250
-#| msgid "Create Web Application"
 msgid "Create Web App"
 msgstr "Δημιουργία εφαρμογής Ιστού"
 
 #: src/dynamic-launcher.c:252
-#| msgid "Create Application"
 msgid "Create App"
 msgstr "Δημιουργία εφαρμογής"
 
@@ -183,22 +180,18 @@ msgid "Capture Input"
 msgstr "Σύλληψη εισερχομένων"
 
 #: src/inputcapturedialog.ui:68
-#| msgid "Allow remote interaction"
 msgid "Allow Remote _Input Capturing"
 msgstr "Να επιτρέπεται η απομακρυσμένη λήψη _εισόδου"
 
 #: src/remotedesktopdialog.ui:7
-#| msgid "Remote desktop"
 msgid "Remote Desktop"
 msgstr "Απομακρυσμένος υπολογιστής"
 
 #: src/remotedesktopdialog.ui:70
-#| msgid "Remember this selection"
 msgid "_Remember This Selection"
 msgstr "_Απομνημόνευση αυτής της επιλογής"
 
 #: src/remotedesktopdialog.ui:85
-#| msgid "Allow remote interaction"
 msgid "Allow Remote _Interaction"
 msgstr "Να επιτρέπεται απομακρυσμένη _αλληλεπίδραση"
 
@@ -207,12 +200,10 @@ msgid "Allow _Clipboard Access"
 msgstr "Να επιτρέπεται η πρόσβαση στο _πρόχειρο"
 
 #: src/screencastdialog.ui:5
-#| msgid "Entire Screen"
 msgid "Share Screen"
 msgstr "Διαμοιρασμός οθόνης"
 
 #: src/screencastwidget.c:292
-#| msgid "Virtual monitor"
 msgid "Virtual Monitor"
 msgstr "Εικονική οθόνη"
 
@@ -230,12 +221,10 @@ msgstr ""
 "διαμοιραστείτε."
 
 #: src/screencastwidget.ui:17
-#| msgid "Remember this selection"
 msgid "_Remember this selection"
 msgstr "_Απομνημόνευση αυτής της επιλογής"
 
 #: src/screencastwidget.ui:46
-#| msgid "Single Window"
 msgid "_Window"
 msgstr "_Παράθυρο"
 
@@ -249,7 +238,6 @@ msgid "Share this screenshot with %s?"
 msgstr "Διαμοιρασμός αυτού του στιγμιότυπου οθόνης με %s;"
 
 #: src/screenshotdialog.c:436
-#| msgid "Share this screenshot with the requesting application?"
 msgid "Share this screenshot with the requesting app?"
 msgstr "Διαμοιρασμός αυτού του στιγμιοτύπου οθόνης με την αιτούσα εφαρμογή;"
 
@@ -270,17 +258,14 @@ msgid "Take Screenshot"
 msgstr "Λήψη στιγμιοτύπου οθόνης"
 
 #: src/screenshotdialog.ui:141
-#| msgid "Grab the whole sc_reen"
 msgid "Grab Whole Sc_reen"
 msgstr "Λήψη ολόκληρης της _οθόνης"
 
 #: src/screenshotdialog.ui:151
-#| msgid "Grab the current _window"
 msgid "Grab Current _Window"
 msgstr "Λήψη τρέχοντος _παραθύρου"
 
 #: src/screenshotdialog.ui:161
-#| msgid "Select _area to grab"
 msgid "Select _Area to Grab"
 msgstr "Επιλογή _περιοχής για λήψη"
 
@@ -297,16 +282,14 @@ msgid "Effects"
 msgstr "Εφέ"
 
 #: src/screenshotdialog.ui:203
-#| msgid "Include _pointer"
 msgid "Include _Pointer"
 msgstr "Να συμπεριλαμβάνεται ο _δείκτης"
 
 #: src/screenshotdialog.ui:211
-#| msgid "Include the window _border"
 msgid "Include Window _Border"
 msgstr "Να συμπεριλαμβάνεται το _πλαίσιο του παραθύρου"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Η αιτούμενη ρύθμιση δεν βρέθηκε"
 
