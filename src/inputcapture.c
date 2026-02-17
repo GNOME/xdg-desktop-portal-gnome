@@ -502,7 +502,6 @@ on_input_capture_dialog_done_cb (GtkWidget                *widget,
     {
       g_autoptr(GError) error = NULL;
       InputCaptureCapabilities capabilities;
-      g_autoptr(GnomeInputCaptureSession) gnome_input_capture_session = NULL;
       Session *session;
       InputCaptureSession *input_capture_session;
 
