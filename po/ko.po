@@ -1,25 +1,25 @@
 # Korean translation for xdg-desktop-portal-gnome.
 # Copyright (C) 2021 xdg-desktop-portal-gnome's all of contributors.
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Seong-ho Cho <shcho@gnome.org>, 2021-2025.
+# Seong-ho Cho <shcho@gnome.org>, 2021-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-01 03:40+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-02-22 20:15+0900\n"
+"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "포털"
 
@@ -122,8 +122,8 @@ msgstr ""
 "니다."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "다른 프로그램으로 열기…"
+msgid "Open With"
+msgstr "다른 프로그램으로 열기"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -284,7 +284,7 @@ msgstr "포인터 커서 포함(_P)"
 msgid "Include Window _Border"
 msgstr "창 테두리 포함(_B)"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "요청 설정이 없습니다"
 
@@ -292,20 +292,20 @@ msgstr "요청 설정이 없습니다"
 msgid "Serial Number"
 msgstr "시리얼 번호"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s(에)서 다음 USB 장치에 접근하려고 합니다"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "앱에서 다음 USB 장치에 접근하려고 합니다"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "알 수 없는 장치"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "알 수 없는 제조사"
 
