@@ -5,15 +5,15 @@
 # Mario Sanchez Prada <mario@endlessm.com>, 2016.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021-2022.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2023-2024.
-# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2025.
+# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-03 16:18+0100\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-02-23 16:08+0100\n"
 "Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -21,9 +21,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 49.0\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -127,8 +127,8 @@ msgstr ""
 "aplicaciones en Software."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Abrir con…"
+msgid "Open With"
+msgstr "Abrir con"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -291,7 +291,7 @@ msgstr "Incluir el _puntero"
 msgid "Include Window _Border"
 msgstr "Incluir el _borde de la ventana"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "No se ha encontrado la opción solicitada"
 
@@ -299,20 +299,20 @@ msgstr "No se ha encontrado la opción solicitada"
 msgid "Serial Number"
 msgstr "Número de serie"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s quiere acceder a los siguientes dispositivos USB"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Una aplicación quiere acceder a los siguientes dispositivos USB"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Fabricante desconocido"
 
@@ -344,125 +344,145 @@ msgstr "_Establecer"
 msgid "Failed to load image file"
 msgstr "Fallo al cargar el archivo de imagen"
 
+#, fuzzy
 #~ msgid ""
 #~ "No apps installed that are able to open file.extension. You can find more "
 #~ "apps in Software."
 #~ msgstr ""
-#~ "No hay ninguna aplicación instalada que pueda abrir archivo.extensión. "
-#~ "Puede encontrar más aplicaciones en Software"
+#~ "No hay aplicaciones instaladas que puedan abrir la extensión del archivo. "
 
+#, fuzzy
 #~ msgid "_Select"
 #~ msgstr "_Seleccionar"
 
+#, fuzzy
 #~ msgid "_Save"
-#~ msgstr "_Guardar"
+#~ msgstr "_Ahorrar"
 
+#, fuzzy
 #~ msgid "Open files read-only"
-#~ msgstr "Abrir archivos de sólo lectura"
+#~ msgstr "Abrir archivos de solo lectura"
 
+#, fuzzy
 #~ msgid "Open directories read-only"
-#~ msgstr "Abrir carpetas en modo sólo lectura"
+#~ msgstr "Directorios abiertos de solo lectura"
 
+#, fuzzy
 #~ msgid "Application _Window"
-#~ msgstr "_Ventana de aplicación"
+#~ msgstr "Aplicación _Ventana"
 
+#, fuzzy
 #~ msgid "_Entire Screen"
-#~ msgstr "_Toda la pantalla"
+#~ msgstr "_Pantalla completa"
 
+#, fuzzy
 #~ msgid "Screen Share"
-#~ msgstr "Compartición de pantalla"
+#~ msgstr "Compartir pantalla"
 
-#, c-format
+#, fuzzy, c-format
 #~ msgid "Select monitor to share with %s"
-#~ msgstr "Seleccione el monitor que quiera compartir con %s"
+#~ msgstr "Seleccione el monitor para compartir con %s"
 
-#, c-format
+#, fuzzy, c-format
 #~ msgid "Select window to share with %s"
-#~ msgstr "Seleccione la ventana que compartir con %s"
+#~ msgstr "Seleccionar ventana para compartir con %s"
 
+#, fuzzy
 #~ msgid "Select monitor to share with the requesting app"
-#~ msgstr ""
-#~ "Seleccione el monitor que quiera compartir con la aplicación solicitante"
+#~ msgstr "Seleccione el monitor para compartir con la aplicación solicitante"
 
+#, fuzzy
 #~ msgid "Select window to share with the requesting app"
-#~ msgstr "Seleccione la ventana que compartir con la aplicación solicitante"
+#~ msgstr "Seleccione la ventana para compartir con la aplicación solicitante"
 
+#, fuzzy
 #~ msgid "Set"
-#~ msgstr "Establecer"
+#~ msgstr "Colocar"
 
+#, fuzzy
 #~ msgid "Activities"
 #~ msgstr "Actividades"
 
-#, c-format
+#, fuzzy, c-format
 #~ msgid "“%s” is running in the background"
-#~ msgstr "«%s» se está ejecutando en segundo plano"
+#~ msgstr "“%s” se está ejecutando en segundo plano"
 
+#, fuzzy
 #~ msgid ""
 #~ "This might be for a legitimate reason, but the application has not "
 #~ "provided one.\n"
 #~ "\n"
 #~ "Note that forcing an application to quit might cause data loss."
 #~ msgstr ""
-#~ "Esto puede ser por una razón legítima, pero la aplicación no ha "
-#~ "proporcionado ninguna.\n"
+#~ "Esto podría deberse a una razón legítima, pero la aplicación no la "
+#~ "proporciona.\n"
 #~ "\n"
-#~ "Tenga en cuenta que forzar la salida de una aplicación puede provocar la "
-#~ "pérdida de datos."
 
+#, fuzzy
 #~ msgid "Force quit"
-#~ msgstr "Forzar la salida"
+#~ msgstr "Forzar el abandono"
 
+#, fuzzy
 #~ msgid "Background activity"
-#~ msgstr "Actividad en segundo plano"
+#~ msgstr "Actividad de fondo"
 
+#, fuzzy
 #~ msgid "Find out more"
-#~ msgstr "Buscar más"
+#~ msgstr "Descubra más"
 
+#, fuzzy
 #~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
+#~ msgstr "aplicaciones-sistema-simbolico"
 
+#, fuzzy
 #~ msgid "Pointer"
 #~ msgstr "Puntero"
 
+#, fuzzy
 #~ msgid "Keyboard"
 #~ msgstr "Teclado"
 
+#, fuzzy
 #~ msgid "Touch screen"
-#~ msgstr "Pantalla táctil"
+#~ msgstr "pantalla táctil"
 
 #, fuzzy
 #~ msgid "Select devices to share with %s"
-#~ msgstr "Seleccione qué compartir con %s"
+#~ msgstr "Selecciona dispositivos para compartir con %s"
 
 #, fuzzy
 #~ msgid "Select devices to share with the requesting application"
-#~ msgstr "Seleccione qué compartir con la aplicación solicitante"
+#~ msgstr ""
+#~ "Seleccione dispositivos para compartir con la aplicación solicitante"
 
+#, fuzzy
 #~ msgid "Grant Access"
-#~ msgstr "Conceder el acceso"
+#~ msgstr "Conceder acceso"
 
+#, fuzzy
 #~ msgid "Make changes before sharing the information"
-#~ msgstr "Realizar cambios antes de compartir la información"
+#~ msgstr "Realizar cambios antes de compartir la información."
 
+#, fuzzy
 #~ msgid ""
 #~ "Select an application to open “%s”. More applications are available in <a "
 #~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Seleccione una aplicación para abrir «%s». Hay más aplicaciones "
-#~ "disponibles en <a href='software'>Software</a>."
+#~ msgstr "Seleccione una aplicación para abrir “%s”. "
 
+#, fuzzy
 #~ msgid ""
 #~ "Select an application. More applications are available in <a "
 #~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Seleccione una aplicación. Hay más aplicaciones disponibles en <a "
-#~ "href='software'>Software</a>."
+#~ msgstr "Seleccione una aplicación. "
 
+#, fuzzy
 #~ msgid "Unable to find a suitable application."
-#~ msgstr "No se encontró ninguna aplicación adecuada."
+#~ msgstr "No se puede encontrar una aplicación adecuada."
 
+#, fuzzy
 #~ msgid "Find Compatible Applications in Software"
-#~ msgstr "Encuentre aplicaciones compatibles en Software"
+#~ msgstr "Encuentre aplicaciones compatibles en software"
 
+#, fuzzy
 #~ msgid "Screen casting"
-#~ msgstr "Captura de vídeo"
+#~ msgstr "Transmisión de pantalla"
