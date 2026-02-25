@@ -45,10 +45,9 @@ on_selection_owner_changed (Session  *session,
   g_autoptr (GVariant) session_is_owner = NULL;
   g_autoptr (GVariant) mime_types = NULL;
   g_autoptr (GVariant) mutter_mime_types = NULL;
-  GVariantBuilder options_builder;
-  GVariant *options;
-
-  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+  g_auto(GVariantBuilder) options_builder =
+    G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE_VARDICT);
+  g_autoptr (GVariant) options = NULL;
 
   /* Translating mime-types and session-is-owner for portal's interface
    * specification.
@@ -86,7 +85,7 @@ on_selection_owner_changed (Session  *session,
                              g_steal_pointer (&session_is_owner));
     }
 
-  options = g_variant_builder_end (&options_builder);
+  options = g_variant_ref_sink (g_variant_builder_end (&options_builder));
 
   xdp_impl_clipboard_emit_selection_owner_changed (XDP_IMPL_CLIPBOARD (impl),
                                                    session->id,
@@ -117,13 +116,21 @@ handle_request_clipboard (XdpImplClipboard      *object,
     {
       g_warning ("Tried to enable clipboard on non-existing %s",
                  arg_session_handle);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_NOT_FOUND,
+                                             "Non-existing session");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   if (!is_remote_desktop_session (session))
     {
       g_warning ("Tried to enable clipboard on invalid session type");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Invalid session type");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   remote_desktop_session = (RemoteDesktopSession *)session;
@@ -136,9 +143,9 @@ handle_request_clipboard (XdpImplClipboard      *object,
 
   remote_desktop_session_request_clipboard (remote_desktop_session);
 
-out:
-  xdp_impl_clipboard_complete_request_clipboard (object, invocation);
-  return TRUE;
+  xdp_impl_clipboard_complete_request_clipboard (object,
+                                                 g_steal_pointer (&invocation));
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static gboolean
@@ -151,29 +158,42 @@ handle_set_selection (XdpImplClipboard      *object,
   RemoteDesktopSession *remote_desktop_session;
   g_autoptr (GVariant) value = NULL;
   g_autoptr (GError) error = NULL;
-  GVariantBuilder options_builder;
+  g_auto(GVariantBuilder) options_builder =
+    G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE_VARDICT);
   Session *session;
-  GVariant *options;
+  g_autoptr(GVariant) options = NULL;
 
   session = lookup_session (arg_session_handle);
   if (!session)
     {
       g_warning ("Tried to set selection on non-existing %s",
                  arg_session_handle);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_NOT_FOUND,
+                                             "Non-existing session");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   if (!is_remote_desktop_session (session))
     {
       g_warning ("Tried to set selection on invalid session type");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Invalid session type");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   remote_desktop_session = (RemoteDesktopSession *)session;
   if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
     {
       g_warning ("Tried to set selection with clipboard disabled");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Clipboard disabled");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   session_proxy =
@@ -195,7 +215,7 @@ handle_set_selection (XdpImplClipboard      *object,
                              g_steal_pointer (&value));
     }
 
-  options = g_variant_builder_end (&options_builder);
+  options = g_variant_ref_sink (g_variant_builder_end (&options_builder));
 
   if (!org_gnome_mutter_remote_desktop_session_call_set_selection_sync (session_proxy,
                                                                         options,
@@ -203,12 +223,16 @@ handle_set_selection (XdpImplClipboard      *object,
                                                                         &error))
     {
       g_warning ("Failed to set selection: %s", error->message);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Failed to set selection");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-out:
-  xdp_impl_clipboard_complete_set_selection (object, invocation);
-  return TRUE;
+  xdp_impl_clipboard_complete_set_selection (object,
+                                             g_steal_pointer (&invocation));
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static gboolean
@@ -223,7 +247,7 @@ handle_selection_write (XdpImplClipboard      *object,
   g_autoptr (GUnixFDList) out_fd_list = NULL;
   g_autoptr (GUnixFDList) fd_list = NULL;
   g_autoptr (GError) error = NULL;
-  GVariant *fd_handle;
+  g_autoptr (GVariant) fd_handle = NULL;
   Session *session;
   int out_fd_id;
   int fd_id;
@@ -234,20 +258,32 @@ handle_selection_write (XdpImplClipboard      *object,
     {
       g_warning ("Tried to write selection on non-existing %s",
                  arg_session_handle);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_NOT_FOUND,
+                                             "Non-existing session");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   if (!is_remote_desktop_session (session))
     {
       g_warning ("Tried to write selection on invalid session type");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Invalid session type");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   remote_desktop_session = (RemoteDesktopSession *)session;
   if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
     {
       g_warning ("Tried to write selection with clipboard disabled");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Clipboard disabled");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   session_proxy =
@@ -264,7 +300,11 @@ handle_selection_write (XdpImplClipboard      *object,
                                                                           &error))
     {
       g_warning ("Failed to selection write: %s", error->message);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Failed to selection write");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   fd_id = g_variant_get_handle (fd_handle);
@@ -272,12 +312,11 @@ handle_selection_write (XdpImplClipboard      *object,
   out_fd_id = g_unix_fd_list_append (out_fd_list, fd, &error);
   close (fd);
 
-out:
   xdp_impl_clipboard_complete_selection_write (object,
-                                               invocation,
+                                               g_steal_pointer (&invocation),
                                                out_fd_list,
                                                g_variant_new_handle (out_fd_id));
-  return TRUE;
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static gboolean
@@ -298,20 +337,32 @@ handle_selection_write_done (XdpImplClipboard      *object,
     {
       g_warning ("Tried to write selection on non-existing %s",
                  arg_session_handle);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_NOT_FOUND,
+                                             "Non-existing session");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   if (!is_remote_desktop_session (session))
     {
       g_warning ("Tried to write selection on invalid session type");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Invalid session type");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   remote_desktop_session = (RemoteDesktopSession *)session;
   if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
     {
       g_warning ("Tried to write selection with clipboard disabled");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Clipboard disabled");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   session_proxy =
@@ -324,12 +375,16 @@ handle_selection_write_done (XdpImplClipboard      *object,
                                                                                &error))
     {
       g_warning ("Failed to selection write: %s", error->message);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Failed to selection write");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-out:
-  xdp_impl_clipboard_complete_selection_write_done (object, invocation);
-  return TRUE;
+  xdp_impl_clipboard_complete_selection_write_done (object,
+                                                    g_steal_pointer (&invocation));
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static gboolean
@@ -344,27 +399,39 @@ handle_selection_read (XdpImplClipboard      *object,
   RemoteDesktopSession *remote_desktop_session;
   g_autoptr (GError) error = NULL;
   Session *session;
-  GVariant *fd;
+  g_autoptr (GVariant) fd = NULL;
 
   session = lookup_session (arg_session_handle);
   if (!session)
     {
       g_warning ("Tried to read selection on non-existing %s",
                  arg_session_handle);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_NOT_FOUND,
+                                             "Non-existing session");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   if (!is_remote_desktop_session (session))
     {
       g_warning ("Tried to read selection on invalid session type");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Invalid session type");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   remote_desktop_session = (RemoteDesktopSession *)session;
   if (!remote_desktop_session_is_clipboard_enabled (remote_desktop_session))
     {
       g_warning ("Tried to read selection with clipboard disabled");
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Clipboard disabled");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
   session_proxy =
@@ -379,12 +446,18 @@ handle_selection_read (XdpImplClipboard      *object,
                                                                          &error))
     {
       g_warning ("Failed to selection read: %s", error->message);
-      goto out;
+      g_dbus_method_invocation_return_error (g_steal_pointer (&invocation),
+                                             XDG_DESKTOP_PORTAL_ERROR,
+                                             XDG_DESKTOP_PORTAL_ERROR_FAILED,
+                                             "Failed to selection read");
+      return G_DBUS_METHOD_INVOCATION_HANDLED;
     }
 
-out:
-  xdp_impl_clipboard_complete_selection_read (object, invocation, out_fd_list, fd);
-  return TRUE;
+  xdp_impl_clipboard_complete_selection_read (object,
+                                              g_steal_pointer (&invocation),
+                                              out_fd_list,
+                                              fd);
+  return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static void
