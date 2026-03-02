@@ -1,10 +1,11 @@
 # Japanese translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2012, 2022, 2025 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# Copyright (C) 2012, 2022, 2025-2026 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # gnome-screenshot translators <https://l10n.gnome.org/vertimus/gnome-screenshot/master/po/ja/>, 2012.
 # sicklylife <translation@sicklylife.jp>, 2022.
 # Kusano Takayuki <https://bsky.app/profile/tkusano.jp>, 2025.
 # Seiji Iizuka <seiji@iizuka.dev>, 2025.
+# 小山田 純 <oyamadajun@outlook.jp>, 2026.
 #
 msgid ""
 msgstr ""
@@ -20,7 +21,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
