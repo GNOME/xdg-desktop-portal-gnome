@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
-"POT-Creation-Date: 2025-09-11 00:10+0000\n"
-"PO-Revision-Date: 2025-09-30 20:21-0400\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
+"gnome/issues/\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-03-02 23:44-0500\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
@@ -107,16 +108,19 @@ msgstr "ئەپ تاللىنىدۇ"
 
 #: src/appchooserdialog.c:370
 #, c-format
-msgid "No apps installed that can open “%s”. You can find more apps in Software"
-msgstr "«%s» نى ئاچالايدىغان ھېچ قانداق ئەپ ئورنىتىلمىغان. يۇمشاق دېتالدىن نۇرغۇن ئەپنى تاپالايسىز"
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"«%s» نى ئاچالايدىغان ھېچ قانداق ئەپ ئورنىتىلمىغان. يۇمشاق دېتالدىن نۇرغۇن "
+"ئەپنى تاپالايسىز"
 
 #: src/appchooserdialog.c:375
 msgid "No suitable app installed. You can find more apps in Software."
 msgstr "مۇۋاپىق ئەپ ئورنىتىلمىغان. يۇمشاق دېتالدىن نۇرغۇن ئەپنى تاپالايسىز."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "ئاچقۇز…"
+msgid "Open With"
+msgstr "ئاچقۇز"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -277,7 +281,7 @@ msgstr "نۇربەلگە بار(_P)"
 msgid "Include Window _Border"
 msgstr "كۆزنەك گىرۋىكى بار(_B)"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "ئىلتىماس قىلغان تەڭشەكنى تاپالمىدى"
 
