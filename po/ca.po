@@ -1,16 +1,15 @@
-# Catalan translation for xdg-desktop-portal-gnome.
-# Copyright (C) 2021 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
-# Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021, 2023-2024
-# Joan Mas Lloret <joan.mas.lloret@gmail.com>, 2022
+# Catalan translation for xdg-desktop-portal.
+# Copyright (C) 2021 xdg-desktop-portal's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal package.
+# Maite Guix <maite.guix@gmail.com>, 2021.
+# Jordi Mas i Hernàndez <jmas@softcatala.org>, 2023-2025
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gnome gnome-41\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues/\n"
-"POT-Creation-Date: 2026-01-28 16:04+0000\n"
-"PO-Revision-Date: 2026-01-29 08:14+0100\n"
+"Project-Id-Version: xdg-desktop-portal master\n"
+"Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal/issues\n"
+"POT-Creation-Date: 2026-03-03 12:21+0000\n"
+"PO-Revision-Date: 2025-11-22 19:47+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -19,342 +18,247 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:3
-msgid "Portal"
-msgstr "Portal"
+#: src/background.c:931
+#, c-format
+msgid "Allow %s to Run in the Background?"
+msgstr "Voleu que %s s'executi en segon pla?"
 
-#: src/access.c:203
-msgid "Deny"
-msgstr "Denega"
+#: src/background.c:935
+#, c-format
+msgid "%s wants to be started automatically and run in the background"
+msgstr "%s vol iniciar-se automàticament i executar-se en segon pla"
 
-#: src/access.c:206
+#: src/background.c:937
+#, c-format
+msgid "%s wants to run in the background"
+msgstr "%s vol executar-se en segon pla"
+
+#: src/background.c:938
+msgid ""
+"The ‘run in background’ permission can be changed at any time from the app "
+"settings"
+msgstr ""
+"El permís «executa en segon pla» es pot canviar en qualsevol moment des dels "
+"paràmetres de l'aplicació"
+
+#: src/background.c:942
+msgid "Don't allow"
+msgstr "No ho permetis"
+
+#: src/background.c:943 src/screenshot.c:222 src/wallpaper.c:191
 msgid "Allow"
 msgstr "Permet"
 
-#: src/accountdialog.c:159
-msgid "Select an Image"
-msgstr "Seleccioneu una imatge"
-
-#: src/accountdialog.c:162
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: src/accountdialog.c:163
-msgid "Select"
-msgstr "Selecciona"
-
-#: src/accountdialog.c:164
-msgid "Clear"
-msgstr "Neteja"
-
-#: src/accountdialog.c:171
-msgid "Images"
-msgstr "Imatges"
-
-#: src/accountdialog.c:233
+#: src/camera.c:104
 #, c-format
-msgid "Share your personal information with %1$s? %2$s"
-msgstr "Voleu compartir la vostra informació personal amb %1$s? %2$s"
+msgid "Allow %s to Use the Camera?"
+msgstr "Voleu permetre que %s utilitzi la càmera?"
 
-#: src/accountdialog.c:239
+#: src/camera.c:105
 #, c-format
-msgid "Share your personal information with the requesting app? %s"
+msgid "%s wants to access the camera"
+msgstr "%s vol accedir a la càmera"
+
+#: src/camera.c:109
+msgid "Allow Apps to Use the Camera?"
+msgstr "Voleu permetre que les aplicacions utilitzin la càmera?"
+
+#: src/camera.c:110
+msgid "An app wants to access the camera"
+msgstr "Una aplicació vol accedir a la càmera"
+
+#: src/camera.c:113 src/screenshot.c:274 src/wallpaper.c:207
+msgid "This permission can be changed at any time from the privacy settings"
 msgstr ""
-"Voleu compartir la vostra informació personal amb l'aplicació sol·licitant? "
-"%s"
+"Aquest permís es pot canviar en qualsevol moment des de la configuració de "
+"privacitat"
 
-#: src/accountdialog.ui:4
-msgid "Share Details"
-msgstr "Comparteix detalls"
-
-#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
-#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
-#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
-#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
-msgid "_Cancel"
-msgstr "_Cancel·la"
-
-#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
-#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
-#: src/screenshotdialog.ui:52
-msgid "_Share"
-msgstr "_Comparteix"
-
-#: src/accountdialog.ui:89
-msgid "Change Avatar"
-msgstr "Canvia l'avatar"
-
-#: src/accountdialog.ui:112
-msgid "Name"
-msgstr "Nom"
-
-#: src/accountdialog.ui:118
-msgid "Username"
-msgstr "Nom d'usuari"
-
-#: src/appchooserdialog.c:176
-msgid "_OK"
-msgstr "_D'ACORD"
-
-#: src/appchooserdialog.c:195
-msgid "Failed to start Software"
-msgstr "Ha fallat en iniciar el programari"
-
-#: src/appchooserdialog.c:348
+#: src/dynamic-launcher.c:128
 #, c-format
-msgid "Choose an app to open the file “%s”"
-msgstr "Trieu una aplicació per a obrir el fitxer «%s»"
+msgid "Desktop file id missing .desktop suffix: %s"
+msgstr "Manca l'ID del fitxer d'escriptori .desktop sufix: %s"
 
-#: src/appchooserdialog.c:353
-msgid "Choose an app"
-msgstr "Trieu una aplicació"
-
-#: src/appchooserdialog.c:370
+#: src/dynamic-launcher.c:139
 #, c-format
-msgid ""
-"No apps installed that can open “%s”. You can find more apps in Software"
+msgid "Desktop file id is not valid"
+msgstr "L'ID del fitxer d'escriptori no és vàlid"
+
+#: src/dynamic-launcher.c:311
+#, c-format
+msgid "Desktop entry given to Install() not a valid key file"
 msgstr ""
-"No hi ha cap aplicació instal·lada que pugui obrir «%s». Podeu trobar més "
-"aplicacions al Programari"
+"L'entrada d'escriptori donada a Install() no és un fitxer de clau vàlid"
 
-#: src/appchooserdialog.c:375
-msgid "No suitable app installed. You can find more apps in Software."
+#: src/dynamic-launcher.c:324
+#, c-format
+msgid "Desktop entry given to Install() must have exactly one group"
 msgstr ""
-"No s'ha instal·lat cap aplicació adequada. Podeu trobar més aplicacions al "
-"Programari."
+"L'entrada d'escriptori donada a Install() ha de tenir exactament un grup"
 
-#: src/appchooserdialog.ui:5
-msgid "Open With"
-msgstr "Obre amb"
-
-#: src/appchooserdialog.ui:25
-msgid "_Open"
-msgstr "_Obre"
-
-#: src/appchooserdialog.ui:68
-msgid "No Apps Available"
-msgstr "No hi ha cap aplicació disponible"
-
-#: src/appchooserdialog.ui:76
-msgid "_Find More in Software"
-msgstr "_Cerca més al Programari"
-
-#: src/dynamic-launcher.c:250
-msgid "Create Web App"
-msgstr "Crea una aplicació web"
-
-#: src/dynamic-launcher.c:252
-msgid "Create App"
-msgstr "Crea una aplicació"
-
-#: src/dynamic-launcher.c:260
-msgid "C_reate"
-msgstr "_Crea"
-
-#. Translators: This string refers to a key combination
-#: src/globalshortcuts.c:352
+#: src/dynamic-launcher.c:362
 #, c-format
-msgid "Press %s"
-msgstr "Premeu %s"
+msgid "Token given is invalid: %s"
+msgstr "El testimoni indicat no és vàlid: %s"
 
-#. Translators: This string refers to 2 key combinations
-#: src/globalshortcuts.c:361
+#: src/dynamic-launcher.c:405
 #, c-format
-msgid "Press %s or %s"
-msgstr "Premeu %s o %s"
+msgid "Desktop entry given to Install() not valid"
+msgstr "L'entrada d'escriptori donada a Install() no és vàlida"
 
-#: src/globalshortcuts.c:468
-msgid "Undocumented shortcut"
-msgstr "Drecera no documentada"
-
-#: src/inputcapturedialog.c:105
+#: src/dynamic-launcher.c:414 src/dynamic-launcher.c:874
+#: src/dynamic-launcher.c:923
 #, c-format
-msgid "The application %s wants to capture input events"
-msgstr "L'aplicació %s vol capturar esdeveniments d'entrada"
+msgid "Desktop file exceeds max size (%d): %s"
+msgstr "El fitxer d'escriptori supera la mida màxima (%d): %s"
 
-#: src/inputcapturedialog.c:110
-msgid "An application wants to capture input events"
-msgstr "Una aplicació vol capturar esdeveniments d'entrada"
-
-#: src/inputcapturedialog.ui:7
-msgid "Capture Input"
-msgstr "Captura l'entrada"
-
-#: src/inputcapturedialog.ui:68
-msgid "Allow Remote _Input Capturing"
-msgstr "P_ermet la captura d'entrada remota"
-
-#: src/remotedesktopdialog.ui:7
-msgid "Remote Desktop"
-msgstr "Escriptori remot"
-
-#: src/remotedesktopdialog.ui:70
-msgid "_Remember This Selection"
-msgstr "R_ecorda aquesta selecció"
-
-#: src/remotedesktopdialog.ui:85
-msgid "Allow Remote _Interaction"
-msgstr "Perme_t la interacció remota"
-
-#: src/remotedesktopdialog.ui:93
-msgid "Allow _Clipboard Access"
-msgstr "P_ermet l'accés al porta-retalls"
-
-#: src/screencastdialog.ui:5
-msgid "Share Screen"
-msgstr "Comparteix la pantalla"
-
-#: src/screencastwidget.c:292
-msgid "Virtual Monitor"
-msgstr "Monitor virtual"
-
-#: src/screencastwidget.c:636
+#: src/dynamic-launcher.c:598
 #, c-format
-msgid "%s wants to share your screen. Choose what you'd like to share."
-msgstr "%s vol compartir la vostra pantalla. Trieu el que voleu compartir."
+msgid "URL given is invalid: %s"
+msgstr "L'URL indicat no és vàlid: %s"
 
-#: src/screencastwidget.c:641
-msgid "An app wants to share your screen. Choose what you'd like to share."
+#: src/dynamic-launcher.c:620
+#, c-format
+msgid "Invalid launcher type: %x"
+msgstr "Tipus de llançador no vàlid: %x"
+
+#: src/dynamic-launcher.c:627
+#, c-format
+msgid "Unsupported launcher type: %x"
+msgstr "Tipus de llançador no admès: %x"
+
+#: src/dynamic-launcher.c:693 src/dynamic-launcher.c:768
+msgid "Dynamic launcher icon failed validation"
+msgstr "Ha fallat la validació llançador d'icones dinàmic"
+
+#: src/dynamic-launcher.c:784
+#, c-format
+msgid "RequestInstallToken() not allowed for app id %s"
+msgstr "RequestInstallToken() no està permès per a l'ID d'aplicació %s"
+
+#: src/dynamic-launcher.c:963
+#, c-format
+msgid "Desktop file '%s' icon at unrecognized path"
+msgstr "La icona del fitxer d'escriptori «%s» al camí no reconegut"
+
+#: src/dynamic-launcher.c:986
+#, c-format
+msgid "Desktop file '%s' icon failed to serialize"
+msgstr "La icona del fitxer d'escriptori «%s» no s'ha pogut serialitzar"
+
+#: src/dynamic-launcher.c:1025
+#, c-format
+msgid "No dynamic launcher exists with id '%s'"
+msgstr "No hi ha cap llançador dinàmic amb l'ID «%s»"
+
+#: src/dynamic-launcher.c:1044
+#, c-format
+msgid "Failed to create GDesktopAppInfo for launcher with id '%s'"
 msgstr ""
-"Una aplicació vol compartir la pantalla. Tria el que vulguis compartir."
+"No s'ha pogut crear el GDesktopAppInfo per al llançador amb l'identificador "
+"«%s»"
 
-#: src/screencastwidget.ui:17
-msgid "_Remember this selection"
-msgstr "_Recorda aquesta selecció"
+#: src/location.c:552
+msgid "Deny Access"
+msgstr "Denega l'accés"
 
-#: src/screencastwidget.ui:46
-msgid "_Window"
-msgstr "_Finestra"
+#: src/location.c:554
+msgid "Grant Access"
+msgstr "Permet l'accés"
 
-#: src/screencastwidget.ui:66
-msgid "_Display"
-msgstr "_Pantalla"
-
-#: src/screenshotdialog.c:432
+#: src/location.c:560
 #, c-format
-msgid "Share this screenshot with %s?"
-msgstr "Voleu compartir aquesta captura de pantalla amb %s?"
+msgid "Allow %s to Access Your Location?"
+msgstr "Voleu permetre que %s tingui accés a la vostra ubicació?"
 
-#: src/screenshotdialog.c:436
-msgid "Share this screenshot with the requesting app?"
+#: src/location.c:570
+#, c-format
+msgid "%s wants to use your location"
+msgstr "%s vol saber la vostra ubicació"
+
+#: src/location.c:576
+msgid "Allow Apps to Access Your Location?"
+msgstr "Voleu permetre les aplicacions tinguin accés a la vostra ubicació?"
+
+#: src/location.c:577
+msgid "An app wants to use your location"
+msgstr "Una aplicació vol utilitzar la vostra ubicació"
+
+#: src/location.c:580
+msgid "Location access can be changed at any time from the privacy settings"
 msgstr ""
-"Voleu compartir aquesta captura de pantalla amb l'aplicació sol·licitant?"
+"L'accés a la ubicació es pot canviar en qualsevol moment des de la "
+"configuració de privacitat"
 
-#: src/screenshotdialog.ui:9
-msgid "Screenshot"
-msgstr "Captura de pantalla"
+#: src/screenshot.c:220 src/wallpaper.c:189
+msgid "Deny"
+msgstr "Denega"
 
-#: src/screenshotdialog.ui:45
-msgid "_Options…"
-msgstr "_Opcions…"
+#: src/screenshot.c:246
+#, c-format
+msgid "Allow %s to Take Screenshots?"
+msgstr "Voleu permetre que %s faci captures de pantalla?"
 
-#: src/screenshotdialog.ui:70
-msgid "Take _Screenshot"
-msgstr "_Fes una captura de pantalla"
+#: src/screenshot.c:247
+#, c-format
+msgid "%s wants to take screenshots at any time"
+msgstr "%s vol fer captures de pantalla en qualsevol moment"
 
-#: src/screenshotdialog.ui:131
-msgid "Take Screenshot"
-msgstr "Fes una captura de pantalla"
+#: src/screenshot.c:251
+#, c-format
+msgid "Allow %s to Take a Screenshot?"
+msgstr "Voleu permetre que %s faci una captura de pantalla?"
 
-#: src/screenshotdialog.ui:141
-msgid "Grab Whole Sc_reen"
-msgstr "_Captura la pantalla sencera"
+#: src/screenshot.c:252
+#, c-format
+msgid "%s wants to take a screenshot"
+msgstr "%s vol fer una captura de pantalla"
 
-#: src/screenshotdialog.ui:151
-msgid "Grab Current _Window"
-msgstr "C_aptura la finestra actual"
+#. Note: this will set the screenshot permission for all unsandboxed
+#. * apps for which an app ID can't be determined.
+#.
+#: src/screenshot.c:263
+msgid "Allow Apps to Take Screenshots?"
+msgstr "Voleu permetre que les aplicacions facin captures de pantalla?"
 
-#: src/screenshotdialog.ui:161
-msgid "Select _Area to Grab"
-msgstr "S_elecciona una àrea a capturar"
+#: src/screenshot.c:264
+msgid "An app wants to take screenshots at any time"
+msgstr "Una aplicació vol fer captures de pantalla en qualsevol moment"
 
-#: src/screenshotdialog.ui:173
-msgid "Grab after a _delay of"
-msgstr "_Captura després d'un retard de"
+#: src/screenshot.c:268
+msgid "Allow to Take a Screenshot?"
+msgstr "Voleu permetre fer una captura de pantalla?"
 
-#: src/screenshotdialog.ui:184
-msgid "seconds"
-msgstr "segons"
+#: src/screenshot.c:269
+msgid "An app wants to take a screenshot"
+msgstr "Una aplicació vol fer una captura de pantalla"
 
-#: src/screenshotdialog.ui:193
-msgid "Effects"
-msgstr "Efectes"
-
-#: src/screenshotdialog.ui:203
-msgid "Include _Pointer"
-msgstr "_Inclou el punter"
-
-#: src/screenshotdialog.ui:211
-msgid "Include Window _Border"
-msgstr "In_clou la vora de la finestra"
-
-#: src/settings.c:362
+#: src/settings.c:195 src/settings.c:234
 msgid "Requested setting not found"
 msgstr "No s'ha trobat la configuració sol·licitada"
 
-#: src/usbdialog.c:102
-msgid "Serial Number"
-msgstr "Número de sèrie"
+#: src/usb.c:1341
+msgid "Device not available"
+msgstr "El dispositiu no està disponible"
 
-#: src/usbdialog.c:211
+#: src/usb.c:1355
+msgid "Not allowed"
+msgstr "No permès"
+
+#: src/wallpaper.c:197
 #, c-format
-msgid "%s wants to access the following USB devices"
-msgstr "%s vol accedir als següents dispositius USB"
+msgid "Allow %s to Set Backgrounds?"
+msgstr "Voleu permetre que %s defineixi els fons?"
 
-#: src/usbdialog.c:216
-msgid "An app wants to access the following USB devices"
-msgstr "Una aplicació vol accedir als següents dispositius USB"
+#: src/wallpaper.c:198
+#, c-format
+msgid "%s wants to change the background image"
+msgstr "%s vol canviar la imatge de fons"
 
-#: src/usbdialog.c:276
-msgid "Unknown device"
-msgstr "Dispositiu desconegut"
+#: src/wallpaper.c:203
+msgid "Allow Apps to Set Backgrounds?"
+msgstr "Voleu permetre que les aplicacions estableixin els fons?"
 
-#: src/usbdialog.c:277
-msgid "Unknown vendor"
-msgstr "Fabricant desconegut"
+#: src/wallpaper.c:204
+msgid "An app wants to change the background image"
+msgstr "Una aplicació vol canviar la imatge de fons"
 
-#: src/usbdialog.ui:8
-msgid "Device Access"
-msgstr "Accés al dispositiu"
-
-#: src/usbdialog.ui:31
-msgid "_Deny"
-msgstr "_Denega"
-
-#: src/usbdialog.ui:40
-msgid "_Allow"
-msgstr "_Permet"
-
-#: src/usbdialog.ui:90
-msgid "Failed to display USB device"
-msgstr "No s'ha pogut mostrar el dispositiu USB"
-
-#: src/wallpaperdialog.ui:8
-msgid "Set Background"
-msgstr "Estableix el fons"
-
-#: src/wallpaperdialog.ui:35
-msgid "_Set"
-msgstr "_Estableix"
-
-#: src/wallpaperdialog.ui:67
-msgid "Failed to load image file"
-msgstr "No s'ha pogut carregar el fitxer d'imatge"
-
-#~ msgid "_Select"
-#~ msgstr "_Selecciona"
-
-#~ msgid "_Save"
-#~ msgstr "De_sa"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Obre fitxers de només lectura"
-
-#~ msgid "Open directories read-only"
-#~ msgstr "Obre directoris de només lectura"
-
-#~ msgid "Application _Window"
-#~ msgstr "_Finestra d'aplicació"
-
-#~ msgid "_Entire Screen"
-#~ msgstr "_Tota la pantalla"
