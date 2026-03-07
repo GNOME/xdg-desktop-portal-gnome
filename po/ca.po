@@ -64,7 +64,7 @@ msgstr "Voleu compartir la vostra informació personal amb %1$s? %2$s"
 #: src/accountdialog.c:239
 #, c-format
 msgid "Share your personal information with the requesting app? %s"
-msgstr "Comparteix la teva informació personal amb l'app sol·licitant? %s"
+msgstr "Voleu compartir la vostra informació personal amb l'aplicació sol·licitant? %s"
 
 #: src/accountdialog.ui:4
 #
@@ -197,7 +197,7 @@ msgstr "L'aplicació %s vol capturar esdeveniments d'entrada"
 #
 #| msgid "An app wants to take a screenshot"
 msgid "An application wants to capture input events"
-msgstr "Una aplicació vol fer una captura de pantalla"
+msgstr "Una aplicació vol capturar esdeveniments d'entrada"
 
 #: src/inputcapturedialog.ui:7
 #
@@ -243,13 +243,13 @@ msgstr "Monitor virtual"
 #, c-format
 #| msgid "%s wants to take screenshots at any time"
 msgid "%s wants to share your screen. Choose what you'd like to share."
-msgstr "%s vol fer captures de pantalla. Trieu el que us agradaria compartir."
+msgstr "%s vol compartir la pantalla. Trieu què voleu compartir."
 
 #: src/screencastwidget.c:641
 #
 #| msgid "An app wants to take screenshots at any time"
 msgid "An app wants to share your screen. Choose what you'd like to share."
-msgstr "Una aplicació vol fer captures de pantalla. Trieu el que us agradaria compartir."
+msgstr "Una aplicació vol compartir la pantalla. Trieu què voleu compartir."
 
 #: src/screencastwidget.ui:17
 #
@@ -355,7 +355,7 @@ msgstr "%s vol accedir als següents dispositius USB"
 
 #: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
-msgstr "Una aplicació vol accedir a la càmera"
+msgstr "Una aplicació vol accedir als següents dispositius USB"
 
 #: src/usbdialog.c:276
 #
@@ -369,7 +369,7 @@ msgstr "Proveïdor desconegut"
 
 #: src/usbdialog.ui:8
 msgid "Device Access"
-msgstr "Denega l'accés"
+msgstr "Accés al dispositiu"
 
 #: src/usbdialog.ui:31
 msgid "_Deny"
