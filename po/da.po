@@ -1,16 +1,16 @@
 # Danish translation for xdg-desktop-portal-gnome
-# Copyright (C) 2023-2025 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2023-2026 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # scootergrisen, 2018-2019.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022-2025.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022-2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-08 14:35+0100\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-03-07 14:46+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -123,8 +123,8 @@ msgstr ""
 "Software."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Åbn med …"
+msgid "Open With"
+msgstr "Åbn med"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -298,7 +298,7 @@ msgstr "Medtag _markør"
 msgid "Include Window _Border"
 msgstr "Medtag vinduets _kant"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Den forespurgte indstilling blev ikke fundet"
 
@@ -306,20 +306,20 @@ msgstr "Den forespurgte indstilling blev ikke fundet"
 msgid "Serial Number"
 msgstr "Serienummer"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s ønsker at tilgå følgende USB-enheder"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Et program ønsker at tilgå følgende USB-enheder"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Ukendt enhed"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Ukendt leverandør"
 
