@@ -2,31 +2,31 @@
 # Copyright (C) 2019 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
 # This file is distributed under the same license as the xdg-desktop-portal-gnome package.
 # Zander Brown <zbrown@gnome.org>, 2019.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2025.
 # Andi Chandler <andi@gowling.com>, 2024-2025.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-15 19:55+0000\n"
+"POT-Creation-Date: 2026-02-06 20:54+0000\n"
+"PO-Revision-Date: 2026-03-09 11:56+0000\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
-"Language-Team: English - United Kingdom <en@li.org>\n"
+"Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Gtranslator 49.0\n"
 "X-DL-Team: en_GB\n"
 "X-DL-Module: xdg-desktop-portal-gnome\n"
 "X-DL-Branch: gnome-42\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -126,8 +126,8 @@ msgid "No suitable app installed. You can find more apps in Software."
 msgstr "No suitable app installed. You can find more apps in Software."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Open With…"
+msgid "Open With"
+msgstr "Open With"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -288,7 +288,7 @@ msgstr "Include _Pointer"
 msgid "Include Window _Border"
 msgstr "Include Window _Border"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Requested setting not found"
 
@@ -296,20 +296,20 @@ msgstr "Requested setting not found"
 msgid "Serial Number"
 msgstr "Serial Number"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s wants to access the following USB devices"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "An app wants to access the following USB devices"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Unknown device"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Unknown vendor"
 
@@ -340,133 +340,3 @@ msgstr "_Set"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Failed to load image file"
-
-#~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more "
-#~ "apps in Software."
-#~ msgstr ""
-#~ "No apps installed that are able to open file.extension. You can find more "
-#~ "apps in Software."
-
-#~ msgid "_Select"
-#~ msgstr "_Select"
-
-#~ msgid "_Save"
-#~ msgstr "_Save"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Open files read-only"
-
-#~ msgid "Open directories read-only"
-#~ msgstr "Open directories read-only"
-
-#~ msgid "Application _Window"
-#~ msgstr "Application _Window"
-
-#~ msgid "_Entire Screen"
-#~ msgstr "_Entire Screen"
-
-#~ msgid "Screen Share"
-#~ msgstr "Screen Share"
-
-#, c-format
-#~ msgid "Select monitor to share with %s"
-#~ msgstr "Select monitor to share with %s"
-
-#, c-format
-#~ msgid "Select window to share with %s"
-#~ msgstr "Select window to share with %s"
-
-#~| msgid "Select monitor to share with the requesting application"
-#~ msgid "Select monitor to share with the requesting app"
-#~ msgstr "Select monitor to share with the requesting app"
-
-#~| msgid "Select window to share with the requesting application"
-#~ msgid "Select window to share with the requesting app"
-#~ msgstr "Select window to share with the requesting app"
-
-#~ msgid "Set"
-#~ msgstr "Set"
-
-#~ msgid "Activities"
-#~ msgstr "Activities"
-
-#~ msgid "applications-system-symbolic"
-#~ msgstr "applications-system-symbolic"
-
-#, c-format
-#~ msgid "“%s” is running in the background"
-#~ msgstr "“%s” is running in the background"
-
-#~ msgid ""
-#~ "This might be for a legitimate reason, but the application has not "
-#~ "provided one.\n"
-#~ "\n"
-#~ "Note that forcing an application to quit might cause data loss."
-#~ msgstr ""
-#~ "This might be for a legitimate reason, but the application has not "
-#~ "provided one.\n"
-#~ "\n"
-#~ "Note that forcing an application to quit might cause data loss."
-
-#~ msgid "Force quit"
-#~ msgstr "Force quit"
-
-#~ msgid "Background activity"
-#~ msgstr "Background activity"
-
-#~ msgid "Find out more"
-#~ msgstr "Find out more"
-
-#~ msgid "Pointer"
-#~ msgstr "Pointer"
-
-#~ msgid "Keyboard"
-#~ msgstr "Keyboard"
-
-#~ msgid "Touch screen"
-#~ msgstr "Touch screen"
-
-#~ msgid "Select devices to share with %s"
-#~ msgstr "Select devices to share with %s"
-
-#~ msgid "Select devices to share with the requesting application"
-#~ msgstr "Select devices to share with the requesting application"
-
-#~ msgid "Grant Access"
-#~ msgstr "Grant Access"
-
-#~ msgid "Make changes before sharing the information"
-#~ msgstr "Make changes before sharing the information"
-
-#~ msgid "%s is running in the background."
-#~ msgstr "%s is running in the background."
-
-#~ msgid ""
-#~ "Select an application to open “%s”. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Select an application to open “%s”. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-
-#~ msgid ""
-#~ "Select an application. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-#~ msgstr ""
-#~ "Select an application. More applications are available in <a "
-#~ "href='software'>Software.</a>"
-
-#~ msgid "Unable to find a suitable application."
-#~ msgstr "Unable to find a suitable application."
-
-#~ msgid "Find Compatible Applications in Software"
-#~ msgstr "Find Compatible Applications in Software"
-
-#~ msgid "Forbid"
-#~ msgstr "Forbid"
-
-#~ msgid "Ignore"
-#~ msgstr "Ignore"
-
-#~ msgid "Screen casting"
-#~ msgstr "Screen casting"
