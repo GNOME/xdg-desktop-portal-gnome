@@ -159,6 +159,7 @@ print_dialog_handle_free (gpointer data)
 {
   PrintDialogHandle *handle = data;
 
+  g_clear_object (&handle->dialog);
   g_clear_object (&handle->external_parent);
   g_clear_object (&handle->request);
   g_clear_fd (&handle->fd, NULL);
@@ -169,7 +170,7 @@ print_dialog_handle_free (gpointer data)
 static void
 print_dialog_handle_close (PrintDialogHandle *handle)
 {
-  g_clear_pointer (&handle->dialog, gtk_window_destroy);
+  gtk_window_destroy (handle->dialog);
   print_dialog_handle_free (handle);
 }
 
@@ -606,8 +607,6 @@ handle_print (XdpImplPrint          *object,
 
   gtk_window_present (GTK_WINDOW (dialog));
 
-  g_object_unref (dialog);
-
   return TRUE;
 }
 
@@ -766,8 +765,6 @@ handle_prepare_print (XdpImplPrint          *object,
   request_export (request, g_dbus_method_invocation_get_connection (invocation));
 
   gtk_window_present (dialog);
-
-  g_object_unref (dialog);
 
   return TRUE;
 }
