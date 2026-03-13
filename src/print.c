@@ -34,6 +34,7 @@
 #include <gio/gunixinputstream.h>
 #include <gio/gunixoutputstream.h>
 #include <gio/gdesktopappinfo.h>
+#include <glib/gstdio.h>
 
 #include "xdg-desktop-portal-dbus.h"
 
@@ -160,7 +161,7 @@ print_dialog_handle_free (gpointer data)
 
   g_clear_object (&handle->external_parent);
   g_clear_object (&handle->request);
-  close (handle->fd);
+  g_clear_fd (&handle->fd, NULL);
 
   g_free (handle);
 }
@@ -750,6 +751,7 @@ handle_prepare_print (XdpImplPrint          *object,
   handle->request = g_object_ref (request);
   handle->dialog = g_object_ref_sink (dialog);
   handle->external_parent = external_parent;
+  handle->fd = -1;
 
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
 
