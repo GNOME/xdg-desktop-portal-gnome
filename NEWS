@@ -1,3 +1,9 @@
+Changes in 50.0
+=================
+- Make the Clipboard portal return errors instead of succeeding
+- Fix a bug in the Print portal where it was accidentally closing fd 0
+- Translation updates
+
 Changes in 50.rc
 =================
 - Translation updates
