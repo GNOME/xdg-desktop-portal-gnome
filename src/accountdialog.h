@@ -13,8 +13,4 @@ AccountDialog * account_dialog_new (const char *app_id,
                                     const char *icon_file,
                                     const char *reason);
 
-const char *account_dialog_get_user_name (AccountDialog *dialog);
-const char *account_dialog_get_real_name (AccountDialog *dialog);
-const char *account_dialog_get_icon_file (AccountDialog *dialog);
-
 G_END_DECLS
