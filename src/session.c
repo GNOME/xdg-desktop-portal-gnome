@@ -231,13 +231,15 @@ session_class_init (SessionClass *klass)
   gobject_class->get_property = session_get_property;
 
   obj_props[PROP_ID] =
-    g_param_spec_string ("id", "id", "ID",
+    g_param_spec_string ("id",
+                         NULL, NULL,
                          NULL,
                          G_PARAM_READWRITE |
                          G_PARAM_CONSTRUCT_ONLY |
                          G_PARAM_STATIC_STRINGS);
   obj_props[PROP_PEER_NAME] =
-    g_param_spec_string ("peer-name", "peer-name", "D-Bus peer name",
+    g_param_spec_string ("peer-name",
+                         NULL, NULL,
                          NULL,
                          G_PARAM_READWRITE |
                          G_PARAM_CONSTRUCT_ONLY |
