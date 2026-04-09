@@ -461,11 +461,7 @@ screen_cast_widget_finalize (GObject *object)
 
   shell_introspect_unref_listeners (widget->shell_introspect);
 
-  if (widget->selection_changed_timeout_id > 0)
-    {
-      g_source_remove (widget->selection_changed_timeout_id);
-      widget->selection_changed_timeout_id = 0;
-    }
+  g_clear_handle_id (&widget->selection_changed_timeout_id, g_source_remove);
 
   g_clear_object (&widget->filter_model);
 

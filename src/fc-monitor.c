@@ -134,9 +134,7 @@ fc_monitor_finalize (GObject *object)
 {
         FcMonitor *self = FC_MONITOR (object);
 
-        if (self->timeout)
-                g_source_remove (self->timeout);
-        self->timeout = 0;
+        g_clear_handle_id (&self->timeout, g_source_remove);
 
         g_clear_pointer (&self->monitors, g_ptr_array_unref);
 
@@ -221,7 +219,7 @@ stuff_changed (GFileMonitor *monitor G_GNUC_UNUSED,
         case UPDATE_PENDING:
                 /* wait for quiescence */
                 g_debug ("Got %-38s for %s: restarting fontconfig update timeout", event_name, path);
-                g_source_remove (self->timeout);
+                g_clear_handle_id (&self->timeout, g_source_remove);
                 start_timeout (self);
                 break;
 

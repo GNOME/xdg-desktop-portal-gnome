@@ -149,11 +149,7 @@ wallpaper_preview_finalize (GObject *object)
 
   g_clear_pointer (&self->previous_time, g_date_time_unref);
 
-  if (self->clock_time_timeout_id > 0)
-    {
-      g_source_remove (self->clock_time_timeout_id);
-      self->clock_time_timeout_id = 0;
-    }
+  g_clear_handle_id (&self->clock_time_timeout_id, g_source_remove);
 
   G_OBJECT_CLASS (wallpaper_preview_parent_class)->finalize (object);
 }

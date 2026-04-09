@@ -134,7 +134,7 @@ get_print_params (const char *app_id,
   if (strcmp (params->app_id, app_id) != 0)
     return NULL;
 
-  g_source_remove (params->timeout_id);
+  g_clear_handle_id (&params->timeout_id, g_source_remove);
   g_hash_table_remove (print_params, GUINT_TO_POINTER (token));
 
   return params;

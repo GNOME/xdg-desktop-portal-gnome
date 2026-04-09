@@ -351,8 +351,7 @@ screenshot_dialog_finalize (GObject *object)
 {
   ScreenshotDialog *dialog = SCREENSHOT_DIALOG (object);
 
-  if (dialog->timeout)
-    g_source_remove (dialog->timeout);
+  g_clear_handle_id (&dialog->timeout, g_source_remove);
 
   g_cancellable_cancel (dialog->cancellable);
   g_object_unref (dialog->cancellable);
