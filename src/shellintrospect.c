@@ -96,6 +96,8 @@ shell_window_dispose (GObject *obj)
 
   g_clear_pointer (&self->title, g_free);
   g_clear_pointer (&self->app_id, g_free);
+
+  G_OBJECT_CLASS (shell_window_parent_class)->dispose (obj);
 }
 
 static void
