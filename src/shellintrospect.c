@@ -111,7 +111,7 @@ shell_window_set_title (ShellWindow *window,
   else
     window->title = g_markup_escape_text (title, -1);
 
-  g_object_notify (G_OBJECT (window), "title");
+  g_object_notify_by_pspec (G_OBJECT (window), properties[PROP_TITLE]);
 }
 
 static void
