@@ -242,10 +242,10 @@ gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_s
       g_snprintf (id, G_N_ELEMENTS (id), "%u", stream->id);
       g_variant_builder_add (&stream_properties_builder, "{sv}",
                              "id",
-                             g_variant_new ("s", id));
+                             g_variant_new_string (id));
       g_variant_builder_add (&stream_properties_builder, "{sv}",
                              "source_type",
-                             g_variant_new ("u", stream->source_type));
+                             g_variant_new_uint32 (stream->source_type));
 
       if (gnome_screen_cast_stream_get_position (stream, &x, &y))
         g_variant_builder_add (&stream_properties_builder, "{sv}",
@@ -258,7 +258,7 @@ gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_s
       if (stream->mapping_id)
         g_variant_builder_add (&stream_properties_builder, "{sv}",
                                "mapping_id",
-                               g_variant_new ("s", stream->mapping_id));
+                               g_variant_new_string (stream->mapping_id));
 
       pipewire_node_id = gnome_screen_cast_stream_get_pipewire_node_id (stream);
       g_variant_builder_add (streams_builder, "(ua{sv})",

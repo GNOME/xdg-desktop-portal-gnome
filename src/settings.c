@@ -400,33 +400,33 @@ on_settings_changed (GSettings             *settings,
   else
     xdp_impl_settings_emit_setting_changed (user_data->self,
                                             user_data->namespace, key,
-                                            g_variant_new ("v", new_value));
+                                            g_variant_new_variant (new_value));
 
   if (strcmp (user_data->namespace, "org.gnome.desktop.interface") == 0 &&
       strcmp (key, "color-scheme") == 0)
     xdp_impl_settings_emit_setting_changed (user_data->self,
                                             "org.freedesktop.appearance", key,
-                                            g_variant_new ("v", get_color_scheme ()));
+                                            g_variant_new_variant (get_color_scheme ()));
 
   if (strcmp (user_data->namespace, "org.gnome.desktop.interface") == 0 &&
       strcmp (key, "accent-color") == 0)
     xdp_impl_settings_emit_setting_changed (user_data->self,
                                             "org.freedesktop.appearance", key,
-                                            g_variant_new ("v", get_accent_color ()));
+                                            g_variant_new_variant (get_accent_color ()));
 
   if (strcmp (user_data->namespace, "org.gnome.desktop.a11y.interface") == 0 &&
       strcmp (key, "high-contrast") == 0)
     {
       xdp_impl_settings_emit_setting_changed (user_data->self,
                                               "org.gnome.desktop.interface", "gtk-theme",
-                                              g_variant_new ("v", get_theme_value ("gtk-theme")));
+                                              g_variant_new_variant (get_theme_value ("gtk-theme")));
       if (g_variant_is_of_type (new_value, G_VARIANT_TYPE_BOOLEAN))
         {
           gboolean hc = g_variant_get_boolean (new_value);
           xdp_impl_settings_emit_setting_changed (user_data->self,
                                                   "org.freedesktop.appearance",
                                                   "contrast",
-                                                  g_variant_new ("v", g_variant_new_uint32 (hc ? 1 : 0)));
+                                                  g_variant_new_variant (g_variant_new_uint32 (hc ? 1 : 0)));
         }
     }
 
@@ -434,7 +434,7 @@ on_settings_changed (GSettings             *settings,
        strcmp (key, "reduced-motion") == 0)
      xdp_impl_settings_emit_setting_changed (user_data->self,
                                              "org.freedesktop.appearance", key,
-                                             g_variant_new ("v", get_reduced_motion_value ()));
+                                             g_variant_new_variant (get_reduced_motion_value ()));
 }
 
 static void
@@ -492,7 +492,7 @@ fontconfig_changed (FcMonitor       *monitor,
 
   xdp_impl_settings_emit_setting_changed (impl,
                                           namespace, key,
-                                          g_variant_new ("v", g_variant_new_int32 (fontconfig_serial)));
+                                          g_variant_new_variant (g_variant_new_int32 (fontconfig_serial)));
 }
 
 static void
@@ -508,7 +508,7 @@ set_enable_animations (XdpImplSettings *impl,
 
   enable_animations = new_enable_animations;
   enable_animations_variant =
-    g_variant_new ("v", g_variant_new_boolean (enable_animations));
+    g_variant_new_variant (g_variant_new_boolean (enable_animations));
   xdp_impl_settings_emit_setting_changed (impl,
                                           namespace,
                                           key,
