@@ -92,8 +92,7 @@ static void
 dialog_set_icon_file (AccountDialog *dialog,
                       const char    *icon_file)
 {
-  g_clear_pointer (&dialog->icon_file, g_free);
-  dialog->icon_file = g_strdup (icon_file);
+  g_set_str (&dialog->icon_file, icon_file);
 
   if (icon_file)
     {

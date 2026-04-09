@@ -125,8 +125,7 @@ static void
 show_screenshot (ScreenshotDialog *dialog,
                  const char *filename)
 {
-  g_free (dialog->filename);
-  dialog->filename = g_strdup (filename);
+  g_set_str (&dialog->filename, filename);
 
   gtk_picture_set_filename (GTK_PICTURE (dialog->picture), filename);
 

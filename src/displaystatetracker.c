@@ -205,8 +205,7 @@ update_monitor_illustration (DisplayStateTracker *tracker,
 
   g_assert (first_monitor != NULL);
 
-  g_clear_pointer (&illustration->label, g_free);
-  illustration->label = g_strdup (label->str);
+  g_set_str (&illustration->label, label->str);
   illustration->primary = logical_monitor->is_primary;
 
   /* Assign width and height (conditionally flipped) */
