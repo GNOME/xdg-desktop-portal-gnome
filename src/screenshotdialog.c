@@ -43,7 +43,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (ScreenshotDialog, screenshot_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (ScreenshotDialog, screenshot_dialog, ADW_TYPE_WINDOW)
 
 static void
 update_border (ScreenshotDialog *dialog,

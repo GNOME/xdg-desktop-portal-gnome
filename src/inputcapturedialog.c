@@ -47,7 +47,7 @@ enum
 
 static guint signals[N_SIGNAL];
 
-G_DEFINE_TYPE (InputCaptureDialog, input_capture_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (InputCaptureDialog, input_capture_dialog, GTK_TYPE_WINDOW)
 
 static void
 button_clicked (GtkWidget          *button,

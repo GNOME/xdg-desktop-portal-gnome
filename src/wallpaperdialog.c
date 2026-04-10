@@ -46,7 +46,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (WallpaperDialog, wallpaper_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (WallpaperDialog, wallpaper_dialog, ADW_TYPE_WINDOW)
 
 static void
 wallpaper_dialog_apply (WallpaperDialog *self)

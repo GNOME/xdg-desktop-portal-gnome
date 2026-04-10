@@ -44,7 +44,7 @@ enum
 
 static guint signals[N_SIGNALS];
 
-G_DEFINE_TYPE (ScreenCastDialog, screen_cast_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (ScreenCastDialog, screen_cast_dialog, ADW_TYPE_WINDOW)
 
 /*
  * Callbacks

@@ -64,7 +64,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (AppChooserDialog, app_chooser_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (AppChooserDialog, app_chooser_dialog, ADW_TYPE_WINDOW)
 
 static void
 app_chooser_dialog_init (AppChooserDialog *dialog)

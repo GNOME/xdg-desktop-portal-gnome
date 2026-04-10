@@ -71,7 +71,7 @@ struct _ScreenCastWidget
 
 static GQuark quark_monitor_widget_data;
 
-G_DEFINE_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
+G_DEFINE_FINAL_TYPE (ScreenCastWidget, screen_cast_widget, GTK_TYPE_BOX)
 
 static void schedule_selection_change (ScreenCastWidget *widget);
 

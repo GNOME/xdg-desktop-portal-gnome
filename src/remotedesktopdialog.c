@@ -58,7 +58,7 @@ enum
 
 static guint signals[N_SIGNAL];
 
-G_DEFINE_TYPE (RemoteDesktopDialog, remote_desktop_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (RemoteDesktopDialog, remote_desktop_dialog, ADW_TYPE_WINDOW)
 
 static RemoteDesktopDeviceType
 get_selected_device_types (RemoteDesktopDialog *dialog)

@@ -30,7 +30,7 @@ enum {
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (AccountDialog, account_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (AccountDialog, account_dialog, ADW_TYPE_WINDOW)
 
 static void
 account_dialog_init (AccountDialog *dialog)

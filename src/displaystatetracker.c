@@ -89,7 +89,7 @@ struct _DisplayStateTracker
   uint32_t layout_mode;
 };
 
-G_DEFINE_TYPE (DisplayStateTracker, display_state_tracker, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (DisplayStateTracker, display_state_tracker, G_TYPE_OBJECT)
 
 static DisplayStateTracker *tracker_object;
 

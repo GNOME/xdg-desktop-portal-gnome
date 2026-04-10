@@ -97,7 +97,7 @@ static void start_timeout (FcMonitor *self);
 static gboolean start_update (gpointer data);
 static void update_done (GObject *source_object, GAsyncResult *result, gpointer user_data);
 
-G_DEFINE_TYPE (FcMonitor, fc_monitor, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (FcMonitor, fc_monitor, G_TYPE_OBJECT);
 
 static void
 fc_monitor_class_init (FcMonitorClass *klass)

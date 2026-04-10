@@ -51,7 +51,7 @@ struct _ShellIntrospect
   gboolean animations_enabled_valid;
 };
 
-G_DEFINE_TYPE (ShellIntrospect, shell_introspect, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (ShellIntrospect, shell_introspect, G_TYPE_OBJECT)
 
 enum
 {
@@ -71,7 +71,7 @@ struct _WindowClass
   GObjectClass parent;
 };
 
-G_DEFINE_TYPE (ShellWindow, shell_window, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (ShellWindow, shell_window, G_TYPE_OBJECT)
 
 enum
 {

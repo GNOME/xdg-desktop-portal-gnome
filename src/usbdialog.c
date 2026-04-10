@@ -48,7 +48,7 @@ enum
 
 static guint signals[LAST_SIGNAL];
 
-G_DEFINE_TYPE (UsbDialog, usb_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_FINAL_TYPE (UsbDialog, usb_dialog, ADW_TYPE_WINDOW)
 
 static void
 load_icons (void)
