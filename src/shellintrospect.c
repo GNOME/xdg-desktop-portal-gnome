@@ -182,7 +182,7 @@ shell_window_class_init (ShellWindowClass *klass)
                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
   properties[PROP_TITLE] = g_param_spec_string ("title", NULL, NULL, "",
                                                 G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
-  properties[PROP_APP_ID] = g_param_spec_string ("app_id", NULL, NULL, "",
+  properties[PROP_APP_ID] = g_param_spec_string ("app-id", NULL, NULL, "",
                                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
@@ -197,7 +197,7 @@ shell_window_new (uint64_t  id,
 
   new_window = g_object_new (SHELL_TYPE_WINDOW, "id", id,
                              "title", title,
-                             "app_id", app_id, NULL);
+                             "app-id", app_id, NULL);
 
   return new_window;
 }
