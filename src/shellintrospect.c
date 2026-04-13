@@ -179,11 +179,11 @@ shell_window_class_init (ShellWindowClass *klass)
   object_class->set_property = shell_window_set_property;
 
   properties[PROP_ID] = g_param_spec_uint64 ("id", NULL, NULL, 0, G_MAXUINT64, 0,
-                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
   properties[PROP_TITLE] = g_param_spec_string ("title", NULL, NULL, "",
-                                                G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
+                                                G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
   properties[PROP_APP_ID] = g_param_spec_string ("app-id", NULL, NULL, "",
-                                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
