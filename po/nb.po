@@ -6,11 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
-"gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-01 18:33+0100\n"
-"Last-Translator: Brage <bragefuglseth@gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/issues/\n"
+"POT-Creation-Date: 2026-04-09 12:31+0000\n"
+"PO-Revision-Date: 2026-05-05 19:46+0200\n"
+"Last-Translator: Kjartan Maraas <kjartan.maraas@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Portal"
 
@@ -121,8 +120,8 @@ msgstr ""
 "Fant ingen passende installerte apper. Du kan finne flere apper i Appsenter."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Åpne med…"
+msgid "Open With"
+msgstr "Åpne med"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -205,12 +204,12 @@ msgstr "Del skjerm"
 msgid "Virtual Monitor"
 msgstr "Virtuell skjerm"
 
-#: src/screencastwidget.c:636
+#: src/screencastwidget.c:632
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr "%s ønsker å dele skjermen. Velg hva du ønsker å dele."
 
-#: src/screencastwidget.c:641
+#: src/screencastwidget.c:637
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr "En app ønsker å dele skjermen. Velg hva du ønsker å dele."
 
@@ -226,12 +225,12 @@ msgstr "_Vindu"
 msgid "_Display"
 msgstr "_Skjerm"
 
-#: src/screenshotdialog.c:432
+#: src/screenshotdialog.c:431
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Dele skjermbilde med %s?"
 
-#: src/screenshotdialog.c:436
+#: src/screenshotdialog.c:435
 msgid "Share this screenshot with the requesting app?"
 msgstr "Dele skjermbilde med appen?"
 
@@ -283,7 +282,7 @@ msgstr "Inkluder _peker"
 msgid "Include Window _Border"
 msgstr "Inkluder vindus_ramme"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Fant ikke innstilling"
 
@@ -291,20 +290,20 @@ msgstr "Fant ikke innstilling"
 msgid "Serial Number"
 msgstr "Serienummer"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "%s ønsker å bruke følgende USB-enheter"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "En app ønsker å bruke følgende USB-enheter"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Ukjent enhet"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Ukjent produsent"
 
@@ -335,51 +334,3 @@ msgstr "_Bruk"
 #: src/wallpaperdialog.ui:67
 msgid "Failed to load image file"
 msgstr "Innlasting av bilde mislyktes"
-
-#~ msgid ""
-#~ "No apps installed that are able to open file.extension. You can find more "
-#~ "apps in Software."
-#~ msgstr ""
-#~ "Fant ingen installerte apper som kan åpne file.extension. Du kan finne "
-#~ "flere apper i Appsenter."
-
-#~ msgid "_Select"
-#~ msgstr "_Velg"
-
-#~ msgid "_Save"
-#~ msgstr "_Lagre"
-
-#~ msgid "Open files read-only"
-#~ msgstr "Åpne filer som skrivebeskyttet"
-
-#~ msgid "Open directories read-only"
-#~ msgstr "Åpne mapper som skrivebeskyttet"
-
-#~ msgid "Application _Window"
-#~ msgstr "_Vindu"
-
-#~ msgid "_Entire Screen"
-#~ msgstr "_Hele skjermen"
-
-#~ msgid "Screen Share"
-#~ msgstr "Skjermdeling"
-
-#, c-format
-#~ msgid "Select monitor to share with %s"
-#~ msgstr "Velg skjermen du vil dele med %s"
-
-#, c-format
-#~ msgid "Select window to share with %s"
-#~ msgstr "Velg viduet du vil dele med %s"
-
-#~ msgid "Select monitor to share with the requesting application"
-#~ msgstr "Velg skjerm du vil dele med den spørrende applikasjonen"
-
-#~ msgid "Select window to share with the requesting application"
-#~ msgstr "Velg vindu du vil dele med den spørrende applikasjonen"
-
-#~ msgid "Set"
-#~ msgstr "Velg"
-
-#~ msgid "Activities"
-#~ msgstr "Aktiviteter"
