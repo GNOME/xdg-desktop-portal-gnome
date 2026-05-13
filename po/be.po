@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xdg-desktop-portal-gnome main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/xdg-desktop-portal-"
 "gnome/issues/\n"
-"POT-Creation-Date: 2025-02-26 12:32+0000\n"
-"PO-Revision-Date: 2025-03-07 22:30+0300\n"
+"POT-Creation-Date: 2026-04-09 12:31+0000\n"
+"PO-Revision-Date: 2026-05-13 18:07+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/xdg-desktop-portal-gnome.desktop.in.in:4
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
 msgid "Portal"
 msgstr "Партал"
 
@@ -123,8 +123,8 @@ msgstr ""
 "праграмнага забеспячэння."
 
 #: src/appchooserdialog.ui:5
-msgid "Open With…"
-msgstr "Адкрыць праз…"
+msgid "Open With"
+msgstr "Адкрыць праз"
 
 #: src/appchooserdialog.ui:25
 msgid "_Open"
@@ -207,14 +207,14 @@ msgstr "Супольны доступ да экрана"
 msgid "Virtual Monitor"
 msgstr "Віртуальны манітор"
 
-#: src/screencastwidget.c:636
+#: src/screencastwidget.c:632
 #, c-format
 msgid "%s wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Праграма %s хоча даць доступ да вашага экрана. Выберыце, што б вы хацелі "
 "абагуліць."
 
-#: src/screencastwidget.c:641
+#: src/screencastwidget.c:637
 msgid "An app wants to share your screen. Choose what you'd like to share."
 msgstr ""
 "Праграма хоча даць доступ да вашага экрана. Выберыце, што б вы хацелі "
@@ -232,12 +232,12 @@ msgstr "_Акно"
 msgid "_Display"
 msgstr "_Экран"
 
-#: src/screenshotdialog.c:432
+#: src/screenshotdialog.c:431
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr "Даць доступ да здымкаў для %s?"
 
-#: src/screenshotdialog.c:436
+#: src/screenshotdialog.c:435
 msgid "Share this screenshot with the requesting app?"
 msgstr "Даць доступ да здымкаў для праграмы?"
 
@@ -289,7 +289,7 @@ msgstr "Улучыць _указальнік мышы"
 msgid "Include Window _Border"
 msgstr "Улучыць _мяжу акна"
 
-#: src/settings.c:335
+#: src/settings.c:362
 msgid "Requested setting not found"
 msgstr "Запытаная налада не знойдзена"
 
@@ -297,20 +297,20 @@ msgstr "Запытаная налада не знойдзена"
 msgid "Serial Number"
 msgstr "Серыйны нумар"
 
-#: src/usbdialog.c:210
+#: src/usbdialog.c:211
 #, c-format
 msgid "%s wants to access the following USB devices"
 msgstr "Праграма «%s» хоча атрымаць да наступных USB-прылад"
 
-#: src/usbdialog.c:215
+#: src/usbdialog.c:216
 msgid "An app wants to access the following USB devices"
 msgstr "Праграма хоча атрымаць да наступных USB-прылад"
 
-#: src/usbdialog.c:275
+#: src/usbdialog.c:276
 msgid "Unknown device"
 msgstr "Невядомая прылада"
 
-#: src/usbdialog.c:276
+#: src/usbdialog.c:277
 msgid "Unknown vendor"
 msgstr "Невядомы вытворца"
 
