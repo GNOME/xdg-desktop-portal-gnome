@@ -99,7 +99,7 @@ repo-sanity:
   extends:
     - .container-common
   variables:
-    FDO_DISTRIBUTION_VERSION: 42
+    FDO_DISTRIBUTION_VERSION: 44
     FDO_DISTRIBUTION_PACKAGES:
       bubblewrap
       fontconfig-devel

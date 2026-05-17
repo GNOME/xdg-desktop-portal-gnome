@@ -301,7 +301,7 @@ main (int argc, char *argv[])
       return 0;
     }
 
-  if (!gxdp_init_gtk (GXDP_SERVICE_CLIENT_TYPE_PORTAL_BACKEND, &error))
+  if (!gxdp_init_gtk (GXDP_SERVICE_CLIENT_TYPE_PORTAL_BACKEND, NULL, &error))
     {
       g_debug ("Failed to initialize display server connection: %s",
                error->message);
