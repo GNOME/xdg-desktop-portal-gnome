@@ -36,3 +36,5 @@ void      app_chooser_dialog_update_choices (AppChooserDialog *dialog,
                                              const char       **app_ids);
 
 GAppInfo *app_chooser_dialog_get_info (AppChooserDialog *dialog);
+
+G_END_DECLS
