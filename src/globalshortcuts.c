@@ -714,6 +714,72 @@ out:
 }
 
 static void
+settings_configure_shortcuts_done (GObject      *source,
+                                   GAsyncResult *result,
+                                   gpointer      data)
+{
+  OrgGnomeSettingsGlobalShortcutsProvider *proxy = (OrgGnomeSettingsGlobalShortcutsProvider *) source;
+  g_autoptr(GDBusMethodInvocation) invocation = data;
+  g_autoptr(GError) error = NULL;
+
+  if (!org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts_finish (proxy,
+                                                                                     result,
+                                                                                     &error))
+    {
+      g_dbus_method_invocation_return_gerror (invocation, error);
+      return;
+    }
+
+  xdp_impl_global_shortcuts_complete_configure_shortcuts (global_shortcuts, invocation);
+}
+
+static gboolean
+handle_configure_shortcuts (XdpImplGlobalShortcuts *object,
+                            GDBusMethodInvocation  *invocation,
+                            const char             *arg_session_handle,
+                            const char             *arg_parent_window,
+                            GVariant               *arg_options)
+{
+  Session *session;
+  GlobalShortcutsSession *shortcuts_session;
+  g_autoptr(GError) error = NULL;
+
+  session = lookup_session (arg_session_handle);
+  if (!session)
+    {
+      g_warning ("Tried to configure shortcuts on non-existing %s", arg_session_handle);
+      g_dbus_method_invocation_return_error (invocation,
+                                             G_DBUS_ERROR,
+                                             G_DBUS_ERROR_INVALID_ARGS,
+                                             "Session %s not found", arg_session_handle);
+      return TRUE;
+    }
+
+  if (!is_global_shortcuts_session (session))
+    {
+      g_warning ("Tried to configure shortcuts on the wrong session type");
+      g_dbus_method_invocation_return_error (invocation,
+                                             G_DBUS_ERROR,
+                                             G_DBUS_ERROR_INVALID_ARGS,
+                                             "Wrong session type");
+      return TRUE;
+    }
+
+  shortcuts_session = (GlobalShortcutsSession *) session;
+
+  g_debug ("Configuring shortcuts for session %s, app_id %s",
+           session_get_id (session), shortcuts_session->app_id);
+
+  org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts (settings,
+                                                                         shortcuts_session->app_id,
+                                                                         arg_parent_window,
+                                                                         NULL,
+                                                                         settings_configure_shortcuts_done,
+                                                                         g_object_ref (invocation));
+  return TRUE;
+}
+
+static void
 shell_grab_accelerators_rebind_done (GObject      *object,
                                      GAsyncResult *result,
                                      gpointer      data)
@@ -1016,11 +1082,12 @@ global_shortcuts_init (GDBusConnection *bus,
                        GError **error)
 {
   global_shortcuts = xdp_impl_global_shortcuts_skeleton_new ();
-  xdp_impl_global_shortcuts_set_version (global_shortcuts, 1);
+  xdp_impl_global_shortcuts_set_version (global_shortcuts, 2);
 
   g_signal_connect (global_shortcuts, "handle-bind-shortcuts", G_CALLBACK (handle_bind_shortcuts), NULL);
   g_signal_connect (global_shortcuts, "handle-create-session", G_CALLBACK (handle_create_session), NULL);
   g_signal_connect (global_shortcuts, "handle-list-shortcuts", G_CALLBACK (handle_list_shortcuts), NULL);
+  g_signal_connect (global_shortcuts, "handle-configure-shortcuts", G_CALLBACK (handle_configure_shortcuts), NULL);
 
   if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (global_shortcuts),
                                          bus,
