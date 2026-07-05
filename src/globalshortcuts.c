@@ -84,7 +84,8 @@ clear_accelerator (Accelerator *accel)
 static void
 shortcuts_handle_free (BindShortcutsHandle *handle)
 {
-  g_object_unref (handle->invocation);
+  if (handle->invocation)
+    g_clear_object (&handle->invocation);
   if (handle->request)
     {
       if (handle->request->exported)
@@ -714,72 +715,6 @@ out:
 }
 
 static void
-settings_configure_shortcuts_done (GObject      *source,
-                                   GAsyncResult *result,
-                                   gpointer      data)
-{
-  OrgGnomeSettingsGlobalShortcutsProvider *proxy = (OrgGnomeSettingsGlobalShortcutsProvider *) source;
-  g_autoptr(GDBusMethodInvocation) invocation = data;
-  g_autoptr(GError) error = NULL;
-
-  if (!org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts_finish (proxy,
-                                                                                     result,
-                                                                                     &error))
-    {
-      g_dbus_method_invocation_return_gerror (invocation, error);
-      return;
-    }
-
-  xdp_impl_global_shortcuts_complete_configure_shortcuts (global_shortcuts, invocation);
-}
-
-static gboolean
-handle_configure_shortcuts (XdpImplGlobalShortcuts *object,
-                            GDBusMethodInvocation  *invocation,
-                            const char             *arg_session_handle,
-                            const char             *arg_parent_window,
-                            GVariant               *arg_options)
-{
-  Session *session;
-  GlobalShortcutsSession *shortcuts_session;
-  g_autoptr(GError) error = NULL;
-
-  session = lookup_session (arg_session_handle);
-  if (!session)
-    {
-      g_warning ("Tried to configure shortcuts on non-existing %s", arg_session_handle);
-      g_dbus_method_invocation_return_error (invocation,
-                                             G_DBUS_ERROR,
-                                             G_DBUS_ERROR_INVALID_ARGS,
-                                             "Session %s not found", arg_session_handle);
-      return TRUE;
-    }
-
-  if (!is_global_shortcuts_session (session))
-    {
-      g_warning ("Tried to configure shortcuts on the wrong session type");
-      g_dbus_method_invocation_return_error (invocation,
-                                             G_DBUS_ERROR,
-                                             G_DBUS_ERROR_INVALID_ARGS,
-                                             "Wrong session type");
-      return TRUE;
-    }
-
-  shortcuts_session = (GlobalShortcutsSession *) session;
-
-  g_debug ("Configuring shortcuts for session %s, app_id %s",
-           session_get_id (session), shortcuts_session->app_id);
-
-  org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts (settings,
-                                                                         shortcuts_session->app_id,
-                                                                         arg_parent_window,
-                                                                         NULL,
-                                                                         settings_configure_shortcuts_done,
-                                                                         g_object_ref (invocation));
-  return TRUE;
-}
-
-static void
 shell_grab_accelerators_rebind_done (GObject      *object,
                                      GAsyncResult *result,
                                      gpointer      data)
@@ -817,8 +752,9 @@ shell_grab_accelerators_rebind_done (GObject      *object,
                                                         shortcuts);
     }
 
-  org_gnome_global_shortcuts_rebind_complete_rebind_shortcuts (global_shortcuts_rebind,
-                                                               handle->invocation);
+  if (handle->invocation)
+    org_gnome_global_shortcuts_rebind_complete_rebind_shortcuts (global_shortcuts_rebind,
+                                                                 handle->invocation);
 }
 
 static void
@@ -865,6 +801,33 @@ match_app_id (Session       *session,
   return TRUE;
 }
 
+static void
+rebind_session_shortcuts (GlobalShortcutsSession  *session,
+                          GVariant                *shortcuts,
+                          GDBusMethodInvocation   *invocation)
+{
+  g_autoptr(BindShortcutsHandle) handle = NULL;
+  g_autoptr(GVariant) variant = NULL;
+
+  handle = g_new0 (BindShortcutsHandle, 1);
+  handle->session = (Session *) session;
+  handle->invocation = invocation ? g_object_ref (invocation) : NULL;
+  handle->shortcuts = g_variant_ref (shortcuts);
+  handle->mapped_accelerators = g_ptr_array_new ();
+
+  /* Reset shortcuts */
+  variant = shortcuts_to_ungrab_accelerator_variant (session);
+  g_array_remove_range (session->shortcuts, 0,
+                        session->shortcuts->len);
+  settings_response_to_shortcuts (session, shortcuts);
+
+  org_gnome_shell_call_ungrab_accelerators (shell,
+                                            variant,
+                                            NULL,
+                                            shell_ungrab_accelerators_rebind_done,
+                                            g_steal_pointer (&handle));
+}
+
 static gboolean
 handle_rebind_shortcuts (OrgGnomeGlobalShortcutsRebind *object,
                          GDBusMethodInvocation         *invocation,
@@ -872,9 +835,6 @@ handle_rebind_shortcuts (OrgGnomeGlobalShortcutsRebind *object,
                          GVariant                      *arg_shortcuts)
 {
   Session *session;
-  GlobalShortcutsSession *shortcuts_session;
-  g_autoptr(GVariant) variant = NULL;
-  g_autoptr(BindShortcutsHandle) handle = NULL;
 
   session = find_session (match_app_id, arg_app_id);
 
@@ -885,28 +845,94 @@ handle_rebind_shortcuts (OrgGnomeGlobalShortcutsRebind *object,
       return TRUE;
     }
 
-  shortcuts_session = (GlobalShortcutsSession *) session;
-
   g_debug ("Re-binding shortcuts of session %s", session_get_id (session));
 
-  handle = g_new0 (BindShortcutsHandle, 1);
-  handle->session = session;
-  handle->invocation = g_object_ref (invocation);
-  handle->shortcuts = g_variant_ref (arg_shortcuts);
-  handle->mapped_accelerators = g_ptr_array_new ();
+  rebind_session_shortcuts ((GlobalShortcutsSession *) session,
+                            arg_shortcuts, invocation);
 
-  /* Reset shortcuts */
-  variant = shortcuts_to_ungrab_accelerator_variant (shortcuts_session);
-  g_array_remove_range (shortcuts_session->shortcuts, 0,
-                        shortcuts_session->shortcuts->len);
-  settings_response_to_shortcuts (shortcuts_session, arg_shortcuts);
+  return TRUE;
+}
 
-  org_gnome_shell_call_ungrab_accelerators (shell,
-                                            variant,
-                                            NULL,
-                                            shell_ungrab_accelerators_rebind_done,
-                                            g_steal_pointer (&handle));
+static void
+settings_configure_shortcuts_done (GObject      *source,
+                                   GAsyncResult *result,
+                                   gpointer      data)
+{
+  OrgGnomeSettingsGlobalShortcutsProvider *proxy = (OrgGnomeSettingsGlobalShortcutsProvider *) source;
+  g_autofree char *app_id = data;
+  g_autoptr(GVariant) response = NULL;
+  g_autoptr(GError) error = NULL;
+  Session *session;
+  GlobalShortcutsSession *shortcuts_session;
 
+  if (!org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts_finish (proxy,
+                                                                                     &response,
+                                                                                     result,
+                                                                                     &error))
+    {
+      g_debug ("Error from GlobalShortcutsProvider ConfigureShortcuts: %s", error->message);
+      return;
+    }
+
+  session = find_session (match_app_id, app_id);
+  if (!session)
+    {
+      g_debug ("Session for app %s not found in ConfigureShortcuts response", app_id);
+      return;
+    }
+
+  shortcuts_session = (GlobalShortcutsSession *) session;
+
+  g_debug ("Re-binding shortcuts from ConfigureShortcuts response for session %s",
+           session_get_id (session));
+
+  rebind_session_shortcuts (shortcuts_session, response, NULL);
+}
+
+static gboolean
+handle_configure_shortcuts (XdpImplGlobalShortcuts *object,
+                            GDBusMethodInvocation  *invocation,
+                            const char             *arg_session_handle,
+                            const char             *arg_parent_window,
+                            GVariant               *arg_options)
+{
+  Session *session;
+  GlobalShortcutsSession *shortcuts_session;
+
+  session = lookup_session (arg_session_handle);
+  if (!session)
+    {
+      g_warning ("Tried to configure shortcuts on non-existing %s", arg_session_handle);
+      g_dbus_method_invocation_return_error (invocation,
+                                             G_DBUS_ERROR,
+                                             G_DBUS_ERROR_INVALID_ARGS,
+                                             "Session %s not found", arg_session_handle);
+      return TRUE;
+    }
+
+  if (!is_global_shortcuts_session (session))
+    {
+      g_warning ("Tried to configure shortcuts on the wrong session type");
+      g_dbus_method_invocation_return_error (invocation,
+                                             G_DBUS_ERROR,
+                                             G_DBUS_ERROR_INVALID_ARGS,
+                                             "Wrong session type");
+      return TRUE;
+    }
+
+  shortcuts_session = (GlobalShortcutsSession *) session;
+
+  g_debug ("Configuring shortcuts for session %s, app_id %s",
+           session_get_id (session), shortcuts_session->app_id);
+
+  org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts (settings,
+                                                                         shortcuts_session->app_id,
+                                                                         arg_parent_window,
+                                                                         NULL,
+                                                                         settings_configure_shortcuts_done,
+                                                                         g_strdup (shortcuts_session->app_id));
+
+  xdp_impl_global_shortcuts_complete_configure_shortcuts (global_shortcuts, invocation);
   return TRUE;
 }
 
