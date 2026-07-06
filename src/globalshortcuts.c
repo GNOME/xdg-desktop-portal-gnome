@@ -49,6 +49,7 @@ typedef struct _GlobalShortcutsSession
   Session parent;
   char *app_id;
   GArray *shortcuts;
+  GVariant *initial_shortcuts;
 
   gboolean bound;
 } GlobalShortcutsSession;
@@ -211,6 +212,7 @@ global_shortcuts_session_finalize (GObject *object)
   GlobalShortcutsSession *session = (GlobalShortcutsSession *) object;
 
   g_clear_pointer (&session->shortcuts, g_array_unref);
+  g_clear_pointer (&session->initial_shortcuts, g_variant_unref);
   g_free (session->app_id);
 
   G_OBJECT_CLASS (global_shortcuts_session_parent_class)->finalize (object);
@@ -428,6 +430,35 @@ portal_trigger_to_settings (const char *trigger)
 }
 
 static GVariant *
+portal_variant_to_empty_response_variant (GVariant *portal)
+{
+  GVariantBuilder builder;
+  g_autoptr(GVariantIter) iter = g_variant_iter_new (portal);
+  g_autofree char *shortcut_id = NULL;
+  g_autoptr(GVariant) val = NULL;
+
+  g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sa{sv})"));
+
+  while (g_variant_iter_next (iter, "(s@a{sv})", &shortcut_id, &val))
+    {
+      g_autofree char *description = NULL;
+
+      g_variant_builder_open (&builder, G_VARIANT_TYPE ("(sa{sv})"));
+      g_variant_builder_add (&builder, "s", shortcut_id);
+      g_variant_builder_open (&builder, G_VARIANT_TYPE ("a{sv}"));
+
+      if (g_variant_lookup (val, "description", "s", &description))
+        g_variant_builder_add (&builder, "{sv}", "description",
+                               g_variant_new_string (description));
+
+      g_variant_builder_close (&builder);
+      g_variant_builder_close (&builder);
+    }
+
+  return g_variant_ref_sink (g_variant_builder_end (&builder));
+}
+
+static GVariant *
 portal_shortcuts_to_settings (GVariant *input)
 {
   /* The portal input looks like this:
@@ -639,6 +670,7 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
   request_export (request,
                   g_dbus_method_invocation_get_connection (invocation));
 
+  shortcuts_session->initial_shortcuts = g_variant_ref (arg_shortcuts);
   shortcuts_session->bound = TRUE;
 
   g_assert (object == global_shortcuts);
@@ -743,7 +775,15 @@ shell_grab_accelerators_rebind_done (GObject      *object,
       i++;
     }
 
-  shortcuts = shortcuts_to_response_variant (shortcuts_session->shortcuts);
+  if (shortcuts_session->shortcuts->len == 0)
+    {
+      shortcuts_session->bound = FALSE;
+      shortcuts = portal_variant_to_empty_response_variant (shortcuts_session->initial_shortcuts);
+    }
+  else
+    {
+      shortcuts = shortcuts_to_response_variant (shortcuts_session->shortcuts);
+    }
 
   if (shortcuts)
     {
@@ -925,12 +965,38 @@ handle_configure_shortcuts (XdpImplGlobalShortcuts *object,
   g_debug ("Configuring shortcuts for session %s, app_id %s",
            session_get_id (session), shortcuts_session->app_id);
 
-  org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts (settings,
-                                                                         shortcuts_session->app_id,
-                                                                         arg_parent_window,
-                                                                         NULL,
-                                                                         settings_configure_shortcuts_done,
-                                                                         g_strdup (shortcuts_session->app_id));
+  if (shortcuts_session->bound)
+    {
+      org_gnome_settings_global_shortcuts_provider_call_configure_shortcuts (settings,
+                                                                             shortcuts_session->app_id,
+                                                                             arg_parent_window,
+                                                                             NULL,
+                                                                             settings_configure_shortcuts_done,
+                                                                             g_strdup (shortcuts_session->app_id));
+    }
+  else if (shortcuts_session->initial_shortcuts)
+    {
+      g_autoptr(GVariant) settings_shortcuts = NULL;
+
+      g_debug ("Recovering session by calling BindShortcuts internally");
+      shortcuts_session->bound = TRUE;
+      settings_shortcuts = portal_shortcuts_to_settings (shortcuts_session->initial_shortcuts);
+      org_gnome_settings_global_shortcuts_provider_call_bind_shortcuts (settings,
+                                                                        shortcuts_session->app_id,
+                                                                        arg_parent_window,
+                                                                        settings_shortcuts,
+                                                                        NULL,
+                                                                        settings_configure_shortcuts_done,
+                                                                        g_strdup (shortcuts_session->app_id));
+    }
+  else
+    {
+      g_dbus_method_invocation_return_error (invocation,
+                                             G_DBUS_ERROR,
+                                             G_DBUS_ERROR_INVALID_ARGS,
+                                             "Session not bound, BindShortcuts was not called");
+      return TRUE;
+    }
 
   xdp_impl_global_shortcuts_complete_configure_shortcuts (global_shortcuts, invocation);
   return TRUE;
