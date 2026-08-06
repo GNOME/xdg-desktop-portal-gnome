@@ -699,7 +699,7 @@ screen_cast_widget_get_selected_streams (ScreenCastWidget *self)
   selected_windows = get_selected_windows (self);
 
   if (!selected_monitor_buttons && !selected_windows)
-    return g_steal_pointer (&streams);
+    return NULL;
 
   for (l = selected_monitor_buttons; l; l = l->next)
     {
