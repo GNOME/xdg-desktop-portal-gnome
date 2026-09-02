@@ -10,13 +10,6 @@ include:
       job-stage: deploy
       dist-job-name: "dist-xdg-desktop-portal-gnome-tarball"
       tarball-artifact-path: $TARBALL_ARTIFACT_PATH
-  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-build-sysext@26.2"
-    inputs:
-      before-script: |
-        ./.gitlab-ci/install-meson-project.sh \
-          -Dtests=disabled \
-          https://github.com/flatpak/xdg-desktop-portal.git \
-          1.21.1 .
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@26.2"
@@ -25,7 +18,6 @@ include:
       # There are no tests atm
       run-tests: "no"
       meson-options: "$MESON_OPTIONS"
-      generate-extensions: "disabled"
       before-script: |
         ./.gitlab-ci/install-meson-project.sh \
           -Dtests=disabled \
