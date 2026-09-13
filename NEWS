@@ -1,3 +1,7 @@
+Changes in 51.0
+=================
+- Update CI to use the gnomeos-basic-ci component
+
 Changes in 51.rc
 =================
 - Various fixed to the Global Shortcuts portal
