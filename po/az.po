@@ -1,0 +1,337 @@
+# Azerbaijani translation for xdg-desktop-portal-gnome.
+# Copyright (C) 2026 xdg-desktop-portal-gnome's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gnome package.
+# Ramal Rahimov <jhoaluman@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gnome\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-27 12:03+0000\n"
+"PO-Revision-Date: 2026-10-19 02:28+0300\n"
+"Last-Translator: Ramal Rəhimov <jhoaluman@gmail.com>\n"
+"Language-Team: Azerbaijani <contact@azelinux.com>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/xdg-desktop-portal-gnome.desktop.in.in:3
+msgid "Portal"
+msgstr "Portal"
+
+#: src/access.c:203
+msgid "Deny"
+msgstr "İmtina et"
+
+#: src/access.c:206
+msgid "Allow"
+msgstr "İcazə ver"
+
+#: src/accountdialog.c:158
+msgid "Select an Image"
+msgstr "Şəkil seçin"
+
+#: src/accountdialog.c:161
+msgid "Cancel"
+msgstr "Ləğv et"
+
+#: src/accountdialog.c:162
+msgid "Select"
+msgstr "Seç"
+
+#: src/accountdialog.c:163
+msgid "Clear"
+msgstr "Təmizlə"
+
+#: src/accountdialog.c:170
+msgid "Images"
+msgstr "Şəkillər"
+
+#: src/accountdialog.c:232
+#, c-format
+msgid "Share your personal information with %1$s? %2$s"
+msgstr "Şəxsi məlumatlarınız %1$s ilə paylaşılsın? %2$s"
+
+#: src/accountdialog.c:238
+#, c-format
+msgid "Share your personal information with the requesting app? %s"
+msgstr "Şəxsi məlumatlarınız sorğu göndərən tətbiqlə paylaşılsın? %s"
+
+#: src/accountdialog.ui:4
+msgid "Share Details"
+msgstr "Təfərrüatları paylaş"
+
+#: src/accountdialog.ui:29 src/appchooserdialog.ui:17
+#: src/dynamic-launcher.c:258 src/inputcapturedialog.ui:13
+#: src/remotedesktopdialog.ui:28 src/screencastdialog.ui:31
+#: src/screenshotdialog.ui:29 src/wallpaperdialog.ui:28
+msgid "_Cancel"
+msgstr "_Ləğv et"
+
+#: src/accountdialog.ui:36 src/inputcapturedialog.ui:21
+#: src/remotedesktopdialog.ui:36 src/screencastdialog.ui:39
+#: src/screenshotdialog.ui:52
+msgid "_Share"
+msgstr "_Paylaş"
+
+#: src/accountdialog.ui:89
+msgid "Change Avatar"
+msgstr "Avatarı dəyiş"
+
+#: src/accountdialog.ui:112
+msgid "Name"
+msgstr "Ad"
+
+#: src/accountdialog.ui:118
+msgid "Username"
+msgstr "İstifadəçi adı"
+
+#: src/appchooserdialog.c:176
+msgid "_OK"
+msgstr "_OK"
+
+#: src/appchooserdialog.c:195
+msgid "Failed to start Software"
+msgstr "Proqram təminatı tətbiqini başlatmaq mümkün olmadı"
+
+#: src/appchooserdialog.c:348
+#, c-format
+msgid "Choose an app to open the file “%s”"
+msgstr "“%s” faylını açmaq üçün tətbiq seçin"
+
+#: src/appchooserdialog.c:353
+msgid "Choose an app"
+msgstr "Tətbiq seçin"
+
+#: src/appchooserdialog.c:370
+#, c-format
+msgid ""
+"No apps installed that can open “%s”. You can find more apps in Software"
+msgstr ""
+"“%s” faylını aça bilən quraşdırılmış tətbiq yoxdur. Proqram təminatı "
+"tətbiqində daha çox tətbiq tapa bilərsiniz"
+
+#: src/appchooserdialog.c:375
+msgid "No suitable app installed. You can find more apps in Software."
+msgstr ""
+"Uyğun tətbiq quraşdırılmayıb. Proqram təminatı tətbiqində daha çox tətbiq "
+"tapa bilərsiniz."
+
+#: src/appchooserdialog.ui:5
+msgid "Open With"
+msgstr "Bununla aç"
+
+#: src/appchooserdialog.ui:25
+msgid "_Open"
+msgstr "_Aç"
+
+#: src/appchooserdialog.ui:68
+msgid "No Apps Available"
+msgstr "Əlçatan tətbiq yoxdur"
+
+#: src/appchooserdialog.ui:76
+msgid "_Find More in Software"
+msgstr "Proqram təminatında _daha çox tap"
+
+#: src/dynamic-launcher.c:250
+msgid "Create Web App"
+msgstr "Veb tətbiq yarat"
+
+#: src/dynamic-launcher.c:252
+msgid "Create App"
+msgstr "Tətbiq yarat"
+
+#: src/dynamic-launcher.c:260
+msgid "C_reate"
+msgstr "_Yarat"
+
+#. Translators: This string refers to a key combination
+#: src/globalshortcuts.c:355
+#, c-format
+msgid "Press %s"
+msgstr "%s basın"
+
+#. Translators: This string refers to 2 key combinations
+#: src/globalshortcuts.c:364
+#, c-format
+msgid "Press %s or %s"
+msgstr "%s və ya %s basın"
+
+#: src/globalshortcuts.c:500
+msgid "Undocumented shortcut"
+msgstr "Sənədləşdirilməmiş qısayol"
+
+#: src/inputcapturedialog.c:122
+#, c-format
+msgid "The application %s wants to capture input events"
+msgstr "%s tətbiqi daxiletmə hadisələrini ələ keçirmək istəyir"
+
+#: src/inputcapturedialog.c:127
+msgid "An application wants to capture input events"
+msgstr "Bir tətbiq daxiletmə hadisələrini ələ keçirmək istəyir"
+
+#: src/inputcapturedialog.ui:7
+msgid "Capture Input"
+msgstr "Daxiletməni ələ keçir"
+
+#: src/inputcapturedialog.ui:63 src/screencastwidget.ui:17
+msgid "_Remember this selection"
+msgstr "Bu seçimi _yadda saxla"
+
+#: src/inputcapturedialog.ui:80
+msgid "Allow Remote _Input Capturing"
+msgstr "Uzaqdan _daxiletmənin ələ keçirilməsinə icazə ver"
+
+#: src/inputcapturedialog.ui:93 src/remotedesktopdialog.ui:93
+msgid "Allow _Clipboard Access"
+msgstr "_Mübadilə buferinə çıxışa icazə ver"
+
+#: src/remotedesktopdialog.ui:7
+msgid "Remote Desktop"
+msgstr "Uzaq masaüstü"
+
+#: src/remotedesktopdialog.ui:70
+msgid "_Remember This Selection"
+msgstr "Bu seçimi _yadda saxla"
+
+#: src/remotedesktopdialog.ui:85
+msgid "Allow Remote _Interaction"
+msgstr "Uzaqdan _qarşılıqlı əlaqəyə icazə ver"
+
+#: src/screencastdialog.ui:5
+msgid "Share Screen"
+msgstr "Ekranı paylaş"
+
+#: src/screencastwidget.c:292
+msgid "Virtual Monitor"
+msgstr "Virtual monitor"
+
+#: src/screencastwidget.c:632
+#, c-format
+msgid "%s wants to share your screen. Choose what you'd like to share."
+msgstr "%s ekranınızı paylaşmaq istəyir. Nəyi paylaşmaq istədiyinizi seçin."
+
+#: src/screencastwidget.c:637
+msgid "An app wants to share your screen. Choose what you'd like to share."
+msgstr ""
+"Bir tətbiq ekranınızı paylaşmaq istəyir. Nəyi paylaşmaq istədiyinizi seçin."
+
+#: src/screencastwidget.ui:46
+msgid "_Window"
+msgstr "_Pəncərə"
+
+#: src/screencastwidget.ui:66
+msgid "_Display"
+msgstr "_Ekran"
+
+#: src/screenshotdialog.c:430
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "Bu ekran şəkli %s ilə paylaşılsın?"
+
+#: src/screenshotdialog.c:434
+msgid "Share this screenshot with the requesting app?"
+msgstr "Bu ekran şəkli sorğu göndərən tətbiqlə paylaşılsın?"
+
+#: src/screenshotdialog.ui:9
+msgid "Screenshot"
+msgstr "Ekran şəkli"
+
+#: src/screenshotdialog.ui:45
+msgid "_Options…"
+msgstr "_Seçimlər…"
+
+#: src/screenshotdialog.ui:70
+msgid "Take _Screenshot"
+msgstr "Ekran _şəkli çək"
+
+#: src/screenshotdialog.ui:131
+msgid "Take Screenshot"
+msgstr "Ekran şəkli çək"
+
+#: src/screenshotdialog.ui:141
+msgid "Grab Whole Sc_reen"
+msgstr "Bütün _ekranı çək"
+
+#: src/screenshotdialog.ui:151
+msgid "Grab Current _Window"
+msgstr "Cari _pəncərəni çək"
+
+#: src/screenshotdialog.ui:161
+msgid "Select _Area to Grab"
+msgstr "Çəkiləcək _sahəni seçin"
+
+#: src/screenshotdialog.ui:173
+msgid "Grab after a _delay of"
+msgstr "Bu _gecikmədən sonra çək:"
+
+#: src/screenshotdialog.ui:184
+msgid "seconds"
+msgstr "saniyə"
+
+#: src/screenshotdialog.ui:193
+msgid "Effects"
+msgstr "Effektlər"
+
+#: src/screenshotdialog.ui:203
+msgid "Include _Pointer"
+msgstr "_Göstəricini daxil et"
+
+#: src/screenshotdialog.ui:211
+msgid "Include Window _Border"
+msgstr "Pəncərə _çərçivəsini daxil et"
+
+#: src/settings.c:362
+msgid "Requested setting not found"
+msgstr "Tələb olunan tənzimləmə tapılmadı"
+
+#: src/usbdialog.c:102
+msgid "Serial Number"
+msgstr "Seriya nömrəsi"
+
+#: src/usbdialog.c:211
+#, c-format
+msgid "%s wants to access the following USB devices"
+msgstr "%s aşağıdakı USB qurğularına çıxış əldə etmək istəyir"
+
+#: src/usbdialog.c:216
+msgid "An app wants to access the following USB devices"
+msgstr "Bir tətbiq aşağıdakı USB qurğularına çıxış əldə etmək istəyir"
+
+#: src/usbdialog.c:276
+msgid "Unknown device"
+msgstr "Naməlum qurğu"
+
+#: src/usbdialog.c:277
+msgid "Unknown vendor"
+msgstr "Naməlum istehsalçı"
+
+#: src/usbdialog.ui:8
+msgid "Device Access"
+msgstr "Qurğuya çıxış"
+
+#: src/usbdialog.ui:31
+msgid "_Deny"
+msgstr "_İmtina et"
+
+#: src/usbdialog.ui:40
+msgid "_Allow"
+msgstr "_İcazə ver"
+
+#: src/usbdialog.ui:90
+msgid "Failed to display USB device"
+msgstr "USB qurğusunu göstərmək mümkün olmadı"
+
+#: src/wallpaperdialog.ui:8
+msgid "Set Background"
+msgstr "Arxa planı təyin et"
+
+#: src/wallpaperdialog.ui:35
+msgid "_Set"
+msgstr "_Təyin et"
+
+#: src/wallpaperdialog.ui:67
+msgid "Failed to load image file"
+msgstr "Şəkil faylını yükləmək mümkün olmadı"
