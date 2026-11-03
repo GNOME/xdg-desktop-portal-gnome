@@ -64,6 +64,7 @@ typedef struct _GnomeScreenCastStream
   OrgGnomeMutterScreenCastStream *proxy;
 
   uint32_t pipewire_node_id;
+  uint64_t pipewire_serial;
 
   gboolean has_position;
   int x;
@@ -170,10 +171,11 @@ gnome_screen_cast_stream_finalize (GObject *object)
 
 static void
 on_pipewire_stream_added (OrgGnomeMutterScreenCastStream *stream_proxy,
-                          unsigned int arg_node_id,
+                          GVariant *arg_properties,
                           GnomeScreenCastStream *stream)
 {
-  stream->pipewire_node_id = arg_node_id;
+  g_variant_lookup (arg_properties, "node-id", "u", &stream->pipewire_node_id);
+  g_variant_lookup (arg_properties, "node-serial", "t", &stream->pipewire_serial);
   g_signal_emit (stream, stream_signals[STREAM_SIGNAL_READY], 0);
 
   stream->session->n_needed_stream_node_ids--;
@@ -259,6 +261,10 @@ gnome_screen_cast_session_add_stream_properties (GnomeScreenCastSession *gnome_s
         g_variant_builder_add (&stream_properties_builder, "{sv}",
                                "mapping_id",
                                g_variant_new_string (stream->mapping_id));
+      if (stream->pipewire_serial != 0)
+        g_variant_builder_add (&stream_properties_builder, "{sv}",
+                               "pipewire-serial",
+                               g_variant_new_uint64 (stream->pipewire_serial));
 
       pipewire_node_id = gnome_screen_cast_stream_get_pipewire_node_id (stream);
       g_variant_builder_add (streams_builder, "(ua{sv})",
@@ -360,7 +366,7 @@ gnome_screen_cast_session_record_window (GnomeScreenCastSession  *gnome_screen_c
                  stream->path);
     }
 
-  g_signal_connect (stream_proxy, "pipewire-stream-added",
+  g_signal_connect (stream_proxy, "pipewire-stream-added-v2",
                     G_CALLBACK (on_pipewire_stream_added),
                     stream);
 
@@ -445,7 +451,7 @@ gnome_screen_cast_session_record_monitor (GnomeScreenCastSession  *gnome_screen_
                  stream->path);
     }
 
-  g_signal_connect (stream_proxy, "pipewire-stream-added",
+  g_signal_connect (stream_proxy, "pipewire-stream-added-v2",
                     G_CALLBACK (on_pipewire_stream_added),
                     stream);
 
@@ -526,7 +532,7 @@ gnome_screen_cast_session_record_virtual (GnomeScreenCastSession  *gnome_screen_
                  stream->path);
     }
 
-  g_signal_connect (stream_proxy, "pipewire-stream-added",
+  g_signal_connect (stream_proxy, "pipewire-stream-added-v2",
                     G_CALLBACK (on_pipewire_stream_added),
                     stream);
 
