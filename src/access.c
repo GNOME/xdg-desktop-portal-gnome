@@ -113,6 +113,29 @@ access_dialog_response (GtkWidget  *widget,
   send_response (handle);
 }
 
+static gboolean
+access_dialog_close_request (GtkWindow          *dialog,
+                             AccessDialogHandle *handle)
+{
+  gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
+  access_dialog_response (GTK_WIDGET (dialog), "close", handle);
+
+  return TRUE;
+}
+
+static gboolean
+handle_close (XdpImplRequest        *object,
+              GDBusMethodInvocation *invocation,
+              AccessDialogHandle    *handle)
+{
+  handle->response = 2;
+  send_response (handle);
+
+  xdp_impl_request_complete_close (object, invocation);
+
+  return TRUE;
+}
+
 static void
 add_choice (GtkWidget  *box,
             GVariant   *choice,
@@ -248,11 +271,12 @@ create_access_dialog (GxdpExternalWindow  *parent,
   window_group = gtk_window_group_new ();
   gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
 
-  gtk_widget_realize (dialog);
-
-  gxdp_external_window_set_parent_of (parent, gtk_native_get_surface (GTK_NATIVE (dialog)));
-
-  gtk_window_present (GTK_WINDOW (dialog));
+  if (parent != NULL)
+    {
+      gtk_widget_realize (dialog);
+      gxdp_external_window_set_parent_of (parent,
+                                          gtk_native_get_surface (GTK_NATIVE (dialog)));
+    }
 
   return dialog;
 }
@@ -288,16 +312,27 @@ handle_access_dialog (XdpImplAccess         *object,
                       GVariant              *arg_options)
 {
   GxdpExternalWindow *external_parent = NULL;
+  gboolean has_parent;
 
- if (arg_parent_window)
+  has_parent = arg_parent_window != NULL && *arg_parent_window != '\0';
+
+  if (has_parent)
     {
-      external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
-      if (!external_parent)
-        g_warning ("Failed to associate portal window with parent window %s",
-                   arg_parent_window);
+      if (parent_window_is_usable (arg_parent_window))
+        {
+          external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
+          if (!external_parent)
+            g_warning ("Failed to associate portal window with parent window %s",
+                       arg_parent_window);
+        }
+      else
+        {
+          g_warning ("Parent window %s is not viewable, showing the dialog "
+                     "without a parent", arg_parent_window);
+        }
     }
 
-  if (external_parent != NULL) /* use window-modal dialog */
+  if (has_parent) /* use window-modal dialog when possible */
     {
       g_autoptr(Request) request = NULL;
       AccessDialogHandle *handle;
@@ -324,8 +359,13 @@ handle_access_dialog (XdpImplAccess         *object,
       handle->choices = choice_table;
 
       g_signal_connect (dialog, "response", G_CALLBACK (access_dialog_response), handle);
+      g_signal_connect (dialog, "close-request",
+                        G_CALLBACK (access_dialog_close_request), handle);
+      g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);
 
       request_export (request, g_dbus_method_invocation_get_connection (invocation));
+
+      gtk_window_present (GTK_WINDOW (dialog));
     }
   else /* otherwise delegate to gnome-shell */
     {

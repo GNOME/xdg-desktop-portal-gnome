@@ -54,7 +54,8 @@ screenshot_dialog_handle_free (gpointer data)
 static void
 screenshot_dialog_handle_close (ScreenshotDialogHandle *handle)
 {
-  g_clear_pointer (&handle->dialog, gtk_window_destroy);
+  if (handle->dialog != NULL)
+    g_clear_pointer (&handle->dialog, gtk_window_destroy);
   screenshot_dialog_handle_free (handle);
 }
 
@@ -233,12 +234,20 @@ handle_screenshot (XdpImplScreenshot *object,
       if (!g_variant_lookup (arg_options, "permission_store_checked", "b", &permission_store_checked))
         permission_store_checked = FALSE;
 
-      if (arg_parent_window)
+      if (arg_parent_window != NULL && *arg_parent_window != '\0')
         {
-          external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
-          if (!external_parent)
-            g_warning ("Failed to associate portal window with parent window '%s'",
-                       arg_parent_window);
+          if (parent_window_is_usable (arg_parent_window))
+            {
+              external_parent = gxdp_external_window_new_from_handle (arg_parent_window);
+              if (!external_parent)
+                g_warning ("Failed to associate portal window with parent window '%s'",
+                           arg_parent_window);
+            }
+          else
+            {
+              g_warning ("Parent window '%s' is not viewable, showing the dialog "
+                         "without a parent", arg_parent_window);
+            }
         }
 
       fake_parent = g_object_new (GTK_TYPE_WINDOW, NULL);
@@ -255,11 +264,18 @@ handle_screenshot (XdpImplScreenshot *object,
 
       g_signal_connect (dialog, "done", G_CALLBACK (screenshot_dialog_done), handle);
 
-      gtk_widget_realize (GTK_WIDGET (dialog));
+      /* The dialog is never shown when the permission store has already
+       * been checked, so there is no need to realize it or to make it
+       * transient for the requesting application.
+       */
+      if (!permission_store_checked)
+        {
+          gtk_widget_realize (GTK_WIDGET (dialog));
 
-      surface = gtk_native_get_surface (GTK_NATIVE (dialog));
-      if (external_parent)
-        gxdp_external_window_set_parent_of (external_parent, surface);
+          surface = gtk_native_get_surface (GTK_NATIVE (dialog));
+          if (external_parent)
+            gxdp_external_window_set_parent_of (external_parent, surface);
+        }
     }
 
   g_signal_connect (request, "handle-close", G_CALLBACK (handle_close), handle);

@@ -56,7 +56,10 @@ built_sources += gnome.compile_resources(
 )
 
 # config.h
+x11_dep = dependency('x11', required: false)
+
 config_h = configuration_data()
+config_h.set10('HAVE_X11', x11_dep.found())
 config_h.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_h.set_quoted('LOCALEDIR', prefix / get_option('localedir'))
 config_h.set_quoted('PACKAGE_NAME', meson.project_name())
@@ -91,6 +94,10 @@ deps = [
   libadwaita_dep,
   xdg_desktop_portal_dep,
 ]
+
+if x11_dep.found()
+  deps += x11_dep
+endif
 
 sources = built_sources + files(
   'access.c',

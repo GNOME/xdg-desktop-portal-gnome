@@ -20,9 +20,18 @@
 
 #include "config.h"
 
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include <gio/gio.h>
 
 #include "utils.h"
+
+#if defined(GDK_WINDOWING_X11) && HAVE_X11
+#include <gdk/x11/gdkx.h>
+#include <X11/Xlib.h>
+#endif
 
 static const GDBusErrorEntry xdg_desktop_portal_error_entries[] = {
   { XDG_DESKTOP_PORTAL_ERROR_FAILED,           "org.freedesktop.portal.Error.Failed" },
@@ -121,4 +130,93 @@ str_distance (const char *a,
     }
 
   return v1[b_char_len];
+}
+
+/*
+ * Checks whether a parent window handle can be used to make a portal dialog
+ * transient for it.
+ *
+ * Applications sometimes pass a handle to an offscreen or otherwise not
+ * viewable window. Using such a window as the dialog parent makes the window
+ * manager keep the dialog hidden, which ends up in the request timing out,
+ * and the dialog being destroyed together with the offscreen parent. If the
+ * handle is unusable, callers should show the dialog without a parent.
+ *
+ * Handles that can not be inspected here (Wayland handles, or X11 handles on
+ * a Wayland session) are considered usable and left to libgxdp to resolve.
+ */
+gboolean
+parent_window_is_usable (const char *handle)
+{
+  if (handle == NULL || *handle == '\0')
+    return FALSE;
+
+#if defined(GDK_WINDOWING_X11) && HAVE_X11
+  {
+    const char prefix[] = "x11:";
+    GdkDisplay *display;
+    Display *xdisplay;
+    XWindowAttributes attrs;
+    unsigned long xid;
+    const char *xid_str;
+    char *end = NULL;
+    Status status;
+
+    if (!g_str_has_prefix (handle, prefix))
+      return TRUE;
+
+    display = gdk_display_get_default ();
+    if (display == NULL || !GDK_IS_X11_DISPLAY (display))
+      return TRUE;
+
+    xid_str = handle + strlen (prefix);
+    if (*xid_str == '\0')
+      return FALSE;
+
+    for (const char *p = xid_str; *p != '\0'; p++)
+      {
+        if (!g_ascii_isxdigit (*p))
+          return FALSE;
+      }
+
+    errno = 0;
+    xid = strtoul (xid_str, &end, 16);
+    if (errno != 0 || end == xid_str || *end != '\0' ||
+        xid == 0 || xid > G_MAXUINT32)
+      return FALSE;
+
+    xdisplay = gdk_x11_display_get_xdisplay (display);
+
+    gdk_x11_display_error_trap_push (display);
+    status = XGetWindowAttributes (xdisplay, (Window) xid, &attrs);
+    if (gdk_x11_display_error_trap_pop (display) != 0)
+      return FALSE;
+
+    if (status == 0)
+      return FALSE;
+
+    if ((Window) xid == attrs.root)
+      return FALSE;
+
+    /* Input-only and override-redirect (menus, tooltips, ...) windows can
+     * not be used as dialog parents. An unmapped window is typically an
+     * offscreen helper window.
+     */
+    if (attrs.class == InputOnly || attrs.depth == 0)
+      return FALSE;
+
+    if (attrs.override_redirect)
+      return FALSE;
+
+    if (attrs.map_state != IsViewable)
+      return FALSE;
+
+    if (attrs.width <= 0 || attrs.height <= 0)
+      return FALSE;
+
+    return TRUE;
+  }
+#endif
+
+  return TRUE;
 }

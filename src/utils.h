@@ -46,3 +46,5 @@ GQuark  xdg_desktop_portal_error_quark (void);
 
 glong str_distance (const char *a,
                     const char *b);
+
+gboolean parent_window_is_usable (const char *handle);
